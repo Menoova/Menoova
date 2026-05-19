@@ -393,6 +393,18 @@
       color: var(--brand-dark);
     }
 
+    .order-note {
+      background: #fff4df;
+      color: var(--brand-dark);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      font-size: 13px;
+      font-weight: 750;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
     .x {
       width: 38px;
       height: 38px;
@@ -601,7 +613,7 @@
     <button class="nav-btn" onclick="goTo('menu')"><strong>☰</strong>MENU</button>
     <button class="nav-btn" onclick="openDrawer()"><strong>🧾</strong><span class="badge" id="cartCount">0</span>ORDINE</button>
     <button class="nav-btn" onclick="showLegend()"><strong>ⓘ</strong>LEGENDA</button>
-    <button class="nav-btn" onclick="location.href='tel:+390000000000'"><strong>☎</strong>CHIAMA</button>
+    <button class="nav-btn" onclick="location.href='tel:+390932230446'"><strong>☎</strong>CHIAMA</button>
   </nav>
 
   <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
@@ -611,6 +623,12 @@
       <h2>Il tuo ordine</h2>
       <button class="x" onclick="closeDrawer()">×</button>
     </div>
+
+    <div class="order-note">
+      Per completare l’ordine, inserisci nel messaggio il tuo nome, il giorno e l’orario di ritiro.<br><br>
+      L’ordine sarà confermato solo dopo la risposta del panificio.
+    </div>
+
     <div id="cartList" class="cart-empty">Elenco vuoto</div>
     <div class="drawer-actions">
       <button class="primary-btn" onclick="orderWhatsapp()">Ordina su WhatsApp</button>
@@ -682,10 +700,36 @@
     }
 
     function getOrderText() {
-      const rows = Object.entries(cart).map(([name, item]) => `${item.quantity} x ${name} - ${formatEuro(item.price * item.quantity)}`);
-      if (!rows.length) return 'Vorrei fare un ordine da Pane per i tuoi denti.';
-      const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.quantity, 0);
-      return `Ordine Pane per i tuoi denti:\n\n${rows.join('\n')}\n\nTotale: ${formatEuro(total)}\n\nNome:\nOrario ritiro:`;
+      const rows = Object.entries(cart).map(
+        ([name, item]) => `${item.quantity} x ${name} - ${formatEuro(item.price * item.quantity)}`
+      );
+
+      if (!rows.length) {
+        return `Vorrei fare un ordine da Pane per i tuoi denti.
+
+Nome:
+Giorno di ritiro:
+Orario di ritiro:
+
+Nota: l’ordine sarà confermato solo dopo risposta del panificio.`;
+      }
+
+      const total = Object.values(cart).reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+
+      return `Ordine Pane per i tuoi denti:
+
+${rows.join('\n')}
+
+Totale: ${formatEuro(total)}
+
+Nome:
+Giorno di ritiro:
+Orario di ritiro:
+
+Nota: l’ordine sarà confermato solo dopo risposta del panificio.`;
     }
 
     function openDrawer() {
