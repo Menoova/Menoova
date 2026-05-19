@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menoova — Smart Digital Menus</title>
+  <meta name="description" content="Menoova crea menu digitali eleganti, veloci e accessibili via QR code per ristoranti, bar, pizzerie e locali." />
+  <style>
+    :root {
+      --bg: #0f1110;
+      --bg-soft: #171a18;
+      --cream: #f5efe4;
+      --muted: #b9b0a1;
+      --olive: #a6a07a;
+      --olive-dark: #777154;
+      --line: rgba(245, 239, 228, 0.12);
+      --white: #ffffff;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: hidden;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(166, 160, 122, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 30%, rgba(245, 239, 228, 0.08), transparent 30%),
+        var(--bg);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(15, 17, 16, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 239, 228, 0.24);
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(245,239,228,.16), rgba(166,160,122,.1));
+    }
+
+    .mark svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--cream);
+      color: #111;
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 14px 30px rgba(245, 239, 228, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(245, 239, 228, 0.18);
+    }
+
+    .hero {
+      padding: 92px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--olive);
+      box-shadow: 0 0 18px rgba(166,160,122,.7);
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      color: var(--olive);
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 19px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .secondary {
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .phone-wrap {
+      position: relative;
+      min-height: 640px;
+      display: grid;
+      place-items: center;
+    }
+
+    .glow {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      background: rgba(166,160,122,.18);
+      filter: blur(80px);
+      border-radius: 50%;
+    }
+
+    .phone {
+      position: relative;
+      width: min(340px, 86vw);
+      min-height: 620px;
+      border-radius: 42px;
+      border: 1px solid rgba(245,239,228,.22);
+      background: #111311;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .screen {
+      border-radius: 32px;
+      min-height: 592px;
+      overflow: hidden;
+      background: #f6efe5;
+      color: #171411;
+    }
+
+    .menu-cover {
+      padding: 34px 22px;
+      min-height: 210px;
+      color: white;
+      background:
+        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.55)),
+        linear-gradient(135deg, #a6a07a, #5f5940);
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    .mini-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.92);
+      color: #161616;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .menu-cover h3 {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .menu-cover span {
+      color: rgba(255,255,255,.75);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .menu-body {
+      padding: 18px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .pill {
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: white;
+      color: #605641;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 20px rgba(80,60,40,.08);
+    }
+
+    .menu-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .menu-card h4 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .menu-card p {
+      color: #766b5d;
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .price {
+      color: #6e684b;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .bottom-demo {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: #171411;
+      padding: 10px;
+      border-radius: 22px;
+      color: white;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .section {
+      padding: 86px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      min-height: 250px;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: rgba(166,160,122,.14);
+      display: grid;
+      place-items: center;
+      color: var(--olive);
+      margin-bottom: 24px;
+      font-size: 22px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .feature-band {
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 32px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(166,160,122,.16), rgba(255,255,255,.03));
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(0,0,0,.16);
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--cream);
+      color: #111;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .final-cta {
+      padding: 88px 0 110px;
+      text-align: center;
+    }
+
+    .final-box {
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      padding: 62px 30px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(166,160,122,.22), transparent 42%),
+        rgba(255,255,255,.035);
+    }
+
+    .final-box h2 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .final-box p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .feature-band {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-wrap {
+        min-height: auto;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 62px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        height: 68px;
+      }
+
+      .brand span {
+        font-size: 14px;
+      }
+
+      .hero p,
+      .section-head p,
+      .final-box p {
+        font-size: 16px;
+      }
+
+      .phone {
+        transform: scale(.92);
+        transform-origin: top center;
+      }
+
+      .phone-wrap {
+        margin-bottom: -42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="Menoova home">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 48V17C12 14.8 14.7 13.7 16.2 15.3L32 32L47.8 15.3C49.3 13.7 52 14.8 52 17V48" stroke="#F5EFE4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="32" cy="48" r="5" fill="#A6A07A"/>
+            </svg>
+          </span>
+          <span>MENOOVA</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navigazione principale">
+          <a href="#servizio">Servizio</a>
+          <a href="#vantaggi">Vantaggi</a>
+          <a href="#come-funziona">Come funziona</a>
+        </nav>
+
+        <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> Smart digital menus for restaurants</div>
+            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
+            <p>Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali. Ogni cliente riceve una pagina dedicata, accessibile tramite QR code, con design curato e navigazione semplice da smartphone.</p>
+            <div class="hero-actions">
+              <a class="cta" href="mailto:hello@menoova.com">Crea il tuo menu</a>
+              <a class="secondary" href="#servizio">Scopri il servizio</a>
+            </div>
+          </div>
+
+          <div class="phone-wrap" aria-label="Anteprima menu digitale">
+            <div class="glow"></div>
+            <div class="phone">
+              <div class="screen">
+                <div class="menu-cover" style="background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.58)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                  <div class="mini-logo">M</div>
+                  <h3>Locale Milano</h3>
+                  <span>Menu digitale · QR ordering</span>
+                </div>
+                <div class="menu-body">
+                  <div class="pill-row">
+                    <div class="pill">Antipasti</div>
+                    <div class="pill">Pizze</div>
+                    <div class="pill">Dessert</div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Focaccia gourmet</h4>
+                        <p>Olio EVO, rosmarino, sale Maldon.</p>
+                      </div>
+                      <div class="price">€ 6</div>
+                    </div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Margherita premium</h4>
+                        <p>Pomodoro San Marzano, fiordilatte, basilico.</p>
+                      </div>
+                      <div class="price">€ 9</div>
+                    </div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Tiramisù della casa</h4>
+                        <p>Crema al mascarpone, caffè, cacao.</p>
+                      </div>
+                      <div class="price">€ 5</div>
+                    </div>
+                  </div>
+
+                  <div class="bottom-demo">
+                    <span>Home</span>
+                    <span>Menu</span>
+                    <span>Ordine</span>
+                    <span>Chiama</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="servizio">
+        <div class="container">
+          <div class="section-head">
+            <h2>Un menu digitale creato per vendere meglio.</h2>
+            <p>Non un semplice PDF online. Menoova realizza pagine menu leggere, moderne e pensate per essere usate ogni giorno dai clienti direttamente dal tavolo.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <div class="icon">⌁</div>
+              <h3>Pagina dedicata</h3>
+              <p>Ogni locale ha il proprio URL personalizzato, con logo, copertina, indirizzo, pulsanti rapidi e menu organizzato per categorie.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">▣</div>
+              <h3>QR code pronto</h3>
+              <p>Generiamo il QR collegato alla pagina del locale, pronto per tavoli, bancone, vetrina, flyer o social.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">✦</div>
+              <h3>Design premium</h3>
+              <p>Interfaccia mobile-first, colori curati, testi leggibili e navigazione fluida per migliorare l’esperienza del cliente.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vantaggi">
+        <div class="container feature-band">
+          <div class="section-head" style="margin-bottom:0">
+            <h2>Semplice per il locale. Comodo per il cliente.</h2>
+            <p>Il menu può includere prodotti, descrizioni, prezzi, allergeni, foto, pulsante chiama, indicazioni Google Maps e richiesta ordine via WhatsApp.</p>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Raccogliamo contenuti</h3>
+                <p>Nome locale, logo, prodotti, prezzi, categorie, indirizzo e contatti.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Creiamo la pagina</h3>
+                <p>Costruiamo un menu digitale elegante, veloce e ottimizzato per smartphone.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>Consegniamo il QR</h3>
+                <p>Il locale stampa il QR e i clienti aprono subito il menu dal telefono.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-head">
+            <h2>Prezzi semplici e trasparenti.</h2>
+            <p>Scegli il piano più adatto al tuo locale. Ogni menu è ottimizzato per smartphone, aggiornabile e pronto da condividere tramite QR code.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card" style="position:relative; overflow:hidden;">
+              <div class="icon">◌</div>
+              <h3>Starter</h3>
+              <p style="margin-bottom:22px;">Perfetto per piccoli locali e bar.</p>
+              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">€49</div>
+              <p style="margin-bottom:22px;">Setup iniziale</p>
+              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
+                <li>✓ Menu digitale personalizzato</li>
+                <li>✓ QR code dedicato</li>
+                <li>✓ Link condivisibile</li>
+                <li>✓ Supporto base</li>
+              </ul>
+              <a class="secondary" href="mailto:hello@menoova.com">Richiedi</a>
+            </article>
+
+            <article class="card" style="position:relative; border:1px solid rgba(166,160,122,.35); background:linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03)); overflow:hidden;">
+              <div style="position:absolute; top:18px; right:18px; background:var(--cream); color:#111; padding:6px 10px; border-radius:999px; font-size:11px; font-weight:800;">POPOLARE</div>
+              <div class="icon">✦</div>
+              <h3>Business</h3>
+              <p style="margin-bottom:22px;">La soluzione ideale per ristoranti e pizzerie.</p>
+              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">€99</div>
+              <p style="margin-bottom:22px;">Setup + configurazione premium</p>
+              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
+                <li>✓ Design premium personalizzato</li>
+                <li>✓ Sezioni illimitate</li>
+                <li>✓ WhatsApp ordering</li>
+                <li>✓ Modifiche menu rapide</li>
+                <li>✓ Ottimizzazione mobile</li>
+              </ul>
+              <a class="cta" href="mailto:hello@menoova.com">Inizia ora</a>
+            </article>
+
+            <article class="card" style="position:relative; overflow:hidden;">
+              <div class="icon">⬢</div>
+              <h3>Enterprise</h3>
+              <p style="margin-bottom:22px;">Per catene, multi-location e progetti su misura.</p>
+              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">Custom</div>
+              <p style="margin-bottom:22px;">Preventivo personalizzato</p>
+              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
+                <li>✓ Multi locale</li>
+                <li>✓ Branding avanzato</li>
+                <li>✓ Supporto prioritario</li>
+                <li>✓ Integrazioni personalizzate</li>
+              </ul>
+              <a class="secondary" href="mailto:hello@menoova.com">Contattaci</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" id="come-funziona">
+        <div class="container final-box">
+          <h2>Pronto a trasformare il menu del tuo locale?</h2>
+          <p>Partiamo da una demo personalizzata: una pagina elegante con il tuo brand, il tuo menu e il tuo QR code.</p>
+          <a class="cta" href="mailto:hello@menoova.com">Richiedi una demo</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>© 2026 Menoova. Smart digital menus.</span>
+        <span>Designed for restaurants, bars and modern places.</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
