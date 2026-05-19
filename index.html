@@ -417,6 +417,53 @@
       font-size: 24px;
     }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .price-main {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .price-period {
+      color: var(--muted);
+      margin-top: 4px;
+      margin-bottom: 18px;
+    }
+
+    .annual-box {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    .annual-box strong {
+      font-size: 20px;
+      color: var(--cream);
+    }
+
+    .annual-box div {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
     .final-cta {
       padding: 88px 0 110px;
       text-align: center;
@@ -462,7 +509,7 @@
     @media (max-width: 900px) {
       .hero-grid, .feature-band { grid-template-columns: 1fr; }
       .phone-wrap { min-height: auto; }
-      .cards { grid-template-columns: 1fr; }
+      .cards, .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .hero { padding-top: 62px; }
     }
@@ -510,7 +557,6 @@
             <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
             <p>Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali. Ogni cliente riceve una pagina dedicata, accessibile tramite QR code, con design curato e navigazione semplice da smartphone.</p>
             <div class="hero-actions">
-              <a class="cta" href="mailto:hello@menoova.com">Crea il tuo menu</a>
               <a class="secondary" href="#servizio">Scopri il servizio</a>
             </div>
           </div>
@@ -673,56 +719,60 @@
       <section class="section" id="pricing">
         <div class="container">
           <div class="section-head">
-            <h2>Prezzi semplici e trasparenti.</h2>
-            <p>Scegli il piano più adatto al tuo locale. Ogni menu è ottimizzato per smartphone, aggiornabile e pronto da condividere tramite QR code.</p>
+            <h2>Prezzi semplici e sostenibili.</h2>
+            <p>Menu digitali premium con costi inferiori rispetto alle classiche piattaforme QR. Nessun costo assurdo. Nessuna complessità.</p>
           </div>
 
-          <div class="cards">
+          <div class="pricing-grid">
             <article class="card">
               <div class="icon">◌</div>
               <h3>Starter</h3>
-              <p style="margin-bottom:22px;">Perfetto per piccoli locali e bar.</p>
-              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">€49</div>
-              <p style="margin-bottom:22px;">Setup iniziale</p>
-              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
+              <p style="margin-bottom:22px;">Ideale per piccoli locali, bakery, bar e attività che vogliono un menu moderno.</p>
+
+              <div class="price-main">€7,99</div>
+              <div class="price-period">/ mese</div>
+
+              <div class="annual-box">
+                <strong>€79 / anno</strong>
+                <div>Risparmi oltre 2 mesi</div>
+              </div>
+
+              <ul class="pricing-list">
                 <li>✓ Menu digitale personalizzato</li>
                 <li>✓ QR code dedicato</li>
+                <li>✓ Mobile optimized</li>
                 <li>✓ Link condivisibile</li>
                 <li>✓ Supporto base</li>
               </ul>
-              <a class="secondary" href="mailto:hello@menoova.com">Richiedi</a>
+
+              <a class="secondary" href="mailto:hello@menoova.com">Inizia</a>
             </article>
 
             <article class="card" style="position:relative; border:1px solid rgba(166,160,122,.35); background:linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03)); overflow:hidden;">
               <div style="position:absolute; top:18px; right:18px; background:var(--cream); color:#111; padding:6px 10px; border-radius:999px; font-size:11px; font-weight:800;">POPOLARE</div>
+
               <div class="icon">✦</div>
               <h3>Business</h3>
-              <p style="margin-bottom:22px;">La soluzione ideale per ristoranti e pizzerie.</p>
-              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">€99</div>
-              <p style="margin-bottom:22px;">Setup + configurazione premium</p>
-              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
-                <li>✓ Design premium personalizzato</li>
-                <li>✓ Sezioni illimitate</li>
-                <li>✓ WhatsApp ordering</li>
-                <li>✓ Modifiche menu rapide</li>
-                <li>✓ Ottimizzazione mobile</li>
-              </ul>
-              <a class="cta" href="mailto:hello@menoova.com">Inizia ora</a>
-            </article>
+              <p style="margin-bottom:22px;">Per ristoranti, pizzerie e locali che vogliono un’esperienza premium completa.</p>
 
-            <article class="card">
-              <div class="icon">⬢</div>
-              <h3>Enterprise</h3>
-              <p style="margin-bottom:22px;">Per catene, multi-location e progetti su misura.</p>
-              <div style="font-size:48px; font-weight:900; letter-spacing:-0.06em; margin-bottom:16px;">Custom</div>
-              <p style="margin-bottom:22px;">Preventivo personalizzato</p>
-              <ul style="display:grid; gap:12px; color:var(--muted); font-size:14px; list-style:none; margin-bottom:28px;">
-                <li>✓ Multi locale</li>
-                <li>✓ Branding avanzato</li>
+              <div class="price-main">€12,90</div>
+              <div class="price-period">/ mese</div>
+
+              <div class="annual-box">
+                <strong>€129 / anno</strong>
+                <div>Esperienza premium completa</div>
+              </div>
+
+              <ul class="pricing-list">
+                <li>✓ Design premium personalizzato</li>
+                <li>✓ WhatsApp ordering</li>
+                <li>✓ Sezioni illimitate</li>
+                <li>✓ Modifiche rapide menu</li>
+                <li>✓ Ottimizzazione mobile avanzata</li>
                 <li>✓ Supporto prioritario</li>
-                <li>✓ Integrazioni personalizzate</li>
               </ul>
-              <a class="secondary" href="mailto:hello@menoova.com">Contattaci</a>
+
+              <a class="cta" href="mailto:hello@menoova.com">Inizia ora</a>
             </article>
           </div>
         </div>
