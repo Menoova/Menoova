@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pane per i tuoi denti — Menu Digitale</title>
+  <meta name="description" content="Menu digitale di Pane per i tuoi denti a Marina di Ragusa. Scacce ragusane, rustici, pizze e dolci da forno." />
+  <style>
+    :root {
+      --bg: #f7efe3;
+      --paper: #fffaf2;
+      --card: #ffffff;
+      --ink: #2a1d13;
+      --muted: #786756;
+      --brand: #8b4b23;
+      --brand-dark: #5a2d15;
+      --accent: #d8a35d;
+      --line: rgba(90, 45, 21, 0.12);
+      --shadow: 0 18px 45px rgba(74, 43, 18, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding-bottom: 86px;
+    }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .app {
+      max-width: 560px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 0 50px rgba(0,0,0,.08);
+      position: relative;
+    }
+
+    .hero {
+      min-height: 380px;
+      padding: 28px 22px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(30,15,6,.2), rgba(30,15,6,.72)),
+        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=85') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .share-btn {
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.14);
+      color: white;
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .logo {
+      width: 92px;
+      height: 92px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.92);
+      color: var(--brand-dark);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: 34px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 10vw, 58px);
+      line-height: .92;
+      letter-spacing: -.07em;
+      max-width: 420px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,.86);
+      max-width: 420px;
+      font-size: 15px;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 16px 18px 4px;
+      margin-top: -34px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quick {
+      min-height: 76px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      gap: 4px;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 850;
+      color: var(--brand-dark);
+    }
+
+    .quick strong { font-size: 24px; line-height: 1; }
+
+    .content { padding: 18px; }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 12px 34px rgba(74,43,18,.07);
+    }
+
+    .section-card h2, .menu-title {
+      color: var(--brand-dark);
+      letter-spacing: -.035em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .section-card h2 { font-size: 24px; }
+    .section-card p { color: var(--muted); font-size: 15px; margin-bottom: 8px; }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      border-radius: 999px;
+      padding: 11px 15px;
+      background: var(--ink);
+      color: white;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .menu-title-wrap {
+      padding: 18px 4px 12px;
+      text-align: center;
+    }
+
+    .menu-title {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .menu-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    details.category {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: 0 12px 34px rgba(74,43,18,.07);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-weight: 950;
+      color: var(--brand-dark);
+      letter-spacing: -.02em;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .chev {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #f4e4d1;
+      display: grid;
+      place-items: center;
+      color: var(--brand-dark);
+    }
+
+    .cat-desc {
+      padding: 0 20px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .item {
+      border-top: 1px solid var(--line);
+      padding: 18px 20px;
+    }
+
+    .item-top {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .item h3 {
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: -.035em;
+      margin-bottom: 6px;
+    }
+
+    .item p {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 360px;
+    }
+
+    .price {
+      color: var(--brand-dark);
+      font-weight: 950;
+      white-space: nowrap;
+      font-size: 16px;
+    }
+
+    .unit {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .allergens {
+      display: inline-flex;
+      margin: 10px 0 12px;
+      border-radius: 999px;
+      background: #f7ead8;
+      color: var(--brand-dark);
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      border: 1px solid var(--brand);
+      color: var(--brand-dark);
+      background: white;
+      border-radius: 999px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .small-btn.add {
+      background: var(--brand);
+      color: white;
+    }
+
+    .qty {
+      min-width: 28px;
+      text-align: center;
+      font-weight: 950;
+      color: var(--brand-dark);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(560px, 100%);
+      z-index: 30;
+      background: rgba(42,29,19,.96);
+      backdrop-filter: blur(18px);
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      padding: 8px 8px 10px;
+      box-shadow: 0 -16px 40px rgba(0,0,0,.2);
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: white;
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 850;
+      min-height: 58px;
+      border-radius: 16px;
+    }
+
+    .nav-btn:active { background: rgba(255,255,255,.08); }
+    .nav-btn strong { font-size: 20px; line-height: 1; }
+
+    .badge {
+      position: absolute;
+      transform: translate(15px, -17px);
+      background: var(--accent);
+      color: #261608;
+      min-width: 21px;
+      height: 21px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .drawer {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 112%);
+      width: min(560px, 100%);
+      max-height: 78vh;
+      overflow: auto;
+      background: white;
+      border-radius: 30px 30px 0 0;
+      z-index: 50;
+      padding: 22px;
+      box-shadow: 0 -28px 70px rgba(0,0,0,.28);
+      transition: transform .25s ease;
+    }
+
+    .drawer.open { transform: translate(-50%, 0); }
+
+    .drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .drawer h2 {
+      font-size: 28px;
+      letter-spacing: -.05em;
+      color: var(--brand-dark);
+    }
+
+    .x {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #faf1e7;
+      cursor: pointer;
+      font-weight: 950;
+      color: var(--brand-dark);
+    }
+
+    .cart-empty { color: var(--muted); padding: 10px 0 18px; }
+
+    .cart-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .cart-line strong { color: var(--brand-dark); }
+
+    .drawer-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .primary-btn, .ghost-btn {
+      border: 0;
+      border-radius: 999px;
+      min-height: 50px;
+      cursor: pointer;
+      font-weight: 950;
+      padding: 0 16px;
+    }
+
+    .primary-btn { background: #25D366; color: #06180c; }
+    .ghost-btn { background: #f4eadf; color: var(--brand-dark); }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.32);
+      z-index: 40;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .overlay.open { opacity: 1; pointer-events: auto; }
+
+    .powered {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 16px 0 28px;
+    }
+
+    @media (min-width: 760px) {
+      body { padding-top: 28px; }
+      .app { border-radius: 34px 34px 0 0; overflow: hidden; }
+      .bottom-nav { border-radius: 24px 24px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="home">
+    <header class="hero">
+      <div class="topbar">
+        <div class="brand-pill">🍞 Pane per i tuoi denti</div>
+        <button class="share-btn" onclick="sharePage()">Condividi</button>
+      </div>
+
+      <div>
+        <div class="logo">P</div>
+        <h1>Pane per i tuoi denti</h1>
+        <p>Delizie da forno, scacce ragusane, rustici e dolci a Marina di Ragusa.</p>
+      </div>
+    </header>
+
+    <div class="quick-actions">
+      <a class="quick" href="tel:+390932230446"><strong>☎</strong>Chiama</a>
+      <a class="quick" href="https://www.google.com/maps/search/?api=1&query=Via%20Dandolo%2049%20Marina%20di%20Ragusa" target="_blank"><strong>⌖</strong>Dove siamo</a>
+      <button class="quick" onclick="goTo('menu')"><strong>☰</strong>Menu</button>
+    </div>
+
+    <main class="content">
+      <section class="section-card" id="chi-siamo">
+        <h2>Chi siamo</h2>
+        <p>Un piccolo punto vendita di delizie a Marina di Ragusa.</p>
+        <p>Oltre al pane, biscotti e dolci da forno, trovi una selezione di scacce ragusane e specialità salate.</p>
+      </section>
+
+      <section class="section-card" id="dove-siamo">
+        <h2>Dove siamo</h2>
+        <p>Via Dandolo 49, Marina di Ragusa</p>
+        <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Via%20Dandolo%2049%20Marina%20di%20Ragusa" target="_blank">Indicazioni stradali →</a>
+      </section>
+
+      <div class="menu-title-wrap" id="menu">
+        <h2 class="menu-title">Menu</h2>
+        <p class="menu-subtitle">Scacce, pizze, rustici e dolci da forno</p>
+      </div>
+
+      <details class="category" open>
+        <summary>SCACCE RAGUSANE <span class="chev">⌄</span></summary>
+        <p class="cat-desc">Specialità tipiche ragusane con sfoglie sottili e ripieni ricchi.</p>
+
+        <div class="item" data-name="Campagnola" data-price="4.50">
+          <div class="item-top"><div><h3>Campagnola</h3><p>Pomodoro, caciocavallo ragusano stagionato, basilico e olio d’oliva.</p></div><div class="price">4,50 €</div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Pomodoro e formaggio" data-price="3.50">
+          <div class="item-top"><div><h3>Pomodoro e formaggio</h3><p>Pomodoro, caciocavallo ragusano fresco, basilico e olio d’oliva.</p></div><div class="price">3,50 €</div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Spinaci" data-price="3.50">
+          <div class="item-top"><div><h3>Spinaci</h3><p>Spinaci, capuliato di pomodoro, olio d’oliva e pepe nero.</p></div><div class="price">3,50 €</div></div>
+          <span class="allergens">Allergeni: glutine</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Broccoli" data-price="3.50">
+          <div class="item-top"><div><h3>Broccoli</h3><p>Broccoli, capuliato di pomodoro, aglio, olio d’oliva e pepe nero.</p></div><div class="price">3,50 €</div></div>
+          <span class="allergens">Allergeni: glutine</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Melanzana" data-price="3.50">
+          <div class="item-top"><div><h3>Melanzana</h3><p>Melanzana, pomodoro, cipolla, formaggio e pane grattugiato.</p></div><div class="price">3,50 €</div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Ricotta e spinaci" data-price="3.80">
+          <div class="item-top"><div><h3>Ricotta e spinaci</h3><p>Ricotta vaccina, spinaci, caciocavallo grattugiato e noce moscata.</p></div><div class="price">3,80 €</div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Ricotta e salsiccia" data-price="3.80">
+          <div class="item-top"><div><h3>Ricotta e salsiccia</h3><p>Ricotta vaccina, salsiccia di suino e olio d’oliva.</p></div><div class="price">3,80 €</div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Seppie" data-price="4.20">
+          <div class="item-top"><div><h3>Seppie</h3><p>Seppie, pomodoro, pane grattugiato, formaggio, capperi e prezzemolo.</p></div><div class="price">4,20 €</div></div>
+          <span class="allergens">Allergeni: glutine, pesce, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Pesce spada e melanzana" data-price="4.20">
+          <div class="item-top"><div><h3>Pesce spada e melanzana</h3><p>Pesce spada, pomodoro, melanzana, cipolla e pane grattugiato.</p></div><div class="price">4,20 €</div></div>
+          <span class="allergens">Allergeni: glutine, pesce</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+      </details>
+
+      <details class="category">
+        <summary>TAVOLA CALDA E RUSTICI <span class="chev">⌄</span></summary>
+
+        <div class="item" data-name="Arancini al ragù" data-price="2.80">
+          <div class="item-top"><div><h3>Arancini al ragù</h3><p>Riso, ragù di carne, mozzarella e piselli.</p></div><div class="price">2,80 €</div></div>
+          <span class="allergens">Allergeni: glutine, uova, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Pizza margherita" data-price="2.00">
+          <div class="item-top"><div><h3>Pizza margherita</h3><p>Pomodoro, mozzarella, origano e olio d’oliva.</p></div><div><div class="price">2,00 €</div><span class="unit">Trancio</span></div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Pizza margherita e salame piccante" data-price="2.50">
+          <div class="item-top"><div><h3>Pizza margherita e salame piccante</h3><p>Pomodoro, mozzarella, salame piccante, olio d’oliva e origano.</p></div><div><div class="price">2,50 €</div><span class="unit">Trancio</span></div></div>
+          <span class="allergens">Allergeni: glutine, latte</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+
+        <div class="item" data-name="Pane e panelle" data-price="2.00">
+          <div class="item-top"><div><h3>Pane e panelle</h3><p>Burger bun con panelle di ceci.</p></div><div class="price">2,00 €</div></div>
+          <span class="allergens">Allergeni: glutine</span>
+          <div class="actions"><button class="small-btn add">AGGIUNGI +</button><span class="qty">0</span><button class="small-btn remove">RIMUOVI −</button></div>
+        </div>
+      </details>
+
+      <details class="category">
+        <summary>DOLCI DA FORNO <span class="chev">⌄</span></summary>
+        <p class="cat-desc">Sezione pronta per biscotti, dolci secchi e specialità da forno.</p>
+      </details>
+
+      <p class="powered">Powered by Menoova · Smart digital menus</p>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn" onclick="goTo('home')"><strong>⌂</strong>HOME</button>
+    <button class="nav-btn" onclick="goTo('menu')"><strong>☰</strong>MENU</button>
+    <button class="nav-btn" onclick="openDrawer()"><strong>🧾</strong><span class="badge" id="cartCount">0</span>ORDINE</button>
+    <button class="nav-btn" onclick="showLegend()"><strong>ⓘ</strong>LEGENDA</button>
+    <button class="nav-btn" onclick="location.href='tel:+390000000000'"><strong>☎</strong>CHIAMA</button>
+  </nav>
+
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+  <aside class="drawer" id="drawer" aria-label="Carrello ordine">
+    <div class="drawer-head">
+      <h2>Il tuo ordine</h2>
+      <button class="x" onclick="closeDrawer()">×</button>
+    </div>
+    <div id="cartList" class="cart-empty">Elenco vuoto</div>
+    <div class="drawer-actions">
+      <button class="primary-btn" onclick="orderWhatsapp()">Ordina su WhatsApp</button>
+      <button class="ghost-btn" onclick="orderEmail()">Ordina per email</button>
+      <button class="ghost-btn" onclick="clearCart()">Svuota tutto</button>
+    </div>
+  </aside>
+
+  <script>
+    const cart = {};
+    const WHATSAPP_NUMBER = '393298049317';
+    const ORDER_EMAIL = 'ordini@example.com';
+
+    document.querySelectorAll('.item').forEach(item => {
+      const name = item.dataset.name;
+      const price = Number(item.dataset.price);
+      const qty = item.querySelector('.qty');
+      const add = item.querySelector('.add');
+      const remove = item.querySelector('.remove');
+
+      add.addEventListener('click', () => {
+        cart[name] = cart[name] || { price, quantity: 0 };
+        cart[name].quantity += 1;
+        qty.textContent = cart[name].quantity;
+        updateCart();
+      });
+
+      remove.addEventListener('click', () => {
+        if (!cart[name]) return;
+        cart[name].quantity -= 1;
+        if (cart[name].quantity <= 0) delete cart[name];
+        qty.textContent = cart[name]?.quantity || 0;
+        updateCart();
+      });
+    });
+
+    function formatEuro(value) {
+      return value.toFixed(2).replace('.', ',') + ' €';
+    }
+
+    function updateCart() {
+      const list = document.getElementById('cartList');
+      const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+
+      if (!count) {
+        list.className = 'cart-empty';
+        list.textContent = 'Elenco vuoto';
+        return;
+      }
+
+      list.className = '';
+      list.innerHTML = '';
+      let total = 0;
+
+      Object.entries(cart).forEach(([name, item]) => {
+        const lineTotal = item.price * item.quantity;
+        total += lineTotal;
+        const row = document.createElement('div');
+        row.className = 'cart-line';
+        row.innerHTML = `<span>${item.quantity} × ${name}</span><strong>${formatEuro(lineTotal)}</strong>`;
+        list.appendChild(row);
+      });
+
+      const totalRow = document.createElement('div');
+      totalRow.className = 'cart-line';
+      totalRow.innerHTML = `<strong>Totale</strong><strong>${formatEuro(total)}</strong>`;
+      list.appendChild(totalRow);
+    }
+
+    function getOrderText() {
+      const rows = Object.entries(cart).map(([name, item]) => `${item.quantity} x ${name} - ${formatEuro(item.price * item.quantity)}`);
+      if (!rows.length) return 'Vorrei fare un ordine da Pane per i tuoi denti.';
+      const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.quantity, 0);
+      return `Ordine Pane per i tuoi denti:\n\n${rows.join('\n')}\n\nTotale: ${formatEuro(total)}\n\nNome:\nOrario ritiro:`;
+    }
+
+    function openDrawer() {
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
+
+    function goTo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function clearCart() {
+      Object.keys(cart).forEach(key => delete cart[key]);
+      document.querySelectorAll('.qty').forEach(q => q.textContent = '0');
+      updateCart();
+    }
+
+    function orderWhatsapp() {
+      const text = encodeURIComponent(getOrderText());
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+    }
+
+    function orderEmail() {
+      const subject = encodeURIComponent('Ordine Pane per i tuoi denti');
+      const body = encodeURIComponent(getOrderText());
+      location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
+    }
+
+    function showLegend() {
+      alert('Legenda:\n\nGlutine: contiene cereali con glutine.\nLatte: contiene latte e lattosio.\nUova: contiene uova.\nPesce: contiene pesce.\n\nLe informazioni possono essere personalizzate dal locale.');
+    }
+
+    async function sharePage() {
+      const data = {
+        title: 'Pane per i tuoi denti — Menu Digitale',
+        text: 'Guarda il menu digitale di Pane per i tuoi denti',
+        url: location.href
+      };
+      if (navigator.share) {
+        await navigator.share(data);
+      } else {
+        await navigator.clipboard.writeText(location.href);
+        alert('Link copiato negli appunti');
+      }
+    }
+  </script>
+</body>
+</html>
