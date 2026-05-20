@@ -117,60 +117,51 @@
       background: rgba(255,255,255,.03);
     }
 
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 78px);
-      padding: 92px 0 70px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      isolation: isolate;
-      background: #050605;
+    
+    .hero-video-section{
+      position:relative;
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
     }
 
-    .hero-video-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      overflow: hidden;
-      pointer-events: none;
-      background: #050605;
+    .video-background{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
     }
 
-    .hero-video-bg iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 56.25vw;
-      min-width: 177.78vh;
-      min-height: 100vh;
-      transform: translate(-50%, -50%);
-      border: 0;
-      opacity: 0.34;
-      filter: saturate(0.95) contrast(1.08);
+    .video-background iframe{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:100vw;
+      height:56.25vw;
+      min-height:100vh;
+      min-width:177.77vh;
+      transform:translate(-50%, -50%);
+      pointer-events:none;
+      opacity:0.42;
     }
 
-    .hero-video-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
+    .hero-overlay{
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at 72% 46%, rgba(166,160,122,.22), transparent 34%),
-        radial-gradient(circle at 18% 20%, rgba(245,239,228,.08), transparent 32%),
-        linear-gradient(90deg, rgba(5,6,5,.96) 0%, rgba(5,6,5,.78) 36%, rgba(5,6,5,.48) 72%, rgba(5,6,5,.86) 100%),
-        linear-gradient(to bottom, rgba(5,6,5,.18), rgba(5,6,5,.92));
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.45),
+          rgba(0,0,0,0.82)
+        );
     }
 
-    .hero-video-fallback {
-      position: absolute;
-      inset: 0;
-      z-index: -4;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(166,160,122,.22), transparent 34%),
-        radial-gradient(circle at 76% 42%, rgba(245,239,228,.08), transparent 30%),
-        #050605;
+    .hero-content{
+      position:relative;
+      z-index:5;
+      width:100%;
     }
+
 
     .hero-grid {
       display: grid;
@@ -220,34 +211,6 @@
       flex-wrap: wrap;
       gap: 14px;
       align-items: center;
-    }
-
-    .hero-kicker {
-      margin-top: 18px;
-      color: rgba(245,239,228,.62);
-      font-size: 13px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .hero .eyebrow,
-    .hero h1,
-    .hero p,
-    .hero-actions,
-    .hero-kicker,
-    .phone-wrap {
-      animation: heroReveal .85s ease both;
-    }
-
-    .hero h1 { animation-delay: .08s; }
-    .hero p { animation-delay: .16s; }
-    .hero-actions { animation-delay: .24s; }
-    .hero-kicker { animation-delay: .32s; }
-    .phone-wrap { animation-delay: .18s; }
-
-    @keyframes heroReveal {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .phone-wrap {
@@ -592,13 +555,7 @@
       .phone-wrap { min-height: auto; }
       .cards, .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero { padding-top: 62px; min-height: auto; }
-      .hero-video-bg iframe { opacity: 0.24; }
-      .hero-video-overlay {
-        background:
-          radial-gradient(circle at 60% 30%, rgba(166,160,122,.18), transparent 36%),
-          linear-gradient(to bottom, rgba(5,6,5,.88), rgba(5,6,5,.94));
-      }
+      .hero { padding-top: 62px; }
     }
 
     @media (max-width: 520px) {
@@ -637,88 +594,39 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-video-fallback" aria-hidden="true"></div>
-        <div class="hero-video-bg" aria-hidden="true">
+      
+      <section class="hero-video-section">
+        <div class="video-background">
           <iframe
-            src="https://www.youtube.com/embed/Q3kVCHXV_yY?autoplay=1&mute=1&loop=1&playlist=Q3kVCHXV_yY&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1"
-            title="Menoova cinematic hero video"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            referrerpolicy="strict-origin-when-cross-origin">
+            src="https://www.youtube.com/embed/Q3kVCHXV_yY?autoplay=1&mute=1&loop=1&playlist=Q3kVCHXV_yY&controls=0&showinfo=0&modestbranding=1&rel=0"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
           </iframe>
         </div>
-        <div class="hero-video-overlay" aria-hidden="true"></div>
 
-        <div class="container hero-grid">
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
           <div>
-            <div class="eyebrow"><span class="dot"></span> Menu digitali premium · QR ready</div>
-            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
-            <p>Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali. Una presenza digitale premium, accessibile via QR code e progettata per smartphone.</p>
-            <div class="hero-actions">
-              <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
-              <a class="secondary" href="#servizio">Scopri il servizio</a>
+            <div class="eyebrow">
+              <span class="dot"></span>
+              Smart digital menus for restaurants
             </div>
-            <div class="hero-kicker">Video showcase in background · esperienza mobile-first</div>
-          </div>
 
-          <div class="phone-wrap" aria-label="Anteprima menu digitale">
-            <div class="glow"></div>
-            <div class="phone">
-              <div class="screen">
-                <div class="menu-cover">
-                  <div class="mini-logo">M</div>
-                  <h3>Locale Milano</h3>
-                  <span>Menu digitale · QR ordering</span>
-                </div>
-                <div class="menu-body">
-                  <div class="pill-row">
-                    <div class="pill">Antipasti</div>
-                    <div class="pill">Pizze</div>
-                    <div class="pill">Dessert</div>
-                  </div>
+            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
 
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div>
-                        <h4>Focaccia gourmet</h4>
-                        <p>Olio EVO, rosmarino, sale Maldon.</p>
-                      </div>
-                      <div class="price">€ 6</div>
-                    </div>
-                  </div>
+            <p>
+              Menoova crea pagine menu premium per ristoranti, bar, pizzerie e locali moderni.
+            </p>
 
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div>
-                        <h4>Margherita premium</h4>
-                        <p>Pomodoro San Marzano, fiordilatte, basilico.</p>
-                      </div>
-                      <div class="price">€ 9</div>
-                    </div>
-                  </div>
-
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div>
-                        <h4>Tiramisù della casa</h4>
-                        <p>Crema al mascarpone, caffè, cacao.</p>
-                      </div>
-                      <div class="price">€ 5</div>
-                    </div>
-                  </div>
-
-                  <div class="bottom-demo">
-                    <span>Home</span>
-                    <span>Menu</span>
-                    <span>Ordine</span>
-                    <span>Chiama</span>
-                  </div>
-                </div>
-              </div>
+            <div class="hero-actions">
+              <a class="secondary" href="#servizio">Scopri il servizio</a>
             </div>
           </div>
         </div>
       </section>
+
 
       <section class="section" id="servizio">
         <div class="container">
