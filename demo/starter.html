@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Osteria La Corte — Menu Starter by Menoova</title>
+<meta name="description" content="Demo menu digitale Starter Menoova per osteria: elegante, mobile-first, senza foto e senza ordine WhatsApp." />
+<style>
+:root{
+  --bg:#0f1110;
+  --panel:#141715;
+  --cream:#f5efe4;
+  --muted:#b9b0a1;
+  --olive:#a6a07a;
+  --line:rgba(245,239,228,.12);
+  --soft:rgba(255,255,255,.035);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(166,160,122,.20),transparent 38%),
+    radial-gradient(circle at 15% 20%,rgba(245,239,228,.06),transparent 28%),
+    var(--bg);
+  color:var(--cream);
+  padding:18px;
+}
+.app{
+  width:min(430px,100%);
+  margin:0 auto;
+  min-height:100vh;
+  border:1px solid rgba(245,239,228,.10);
+  border-radius:34px;
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  box-shadow:0 32px 90px rgba(0,0,0,.45);
+}
+.hero{
+  padding:34px 22px 24px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.72)),
+    url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=80') center/cover,
+    rgba(255,255,255,.02);
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:20px;
+  background:rgba(255,255,255,.035);
+}
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--olive);
+  box-shadow:0 0 16px rgba(166,160,122,.8);
+}
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  border:1px solid rgba(245,239,228,.16);
+  display:grid;
+  place-items:center;
+  color:var(--olive);
+  font-weight:900;
+  font-size:24px;
+  margin-bottom:18px;
+  background:rgba(255,255,255,.035);
+}
+h1{
+  font-size:42px;
+  line-height:.92;
+  letter-spacing:-.07em;
+  margin-bottom:12px;
+}
+.subtitle{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.55;
+  max-width:340px;
+}
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:22px;
+}
+.btn{
+  min-height:48px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+}
+.primary{background:var(--cream);color:#111}
+.secondary{border:1px solid var(--line);color:var(--cream);background:rgba(255,255,255,.025)}
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:14px 18px;
+  border-bottom:1px solid var(--line);
+}
+.info-card{
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.025);
+}
+.info-card span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:4px;
+}
+.info-card strong{
+  font-size:13px;
+}
+.categories{
+  display:flex;
+  gap:9px;
+  overflow:auto;
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{display:none}
+.cat{
+  flex:0 0 auto;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--cream);
+  background:rgba(255,255,255,.025);
+  font-size:12px;
+  font-weight:800;
+  text-decoration:none;
+}
+.cat.active{
+  background:rgba(166,160,122,.16);
+  border-color:rgba(166,160,122,.42);
+  color:var(--cream);
+}
+.section{
+  padding:22px 18px 4px;
+}
+.section-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.section h2{
+  color:var(--olive);
+  font-size:13px;
+  letter-spacing:.22em;
+}
+.section-title small{
+  color:var(--muted);
+  font-size:12px;
+}
+.item{
+  padding:18px;
+  margin-bottom:12px;
+  border-radius:24px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+}
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:8px;
+}
+.item h3{
+  font-size:18px;
+  line-height:1.1;
+  letter-spacing:-.035em;
+}
+.price{
+  color:var(--olive);
+  font-weight:900;
+  white-space:nowrap;
+}
+.item p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+.allergens{
+  margin-top:11px;
+  color:rgba(245,239,228,.58);
+  font-size:11px;
+}
+.notice{
+  margin:22px 18px;
+  padding:18px;
+  border-radius:24px;
+  border:1px solid rgba(166,160,122,.24);
+  background:rgba(166,160,122,.08);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+.footer{
+  padding:24px 18px 30px;
+  text-align:center;
+  color:rgba(245,239,228,.55);
+  font-size:12px;
+  border-top:1px solid var(--line);
+}
+.footer strong{color:var(--cream)}
+@media(max-width:430px){
+  body{padding:0;background:var(--bg)}
+  .app{border-radius:0;border-left:0;border-right:0}
+}
+</style>
+</head>
+<body>
+
+<main class="app">
+  <section class="hero">
+    <div class="badge"><span class="dot"></span> Demo Starter · Osteria</div>
+    <div class="logo">OC</div>
+    <h1>Osteria La Corte</h1>
+    <p class="subtitle">Cucina italiana di stagione, piatti semplici e cantina selezionata. Menu digitale essenziale, elegante e veloce da consultare.</p>
+    <div class="actions">
+      <a class="btn primary" href="tel:+390932000000">Chiama</a>
+      <a class="btn secondary" href="https://maps.google.com/?q=Osteria%20La%20Corte" target="_blank" rel="noopener">Indicazioni</a>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="info-card"><span>Orari</span><strong>12:30–15:00</strong></div>
+    <div class="info-card"><span>Cena</span><strong>19:30–23:00</strong></div>
+  </section>
+
+  <nav class="categories" aria-label="Categorie menu">
+    <a class="cat active" href="#antipasti">Antipasti</a>
+    <a class="cat" href="#primi">Primi</a>
+    <a class="cat" href="#secondi">Secondi</a>
+    <a class="cat" href="#dolci">Dolci</a>
+    <a class="cat" href="#bevande">Bevande</a>
+  </nav>
+
+  <section class="section" id="antipasti">
+    <div class="section-title"><h2>ANTIPASTI</h2><small>Tradizione</small></div>
+    <article class="item">
+      <div class="item-top"><h3>Tagliere dell’Osteria</h3><div class="price">€14</div></div>
+      <p>Salumi locali, formaggi stagionati, olive condite e confettura della casa.</p>
+      <div class="allergens">Allergeni: latte, frutta a guscio</div>
+    </article>
+    <article class="item">
+      <div class="item-top"><h3>Caponata Siciliana</h3><div class="price">€8</div></div>
+      <p>Melanzane, sedano, olive, capperi e agrodolce leggero.</p>
+      <div class="allergens">Allergeni: sedano</div>
+    </article>
+  </section>
+
+  <section class="section" id="primi">
+    <div class="section-title"><h2>PRIMI</h2><small>Pasta fresca</small></div>
+    <article class="item">
+      <div class="item-top"><h3>Ravioli Ricotta e Limone</h3><div class="price">€15</div></div>
+      <p>Ravioli fatti a mano con burro alle erbe, scorza di limone e pepe nero.</p>
+      <div class="allergens">Allergeni: glutine, uova, latte</div>
+    </article>
+    <article class="item">
+      <div class="item-top"><h3>Busiate al Ragù Bianco</h3><div class="price">€16</div></div>
+      <p>Pasta artigianale con ragù bianco di vitello, rosmarino e pecorino.</p>
+      <div class="allergens">Allergeni: glutine, latte</div>
+    </article>
+  </section>
+
+  <section class="section" id="secondi">
+    <div class="section-title"><h2>SECONDI</h2><small>Dal territorio</small></div>
+    <article class="item">
+      <div class="item-top"><h3>Guancia Brasata</h3><div class="price">€19</div></div>
+      <p>Cotta lentamente al vino rosso, servita con purè rustico.</p>
+      <div class="allergens">Allergeni: latte, solfiti</div>
+    </article>
+    <article class="item">
+      <div class="item-top"><h3>Pesce del Giorno</h3><div class="price">€22</div></div>
+      <p>Preparazione secondo disponibilità, con verdure di stagione.</p>
+      <div class="allergens">Allergeni: pesce</div>
+    </article>
+  </section>
+
+  <section class="section" id="dolci">
+    <div class="section-title"><h2>DOLCI</h2><small>Fatti in casa</small></div>
+    <article class="item">
+      <div class="item-top"><h3>Tiramisù Classico</h3><div class="price">€7</div></div>
+      <p>Mascarpone, caffè espresso, savoiardi e cacao amaro.</p>
+      <div class="allergens">Allergeni: glutine, uova, latte</div>
+    </article>
+    <article class="item">
+      <div class="item-top"><h3>Cannolo Scomposto</h3><div class="price">€7</div></div>
+      <p>Ricotta dolce, cialda croccante e granella di pistacchio.</p>
+      <div class="allergens">Allergeni: glutine, latte, frutta a guscio</div>
+    </article>
+  </section>
+
+  <section class="section" id="bevande">
+    <div class="section-title"><h2>BEVANDE</h2><small>Cantina</small></div>
+    <article class="item">
+      <div class="item-top"><h3>Calice Nero d’Avola</h3><div class="price">€6</div></div>
+      <p>Rosso siciliano morbido, ideale con primi e carni.</p>
+      <div class="allergens">Allergeni: solfiti</div>
+    </article>
+    <article class="item">
+      <div class="item-top"><h3>Acqua Naturale / Frizzante</h3><div class="price">€3</div></div>
+      <p>Bottiglia da 75 cl.</p>
+    </article>
+  </section>
+
+  <div class="notice">
+    Demo pacchetto Starter: menu consultabile da QR code, categorie, prezzi, descrizioni, allergeni, pulsante chiamata e indicazioni Maps. Nessun ordine WhatsApp e nessuna foto prodotto.
+  </div>
+
+  <footer class="footer">
+    Powered by <strong>Menoova</strong>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.cat').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.querySelectorAll('.cat').forEach(el=>el.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
