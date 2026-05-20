@@ -118,61 +118,51 @@
     }
 
     
-    .hero-video-section{
-      position:relative;
-      height:100vh;
-      min-height:680px;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      border-bottom:1px solid var(--line);
-      background:#000;
+    .hero {
+      position: relative;
+      padding: 92px 0 70px;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
-    .hero-video{
+    .hero-video-bg{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
-      opacity:0.46;
-      filter:saturate(1.05) contrast(1.08);
+      opacity:.16;
+      filter: blur(2px) saturate(1.1);
+      transform: scale(1.04);
     }
 
     .hero-overlay{
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 30%, rgba(166,160,122,.22), transparent 34%),
-        linear-gradient(
-          90deg,
-          rgba(15,17,16,.92) 0%,
-          rgba(15,17,16,.68) 42%,
-          rgba(15,17,16,.32) 100%
-        ),
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,.30),
-          rgba(0,0,0,.86)
+        radial-gradient(circle at 20% 20%, rgba(166,160,122,.18), transparent 35%),
+        linear-gradient(to right,
+          rgba(15,17,16,.95),
+          rgba(15,17,16,.82),
+          rgba(15,17,16,.55)
         );
+      z-index:1;
     }
 
-    .hero-content{
+    .hero-grid{
       position:relative;
-      z-index:5;
-      width:100%;
-      padding:96px 0 74px;
+      z-index:3;
     }
 
-    .hero-content h1{
-      text-shadow:0 24px 70px rgba(0,0,0,.65);
-    }
-
-    .hero-content p{
-      max-width:620px;
-      color:rgba(245,239,228,.78);
-      font-size:19px;
-      margin-bottom:34px;
+    .phone{
+      backdrop-filter: blur(14px);
+      background: rgba(17,19,17,.92);
+      border:1px solid rgba(245,239,228,.18);
+      box-shadow:
+        0 40px 120px rgba(0,0,0,.55),
+        0 0 80px rgba(166,160,122,.10);
     }
 
 
@@ -568,7 +558,7 @@
       .phone-wrap { min-height: auto; }
       .cards, .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero-content { padding-top: 72px; padding-bottom: 56px; }
+      .hero { padding-top: 62px; }
     }
 
     @media (max-width: 520px) {
@@ -579,32 +569,6 @@
       .phone { transform: scale(.92); transform-origin: top center; }
       .phone-wrap { margin-bottom: -42px; }
     }
-
-    @media (max-width: 900px) {
-      .hero-video-section{
-        min-height:720px;
-      }
-
-      .hero-overlay{
-        background:
-          linear-gradient(
-            to bottom,
-            rgba(15,17,16,.78),
-            rgba(15,17,16,.88)
-          );
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero-video-section{
-        min-height:680px;
-      }
-
-      .hero-video{
-        opacity:.34;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -633,31 +597,109 @@
     </header>
 
     <main>
+      
+      <section class="hero">
 
-      <section class="hero-video-section">
-        <video autoplay muted loop playsinline class="hero-video" poster="">
+        <video autoplay muted loop playsinline class="hero-video-bg">
           <source src="menoova-hero.mp4" type="video/mp4">
         </video>
 
         <div class="hero-overlay"></div>
 
-        <div class="container hero-content">
-          <div class="eyebrow">
-            <span class="dot"></span>
-            Smart digital menus for restaurants
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="dot"></span>
+              Menu digitali premium · QR ready
+            </div>
+
+            <h1>
+              Menu digitali eleganti, veloci e sempre aggiornati.
+            </h1>
+
+            <p>
+              Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali.
+              Una presenza digitale premium, accessibile via QR code e progettata per smartphone.
+            </p>
+
+            <div class="hero-actions">
+              <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
+              <a class="secondary" href="#servizio">Scopri il servizio</a>
+            </div>
+
+            <div style="
+              margin-top:28px;
+              color:rgba(245,239,228,.55);
+              font-size:13px;
+              letter-spacing:.08em;
+              text-transform:uppercase;
+            ">
+              Video showcase in background · Esperienza mobile-first
+            </div>
           </div>
 
-          <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
+          <div class="phone-wrap" aria-label="Anteprima menu digitale">
+            <div class="glow"></div>
 
-          <p>
-            Menoova crea pagine menu premium per ristoranti, bar, pizzerie e locali moderni.
-            Ogni cliente apre il menu dal QR code, direttamente da smartphone.
-          </p>
+            <div class="phone">
+              <div class="screen">
 
-          <div class="hero-actions">
-            <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
-            <a class="secondary" href="#servizio">Scopri il servizio</a>
+                <div class="menu-cover">
+                  <div class="mini-logo">M</div>
+                  <h3>Locale Milano</h3>
+                  <span>Menu digitale · QR ordering</span>
+                </div>
+
+                <div class="menu-body">
+
+                  <div class="pill-row">
+                    <div class="pill">Antipasti</div>
+                    <div class="pill">Pizze</div>
+                    <div class="pill">Dessert</div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Focaccia gourmet</h4>
+                        <p>Olio EVO, rosmarino, sale Maldon.</p>
+                      </div>
+                      <div class="price">€ 6</div>
+                    </div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Margherita premium</h4>
+                        <p>Pomodoro San Marzano, fiordilatte, basilico.</p>
+                      </div>
+                      <div class="price">€ 9</div>
+                    </div>
+                  </div>
+
+                  <div class="menu-card">
+                    <div class="menu-card-top">
+                      <div>
+                        <h4>Tiramisù della casa</h4>
+                        <p>Crema al mascarpone, caffè, cacao.</p>
+                      </div>
+                      <div class="price">€ 5</div>
+                    </div>
+                  </div>
+
+                  <div class="bottom-demo">
+                    <span>Home</span>
+                    <span>Menu</span>
+                    <span>Ordine</span>
+                    <span>Chiama</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
