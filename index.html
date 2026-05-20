@@ -121,38 +121,39 @@
     .hero-video-section{
       position:relative;
       height:100vh;
+      min-height:680px;
       overflow:hidden;
       display:flex;
       align-items:center;
+      border-bottom:1px solid var(--line);
+      background:#000;
     }
 
-    .video-background{
+    .hero-video{
       position:absolute;
       inset:0;
-      overflow:hidden;
-    }
-
-    .video-background iframe{
-      position:absolute;
-      top:50%;
-      left:50%;
-      width:100vw;
-      height:56.25vw;
-      min-height:100vh;
-      min-width:177.77vh;
-      transform:translate(-50%, -50%);
-      pointer-events:none;
-      opacity:0.42;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0.46;
+      filter:saturate(1.05) contrast(1.08);
     }
 
     .hero-overlay{
       position:absolute;
       inset:0;
       background:
+        radial-gradient(circle at 18% 30%, rgba(166,160,122,.22), transparent 34%),
+        linear-gradient(
+          90deg,
+          rgba(15,17,16,.92) 0%,
+          rgba(15,17,16,.68) 42%,
+          rgba(15,17,16,.32) 100%
+        ),
         linear-gradient(
           to bottom,
-          rgba(0,0,0,0.45),
-          rgba(0,0,0,0.82)
+          rgba(0,0,0,.30),
+          rgba(0,0,0,.86)
         );
     }
 
@@ -160,6 +161,18 @@
       position:relative;
       z-index:5;
       width:100%;
+      padding:96px 0 74px;
+    }
+
+    .hero-content h1{
+      text-shadow:0 24px 70px rgba(0,0,0,.65);
+    }
+
+    .hero-content p{
+      max-width:620px;
+      color:rgba(245,239,228,.78);
+      font-size:19px;
+      margin-bottom:34px;
     }
 
 
@@ -555,7 +568,7 @@
       .phone-wrap { min-height: auto; }
       .cards, .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero { padding-top: 62px; }
+      .hero-content { padding-top: 72px; padding-bottom: 56px; }
     }
 
     @media (max-width: 520px) {
@@ -566,6 +579,32 @@
       .phone { transform: scale(.92); transform-origin: top center; }
       .phone-wrap { margin-bottom: -42px; }
     }
+
+    @media (max-width: 900px) {
+      .hero-video-section{
+        min-height:720px;
+      }
+
+      .hero-overlay{
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(15,17,16,.78),
+            rgba(15,17,16,.88)
+          );
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-video-section{
+        min-height:680px;
+      }
+
+      .hero-video{
+        opacity:.34;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -594,35 +633,30 @@
     </header>
 
     <main>
-      
+
       <section class="hero-video-section">
-        <div class="video-background">
-          <iframe
-            src="https://www.youtube.com/embed/Q3kVCHXV_yY?autoplay=1&mute=1&loop=1&playlist=Q3kVCHXV_yY&controls=0&showinfo=0&modestbranding=1&rel=0"
-            frameborder="0"
-            allow="autoplay; fullscreen"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <video autoplay muted loop playsinline class="hero-video" poster="">
+          <source src="menoova-hero.mp4" type="video/mp4">
+        </video>
 
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
-          <div>
-            <div class="eyebrow">
-              <span class="dot"></span>
-              Smart digital menus for restaurants
-            </div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Smart digital menus for restaurants
+          </div>
 
-            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
+          <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
 
-            <p>
-              Menoova crea pagine menu premium per ristoranti, bar, pizzerie e locali moderni.
-            </p>
+          <p>
+            Menoova crea pagine menu premium per ristoranti, bar, pizzerie e locali moderni.
+            Ogni cliente apre il menu dal QR code, direttamente da smartphone.
+          </p>
 
-            <div class="hero-actions">
-              <a class="secondary" href="#servizio">Scopri il servizio</a>
-            </div>
+          <div class="hero-actions">
+            <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
+            <a class="secondary" href="#servizio">Scopri il servizio</a>
           </div>
         </div>
       </section>
