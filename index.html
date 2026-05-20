@@ -117,54 +117,7 @@
       background: rgba(255,255,255,.03);
     }
 
-    
-    .hero {
-      position: relative;
-      padding: 92px 0 70px;
-      overflow: hidden;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-video-bg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:.16;
-      filter: blur(2px) saturate(1.1);
-      transform: scale(1.04);
-    }
-
-    .hero-overlay{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(166,160,122,.18), transparent 35%),
-        linear-gradient(to right,
-          rgba(15,17,16,.95),
-          rgba(15,17,16,.82),
-          rgba(15,17,16,.55)
-        );
-      z-index:1;
-    }
-
-    .hero-grid{
-      position:relative;
-      z-index:3;
-    }
-
-    .phone{
-      backdrop-filter: blur(14px);
-      background: rgba(17,19,17,.92);
-      border:1px solid rgba(245,239,228,.18);
-      box-shadow:
-        0 40px 120px rgba(0,0,0,.55),
-        0 0 80px rgba(166,160,122,.10);
-    }
-
+    .hero { padding: 92px 0 70px; }
 
     .hero-grid {
       display: grid;
@@ -553,6 +506,89 @@
       flex-wrap: wrap;
     }
 
+    
+    .video-showcase{
+      padding: 24px 0 90px;
+    }
+
+    .showcase-wrap{
+      position:relative;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .showcase-glow{
+      position:absolute;
+      inset:auto 10% -40px;
+      height:260px;
+
+      background:
+        radial-gradient(circle at center,
+          rgba(166,160,122,.24),
+          transparent 65%);
+
+      filter:blur(60px);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .showcase-frame{
+      position:relative;
+      z-index:2;
+
+      overflow:hidden;
+
+      border-radius:34px;
+
+      border:1px solid rgba(245,239,228,.12);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.06),
+          rgba(255,255,255,.02)
+        );
+
+      box-shadow:
+        0 40px 120px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .showcase-video{
+      width:100%;
+      display:block;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      background:#000;
+    }
+
+    .showcase-caption{
+      position:absolute;
+      left:24px;
+      bottom:24px;
+
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      padding:10px 14px;
+
+      border-radius:999px;
+
+      border:1px solid rgba(245,239,228,.12);
+
+      background:rgba(15,17,16,.58);
+
+      backdrop-filter:blur(14px);
+
+      color:rgba(245,239,228,.82);
+
+      font-size:13px;
+
+      z-index:3;
+    }
+
+
     @media (max-width: 900px) {
       .hero-grid, .feature-band { grid-template-columns: 1fr; }
       .phone-wrap { min-height: auto; }
@@ -569,6 +605,30 @@
       .phone { transform: scale(.92); transform-origin: top center; }
       .phone-wrap { margin-bottom: -42px; }
     }
+
+    @media (max-width: 900px) {
+      .showcase-frame{
+        border-radius:24px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .video-showcase{
+        padding:8px 0 60px;
+      }
+
+      .showcase-frame{
+        border-radius:20px;
+      }
+
+      .showcase-caption{
+        left:14px;
+        bottom:14px;
+        font-size:11px;
+        padding:8px 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -597,61 +657,27 @@
     </header>
 
     <main>
-      
       <section class="hero">
-
-        <video autoplay muted loop playsinline class="hero-video-bg">
-          <source src="menoova-hero.mp4" type="video/mp4">
-        </video>
-
-        <div class="hero-overlay"></div>
-
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow">
-              <span class="dot"></span>
-              Menu digitali premium · QR ready
-            </div>
-
-            <h1>
-              Menu digitali eleganti, veloci e sempre aggiornati.
-            </h1>
-
-            <p>
-              Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali.
-              Una presenza digitale premium, accessibile via QR code e progettata per smartphone.
-            </p>
-
+            <div class="eyebrow"><span class="dot"></span> Smart digital menus for restaurants</div>
+            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
+            <p>Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali. Ogni cliente riceve una pagina dedicata, accessibile tramite QR code, con design curato e navigazione semplice da smartphone.</p>
             <div class="hero-actions">
-              <a class="cta" href="mailto:hello@menoova.com">Richiedi demo</a>
               <a class="secondary" href="#servizio">Scopri il servizio</a>
-            </div>
-
-            <div style="
-              margin-top:28px;
-              color:rgba(245,239,228,.55);
-              font-size:13px;
-              letter-spacing:.08em;
-              text-transform:uppercase;
-            ">
-              Video showcase in background · Esperienza mobile-first
             </div>
           </div>
 
           <div class="phone-wrap" aria-label="Anteprima menu digitale">
             <div class="glow"></div>
-
             <div class="phone">
               <div class="screen">
-
                 <div class="menu-cover">
                   <div class="mini-logo">M</div>
                   <h3>Locale Milano</h3>
                   <span>Menu digitale · QR ordering</span>
                 </div>
-
                 <div class="menu-body">
-
                   <div class="pill-row">
                     <div class="pill">Antipasti</div>
                     <div class="pill">Pizze</div>
@@ -694,12 +720,34 @@
                     <span>Ordine</span>
                     <span>Chiama</span>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
+
+      <section class="video-showcase">
+        <div class="container">
+          <div class="showcase-wrap">
+
+            <div class="showcase-glow"></div>
+
+            <div class="showcase-frame">
+
+              <video autoplay muted loop playsinline class="showcase-video">
+                <source src="menoova-hero.mp4" type="video/mp4">
+              </video>
+
+              <div class="showcase-caption">
+                <span class="dot"></span>
+                Menoova cinematic showcase
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </section>
 
