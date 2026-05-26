@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demo menu digitale Business Menoova — Osteria La Corte.">
+  <title>Osteria La Corte — Menu Business by Menoova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde:  #4a6741;
+      --verde2: #2e4229;
+      --cream:  #faf8f5;
+      --grigio: #f2efe9;
+      --testo:  #1a1a1a;
+      --muted:  #888075;
+      --linea:  #ddd8d0;
+      --oro:    #b8852a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Jost", sans-serif;
+      background: var(--cream);
+      color: var(--testo);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 260px;
+      padding: 36px 24px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background:
+        linear-gradient(rgba(0,0,0,.32), rgba(0,0,0,.68)),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80") center/cover;
+      color: #fff;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #a6a07a; box-shadow: 0 0 12px rgba(166,160,122,.9); }
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: .92;
+      letter-spacing: -.04em;
+      margin-bottom: 10px;
+    }
+    .hero p { font-size: 13px; color: rgba(255,255,255,.72); max-width: 360px; line-height: 1.5; }
+
+    /* ACCORDION */
+    .menu-wrap { padding: 0 0 60px; }
+    .categoria { border-bottom: 1px solid var(--linea); }
+    .cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      cursor: pointer;
+      background: #fff;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .cat-header:hover { background: var(--grigio); }
+    .cat-header-left { display: flex; align-items: center; gap: 12px; }
+    .cat-emoji { font-size: 20px; }
+    .cat-nome {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--verde2);
+    }
+    .cat-sub { font-size: 11px; color: var(--muted); margin-left: 6px; font-style: italic; }
+    .cat-toggle {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--linea);
+      background: var(--grigio);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--verde2);
+      font-weight: 300; flex-shrink: 0;
+      transition: all 0.2s; line-height: 1;
+    }
+    .categoria.aperta .cat-toggle { background: var(--verde2); color: #fff; border-color: var(--verde2); transform: rotate(45deg); }
+    .cat-body { display: none; background: var(--grigio); }
+    .categoria.aperta .cat-body { display: block; }
+
+    /* GRIGLIA CON FOTO */
+    .grid-piatti {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--linea);
+      border-top: 1px solid var(--linea);
+    }
+    .piatto {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .piatto-foto {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .piatto-info {
+      padding: 13px 14px 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .piatto-nome {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--testo);
+      line-height: 1.25;
+    }
+    .piatto-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.45;
+      flex: 1;
+    }
+    .piatto-allergeni {
+      font-size: 10px;
+      color: rgba(136,128,117,.65);
+      font-style: italic;
+    }
+    .piatto-prezzo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--verde);
+      margin-top: 4px;
+    }
+
+    /* NOTICE */
+    .notice {
+      margin: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(74,103,65,.22);
+      background: rgba(74,103,65,.06);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+    .notice strong { color: var(--verde2); }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 11px;
+      color: #bbb;
+      border-top: 1px solid var(--linea);
+    }
+    footer a { color: var(--verde); text-decoration: none; }
+
+    @media (max-width: 400px) {
+      .grid-piatti { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> Demo Business · Menoova</div>
+  <h1>Osteria<br>La Corte</h1>
+  <p>Cucina italiana di stagione, piatti semplici e cantina selezionata.</p>
+</section>
+
+<!-- MENU ACCORDION -->
+<div class="menu-wrap">
+
+  <div class="categoria" id="cat-antipasti">
+    <div class="cat-header" onclick="toggle('cat-antipasti')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🫒</span>
+        <span class="cat-nome">Antipasti</span>
+        <span class="cat-sub">Tradizione</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1612392166886-ee8475b03af2?auto=format&fit=crop&w=600&q=80" alt="Tagliere dell'Osteria" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Tagliere dell'Osteria</div>
+            <div class="piatto-desc">Salumi locali, formaggi stagionati, olive condite e confettura della casa.</div>
+            <div class="piatto-allergeni">Allergeni: latte, frutta a guscio</div>
+            <div class="piatto-prezzo">€ 14</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?auto=format&fit=crop&w=600&q=80" alt="Caponata Siciliana" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Caponata Siciliana</div>
+            <div class="piatto-desc">Melanzane, sedano, olive, capperi e agrodolce leggero.</div>
+            <div class="piatto-allergeni">Allergeni: sedano</div>
+            <div class="piatto-prezzo">€ 8</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Bruschetta al Pomodoro" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Bruschetta al Pomodoro</div>
+            <div class="piatto-desc">Pane di casa tostato, datterini, basilico e olio extravergine.</div>
+            <div class="piatto-allergeni">Allergeni: glutine</div>
+            <div class="piatto-prezzo">€ 6</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="categoria" id="cat-primi">
+    <div class="cat-header" onclick="toggle('cat-primi')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🍝</span>
+        <span class="cat-nome">Primi</span>
+        <span class="cat-sub">Pasta fresca</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=600&q=80" alt="Ravioli" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Ravioli Ricotta e Limone</div>
+            <div class="piatto-desc">Fatti a mano con burro alle erbe, scorza di limone e pepe nero.</div>
+            <div class="piatto-allergeni">Allergeni: glutine, uova, latte</div>
+            <div class="piatto-prezzo">€ 15</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=600&q=80" alt="Busiate" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Busiate al Ragù Bianco</div>
+            <div class="piatto-desc">Pasta artigianale con ragù bianco di vitello, rosmarino e pecorino.</div>
+            <div class="piatto-allergeni">Allergeni: glutine, latte</div>
+            <div class="piatto-prezzo">€ 16</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Spaghetti alle Vongole" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Spaghetti alle Vongole</div>
+            <div class="piatto-desc">Vongole veraci, aglio, olio, prezzemolo e vino bianco.</div>
+            <div class="piatto-allergeni">Allergeni: glutine, molluschi</div>
+            <div class="piatto-prezzo">€ 17</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="categoria" id="cat-secondi">
+    <div class="cat-header" onclick="toggle('cat-secondi')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🥩</span>
+        <span class="cat-nome">Secondi</span>
+        <span class="cat-sub">Dal territorio</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Guancia Brasata" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Guancia Brasata</div>
+            <div class="piatto-desc">Cotta lentamente al vino rosso, servita con purè rustico.</div>
+            <div class="piatto-allergeni">Allergeni: latte, solfiti</div>
+            <div class="piatto-prezzo">€ 19</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80" alt="Pesce del Giorno" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Pesce del Giorno</div>
+            <div class="piatto-desc">Preparazione secondo disponibilità, con verdure di stagione.</div>
+            <div class="piatto-allergeni">Allergeni: pesce</div>
+            <div class="piatto-prezzo">€ 22</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" alt="Tagliata di Vitello" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Tagliata di Vitello</div>
+            <div class="piatto-desc">Con rucola, scaglie di grana e limone.</div>
+            <div class="piatto-allergeni">Allergeni: latte</div>
+            <div class="piatto-prezzo">€ 21</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="categoria" id="cat-contorni">
+    <div class="cat-header" onclick="toggle('cat-contorni')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🥗</span>
+        <span class="cat-nome">Contorni</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80" alt="Patate al Forno" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Patate al Forno</div>
+            <div class="piatto-desc">Con rosmarino e olio extravergine.</div>
+            <div class="piatto-prezzo">€ 5</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1544681280-d68ea0c7a1bb?auto=format&fit=crop&w=600&q=80" alt="Verdure Grigliate" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Verdure Grigliate</div>
+            <div class="piatto-desc">Melanzane, zucchine, peperoni di stagione.</div>
+            <div class="piatto-prezzo">€ 6</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Insalata Mista" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Insalata Mista</div>
+            <div class="piatto-desc">Verdure fresche di stagione.</div>
+            <div class="piatto-prezzo">€ 4</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="categoria" id="cat-dolci">
+    <div class="cat-header" onclick="toggle('cat-dolci')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🍮</span>
+        <span class="cat-nome">Dolci</span>
+        <span class="cat-sub">Fatti in casa</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80" alt="Tiramisù" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Tiramisù Classico</div>
+            <div class="piatto-desc">Mascarpone, caffè espresso, savoiardi e cacao amaro.</div>
+            <div class="piatto-allergeni">Allergeni: glutine, uova, latte</div>
+            <div class="piatto-prezzo">€ 7</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80" alt="Cannolo" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Cannolo Scomposto</div>
+            <div class="piatto-desc">Ricotta dolce, cialda croccante e granella di pistacchio.</div>
+            <div class="piatto-allergeni">Allergeni: glutine, latte, frutta a guscio</div>
+            <div class="piatto-prezzo">€ 7</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Panna Cotta" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Panna Cotta ai Frutti di Bosco</div>
+            <div class="piatto-desc">Con coulis di lamponi e mirtilli freschi.</div>
+            <div class="piatto-allergeni">Allergeni: latte</div>
+            <div class="piatto-prezzo">€ 7</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="categoria" id="cat-bevande">
+    <div class="cat-header" onclick="toggle('cat-bevande')">
+      <div class="cat-header-left">
+        <span class="cat-emoji">🍷</span>
+        <span class="cat-nome">Bevande</span>
+        <span class="cat-sub">Cantina</span>
+      </div>
+      <div class="cat-toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="grid-piatti">
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="Nero d'Avola" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Calice Nero d'Avola</div>
+            <div class="piatto-desc">Rosso siciliano morbido, ideale con primi e carni.</div>
+            <div class="piatto-allergeni">Allergeni: solfiti</div>
+            <div class="piatto-prezzo">€ 6</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=600&q=80" alt="Grillo Bianco" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Calice Grillo Bianco</div>
+            <div class="piatto-desc">Fresco e sapido, perfetto con pesce e antipasti.</div>
+            <div class="piatto-allergeni">Allergeni: solfiti</div>
+            <div class="piatto-prezzo">€ 6</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=80" alt="Acqua" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Acqua Naturale / Frizzante</div>
+            <div class="piatto-desc">Bottiglia da 75 cl.</div>
+            <div class="piatto-prezzo">€ 3</div>
+          </div>
+        </div>
+
+        <div class="piatto">
+          <img class="piatto-foto" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Caffè" loading="lazy">
+          <div class="piatto-info">
+            <div class="piatto-nome">Caffè Espresso</div>
+            <div class="piatto-prezzo">€ 1,50</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Demo Business Menoova</strong> — Menu premium con foto per ogni piatto, categorie accordion, prezzi, descrizioni e allergeni. Personalizzabile con le foto reali del locale.
+  </div>
+
+</div>
+
+<footer>Powered by <a href="https://menoova.it" target="_blank">Menoova</a></footer>
+
+<script>
+  function toggle(id) {
+    document.getElementById(id).classList.toggle("aperta");
+  }
+</script>
+
+</body>
+</html>
