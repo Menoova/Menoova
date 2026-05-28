@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Google tag: Analytics + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JKGG43EEL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9,51 +8,39 @@
     gtag('js', new Date());
     gtag('config', 'G-4JKGG43EEL');
     gtag('config', 'AW-18181764363');
-
-    // Tracking clic WhatsApp — invia evento a GA4 e Google Ads
     function waClick(text) {
-      // Evento GA4
-      gtag('event', 'whatsapp_click', {
-        'event_category': 'contatto',
-        'event_label': text
-      });
-      // Evento conversione Google Ads
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18181764363/lKynCLviqLIcEIvq3t1D'
-      });
-      window.open(
-        'https://wa.me/393793613179?text=' + encodeURIComponent(text),
-        '_blank'
-      );
+      gtag('event', 'whatsapp_click', {'event_category': 'contatto', 'event_label': text});
+      gtag('event', 'conversion', {'send_to': 'AW-18181764363/lKynCLviqLIcEIvq3t1D'});
+      window.open('https://wa.me/393793613179?text=' + encodeURIComponent(text), '_blank');
+    }
+    function emailClick() {
+      gtag('event', 'email_click', {'event_category': 'contatto'});
     }
   </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menoova — Smart Digital Menus</title>
-  <meta name="description" content="Menoova crea menu digitali eleganti, veloci e accessibili via QR code per ristoranti, bar, pizzerie e locali." />
+  <title>Menoova — Menu digitale per ristoranti | 3 mesi gratis</title>
+  <meta name="description" content="Menu digitale professionale per ristoranti, bar e pizzerie. Prova gratis 3 mesi. Nessuna carta richiesta. QR code + 20 porta QR inclusi." />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://menoova.it">
   <meta property="og:title" content="Menoova — Menu digitali per ristoranti">
-  <meta property="og:description" content="Menu digitale con QR code per ristoranti, bar e pizzerie. Design premium, 20 porta QR inclusi. 3 mesi gratuiti.">
+  <meta property="og:description" content="Menu digitale con QR code. 3 mesi gratuiti, nessuna carta richiesta.">
   <meta property="og:image" content="https://menoova.it/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Menoova — Menu digitali per ristoranti">
-  <meta name="twitter:description" content="Menu digitale con QR code per ristoranti, bar e pizzerie. 3 mesi gratuiti.">
   <style>
     :root {
       --bg: #0f1110;
       --cream: #f5efe4;
       --muted: #b9b0a1;
       --olive: #a6a07a;
-      --line: rgba(245, 239, 228, 0.12);
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --green: #d7ff9a;
+      --line: rgba(245,239,228,0.12);
+      --shadow: 0 30px 80px rgba(0,0,0,0.35);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--cream);
       line-height: 1.6;
@@ -64,997 +51,724 @@
       overflow: hidden;
       min-height: 100vh;
       background:
-        radial-gradient(circle at 20% 10%, rgba(166, 160, 122, 0.18), transparent 32%),
-        radial-gradient(circle at 80% 30%, rgba(245, 239, 228, 0.08), transparent 30%),
+        radial-gradient(circle at 20% 10%, rgba(166,160,122,0.18), transparent 32%),
+        radial-gradient(circle at 80% 30%, rgba(245,239,228,0.08), transparent 30%),
         var(--bg);
     }
 
     .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 
+    /* HEADER */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(15, 17, 16, 0.78);
+      background: rgba(15,17,16,0.88);
       border-bottom: 1px solid var(--line);
     }
-
     .nav {
-      height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0.08em; }
     .mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      border: 1px solid rgba(245, 239, 228, 0.24);
-      display: grid;
-      place-items: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px solid rgba(245,239,228,0.24);
+      display: grid; place-items: center;
       background: linear-gradient(145deg, rgba(245,239,228,.16), rgba(166,160,122,.1));
     }
-
-    .mark svg { width: 25px; height: 25px; }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
+    .mark svg { width: 22px; height: 22px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; }
     .nav-links a:hover { color: var(--cream); }
 
+    /* BUTTONS */
     .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: var(--cream);
-      color: #111;
-      font-weight: 800;
-      font-size: 14px;
-      box-shadow: 0 14px 30px rgba(245, 239, 228, 0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 44px; padding: 0 20px; border-radius: 999px;
+      background: var(--cream); color: #111; font-weight: 800; font-size: 14px;
+      box-shadow: 0 8px 24px rgba(245,239,228,0.15);
+      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; font-family: inherit;
     }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(245, 239, 228, 0.18);
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(245,239,228,0.22); }
+    .cta-big {
+      min-height: 56px; padding: 0 32px; font-size: 17px; border-radius: 999px;
+      background: var(--cream); color: #111; font-weight: 900;
+      display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 12px 40px rgba(245,239,228,0.2);
+      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; font-family: inherit;
     }
-
+    .cta-big:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(245,239,228,0.28); }
     .secondary {
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(140, 210, 75, 0.38);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #d7ff9a;
-      font-weight: 800;
-      font-size: 14px;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(120, 190, 60, 0.20),
-          rgba(90, 140, 40, 0.12)
-        );
-      box-shadow:
-        0 0 24px rgba(140, 255, 80, 0.08),
-        inset 0 1px 0 rgba(255,255,255,0.06);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      cursor: pointer;
-      font-family: inherit;
+      min-height: 44px; padding: 0 18px; border-radius: 999px;
+      border: 1px solid rgba(140,210,75,0.38);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--green); font-weight: 800; font-size: 14px;
+      background: linear-gradient(180deg, rgba(120,190,60,0.18), rgba(90,140,40,0.10));
+      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; font-family: inherit;
     }
-
-    .secondary:hover {
-      transform: translateY(-2px);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(140, 220, 70, 0.26),
-          rgba(90, 140, 40, 0.18)
-        );
-      box-shadow:
-        0 0 34px rgba(140, 255, 80, 0.16),
-        inset 0 1px 0 rgba(255,255,255,0.08);
+    .secondary:hover { transform: translateY(-2px); background: linear-gradient(180deg, rgba(140,220,70,0.24), rgba(90,140,40,0.16)); }
+    .btn-email {
+      min-height: 44px; padding: 0 18px; border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 14px; font-weight: 700;
+      background: rgba(255,255,255,0.04);
+      transition: all 0.2s; cursor: pointer; font-family: inherit;
     }
+    .btn-email:hover { color: var(--cream); border-color: rgba(245,239,228,0.25); }
 
-    .hero { padding: 92px 0 70px; }
+    /* TRUST STRIP */
+    .trust-strip {
+      display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
+      padding: 10px 0; margin-top: 6px;
+    }
+    .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+    .trust-item span { color: var(--green); font-weight: 700; }
 
+    /* HERO */
+    .hero { padding: 72px 0 60px; }
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      gap: 56px;
-      align-items: center;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;
     }
-
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.03);
-      font-size: 13px;
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 10px; padding: 7px 12px;
+      border: 1px solid var(--line); border-radius: 999px;
+      color: var(--muted); background: rgba(255,255,255,0.03); font-size: 12px; margin-bottom: 20px;
     }
-
     .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--olive);
-      box-shadow: 0 0 18px rgba(166,160,122,.7);
+      width: 7px; height: 7px; border-radius: 999px; background: var(--olive);
+      box-shadow: 0 0 14px rgba(166,160,122,.8);
     }
-
     h1 {
-      font-size: clamp(48px, 7vw, 86px);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      max-width: 760px;
-      margin-bottom: 28px;
+      font-size: clamp(42px, 6.5vw, 78px); line-height: 0.95;
+      letter-spacing: -0.07em; max-width: 720px; margin-bottom: 22px;
     }
-
-    .hero p {
-      max-width: 620px;
-      color: var(--muted);
-      font-size: 19px;
-      margin-bottom: 34px;
+    .hero-sub {
+      max-width: 540px; color: var(--muted); font-size: 18px; margin-bottom: 32px; line-height: 1.55;
     }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
+    .hero-badge-row {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px;
     }
+    .badge-green {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+      border-radius: 999px; background: rgba(140,220,70,0.16);
+      border: 1px solid rgba(140,220,70,0.28); color: var(--green);
+      font-size: 13px; font-weight: 800;
+    }
+    .badge-price { color: var(--muted); font-size: 14px; }
+    .badge-price strong { color: var(--cream); font-size: 16px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 24px; }
 
+    /* PHONE MOCK */
     .phone-wrap {
-      position: relative;
-      min-height: 640px;
-      display: grid;
-      place-items: center;
+      position: relative; min-height: 580px; display: grid; place-items: center;
     }
-
     .glow {
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      background: rgba(166,160,122,.18);
-      filter: blur(80px);
-      border-radius: 50%;
+      position: absolute; width: 340px; height: 340px;
+      background: rgba(166,160,122,.16); filter: blur(72px); border-radius: 50%;
     }
-
     .phone {
-      position: relative;
-      width: min(340px, 86vw);
-      min-height: 620px;
-      border-radius: 42px;
-      border: 1px solid rgba(245,239,228,.22);
-      background: #111311;
-      box-shadow: var(--shadow);
-      padding: 14px;
+      position: relative; width: min(320px, 84vw); min-height: 580px;
+      border-radius: 40px; border: 1px solid rgba(245,239,228,.2);
+      background: #111311; box-shadow: var(--shadow); padding: 13px;
     }
-
-    .screen {
-      border-radius: 32px;
-      min-height: 592px;
-      overflow: hidden;
-      background: #f6efe5;
-      color: #171411;
-    }
-
+    .screen { border-radius: 30px; min-height: 554px; overflow: hidden; background: #f6efe5; color: #171411; }
     .menu-cover {
-      padding: 34px 22px;
-      min-height: 210px;
-      color: white;
-      background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.58)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
+      padding: 28px 20px; min-height: 190px; color: white;
+      background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.58)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display: flex; flex-direction: column; justify-content: end;
     }
-
     .mini-logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.92);
-      color: #161616;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 18px;
+      width: 48px; height: 48px; border-radius: 15px; background: rgba(255,255,255,.92);
+      color: #161616; display: grid; place-items: center; font-weight: 900; margin-bottom: 14px;
     }
-
-    .menu-cover h3 {
-      font-size: 28px;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
-    .menu-cover span {
-      color: rgba(255,255,255,.75);
-      font-size: 13px;
-      margin-top: 8px;
-    }
-
-    .menu-body { padding: 18px; }
-
-    .pill-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 18px;
-      overflow: hidden;
-    }
-
+    .menu-cover h3 { font-size: 24px; letter-spacing: -0.04em; line-height: 1; }
+    .menu-cover span { color: rgba(255,255,255,.7); font-size: 12px; margin-top: 6px; }
+    .menu-body { padding: 16px; }
+    .pill-row { display: flex; gap: 7px; margin-bottom: 15px; overflow: hidden; }
     .pill {
-      white-space: nowrap;
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: white;
-      color: #605641;
-      font-size: 12px;
-      font-weight: 800;
-      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      white-space: nowrap; border-radius: 999px; padding: 7px 11px;
+      background: white; color: #605641; font-size: 11px; font-weight: 800;
+      box-shadow: 0 4px 14px rgba(0,0,0,.06);
     }
-
     .menu-card {
-      background: white;
-      border-radius: 20px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 20px rgba(80,60,40,.08);
+      background: white; border-radius: 17px; padding: 14px; margin-bottom: 10px;
+      box-shadow: 0 6px 18px rgba(80,60,40,.07);
     }
-
-    .menu-card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .menu-card h4 { font-size: 15px; margin-bottom: 5px; }
-    .menu-card p { color: #766b5d; font-size: 12px; margin: 0; }
-    .price { color: #6e684b; font-weight: 900; white-space: nowrap; }
-
+    .menu-card-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .menu-card h4 { font-size: 14px; margin-bottom: 4px; }
+    .menu-card p { color: #766b5d; font-size: 11px; margin: 0; }
+    .mock-price { color: #6e684b; font-weight: 900; white-space: nowrap; font-size: 14px; }
     .bottom-demo {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      background: #171411;
-      padding: 10px;
-      border-radius: 22px;
-      color: white;
-      font-size: 10px;
-      text-align: center;
+      margin-top: 16px; display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 7px; background: #171411; padding: 9px; border-radius: 20px;
+      color: white; font-size: 9px; text-align: center;
     }
 
-    .section {
-      padding: 86px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-head {
-      max-width: 720px;
-      margin-bottom: 38px;
-    }
-
+    /* SECTIONS */
+    .section { padding: 80px 0; border-top: 1px solid var(--line); }
+    .section-head { max-width: 680px; margin-bottom: 36px; }
     .section-head h2 {
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1;
-      letter-spacing: -0.055em;
-      margin-bottom: 18px;
+      font-size: clamp(30px, 4.5vw, 52px); line-height: 1.02;
+      letter-spacing: -0.055em; margin-bottom: 16px;
     }
+    .section-head p { color: var(--muted); font-size: 17px; }
 
-    .section-head p {
-      color: var(--muted);
-      font-size: 18px;
+    /* PRICING — hero section */
+    .pricing-hero {
+      padding: 70px 0; border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(166,160,122,0.06), transparent);
     }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+    .pricing-head { text-align: center; margin-bottom: 48px; }
+    .pricing-head h2 {
+      font-size: clamp(34px, 5vw, 58px); line-height: 1;
+      letter-spacing: -0.055em; margin-bottom: 14px;
     }
+    .pricing-head p { color: var(--muted); font-size: 18px; max-width: 560px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .price-card {
+      border: 1px solid var(--line); border-radius: 28px; padding: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    }
+    .price-card.featured {
+      border-color: rgba(166,160,122,.4);
+      background: linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
+      position: relative; overflow: hidden;
+    }
+    .pop-badge {
+      position: absolute; top: 18px; right: 18px;
+      background: var(--cream); color: #111; padding: 5px 10px;
+      border-radius: 999px; font-size: 10px; font-weight: 900;
+    }
+    .plan-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: rgba(166,160,122,.14); display: grid; place-items: center;
+      color: var(--olive); margin-bottom: 20px; font-size: 20px;
+    }
+    .plan-name { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .plan-desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
 
+    /* Trial box */
+    .trial-box {
+      padding: 14px; border-radius: 16px;
+      background: rgba(140,220,70,0.08); border: 1px solid rgba(140,220,70,0.22);
+      margin-bottom: 20px;
+    }
+    .trial-box .t-title { color: var(--green); font-size: 15px; font-weight: 800; margin-bottom: 3px; }
+    .trial-box .t-sub { color: var(--muted); font-size: 13px; }
+
+    /* Reassurance row */
+    .reassure-row {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+    .reassure-chip {
+      display: flex; align-items: center; gap: 5px; padding: 5px 10px;
+      border-radius: 999px; background: rgba(255,255,255,.05);
+      border: 1px solid var(--line); font-size: 12px; color: var(--muted);
+    }
+    .reassure-chip span { color: var(--green); }
+
+    .price-big {
+      font-size: 48px; font-weight: 900; letter-spacing: -0.06em; line-height: 1;
+    }
+    .price-period { color: var(--muted); font-size: 14px; margin-top: 3px; margin-bottom: 6px; }
+    .annual-note {
+      font-size: 13px; color: var(--muted); margin-bottom: 22px;
+      padding: 10px 14px; background: rgba(255,255,255,.04);
+      border: 1px solid var(--line); border-radius: 12px;
+    }
+    .annual-note strong { color: var(--cream); }
+    .feature-list { list-style: none; display: grid; gap: 10px; margin-bottom: 24px; }
+    .feature-list li { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .feature-list li::before { content: "✓"; color: var(--green); font-weight: 900; flex-shrink: 0; }
+    .plan-actions { display: flex; flex-direction: column; gap: 10px; }
+    .demo-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* CARDS grid */
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
     .card {
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 28px;
+      border: 1px solid var(--line); border-radius: 26px; padding: 26px;
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-      min-height: 250px;
+      min-height: 220px;
     }
-
     .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: rgba(166,160,122,.14);
-      display: grid;
-      place-items: center;
-      color: var(--olive);
-      margin-bottom: 24px;
-      font-size: 22px;
+      width: 44px; height: 44px; border-radius: 14px;
+      background: rgba(166,160,122,.14); display: grid; place-items: center;
+      color: var(--olive); margin-bottom: 20px; font-size: 20px;
     }
+    .card h3 { font-size: 20px; letter-spacing: -0.03em; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 14px; }
 
-    .card h3 {
-      font-size: 22px;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
+    /* HOW IT WORKS */
     .feature-band {
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 38px;
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 32px;
-      align-items: center;
-      background: linear-gradient(135deg, rgba(166,160,122,.16), rgba(255,255,255,.03));
+      border: 1px solid var(--line); border-radius: 32px; padding: 36px;
+      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: center;
+      background: linear-gradient(135deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
     }
-
-    .steps { display: grid; gap: 14px; }
-
+    .steps { display: grid; gap: 12px; }
     .step {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 16px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(0,0,0,.16);
+      display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px;
+      border: 1px solid var(--line); border-radius: 20px; background: rgba(0,0,0,.16);
     }
-
     .num {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--cream);
-      color: #111;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--cream); color: #111; display: grid; place-items: center; font-weight: 900;
     }
+    .step h3 { margin-bottom: 3px; font-size: 17px; }
+    .step p { color: var(--muted); font-size: 13px; }
 
-    .step h3 { margin-bottom: 4px; font-size: 18px; }
-    .step p { color: var(--muted); font-size: 14px; }
-
-    .client-card {
-      max-width: 380px;
-      overflow: hidden;
-      padding: 0;
-    }
-
+    /* CLIENT */
+    .client-card { max-width: 400px; overflow: hidden; padding: 0; }
     .client-image {
-      height: 220px;
+      height: 200px;
       background: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80') center/cover;
     }
+    .client-content { padding: 26px; }
+    .client-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+    .client-logo { width: 50px; height: 50px; border-radius: 14px; background: rgba(166,160,122,.12); display: grid; place-items: center; font-size: 22px; }
 
-    .client-content { padding: 28px; }
-
-    .client-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 16px;
+    /* FAQ */
+    details {
+      border: 1px solid var(--line); border-radius: 18px; padding: 18px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); cursor: pointer;
     }
-
-    .client-logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: rgba(166,160,122,.12);
-      display: grid;
-      place-items: center;
-      font-size: 24px;
+    summary {
+      font-weight: 800; font-size: 15px; letter-spacing: -.02em;
+      list-style: none; display: flex; justify-content: space-between; align-items: center;
     }
+    summary .plus { color: var(--olive); font-size: 18px; flex-shrink: 0; margin-left: 10px; }
+    details p { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.6; }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .price-main {
-      font-size: 52px;
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      line-height: 1;
-    }
-
-    .price-period {
-      color: var(--muted);
-      margin-top: 4px;
-      margin-bottom: 18px;
-    }
-
-    .annual-box {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      margin-bottom: 24px;
-    }
-
-    .annual-box strong {
-      font-size: 20px;
-      color: var(--cream);
-    }
-
-    .annual-box div {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 3px;
-    }
-
-    .trial-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(140, 220, 70, 0.16);
-      border: 1px solid rgba(140, 220, 70, 0.28);
-      color: #d7ff9a;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 18px;
-      box-shadow: 0 0 26px rgba(140, 255, 80, 0.08);
-    }
-
-    .trial-box {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(140, 220, 70, 0.08);
-      border: 1px solid rgba(140, 220, 70, 0.22);
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .trial-box strong {
-      color: #d7ff9a;
-      font-size: 16px;
-    }
-
-    .pricing-list {
-      display: grid;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      list-style: none;
-      margin-bottom: 28px;
-    }
-
-    .final-cta {
-      padding: 88px 0 110px;
-      text-align: center;
-    }
-
+    /* FINAL CTA */
     .final-box {
-      border: 1px solid var(--line);
-      border-radius: 36px;
-      padding: 62px 30px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(166,160,122,.22), transparent 42%),
-        rgba(255,255,255,.035);
+      border: 1px solid var(--line); border-radius: 34px; padding: 64px 30px; text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(166,160,122,.2), transparent 44%), rgba(255,255,255,.03);
     }
-
     .final-box h2 {
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 1;
-      letter-spacing: -0.06em;
-      margin-bottom: 18px;
+      font-size: clamp(34px, 5.5vw, 62px); line-height: 1;
+      letter-spacing: -0.06em; margin-bottom: 14px;
     }
-
-    .final-box p {
-      max-width: 620px;
-      margin: 0 auto 28px;
-      color: var(--muted);
-      font-size: 18px;
+    .final-box p { max-width: 560px; margin: 0 auto 30px; color: var(--muted); font-size: 17px; }
+    .final-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+    .final-reassure {
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+      margin-top: 22px; font-size: 13px; color: var(--muted);
     }
+    .final-reassure span { display: flex; align-items: center; gap: 5px; }
+    .final-reassure span b { color: var(--green); }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 30px 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .video-showcase { padding: 24px 0 90px; }
-
-    .showcase-wrap {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .showcase-glow {
-      position: absolute;
-      inset: auto 10% -40px;
-      height: 260px;
-      background: radial-gradient(circle at center, rgba(166,160,122,.24), transparent 65%);
-      filter: blur(60px);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .showcase-frame {
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      border-radius: 34px;
-      border: 1px solid rgba(245,239,228,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: 0 40px 120px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
-    }
-
-    .showcase-video {
-      width: 100%;
-      display: block;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      background: #000;
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-grid, .feature-band { grid-template-columns: 1fr; }
       .phone-wrap { min-height: auto; }
       .cards, .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero { padding-top: 62px; }
-      .showcase-frame { border-radius: 24px; }
+      .hero { padding-top: 52px; }
     }
-
     @media (max-width: 520px) {
-      .container { width: min(100% - 28px, 1120px); }
-      .nav { height: 68px; }
-      .brand span { font-size: 14px; }
-      .hero p, .section-head p, .final-box p { font-size: 16px; }
-      .phone { transform: scale(.92); transform-origin: top center; }
-      .phone-wrap { margin-bottom: -42px; }
-      .video-showcase { padding: 8px 0 60px; }
-      .showcase-frame { border-radius: 20px; }
+      .container { width: calc(100% - 28px); }
+      .nav { height: 64px; }
+      .phone { transform: scale(.9); transform-origin: top center; }
+      .phone-wrap { margin-bottom: -48px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="container nav">
-        <a href="#" class="brand" aria-label="Menoova home">
-          <span class="mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 48V17C12 14.8 14.7 13.7 16.2 15.3L32 32L47.8 15.3C49.3 13.7 52 14.8 52 17V48" stroke="#F5EFE4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="32" cy="48" r="5" fill="#A6A07A"/>
-            </svg>
-          </span>
-          <span>MENOOVA</span>
-        </a>
+<div class="page">
 
-        <nav class="nav-links" aria-label="Navigazione principale">
-          <a href="#servizio">Servizio</a>
-          <a href="#vantaggi">Vantaggi</a>
-          <a href="#clienti">Clienti</a>
-          <a href="#pricing">Prezzi</a>
-          <a href="#contatti">Contatti</a>
-        </nav>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="mark">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 48V17C12 14.8 14.7 13.7 16.2 15.3L32 32L47.8 15.3C49.3 13.7 52 14.8 52 17V48" stroke="#F5EFE4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="32" cy="48" r="5" fill="#A6A07A"/>
+          </svg>
+        </span>
+        <span>MENOOVA</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#come-funziona">Come funziona</a>
+        <a href="#clienti">Clienti</a>
+        <a href="#pricing">Prezzi</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">Scrivici su WhatsApp</button>
+    </div>
+  </header>
 
-        <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">
-          Scrivici su WhatsApp
-        </button>
-      </div>
-    </header>
+  <main>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <div class="eyebrow"><span class="dot"></span> Smart digital menus for restaurants</div>
-            <h1>Menu digitali eleganti, veloci e sempre aggiornati.</h1>
-            <p>Menoova crea pagine menu su misura per ristoranti, bar, pizzerie e locali. Ogni cliente riceve una pagina dedicata, accessibile tramite QR code, con design curato e navigazione semplice da smartphone.</p>
-            <div class="hero-actions">
-              <a class="secondary" href="#servizio">Scopri il servizio</a>
-            </div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Menu digitale per ristoranti, bar e pizzerie</div>
+          <h1>Il menu sul telefono dei tuoi clienti.</h1>
+          <p class="hero-sub">Menoova crea il tuo menu digitale in 48 ore. I clienti lo aprono scansionando un QR code, senza app. Tu lo aggiorni quando vuoi.</p>
+
+          <div class="hero-badge-row">
+            <span class="badge-green">✓ 3 mesi completamente gratis</span>
+            <span class="badge-price">poi da <strong>€7,99/mese</strong></span>
           </div>
 
-          <div class="phone-wrap" aria-label="Anteprima menu digitale">
-            <div class="glow"></div>
-            <div class="phone">
-              <div class="screen">
-                <div class="menu-cover">
-                  <div class="mini-logo">M</div>
-                  <h3>Locale Milano</h3>
-                  <span>Menu digitale · QR ordering</span>
+          <div class="hero-actions">
+            <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">
+              Prova gratis 3 mesi →
+            </button>
+            <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">
+              ✉️ Scrivi una email
+            </a>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-item"><span>✓</span> Nessuna carta richiesta</div>
+            <div class="trust-item"><span>✓</span> Disdici quando vuoi</div>
+            <div class="trust-item"><span>✓</span> Menu pronto in 48 ore</div>
+            <div class="trust-item"><span>✓</span> 20 porta QR inclusi</div>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="glow"></div>
+          <div class="phone">
+            <div class="screen">
+              <div class="menu-cover">
+                <div class="mini-logo">M</div>
+                <h3>Il Piccolo Forno</h3>
+                <span>Menu digitale · Via Roma, Ragusa</span>
+              </div>
+              <div class="menu-body">
+                <div class="pill-row">
+                  <div class="pill">🍕 Pizze</div>
+                  <div class="pill">🦪 Antipasti</div>
+                  <div class="pill">🍝 Primi</div>
                 </div>
-                <div class="menu-body">
-                  <div class="pill-row">
-                    <div class="pill">Antipasti</div>
-                    <div class="pill">Pizze</div>
-                    <div class="pill">Dessert</div>
+                <div class="menu-card">
+                  <div class="menu-card-top">
+                    <div><h4>Margherita</h4><p>Pomodoro, fior di latte, basilico</p></div>
+                    <div class="mock-price">€ 7</div>
                   </div>
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div><h4>Focaccia gourmet</h4><p>Olio EVO, rosmarino, sale Maldon.</p></div>
-                      <div class="price">€ 6</div>
-                    </div>
+                </div>
+                <div class="menu-card">
+                  <div class="menu-card-top">
+                    <div><h4>Diavola</h4><p>Pomodoro, mozzarella, salame piccante</p></div>
+                    <div class="mock-price">€ 9</div>
                   </div>
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div><h4>Margherita premium</h4><p>Pomodoro San Marzano, fiordilatte, basilico.</p></div>
-                      <div class="price">€ 9</div>
-                    </div>
+                </div>
+                <div class="menu-card">
+                  <div class="menu-card-top">
+                    <div><h4>Cannolo siciliano</h4><p>Ricotta, pistacchio, cioccolato</p></div>
+                    <div class="mock-price">€ 4</div>
                   </div>
-                  <div class="menu-card">
-                    <div class="menu-card-top">
-                      <div><h4>Tiramisù della casa</h4><p>Crema al mascarpone, caffè, cacao.</p></div>
-                      <div class="price">€ 5</div>
-                    </div>
-                  </div>
-                  <div class="bottom-demo">
-                    <span>Home</span><span>Menu</span><span>Ordine</span><span>Chiama</span>
-                  </div>
+                </div>
+                <div class="bottom-demo">
+                  <span>🏠 Home</span><span>📋 Menu</span><span>📍 Mappa</span><span>📞 Chiama</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="video-showcase">
-        <div class="container">
-          <div class="showcase-wrap">
-            <div class="showcase-glow"></div>
-            <div class="showcase-frame">
-              <video autoplay muted loop playsinline class="showcase-video">
-                <source src="menoova-hero.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="servizio">
-        <div class="container">
-          <div class="section-head">
-            <h2>Un menu digitale creato per vendere meglio.</h2>
-            <p>Non un semplice PDF online. Menoova realizza pagine menu leggere, moderne e pensate per essere usate ogni giorno dai clienti direttamente dal tavolo.</p>
-          </div>
-          <div class="cards">
-            <article class="card">
-              <div class="icon">⌁</div>
-              <h3>Pagina dedicata</h3>
-              <p>Ogni locale ha il proprio URL personalizzato, con logo, copertina, indirizzo, pulsanti rapidi e menu organizzato per categorie.</p>
-            </article>
-            <article class="card">
-              <div class="icon">▣</div>
-              <h3>QR code pronto</h3>
-              <p>Generiamo il QR collegato alla pagina del locale, pronto per tavoli, bancone, vetrina, flyer o social.</p>
-            </article>
-            <article class="card">
-              <div class="icon">✦</div>
-              <h3>Design premium</h3>
-              <p>Interfaccia mobile-first, colori curati, testi leggibili e navigazione fluida per migliorare l'esperienza del cliente.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="vantaggi">
-        <div class="container feature-band">
-          <div class="section-head" style="margin-bottom:0">
-            <h2>Semplice per il locale. Comodo per il cliente.</h2>
-            <p>Il menu può includere prodotti, descrizioni, prezzi, allergeni, foto, pulsante chiama, indicazioni Google Maps e richiesta ordine via WhatsApp.</p>
-          </div>
-          <div class="steps">
-            <div class="step">
-              <div class="num">1</div>
-              <div><h3>Raccogliamo contenuti</h3><p>Nome locale, logo, prodotti, prezzi, categorie, indirizzo e contatti.</p></div>
-            </div>
-            <div class="step">
-              <div class="num">2</div>
-              <div><h3>Creiamo la pagina</h3><p>Costruiamo un menu digitale elegante, veloce e ottimizzato per smartphone.</p></div>
-            </div>
-            <div class="step">
-              <div class="num">3</div>
-              <div><h3>Consegniamo il QR</h3><p>Il locale stampa il QR e i clienti aprono subito il menu dal telefono.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="clienti">
-        <div class="container">
-          <div class="section-head">
-            <h2>I nostri clienti.</h2>
-            <p>Menu digitali reali creati con Menoova: pagine eleganti, veloci e pronte per QR code.</p>
-          </div>
-          <div class="cards">
-            <article class="card client-card">
-              <div class="client-image"></div>
-              <div class="client-content">
-                <div class="client-head">
-                  <div><h3>Pane per i tuoi denti</h3><p>Marina di Ragusa</p></div>
-                  <div class="client-logo">🍞</div>
-                </div>
-                <p style="margin-bottom:22px;">Menu digitale premium con ordine WhatsApp, allergeni, sezioni dinamiche e ottimizzazione mobile.</p>
-                <a class="cta" target="_blank" href="https://menoova.github.io/Menoova/clienti/pane-per-i-tuoi-denti/clienti/pane-per-i-tuoi-denti/index.html">
-                  Apri menu →
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="pricing">
-        <div class="container">
-          <div class="section-head">
-            <h2>Prezzi semplici e sostenibili.</h2>
-            <p>Parti con 3 mesi gratuiti. Testi Menoova nel tuo locale, poi decidi se continuare con il piano più adatto.</p>
-          </div>
-          <div class="pricing-grid">
-            <article class="card">
-              <div class="icon">◌</div>
-              <h3>Starter</h3>
-              <p style="margin-bottom:18px;">Ideale per piccoli locali, bakery, bar e attività che vogliono un menu moderno.</p>
-              <div class="trial-badge">✓ 3 mesi gratuiti</div>
-              <div class="trial-box">
-                <strong>Provi Menoova gratis per 3 mesi.</strong>
-                <div>Dopo il periodo gratuito decidi liberamente se continuare.</div>
-              </div>
-              <div class="price-main">€7,99</div>
-              <div class="price-period">/ mese</div>
-              <div class="annual-box">
-                <strong>€79 / anno</strong>
-                <div>Risparmi oltre 2 mesi</div>
-              </div>
-              <ul class="pricing-list">
-                <li>✓ Menu digitale personalizzato</li>
-                <li>✓ QR code dedicato</li>
-                <li>✓ 20 porta QR in plexiglass inclusi</li>
-                <li>✓ Mobile optimized</li>
-                <li>✓ Link condivisibile</li>
-                <li>✓ Supporto base</li>
-              </ul>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="secondary" href="./demo/starter.html" target="_blank">Demo Starter</a>
-                <a class="secondary" href="./demo/demo-starter-b.html" target="_blank">Demo Starter B</a>
-                <button class="cta" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">
-                  Prova gratis
-                </button>
-              </div>
-            </article>
-
-            <article class="card" style="position:relative; border:1px solid rgba(166,160,122,.35); background:linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03)); overflow:hidden;">
-              <div style="position:absolute; top:18px; right:18px; background:var(--cream); color:#111; padding:6px 10px; border-radius:999px; font-size:11px; font-weight:800;">POPOLARE</div>
-              <div class="icon">✦</div>
-              <h3>Business</h3>
-              <p style="margin-bottom:18px;">Per ristoranti, pizzerie e locali che vogliono un'esperienza premium completa.</p>
-              <div class="trial-badge">✓ 3 mesi gratuiti</div>
-              <div class="trial-box">
-                <strong>Parti gratis per 3 mesi.</strong>
-                <div>Testi il menu digitale nel tuo locale e poi decidi se acquistare.</div>
-              </div>
-              <div class="price-main">€12,90</div>
-              <div class="price-period">/ mese</div>
-              <div class="annual-box">
-                <strong>€129 / anno</strong>
-                <div>Esperienza premium completa</div>
-              </div>
-              <ul class="pricing-list">
-                <li>✓ Design premium personalizzato</li>
-                <li>✓ 20 porta QR in plexiglass inclusi</li>
-                <li>✓ WhatsApp ordering</li>
-                <li>✓ Sezioni illimitate</li>
-                <li>✓ Modifiche rapide menu</li>
-                <li>✓ Ottimizzazione mobile avanzata</li>
-                <li>✓ Supporto prioritario</li>
-              </ul>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="secondary" href="./demo/business.html" target="_blank">Demo Business</a>
-                <a class="secondary" href="./demo/demo-business-b.html" target="_blank">Demo Business B</a>
-                <button class="cta" onclick="waClick('Ciao vorrei provare Menoova Business gratis per 3 mesi per il mio locale')">
-                  Prova gratis
-                </button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      
-      <!-- SEZIONE PORTA QR -->
-      <section class="section" id="porta-qr">
-        <div class="container">
-          <div class="section-head">
-            <h2>Il tuo menu digitale, anche sul tavolo.</h2>
-            <p>Ogni piano include 20 porta QR in plexiglass personalizzati con il nome e il QR code del tuo locale. Basta stampare, inserire e il gioco è fatto.</p>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:32px;max-width:600px;margin:0 auto;">
-            <img src="data:image/jpeg;base64,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" alt="Porta QR Menoova in plexiglass" style="width:100%;max-width:480px;border-radius:24px;box-shadow:0 30px 80px rgba(0,0,0,.4);">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;">
-              <div class="card" style="min-height:auto;">
-                <div class="icon">📦</div>
-                <h3>20 pezzi inclusi</h3>
-                <p>Con qualsiasi piano ricevi 20 porta QR in plexiglass con la grafica del tuo locale, pronti da mettere sui tavoli.</p>
-              </div>
-              <div class="card" style="min-height:auto;">
-                <div class="icon">➕</div>
-                <h3>Pezzi aggiuntivi</h3>
-                <p>Hai più tavoli? Aggiungi porta QR aggiuntivi a soli <strong style="color:var(--olive);">€0,50 cadauno</strong>.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-head">
-            <h2>Domande frequenti.</h2>
-            <p>Tutto quello che vuoi sapere su Menoova, prima di iniziare.</p>
-          </div>
-          <div style="display:grid;gap:12px;max-width:780px;">
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                Quanto tempo ci vuole per avere il menu pronto?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Di solito consegniamo il menu digitale entro 48 ore dalla ricezione di tutti i contenuti: logo, prodotti, prezzi e indirizzo.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                Posso aggiornare i prezzi o i prodotti dopo?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Sì, le modifiche sono incluse nel piano. Basta scriverci su WhatsApp e aggiorniamo entro 24 ore.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                I clienti devono scaricare un'app?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">No. Il menu si apre direttamente dal browser del telefono, scansionando il QR code. Nessuna app, nessuna registrazione.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                Cosa succede dopo i 3 mesi gratuiti?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Puoi scegliere se continuare con il piano mensile o annuale, oppure disdire liberamente. Nessun addebito automatico.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                Il QR code funziona con tutti i telefoni?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Sì, funziona con qualsiasi smartphone moderno, sia iPhone che Android.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                Posso vedere un esempio di menu reale?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Sì, puoi aprire il menu di uno dei nostri clienti direttamente dalla sezione "I nostri clienti" nella pagina.</p>
-            </details>
-
-            <details style="border:1px solid var(--line);border-radius:20px;padding:20px 24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));cursor:pointer;">
-              <summary style="font-weight:800;font-size:16px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                I 20 porta QR sono già personalizzati con il mio logo?
-                <span style="color:var(--olive);font-size:20px;flex-shrink:0;margin-left:12px;">+</span>
-              </summary>
-              <p style="color:var(--muted);font-size:15px;margin-top:14px;line-height:1.6;">Sì, ogni porta QR viene stampato con il nome del tuo locale e il QR code dedicato alla tua pagina menu.</p>
-            </details>
-
-          </div>
-        </div>
-      </section>
-
-<section class="section" id="contatti">
-        <div class="container">
-          <div class="section-head">
-            <h2>Contatti & Informazioni</h2>
-            <p>Menoova crea menu digitali premium per ristoranti, bar, pizzerie e locali moderni.</p>
-          </div>
-          <div class="cards">
-            <article class="card">
-              <div class="icon">✦</div>
-              <h3>Menoova</h3>
-              <p style="margin-bottom:18px;">Esperienze menu mobile-first progettate per valorizzare il tuo locale e migliorare l'esperienza dei clienti.</p>
-              <div style="display:grid;gap:10px;color:var(--muted);font-size:14px;">
-                <span>📍 Italia</span>
-                <span>🌐 menoova.it</span>
-                <span>✉️ hello@menoova.it</span>
-              </div>
-            </article>
-            <article class="card">
-              <div class="icon">⌁</div>
-              <h3>Link utili</h3>
-              <div style="display:grid;gap:12px;margin-top:18px;font-size:15px;color:var(--muted);">
-                <a href="#servizio">Servizio</a>
-                <a href="#vantaggi">Vantaggi</a>
-                <a href="#clienti">Clienti</a>
-                <a href="#pricing">Prezzi</a>
-                <a href="#contatti">Contatti</a>
-              </div>
-            </article>
-            <article class="card">
-              <div class="icon">◌</div>
-              <h3>Contattaci</h3>
-              <p style="margin-bottom:18px;">Ricevi una demo personalizzata del menu del tuo locale.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">
-                  WhatsApp
-                </button>
-                <a class="secondary" href="mailto:hello@menoova.it">Email</a>
-              </div>
-            </article>
-          </div>
-          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:18px;justify-content:center;color:var(--muted);font-size:14px;">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="cookie.html">Cookie Policy</a>
-            <a href="termini.html">Termini di Servizio</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-inner">
-        <div>© 2026 Menoova — Smart digital menus.</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap;">
-          <a href="https://instagram.com/menoova" target="_blank">Instagram</a>
-          <a href="https://tiktok.com/@menoova" target="_blank">TikTok</a>
-          <a href="https://youtube.com/@menoova" target="_blank">YouTube</a>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <!-- PREZZI — subito visibili -->
+    <section class="pricing-hero" id="pricing">
+      <div class="container">
+        <div class="pricing-head">
+          <h2>Prezzi chiari. Zero sorprese.</h2>
+          <p>3 mesi gratis per testarlo nel tuo locale. Poi scegli se continuare — nessun addebito automatico.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- STARTER -->
+          <article class="price-card">
+            <div class="plan-icon">◌</div>
+            <div class="plan-name">Starter</div>
+            <div class="plan-desc">Per bar, bakery e locali con un menu semplice.</div>
+
+            <div class="trial-box">
+              <div class="t-title">✓ 3 mesi completamente gratis</div>
+              <div class="t-sub">Nessuna carta di credito richiesta per iniziare.</div>
+            </div>
+
+            <div class="reassure-row">
+              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
+              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
+            </div>
+
+            <div class="price-big">€7,99</div>
+            <div class="price-period">/ mese dopo il periodo gratuito</div>
+            <div class="annual-note">Oppure <strong>€79 / anno</strong> — risparmi oltre 2 mesi</div>
+
+            <ul class="feature-list">
+              <li>Menu digitale personalizzato</li>
+              <li>QR code dedicato al tuo locale</li>
+              <li>20 porta QR in plexiglass inclusi</li>
+              <li>Aggiornamenti menu inclusi</li>
+              <li>Link condivisibile sui social</li>
+              <li>Supporto via WhatsApp</li>
+            </ul>
+
+            <div class="plan-actions">
+              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Starter gratis per 3 mesi')">
+                Prova gratis →
+              </button>
+              <div class="demo-links">
+                <a class="secondary" href="./demo/starter.html" target="_blank">Demo classico</a>
+                <a class="secondary" href="./demo/demo-starter-b.html" target="_blank">Demo moderno</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- BUSINESS -->
+          <article class="price-card featured">
+            <div class="pop-badge">CONSIGLIATO</div>
+            <div class="plan-icon">✦</div>
+            <div class="plan-name">Business</div>
+            <div class="plan-desc">Per ristoranti e pizzerie con menu articolato e molte categorie.</div>
+
+            <div class="trial-box">
+              <div class="t-title">✓ 3 mesi completamente gratis</div>
+              <div class="t-sub">Testi il menu nel tuo locale senza rischiare niente.</div>
+            </div>
+
+            <div class="reassure-row">
+              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
+              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
+            </div>
+
+            <div class="price-big">€12,90</div>
+            <div class="price-period">/ mese dopo il periodo gratuito</div>
+            <div class="annual-note">Oppure <strong>€129 / anno</strong> — tutto incluso</div>
+
+            <ul class="feature-list">
+              <li>Design premium personalizzato</li>
+              <li>20 porta QR in plexiglass inclusi</li>
+              <li>Categorie e sezioni illimitate</li>
+              <li>Prezzi a taglie (baby / normale / maxi)</li>
+              <li>Aggiornamenti rapidi inclusi</li>
+              <li>Ottimizzazione mobile avanzata</li>
+              <li>Supporto prioritario</li>
+            </ul>
+
+            <div class="plan-actions">
+              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Business gratis per 3 mesi')">
+                Prova gratis →
+              </button>
+              <div class="demo-links">
+                <a class="secondary" href="./demo/business.html" target="_blank">Demo classico</a>
+                <a class="secondary" href="./demo/demo-business-b.html" target="_blank">Demo moderno</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COME FUNZIONA -->
+    <section class="section" id="come-funziona">
+      <div class="container feature-band">
+        <div class="section-head" style="margin-bottom:0">
+          <h2>Pronto in 48 ore, senza pensieri.</h2>
+          <p>Ti basta mandarci il menu — al resto pensiamo noi. Logo, colori, categorie, prezzi: tutto su misura per il tuo locale.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <div><h3>Ci mandi il menu</h3><p>Logo, prodotti, prezzi, indirizzo e contatti. Anche una foto va bene.</p></div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div><h3>Creiamo la pagina</h3><p>In 48 ore costruiamo il menu digitale con il tuo stile e i tuoi colori.</p></div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div><h3>Metti il QR sui tavoli</h3><p>I tuoi clienti scansionano e vedono subito il menu. Nessuna app.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COSA INCLUDE -->
+    <section class="section" id="servizio">
+      <div class="container">
+        <div class="section-head">
+          <h2>Tutto quello che serve, incluso.</h2>
+          <p>Non un semplice link. Un menu curato, ottimizzato per smartphone e sempre aggiornabile.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">▣</div>
+            <h3>QR code e porta QR</h3>
+            <p>Ogni piano include 20 porta QR in plexiglass personalizzati con il nome del tuo locale. Pronti da mettere sui tavoli.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⌁</div>
+            <h3>Pagina dedicata</h3>
+            <p>URL personalizzato con logo, copertina, indirizzo e menu organizzato per categorie. Funziona su qualsiasi smartphone.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Aggiornamenti inclusi</h3>
+            <p>Cambi un prezzo o aggiungi un piatto? Scrivi su WhatsApp e aggiorniamo entro 24 ore. Sempre compreso nel piano.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTI -->
+    <section class="section" id="clienti">
+      <div class="container">
+        <div class="section-head">
+          <h2>Menu reali, già attivi.</h2>
+          <p>Apri un esempio e scansiona il QR dal telefono per vedere come lo vedono i tuoi clienti.</p>
+        </div>
+        <div class="cards">
+          <article class="card client-card">
+            <div class="client-image"></div>
+            <div class="client-content">
+              <div class="client-head">
+                <div><h3>Pane per i tuoi denti</h3><p style="color:var(--muted);font-size:13px;">Marina di Ragusa</p></div>
+                <div class="client-logo">🍞</div>
+              </div>
+              <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">Menu con ordine WhatsApp, sezioni dinamiche e allergeni.</p>
+              <a class="cta" target="_blank" href="https://menoova.github.io/Menoova/clienti/pane-per-i-tuoi-denti/clienti/pane-per-i-tuoi-denti/index.html">
+                Apri menu →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Domande frequenti.</h2>
+          <p>Tutto quello che vuoi sapere prima di iniziare.</p>
+        </div>
+        <div style="display:grid;gap:10px;max-width:740px;">
+          <details>
+            <summary>Devo inserire la carta di credito per iniziare? <span class="plus">+</span></summary>
+            <p>No. I 3 mesi gratuiti partono senza nessun dato di pagamento. Solo alla fine del periodo ti chiediamo se vuoi continuare.</p>
+          </details>
+          <details>
+            <summary>Quanto ci vuole per avere il menu pronto? <span class="plus">+</span></summary>
+            <p>Di solito 48 ore dalla ricezione di tutti i contenuti: logo, prodotti, prezzi e indirizzo.</p>
+          </details>
+          <details>
+            <summary>Posso aggiornare prezzi e prodotti dopo? <span class="plus">+</span></summary>
+            <p>Sì, le modifiche sono incluse. Basta scriverci su WhatsApp e aggiorniamo entro 24 ore.</p>
+          </details>
+          <details>
+            <summary>I clienti devono scaricare un'app? <span class="plus">+</span></summary>
+            <p>No. Il menu si apre direttamente dal browser scansionando il QR. Nessuna app, nessuna registrazione.</p>
+          </details>
+          <details>
+            <summary>Cosa succede se decido di non continuare? <span class="plus">+</span></summary>
+            <p>Nessun problema. Disdici liberamente prima della fine dei 3 mesi. Zero addebiti automatici, zero penali.</p>
+          </details>
+          <details>
+            <summary>I 20 porta QR sono già personalizzati? <span class="plus">+</span></summary>
+            <p>Sì, ogni porta QR viene stampato con il nome del tuo locale e il QR code dedicato alla tua pagina menu.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="final-box">
+          <h2>Prova gratis per 3 mesi.</h2>
+          <p>Nessuna carta richiesta. Menu pronto in 48 ore. Se non ti convince, disdici — nessun problema.</p>
+          <div class="final-actions">
+            <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">
+              📲 Inizia su WhatsApp
+            </button>
+            <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">
+              ✉️ Scrivi una email
+            </a>
+          </div>
+          <div class="final-reassure">
+            <span><b>✓</b> Nessuna carta richiesta</span>
+            <span><b>✓</b> Disdici quando vuoi</span>
+            <span><b>✓</b> Menu pronto in 48 ore</span>
+            <span><b>✓</b> 20 porta QR inclusi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contatti.</h2>
+          <p>Preferisci scrivere una email? Nessun problema.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Menoova</h3>
+            <p style="margin-bottom:16px;">Menu digitali per ristoranti, bar e pizzerie italiane.</p>
+            <div style="display:grid;gap:8px;color:var(--muted);font-size:14px;">
+              <span>📍 Italia</span>
+              <span>🌐 menoova.it</span>
+              <span>✉️ hello@menoova.it</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">◌</div>
+            <h3>Scrivici</h3>
+            <p style="margin-bottom:18px;">Rispondiamo entro poche ore, anche il weekend.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">WhatsApp</button>
+              <a class="btn-email" href="mailto:hello@menoova.it">✉️ Email</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">⌁</div>
+            <h3>Navigazione</h3>
+            <div style="display:grid;gap:10px;margin-top:14px;font-size:14px;color:var(--muted);">
+              <a href="#come-funziona">Come funziona</a>
+              <a href="#servizio">Cosa include</a>
+              <a href="#clienti">Clienti</a>
+              <a href="#pricing">Prezzi</a>
+              <a href="#faq">FAQ</a>
+            </div>
+          </article>
+        </div>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:center;color:var(--muted);font-size:13px;">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="cookie.html">Cookie Policy</a>
+          <a href="termini.html">Termini di Servizio</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Menoova — Menu digitali per ristoranti.</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="https://instagram.com/menoova" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@menoova" target="_blank">TikTok</a>
+        <a href="https://youtube.com/@menoova" target="_blank">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>
