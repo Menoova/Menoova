@@ -1,1 +1,468 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gira Vota e Furria — Menu</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root{
+      --bg:#f7f3ec;
+      --card:#ffffff;
+      --verde:#2d4d2f;
+      --verde2:#1f3521;
+      --gold:#b88a2f;
+      --muted:#7b746a;
+      --line:#e5ddd2;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      font-family:"Jost",sans-serif;
+      color:#222;
+      max-width:680px;
+      margin:0 auto;
+    }
+
+    /* HERO */
+
+    .hero{
+      padding:40px 24px 30px;
+      text-align:center;
+      background:
+      linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.96)),
+      var(--bg);
+      border-bottom:1px solid var(--line);
+    }
+
+    .logo{
+      width:220px;
+      max-width:100%;
+      margin:0 auto 18px;
+      display:block;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--verde);
+      color:#fff;
+      border-radius:999px;
+      padding:10px 18px;
+      font-size:12px;
+      letter-spacing:.08em;
+      margin-bottom:18px;
+    }
+
+    .dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#f6c453;
+    }
+
+    .hero p{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    /* MENU */
+
+    .menu{
+      padding:18px;
+    }
+
+    .categoria{
+      margin-bottom:16px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--card);
+      box-shadow:0 6px 20px rgba(0,0,0,.03);
+    }
+
+    .cat-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:22px 20px;
+      cursor:pointer;
+    }
+
+    .cat-left{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .emoji{
+      font-size:28px;
+      line-height:1;
+    }
+
+    .cat-title{
+      font-family:"Cormorant Garamond",serif;
+      font-size:30px;
+      color:var(--verde2);
+      line-height:1;
+      margin-bottom:5px;
+    }
+
+    .cat-sub{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .toggle{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      color:var(--verde);
+      transition:.2s;
+      flex-shrink:0;
+    }
+
+    .categoria.active .toggle{
+      transform:rotate(45deg);
+      background:var(--verde);
+      color:#fff;
+      border-color:var(--verde);
+    }
+
+    .cat-body{
+      display:none;
+      border-top:1px solid var(--line);
+    }
+
+    .categoria.active .cat-body{
+      display:block;
+    }
+
+    /* PIATTI */
+
+    .piatto{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .piatto:last-child{
+      border-bottom:none;
+    }
+
+    .nome{
+      font-family:"Cormorant Garamond",serif;
+      font-size:24px;
+      line-height:1.1;
+      margin-bottom:6px;
+      color:#222;
+    }
+
+    .desc{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .prezzo{
+      color:var(--gold);
+      font-weight:600;
+      font-size:18px;
+      white-space:nowrap;
+    }
+
+    /* FOOTER */
+
+    .footer-note{
+      margin:24px 18px;
+      background:#efe7da;
+      border:1px solid #e2d5c0;
+      border-radius:18px;
+      padding:18px;
+      color:#5f564a;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .footer{
+      padding:28px 20px 40px;
+      text-align:center;
+      color:#888;
+      font-size:12px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <img src="logo.png" class="logo" alt="Gira Vota e Furria">
+
+    <div class="badge">
+      <span class="dot"></span>
+      MENU • PIZZERIA & BISTROT
+    </div>
+
+    <p>
+      Cucina siciliana, ingredienti selezionati e pizze gourmet.
+    </p>
+
+  </section>
+
+  <!-- MENU -->
+
+  <section class="menu">
+
+    <!-- PIZZE -->
+
+    <div class="categoria active">
+
+      <div class="cat-header" onclick="toggle(this)">
+        <div class="cat-left">
+          <div class="emoji">🍕</div>
+          <div>
+            <div class="cat-title">Le Nostre Pizze</div>
+            <div class="cat-sub">Classiche e gourmet</div>
+          </div>
+        </div>
+
+        <div class="toggle">+</div>
+      </div>
+
+      <div class="cat-body">
+
+        <div class="piatto">
+          <div>
+            <div class="nome">A Regina</div>
+            <div class="desc">Pomodoro San Marzano, fior di latte, basilico e olio e.v.o.</div>
+          </div>
+          <div class="prezzo">€6</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Pantelleria</div>
+            <div class="desc">Capperi, olive, cipolla rossa di Tropea e acciughe.</div>
+          </div>
+          <div class="prezzo">€9</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">A Parmigiana</div>
+            <div class="desc">Melanzana fritta, parmigiano e muddica atturrata.</div>
+          </div>
+          <div class="prezzo">€8.5</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FRITTURA -->
+
+    <div class="categoria">
+
+      <div class="cat-header" onclick="toggle(this)">
+        <div class="cat-left">
+          <div class="emoji">🍟</div>
+          <div>
+            <div class="cat-title">Frittura</div>
+            <div class="cat-sub">Patatine e fritti misti</div>
+          </div>
+        </div>
+
+        <div class="toggle">+</div>
+      </div>
+
+      <div class="cat-body">
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Patatine Fritte</div>
+          </div>
+          <div class="prezzo">€4</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Patatine con Buccia</div>
+          </div>
+          <div class="prezzo">€5</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">U Cuoppu</div>
+            <div class="desc">Panelle, cazzilli e anelli di cipolla.</div>
+          </div>
+          <div class="prezzo">€7</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PRIMI -->
+
+    <div class="categoria">
+
+      <div class="cat-header" onclick="toggle(this)">
+        <div class="cat-left">
+          <div class="emoji">🍝</div>
+          <div>
+            <div class="cat-title">Primi Piatti</div>
+            <div class="cat-sub">Tradizione siciliana</div>
+          </div>
+        </div>
+
+        <div class="toggle">+</div>
+      </div>
+
+      <div class="cat-body">
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Busiate al Pesto Trapanese</div>
+          </div>
+          <div class="prezzo">€10</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Cavati alla Norma</div>
+          </div>
+          <div class="prezzo">€9</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DESSERT -->
+
+    <div class="categoria">
+
+      <div class="cat-header" onclick="toggle(this)">
+        <div class="cat-left">
+          <div class="emoji">🍰</div>
+          <div>
+            <div class="cat-title">Dessert</div>
+            <div class="cat-sub">Dolci della casa</div>
+          </div>
+        </div>
+
+        <div class="toggle">+</div>
+      </div>
+
+      <div class="cat-body">
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Cannolo Siciliano</div>
+          </div>
+          <div class="prezzo">€6</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Tiramisù</div>
+          </div>
+          <div class="prezzo">€6</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BEVANDE -->
+
+    <div class="categoria">
+
+      <div class="cat-header" onclick="toggle(this)">
+        <div class="cat-left">
+          <div class="emoji">🍷</div>
+          <div>
+            <div class="cat-title">Bevande</div>
+            <div class="cat-sub">Acqua, vino e birre</div>
+          </div>
+        </div>
+
+        <div class="toggle">+</div>
+      </div>
+
+      <div class="cat-body">
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Acqua 1L</div>
+          </div>
+          <div class="prezzo">€2.5</div>
+        </div>
+
+        <div class="piatto">
+          <div>
+            <div class="nome">Birra alla Spina</div>
+          </div>
+          <div class="prezzo">€4.5</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      Tutti i piatti possono essere serviti senza glutine con supplemento €3,00.
+      In mancanza del prodotto fresco può essere sostituito con surgelato.
+    </div>
+
+  </section>
+
+  <div class="footer">
+    Powered by Menoova
+  </div>
+
+  <script>
+
+    function toggle(el){
+
+      const categoria = el.parentElement;
+
+      categoria.classList.toggle("active");
+
+    }
+
+  </script>
+
+</body>
+</html>
