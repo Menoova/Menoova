@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gira Vota e Furria — Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f3ec;
+      --card:#ffffff;
+      --verde:#d9981e;
+      --verde2:#c88916;
+      --gold:#d9981e;
+      --muted:#7b746a;
+      --line:#e5ddd2;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      font-family:"Jost",sans-serif;
+      color:#222;
+      max-width:680px;
+      margin:0 auto;
+    }
 
+    /* LANG SWITCHER */
+    .lang-bar{
+      display:flex;
+      justify-content:flex-end;
+      padding:10px 18px;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+    }
+    .lang-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:600;
+      font-family:"Jost",sans-serif;
+      cursor:pointer;
+      text-decoration:none;
+      transition:all .2s;
+    }
+    .lang-btn:hover{
+      background:var(--verde);
+      color:#fff;
+      border-color:var(--verde);
+    }
+
+    .hero{
+      padding:32px 24px 28px;
+      text-align:center;
+      background:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.96)),var(--bg);
+      border-bottom:1px solid var(--line);
+    }
+    .logo{width:300px;max-width:100%;margin:0 auto 16px;display:block}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--verde);
+      color:#fff;
+      border-radius:999px;
+      padding:9px 16px;
+      font-size:12px;
+      letter-spacing:.08em;
+      margin-bottom:16px;
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:#f6c453}
+    .hero p{color:var(--muted);line-height:1.6;font-size:14px}
+
+    .menu{padding:18px}
+    .categoria{
+      margin-bottom:14px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--card);
+      box-shadow:0 6px 20px rgba(0,0,0,.03);
+    }
+    .cat-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 20px;
+      cursor:pointer;
+    }
+    .cat-left{display:flex;gap:14px;align-items:flex-start}
+    .emoji{font-size:26px;line-height:1}
+    .cat-title{
+      font-family:"Cormorant Garamond",serif;
+      font-size:28px;
+      color:var(--verde2);
+      line-height:1;
+      margin-bottom:4px;
+    }
+    .cat-sub{color:var(--muted);font-size:13px}
+    .toggle{
+      width:32px;height:32px;border-radius:50%;
+      border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;color:var(--verde);
+      transition:.2s;flex-shrink:0;
+    }
+    .categoria.active .toggle{
+      transform:rotate(45deg);
+      background:var(--verde);
+      color:#fff;
+      border-color:var(--verde);
+    }
+    .cat-body{display:none;border-top:1px solid var(--line)}
+    .categoria.active .cat-body{display:block}
+
+    .piatto{
+      padding:16px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .piatto:last-child{border-bottom:none}
+    .nome{
+      font-family:"Cormorant Garamond",serif;
+      font-size:22px;
+      line-height:1.1;
+      margin-bottom:5px;
+      color:#222;
+    }
+    .desc{color:var(--muted);font-size:13px;line-height:1.5}
+    .prezzo{color:var(--gold);font-weight:600;font-size:17px;white-space:nowrap}
+
+    .footer-note{
+      margin:20px 18px;
+      background:#efe7da;
+      border:1px solid #e2d5c0;
+      border-radius:18px;
+      padding:16px;
+      color:#5f564a;
+      font-size:13px;
+      line-height:1.6;
+    }
+    .footer{
+      padding:24px 20px 36px;
+      text-align:center;
+      color:#888;
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-bar">
+  <a href="index.html" class="lang-btn">🇮🇹 Italiano</a>
+</div>
+
+<section class="hero">
+  <img src="logo.png" class="logo" alt="Gira Vota e Furria">
+  <div class="badge"><span class="dot"></span> MENU • PIZZERIA & BISTROT</div>
+  <p>Sicilian cuisine, selected ingredients and gourmet pizzas.</p>
+</section>
+
+<section class="menu">
+
+  <div class="categoria active">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🍕</div><div><div class="cat-title">Our Pizzas</div><div class="cat-sub">Classic and gourmet</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">A Regina</div><div class="desc">San Marzano tomato, fior di latte, basil and extra virgin olive oil.</div></div><div class="prezzo">€6.00</div></div>
+      <div class="piatto"><div><div class="nome">A Marinara</div><div class="desc">San Marzano tomato, garlic, basil, oregano and extra virgin olive oil.</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">Pantelleria</div><div class="desc">San Marzano tomato, fior di latte, capers, olives, Tropea red onion and anchovies.</div></div><div class="prezzo">€9.00</div></div>
+      <div class="piatto"><div><div class="nome">A Parmigiana</div><div class="desc">San Marzano tomato, fior di latte, fried aubergine, parmesan and toasted breadcrumbs.</div></div><div class="prezzo">€8.50</div></div>
+      <div class="piatto"><div><div class="nome">A Veggy</div><div class="desc">San Marzano tomato, fior di latte, aubergine, courgette, spinach and mushrooms.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">L'Etna</div><div class="desc">San Marzano tomato, fior di latte, spicy ventricina salami, black olives and fresh chilli.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">A Sfiziosa</div><div class="desc">San Marzano tomato, fior di latte, egg, cooked ham, frankfurter and mushrooms.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">Gira Vota e Furria</div><div class="desc">Pumpkin cream, fresh ricotta, sausage, yellow cherry tomato confit, oil and basil.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">L'Unta</div><div class="desc">Fior di latte, gorgonzola, Swiss cheese, parmesan, smoked provola.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">Mangia ca ti passa</div><div class="desc">Fior di latte, roasted potatoes, sausage, salted ricotta and basil.</div></div><div class="prezzo">€9.50</div></div>
+      <div class="piatto"><div><div class="nome">A Trinacria</div><div class="desc">Fior di latte, Pachino cherry tomatoes, Nebrodi black pig speck and Etna mushrooms.</div></div><div class="prezzo">€13.00</div></div>
+      <div class="piatto"><div><div class="nome">A Mazzariddara</div><div class="desc">San Marzano tomato, fior di latte, cuttlefish, squid, mussels, clams, red prawns and scampi.</div></div><div class="prezzo">€16.00</div></div>
+      <div class="piatto"><div><div class="nome">Marina d'Inverno</div><div class="desc">Courgette cream, fior di latte, white prawn and toasted breadcrumbs.</div></div><div class="prezzo">€13.00</div></div>
+      <div class="piatto"><div><div class="nome">La Valtellina</div><div class="desc">San Marzano tomato, fior di latte, bresaola, rocket and grana.</div></div><div class="prezzo">€9.50</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🍟</div><div><div class="cat-title">Fried sides</div><div class="cat-sub">Chips and mixed fritters</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">French fries</div></div><div class="prezzo">€4.00</div></div>
+      <div class="piatto"><div><div class="nome">Skin-on fries</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">U Cuoppu</div><div class="desc">Chickpea fritters, potato croquettes and onion rings.</div></div><div class="prezzo">€7.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🥗</div><div><div class="cat-title">Build your salad</div><div class="cat-sub">Base, toppings and dressings</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Base salad</div><div class="desc">Lettuce and rocket. Served with house flatbread.</div></div><div class="prezzo">€3.50</div></div>
+      <div class="piatto"><div><div class="nome">Toppings €1.00 each</div><div class="desc">Cherry tomato, carrots, fresh mushrooms, sweetcorn, olives, hard-boiled egg, boiled potatoes, scrambled egg.</div></div><div class="prezzo">+€1</div></div>
+      <div class="piatto"><div><div class="nome">Toppings €2.00 each</div><div class="desc">Grana cheese, fior di latte, bacon.</div></div><div class="prezzo">+€2</div></div>
+      <div class="piatto"><div><div class="nome">Toppings €3.00 each</div><div class="desc">Avocado, chicken breast, bresaola, canned tuna, smoked salmon, king prawns.</div></div><div class="prezzo">+€3</div></div>
+      <div class="piatto"><div><div class="nome">Dressings</div><div class="desc">Yogurt or guacamole.</div></div><div class="prezzo">€1.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🍽️</div><div><div class="cat-title">Kitchen</div><div class="cat-sub">Pasta, mains and sharing boards</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Gira Vota e Furria Board</div><div class="desc">Caponata, potato croquettes, chickpea fritters, fresh ricotta, local cheese, meat arancino, Ragusa sausage and olives.</div></div><div class="prezzo">€13.00</div></div>
+      <div class="piatto"><div><div class="nome">Local cured meats & cheese board</div><div class="desc">Nebrodi black pig speck, pancetta and mortadella, Ibleo caciocavallo, Ragusa provola, baked ricotta, house preserves and flatbread.</div></div><div class="prezzo">€18.00</div></div>
+      <div class="piatto"><div><div class="nome">Aubergine parmigiana</div></div><div class="prezzo">€8.00</div></div>
+      <div class="piatto"><div><div class="nome">Busiate with Trapanese pesto</div><div class="desc">With toasted almonds.</div></div><div class="prezzo">€10.00</div></div>
+      <div class="piatto"><div><div class="nome">Potato gnocchi with mussel soup</div><div class="desc">San Marzano tomato, garlic and chilli.</div></div><div class="prezzo">€12.00</div></div>
+      <div class="piatto"><div><div class="nome">Cavati alla Norma</div><div class="desc">Pasta with aubergine, tomato and salted ricotta.</div></div><div class="prezzo">€9.00</div></div>
+      <div class="piatto"><div><div class="nome">Ricotta ravioli / Cavati with pork ragù</div></div><div class="prezzo">€10.00</div></div>
+      <div class="piatto"><div><div class="nome">Beef tagliata 300 g</div><div class="desc">With cherry tomatoes, rocket and grana.</div></div><div class="prezzo">€18.00</div></div>
+      <div class="piatto"><div><div class="nome">Palermo-style breaded cutlet</div></div><div class="prezzo">€10.00</div></div>
+      <div class="piatto"><div><div class="nome">Mixed grilled meats</div></div><div class="prezzo">€15.00</div></div>
+      <div class="piatto"><div><div class="nome">Grilled sea bass</div><div class="desc">With capers, olives and cherry tomatoes.</div></div><div class="prezzo">€16.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🥔</div><div><div class="cat-title">Sides</div><div class="cat-sub">From the kitchen</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Caponata</div><div class="desc">Sicilian sweet and sour aubergine.</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">Seasonal vegetables</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">Roasted potatoes with capers and onion</div></div><div class="prezzo">€6.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🍰</div><div><div class="cat-title">Dessert</div><div class="cat-sub">House sweets</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Sicilian ricotta cannolo</div></div><div class="prezzo">€4.00</div></div>
+      <div class="piatto"><div><div class="nome">Dessert of the day</div></div><div class="prezzo">€6.00</div></div>
+      <div class="piatto"><div><div class="nome">Tiramisù</div></div><div class="prezzo">€6.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">🍷</div><div><div class="cat-title">Drinks</div><div class="cat-sub">Water, wine and beer</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Still / sparkling water ½ l.</div></div><div class="prezzo">€1.50</div></div>
+      <div class="piatto"><div><div class="nome">Still / sparkling water 1 l.</div></div><div class="prezzo">€2.50</div></div>
+      <div class="piatto"><div><div class="nome">Coca-Cola 1 l.</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">House red / white wine ½ l.</div></div><div class="prezzo">€7.00</div></div>
+      <div class="piatto"><div><div class="nome">House red / white wine 1 l.</div></div><div class="prezzo">€12.00</div></div>
+      <div class="piatto"><div><div class="nome">Red / white wine by the glass</div></div><div class="prezzo">€4.00</div></div>
+      <div class="piatto"><div><div class="nome">Draft lager 0.3 l.</div></div><div class="prezzo">€4.50</div></div>
+      <div class="piatto"><div><div class="nome">Double malt beer</div></div><div class="prezzo">€5.00</div></div>
+      <div class="piatto"><div><div class="nome">Bottled beer 66 cl.</div></div><div class="prezzo">€6.00</div></div>
+    </div>
+  </div>
+
+  <div class="categoria">
+    <div class="cat-header" onclick="toggle(this)">
+      <div class="cat-left"><div class="emoji">➕</div><div><div class="cat-title">Pizza extras</div><div class="cat-sub">Customise your pizza</div></div></div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="cat-body">
+      <div class="piatto"><div><div class="nome">Extra toppings €1.00</div><div class="desc">San Marzano tomato, capers, olives, onion, anchovies, aubergine, toasted breadcrumbs, courgette, mushrooms, spinach, egg, frankfurter, pumpkin cream, ricotta, Swiss cheese, smoked provola, Pachino cherry tomato, mussels, chips.</div></div><div class="prezzo">+€1</div></div>
+      <div class="piatto"><div><div class="nome">Extra toppings €2.00</div><div class="desc">Fior di latte, spicy ventricina, cooked ham, sausage, yellow cherry tomato, gorgonzola, parmesan, buffalo mozzarella, salted ricotta, roasted potatoes, rocket.</div></div><div class="prezzo">+€2</div></div>
+      <div class="piatto"><div><div class="nome">Extra toppings €3.00</div><div class="desc">Nebrodi black pig cured ham, Etna mushrooms, red prawn, scampi, clams, squid, king prawns, bresaola.</div></div><div class="prezzo">+€3</div></div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    All dishes can be served gluten-free with a €3.00 supplement.
+    If fresh produce is unavailable, frozen may be substituted.
+    Cover charge €1.50. Takeaway and delivery: 0932 242428.
+  </div>
+
+</section>
+
+<div class="footer">Powered by <a href="https://menoova.it" style="color:var(--verde);">Menoova</a></div>
+
+<script>
+  function toggle(el){
+    el.parentElement.classList.toggle("active");
+  }
+</script>
+</body>
+</html>
