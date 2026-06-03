@@ -214,7 +214,7 @@
     }
     .section-head p { color: var(--muted); font-size: 17px; }
 
-    /* PRICING — hero section */
+    /* PRICING */
     .pricing-hero {
       padding: 70px 0; border-top: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(166,160,122,0.06), transparent);
@@ -225,7 +225,10 @@
       letter-spacing: -0.055em; margin-bottom: 14px;
     }
     .pricing-head p { color: var(--muted); font-size: 18px; max-width: 560px; margin: 0 auto; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+
+    /* ── MODIFICA: 3 colonne ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+
     .price-card {
       border: 1px solid var(--line); border-radius: 28px; padding: 30px;
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
@@ -234,6 +237,11 @@
       border-color: rgba(166,160,122,.4);
       background: linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
       position: relative; overflow: hidden;
+    }
+    /* Piano Personalizzato — bordo caldo dorato */
+    .price-card.premium {
+      border-color: rgba(215,180,100,.35);
+      background: linear-gradient(180deg, rgba(215,180,100,.10), rgba(255,255,255,.025));
     }
     .pop-badge {
       position: absolute; top: 18px; right: 18px;
@@ -248,7 +256,6 @@
     .plan-name { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
     .plan-desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
 
-    /* Trial box */
     .trial-box {
       padding: 14px; border-radius: 16px;
       background: rgba(140,220,70,0.08); border: 1px solid rgba(140,220,70,0.22);
@@ -257,7 +264,6 @@
     .trial-box .t-title { color: var(--green); font-size: 15px; font-weight: 800; margin-bottom: 3px; }
     .trial-box .t-sub { color: var(--muted); font-size: 13px; }
 
-    /* Reassurance row */
     .reassure-row {
       display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
     }
@@ -317,16 +323,6 @@
     .step h3 { margin-bottom: 3px; font-size: 17px; }
     .step p { color: var(--muted); font-size: 13px; }
 
-    /* CLIENT */
-    .client-card { max-width: 400px; overflow: hidden; padding: 0; }
-    .client-image {
-      height: 200px;
-      background: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80') center/cover;
-    }
-    .client-content { padding: 26px; }
-    .client-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
-    .client-logo { width: 50px; height: 50px; border-radius: 14px; background: rgba(166,160,122,.12); display: grid; place-items: center; font-size: 22px; }
-
     /* FAQ */
     details {
       border: 1px solid var(--line); border-radius: 18px; padding: 18px 22px;
@@ -362,10 +358,14 @@
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
     /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(2,1fr); }
+    }
     @media (max-width: 900px) {
       .hero-grid, .feature-band { grid-template-columns: 1fr; }
       .phone-wrap { min-height: auto; }
-      .cards, .pricing-grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .hero { padding-top: 52px; }
     }
@@ -394,7 +394,6 @@
       </a>
       <nav class="nav-links">
         <a href="#come-funziona">Come funziona</a>
-        
         <a href="#pricing">Prezzi</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -477,7 +476,7 @@
       </div>
     </section>
 
-    <!-- PREZZI — subito visibili -->
+    <!-- PREZZI -->
     <section class="pricing-hero" id="pricing">
       <div class="container">
         <div class="pricing-head">
@@ -544,7 +543,7 @@
               <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
             </div>
 
-            <div class="price-big">€12,90</div>
+            <div class="price-big">€12,99</div>
             <div class="price-period">/ mese dopo il periodo gratuito</div>
             <div class="annual-note">Oppure <strong>€129 / anno</strong> — tutto incluso</div>
 
@@ -565,6 +564,46 @@
               <div class="demo-links">
                 <a class="secondary" href="./demo/business.html" target="_blank">Demo classico</a>
                 <a class="secondary" href="./demo/demo-business-b.html" target="_blank">Demo moderno</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PERSONALIZZATO ← NUOVO -->
+          <article class="price-card premium">
+            <div class="plan-icon">◈</div>
+            <div class="plan-name">Personalizzato</div>
+            <div class="plan-desc">Menu su misura con design, lingua e funzioni pensate per il tuo locale.</div>
+
+            <div class="trial-box">
+              <div class="t-title">✓ 3 mesi completamente gratis</div>
+              <div class="t-sub">Il tuo menu unico, senza nessun impegno iniziale.</div>
+            </div>
+
+            <div class="reassure-row">
+              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
+              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
+            </div>
+
+            <div class="price-big">€17,90</div>
+            <div class="price-period">/ mese dopo il periodo gratuito</div>
+            <div class="annual-note">Oppure <strong>€179 / anno</strong> — risparmia 2 mesi</div>
+
+            <ul class="feature-list">
+              <li>Design completamente su misura</li>
+              <li>20 porta QR in plexiglass inclusi</li>
+              <li>Menu multilingua (IT / EN / DE)</li>
+              <li>Filtro allergeni interattivo</li>
+              <li>Foto per ogni piatto</li>
+              <li>La tua identità visiva unica</li>
+              <li>Supporto dedicato prioritario</li>
+            </ul>
+
+            <div class="plan-actions">
+              <button class="cta-big" onclick="waClick('Ciao vorrei il piano Personalizzato Menoova gratis per 3 mesi')">
+                Prova gratis →
+              </button>
+              <div class="demo-links">
+                <a class="secondary" href="./demo/personalizzato.html" target="_blank">Vedi la demo</a>
               </div>
             </div>
           </article>
@@ -697,7 +736,7 @@
             <h3>Menoova</h3>
             <p style="margin-bottom:16px;">Menu digitali per ristoranti, bar e pizzerie italiane.</p>
             <div style="display:grid;gap:8px;color:var(--muted);font-size:14px;">
-              <span>📍 Italia</span>
+              <span>📍 Marina di Ragusa, Italia</span>
               <span>🌐 menoova.it</span>
               <span>✉️ hello@menoova.it</span>
             </div>
@@ -717,7 +756,6 @@
             <div style="display:grid;gap:10px;margin-top:14px;font-size:14px;color:var(--muted);">
               <a href="#come-funziona">Come funziona</a>
               <a href="#servizio">Cosa include</a>
-              
               <a href="#pricing">Prezzi</a>
               <a href="#faq">FAQ</a>
             </div>
