@@ -116,26 +116,6 @@
     }
     .btn-email:hover { color: var(--cream); border-color: rgba(245,239,228,0.25); }
 
-    /* HERO VIDEO */
-    .hero { padding: 72px 0 60px; position: relative; overflow: hidden; }
-    .hero-video {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; z-index: 0; opacity: .18;
-    }
-    .hero > .container { position: relative; z-index: 1; }
-
-
-    /* HERO VIDEO */
-    .hero { padding: 72px 0 60px; position: relative; overflow: hidden; }
-    .hero-video {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      min-width: 100%; min-height: 100%;
-      width: auto; height: auto;
-      object-fit: cover; z-index: 0; opacity: .12;
-      pointer-events: none;
-    }
-    .hero-grid { position: relative; z-index: 1; }
     /* TRUST STRIP */
     .trust-strip {
       display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
@@ -425,9 +405,6 @@
 
     <!-- HERO -->
     <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="menoova-hero.mp4" type="video/mp4">
-      </video>
       <div class="container hero-grid">
         <div>
           <div class="eyebrow"><span class="dot"></span> Menu digitale per ristoranti, bar e pizzerie</div>
@@ -631,6 +608,50 @@
             </div>
           </article>
 
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VIDEO DEMO -->
+    <section class="section" id="video-demo">
+      <div class="container">
+        <div class="section-head" style="text-align:center;max-width:100%;margin-bottom:32px;">
+          <h2>Guarda come funziona.</h2>
+          <p style="color:var(--muted);font-size:17px;">Dal QR sul tavolo al menu sul telefono del cliente — in meno di 3 secondi.</p>
+        </div>
+        <div style="
+          border-radius:28px;overflow:hidden;
+          border:1px solid var(--line);
+          background:rgba(0,0,0,.3);
+          box-shadow:0 30px 80px rgba(0,0,0,.4);
+          max-width:880px;margin:0 auto;
+          position:relative;
+        ">
+          <!-- Barra stile browser -->
+          <div style="
+            background:rgba(255,255,255,.05);
+            border-bottom:1px solid var(--line);
+            padding:12px 18px;
+            display:flex;align-items:center;gap:10px;
+          ">
+            <div style="display:flex;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,80,80,.5)"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,180,0,.5)"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:rgba(80,200,80,.5)"></div>
+            </div>
+            <div style="
+              flex:1;background:rgba(255,255,255,.06);border:1px solid var(--line);
+              border-radius:6px;padding:5px 12px;font-size:12px;color:var(--muted);
+              max-width:320px;margin:0 auto;text-align:center;
+            ">menoova.it</div>
+          </div>
+          <video
+            autoplay muted loop playsinline
+            style="width:100%;display:block;max-height:520px;object-fit:cover;"
+          >
+            <source src="menoova-hero.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
