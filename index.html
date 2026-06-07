@@ -116,6 +116,26 @@
     }
     .btn-email:hover { color: var(--cream); border-color: rgba(245,239,228,0.25); }
 
+    /* HERO VIDEO */
+    .hero { padding: 72px 0 60px; position: relative; overflow: hidden; }
+    .hero-video {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0; opacity: .18;
+    }
+    .hero > .container { position: relative; z-index: 1; }
+
+
+    /* HERO VIDEO */
+    .hero { padding: 72px 0 60px; position: relative; overflow: hidden; }
+    .hero-video {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      object-fit: cover; z-index: 0; opacity: .12;
+      pointer-events: none;
+    }
+    .hero-grid { position: relative; z-index: 1; }
     /* TRUST STRIP */
     .trust-strip {
       display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
@@ -405,6 +425,9 @@
 
     <!-- HERO -->
     <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="menoova-hero.mp4" type="video/mp4">
+      </video>
       <div class="container hero-grid">
         <div>
           <div class="eyebrow"><span class="dot"></span> Menu digitale per ristoranti, bar e pizzerie</div>
@@ -761,10 +784,19 @@
             </div>
           </article>
         </div>
-        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:center;color:var(--muted);font-size:13px;">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="cookie.html">Cookie Policy</a>
-          <a href="termini.html">Termini di Servizio</a>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);text-align:center;">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:10px 22px;font-size:14px;color:var(--muted);margin-bottom:16px;">
+            👁 <span id="visit-count" style="color:var(--cream);font-weight:800;font-size:16px;">—</span>
+            <span>ristoratori hanno già visitato Menoova</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;font-size:13px;">
+            <a href="privacy.html" style="color:var(--muted)">Privacy Policy</a>
+            <a href="cookie.html" style="color:var(--muted)">Cookie Policy</a>
+            <a href="termini.html" style="color:var(--muted)">Termini di Servizio</a>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;">
+          👁 <span id="visit-count" style="color:var(--cream);font-weight:700">—</span> ristoratori hanno già visitato Menoova
         </div>
       </div>
     </section>
@@ -783,5 +815,22 @@
   </footer>
 
 </div>
+
+  <script>
+  (async()=>{
+    const el = document.getElementById('visit-count');
+    try {
+      const r = await fetch('https://api.counterapi.dev/v1/menoova-index-2026/views/up');
+      if(r.ok){ const d = await r.json(); el.textContent = Number(d.count||1).toLocaleString('it-IT'); return; }
+      throw 0;
+    } catch(e) {
+      try {
+        const n = parseInt(localStorage.getItem('mnv_v')||'0')+1;
+        localStorage.setItem('mnv_v', n);
+        el.textContent = n.toLocaleString('it-IT');
+      } catch(e2) { el.textContent = '—'; }
+    }
+  })();
+  </script>
 </body>
 </html>
