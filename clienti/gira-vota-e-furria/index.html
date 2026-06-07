@@ -9,307 +9,428 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f7f3ec;
-      --card:#ffffff;
-      --verde:#d9981e;
-      --verde2:#c88916;
-      --gold:#d9981e;
-      --muted:#7b746a;
-      --line:#e5ddd2;
+      --bg:#f7f3ec;--card:#ffffff;--gold:#d9981e;--gold2:#c88916;
+      --muted:#7b746a;--line:#e5ddd2;
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      background:var(--bg);
-      font-family:"Jost",sans-serif;
-      color:#222;
-      max-width:680px;
-      margin:0 auto;
-    }
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{background:var(--bg);font-family:"Jost",sans-serif;color:#222;max-width:680px;margin:0 auto;overflow-x:hidden}
 
-    /* LANG SWITCHER */
-    .lang-bar{
-      display:flex;
-      justify-content:flex-end;
-      padding:10px 18px;
-      background:var(--bg);
-      border-bottom:1px solid var(--line);
-    }
-    .lang-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:7px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:600;
-      font-family:"Jost",sans-serif;
-      cursor:pointer;
-      text-decoration:none;
-      transition:all .2s;
-    }
-    .lang-btn:hover{
-      background:var(--verde);
-      color:#fff;
-      border-color:var(--verde);
-    }
+    /* LANG BAR */
+    .lang-bar{display:flex;justify-content:flex-end;gap:6px;padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line)}
+    .lang-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:14px;font-family:"Jost",sans-serif;cursor:pointer;transition:all .2s;font-weight:600}
+    .lang-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+    .lang-btn.on{background:var(--gold);color:#fff;border-color:var(--gold)}
 
-    .hero{
-      padding:32px 24px 28px;
-      text-align:center;
-      background:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.96)),var(--bg);
-      border-bottom:1px solid var(--line);
-    }
+    /* HERO */
+    .hero{padding:32px 24px 28px;text-align:center;background:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.96)),var(--bg);border-bottom:1px solid var(--line)}
     .logo{width:300px;max-width:100%;margin:0 auto 16px;display:block}
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:var(--verde);
-      color:#fff;
-      border-radius:999px;
-      padding:9px 16px;
-      font-size:12px;
-      letter-spacing:.08em;
-      margin-bottom:16px;
-    }
+    .badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;border-radius:999px;padding:9px 16px;font-size:12px;letter-spacing:.08em;margin-bottom:16px}
     .dot{width:7px;height:7px;border-radius:50%;background:#f6c453}
     .hero p{color:var(--muted);line-height:1.6;font-size:14px}
 
+    /* MENU */
     .menu{padding:18px}
-    .categoria{
-      margin-bottom:14px;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:var(--card);
-      box-shadow:0 6px 20px rgba(0,0,0,.03);
-    }
-    .cat-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 20px;
-      cursor:pointer;
-    }
+    .categoria{margin-bottom:14px;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:0 6px 20px rgba(0,0,0,.03)}
+    .cat-header{display:flex;justify-content:space-between;align-items:center;padding:20px;cursor:pointer}
     .cat-left{display:flex;gap:14px;align-items:flex-start}
     .emoji{font-size:26px;line-height:1}
-    .cat-title{
-      font-family:"Cormorant Garamond",serif;
-      font-size:28px;
-      color:var(--verde2);
-      line-height:1;
-      margin-bottom:4px;
-    }
+    .cat-title{font-family:"Cormorant Garamond",serif;font-size:28px;color:var(--gold2);line-height:1;margin-bottom:4px}
     .cat-sub{color:var(--muted);font-size:13px}
-    .toggle{
-      width:32px;height:32px;border-radius:50%;
-      border:1px solid var(--line);
-      display:flex;align-items:center;justify-content:center;
-      font-size:22px;color:var(--verde);
-      transition:.2s;flex-shrink:0;
-    }
-    .categoria.active .toggle{
-      transform:rotate(45deg);
-      background:var(--verde);
-      color:#fff;
-      border-color:var(--verde);
-    }
+    .toggle{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold);transition:.2s;flex-shrink:0}
+    .categoria.active .toggle{transform:rotate(45deg);background:var(--gold);color:#fff;border-color:var(--gold)}
     .cat-body{display:none;border-top:1px solid var(--line)}
     .categoria.active .cat-body{display:block}
 
-    .piatto{
-      padding:16px 20px;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      align-items:flex-start;
-    }
+    /* PIATTI */
+    .piatto{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
     .piatto:last-child{border-bottom:none}
-    .nome{
-      font-family:"Cormorant Garamond",serif;
-      font-size:22px;
-      line-height:1.1;
-      margin-bottom:5px;
-      color:#222;
-    }
+    .nome{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.1;margin-bottom:5px;color:#222}
     .desc{color:var(--muted);font-size:13px;line-height:1.5}
-    .prezzo{color:var(--gold);font-weight:600;font-size:17px;white-space:nowrap}
+    .prezzo{color:var(--gold);font-weight:600;font-size:17px;white-space:nowrap;flex-shrink:0}
 
-    .footer-note{
-      margin:20px 18px;
-      background:#efe7da;
-      border:1px solid #e2d5c0;
-      border-radius:18px;
-      padding:16px;
-      color:#5f564a;
-      font-size:13px;
-      line-height:1.6;
-    }
-    .footer{
-      padding:24px 20px 36px;
-      text-align:center;
-      color:#888;
-      font-size:12px;
-    }
+    .footer-note{margin:20px 18px;background:#efe7da;border:1px solid #e2d5c0;border-radius:18px;padding:16px;color:#5f564a;font-size:13px;line-height:1.6}
+    .footer{padding:24px 20px 36px;text-align:center;color:#888;font-size:12px}
   </style>
 </head>
 <body>
 
-<!-- LANGUAGE SWITCHER -->
-<div class="lang-bar">
-  <a href="en.html" class="lang-btn">🇬🇧 English</a>
-</div>
+<div class="lang-bar" id="lang-bar"></div>
 
 <section class="hero">
   <img src="logo.png" class="logo" alt="Gira Vota e Furria">
-  <div class="badge"><span class="dot"></span> MENU • PIZZERIA & BISTROT</div>
-  <p>Cucina siciliana, ingredienti selezionati e pizze gourmet.</p>
+  <div class="badge"><span class="dot"></span> <span id="badge-text">MENU • PIZZERIA & BISTROT</span></div>
+  <p id="hero-desc">Cucina siciliana, ingredienti selezionati e pizze gourmet.</p>
 </section>
 
-<section class="menu">
-
-  <div class="categoria active">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🍕</div><div><div class="cat-title">Le Nostre Pizze</div><div class="cat-sub">Classiche e gourmet</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">A Regina</div><div class="desc">Pomodoro San Marzano, fior di latte, basilico e olio e.v.o.</div></div><div class="prezzo">€6,00</div></div>
-      <div class="piatto"><div><div class="nome">A Marinara</div><div class="desc">Pomodoro San Marzano, aglio, basilico, origano e olio e.v.o.</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">Pantelleria</div><div class="desc">Pomodoro San Marzano, fior di latte, capperi, olive, cipolla rossa di Tropea e acciughe.</div></div><div class="prezzo">€9,00</div></div>
-      <div class="piatto"><div><div class="nome">A Parmigiana</div><div class="desc">Pomodoro San Marzano, fior di latte, melanzana fritta, parmigiano e muddica atturrata.</div></div><div class="prezzo">€8,50</div></div>
-      <div class="piatto"><div><div class="nome">A Veggy</div><div class="desc">Pomodoro San Marzano, fior di latte, melanzane, zucchine, spinaci e funghi.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">L'Etna</div><div class="desc">Pomodoro San Marzano, fior di latte, ventricina piccante, olive nere e peperoncino fresco.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">A Sfiziosa</div><div class="desc">Pomodoro San Marzano, fior di latte, uovo, prosciutto cotto, würstel e funghi.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">Gira Vota e Furria</div><div class="desc">Crema di zucca, ricotta fresca, salsiccia, datterino giallo confit, olio e basilico.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">L'Unta</div><div class="desc">Fior di latte, gorgonzola, svizzero, parmigiano, provola affumicata.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">Mangia ca ti passa</div><div class="desc">Fior di latte, patate al forno, salsiccia, ricotta salata e basilico.</div></div><div class="prezzo">€9,50</div></div>
-      <div class="piatto"><div><div class="nome">A Trinacria</div><div class="desc">Fior di latte, datterino di Pachino, speck di suino nero dei Nebrodi e funghi dell'Etna.</div></div><div class="prezzo">€13,00</div></div>
-      <div class="piatto"><div><div class="nome">A Mazzariddara</div><div class="desc">Pomodoro S. Marzano, fior di latte, seppia, calamari, cozze, vongole, gamberi rossi e scampi.</div></div><div class="prezzo">€16,00</div></div>
-      <div class="piatto"><div><div class="nome">Marina d'Inverno</div><div class="desc">Crema di zucchine, fior di latte, gambero bianco e muddica atturata.</div></div><div class="prezzo">€13,00</div></div>
-      <div class="piatto"><div><div class="nome">La Valtellina</div><div class="desc">Pomodoro San Marzano, fior di latte, bresaola, rucola e grana.</div></div><div class="prezzo">€9,50</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🍟</div><div><div class="cat-title">Frittura</div><div class="cat-sub">Patatine e fritti misti</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Patatine fritte</div></div><div class="prezzo">€4,00</div></div>
-      <div class="piatto"><div><div class="nome">Patatine con la buccia</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">U Cuoppu</div><div class="desc">Panelle, cazzilli e anelli di cipolla.</div></div><div class="prezzo">€7,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🥗</div><div><div class="cat-title">Componi la tua insalata</div><div class="cat-sub">Base, supplementi e salse</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Insalata base</div><div class="desc">Lattuga e rucola. Accompagnata da faccia di vecchia.</div></div><div class="prezzo">€3,50</div></div>
-      <div class="piatto"><div><div class="nome">Supplementi da €1,00</div><div class="desc">Datterino, carote, funghi freschi, mais, olive, uovo sodo, patate bollite, uovo strapazzato.</div></div><div class="prezzo">+€1</div></div>
-      <div class="piatto"><div><div class="nome">Supplementi da €2,00</div><div class="desc">Grana, fior di latte, pancetta.</div></div><div class="prezzo">+€2</div></div>
-      <div class="piatto"><div><div class="nome">Supplementi da €3,00</div><div class="desc">Avocado, petto di pollo, bresaola, tonno in scatola, salmone affumicato, mazzancolle.</div></div><div class="prezzo">+€3</div></div>
-      <div class="piatto"><div><div class="nome">Salse d'accompagnamento</div><div class="desc">Yogurt o guacamole.</div></div><div class="prezzo">€1,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🍽️</div><div><div class="cat-title">Cucina</div><div class="cat-sub">Primi, secondi e taglieri</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Tagliere Gira Vota e Furria</div><div class="desc">Caponata, cazzilli, panelle, ricottina, cacio, arancino di carne, salsiccia ragusana e olive.</div></div><div class="prezzo">€13,00</div></div>
-      <div class="piatto"><div><div class="nome">Tagliere di salumi e formaggi locali</div><div class="desc">Speck, pancetta e mortadella di suino nero dei Nebrodi, caciocavallo Ibleo, provola ragusana, ricotta infornata, confetture della casa e faccia di vecchia.</div></div><div class="prezzo">€18,00</div></div>
-      <div class="piatto"><div><div class="nome">La Parmigiana</div></div><div class="prezzo">€8,00</div></div>
-      <div class="piatto"><div><div class="nome">Busiate al pesto trapanese</div><div class="desc">Con mandorle tostate.</div></div><div class="prezzo">€10,00</div></div>
-      <div class="piatto"><div><div class="nome">Gnocchi di patate con zuppa di cozze</div><div class="desc">San Marzano, aglio e peperoncino.</div></div><div class="prezzo">€12,00</div></div>
-      <div class="piatto"><div><div class="nome">Cavati alla norma</div></div><div class="prezzo">€9,00</div></div>
-      <div class="piatto"><div><div class="nome">Ravioli di ricotta / Cavati al sugo di maiale</div></div><div class="prezzo">€10,00</div></div>
-      <div class="piatto"><div><div class="nome">Tagliata di manzo 300 gr.</div><div class="desc">Con datterino, rucola e grana.</div></div><div class="prezzo">€18,00</div></div>
-      <div class="piatto"><div><div class="nome">Cotoletta alla palermitana</div></div><div class="prezzo">€10,00</div></div>
-      <div class="piatto"><div><div class="nome">Grigliata di carne mista</div></div><div class="prezzo">€15,00</div></div>
-      <div class="piatto"><div><div class="nome">Branzino alla piastra</div><div class="desc">Con capperi, olive e pomodorini.</div></div><div class="prezzo">€16,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🥔</div><div><div class="cat-title">Contorni</div><div class="cat-sub">Dalla cucina</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Caponata</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">Verdure di stagione</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">Patate al forno, capperi e cipolla</div></div><div class="prezzo">€6,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🍰</div><div><div class="cat-title">Dessert</div><div class="cat-sub">Dolci della casa</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Cannolo siciliano di ricotta</div></div><div class="prezzo">€4,00</div></div>
-      <div class="piatto"><div><div class="nome">Dessert del giorno</div></div><div class="prezzo">€6,00</div></div>
-      <div class="piatto"><div><div class="nome">Tiramisù</div></div><div class="prezzo">€6,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">🍷</div><div><div class="cat-title">Bevande</div><div class="cat-sub">Acqua, vino e birre</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Acqua ½ l.</div></div><div class="prezzo">€1,50</div></div>
-      <div class="piatto"><div><div class="nome">Acqua 1 l.</div></div><div class="prezzo">€2,50</div></div>
-      <div class="piatto"><div><div class="nome">Coca 1 l.</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">Vino rosso / bianco della casa ½ l.</div></div><div class="prezzo">€7,00</div></div>
-      <div class="piatto"><div><div class="nome">Vino rosso / bianco della casa 1 l.</div></div><div class="prezzo">€12,00</div></div>
-      <div class="piatto"><div><div class="nome">Vino rosso / bianco al calice</div></div><div class="prezzo">€4,00</div></div>
-      <div class="piatto"><div><div class="nome">Birra bionda alla spina 0,3 l.</div></div><div class="prezzo">€4,50</div></div>
-      <div class="piatto"><div><div class="nome">Birra doppio malto</div></div><div class="prezzo">€5,00</div></div>
-      <div class="piatto"><div><div class="nome">Birra da 66 cl.</div></div><div class="prezzo">€6,00</div></div>
-    </div>
-  </div>
-
-  <div class="categoria">
-    <div class="cat-header" onclick="toggle(this)">
-      <div class="cat-left"><div class="emoji">➕</div><div><div class="cat-title">Aggiunte Pizza</div><div class="cat-sub">Personalizza la tua pizza</div></div></div>
-      <div class="toggle">+</div>
-    </div>
-    <div class="cat-body">
-      <div class="piatto"><div><div class="nome">Aggiunta da €1,00</div><div class="desc">Pomodoro San Marzano, capperi, olive, cipolla, acciughe, melanzane, muddica atturata, zucchine, funghi, spinaci, uovo, würstel, crema di zucca, ricotta, svizzero, provola affumicata, datterino Pachino, cozze, patatine fritte.</div></div><div class="prezzo">+€1</div></div>
-      <div class="piatto"><div><div class="nome">Aggiunta da €2,00</div><div class="desc">Fior di latte, ventricina piccante, prosciutto cotto, salsiccia, datterino giallo, gorgonzola, parmigiano, bufala, ricotta salata, patate al forno, rucola.</div></div><div class="prezzo">+€2</div></div>
-      <div class="piatto"><div><div class="nome">Aggiunta da €3,00</div><div class="desc">Prosciutto crudo di suino nero dei Nebrodi, funghi dell'Etna, gambero rosso, scampi, vongole, calamari, mazzancolle, bresaola.</div></div><div class="prezzo">+€3</div></div>
-    </div>
-  </div>
-
-  <div class="footer-note">
-    Tutti i piatti possono essere serviti senza glutine con supplemento €3,00.
-    In mancanza del prodotto fresco può essere sostituito con surgelato.
-    Coperto €1,50. Pizzeria d'asporto e domicilio: 0932 242428.
-  </div>
-
-</section>
-
-<div class="footer">Powered by <a href="https://menoova.it" style="color:var(--verde);">Menoova</a></div>
+<section class="menu" id="menu-section"></section>
+<div class="footer-note" id="footer-note"></div>
+<div class="footer">Powered by <a href="https://menoova.it" style="color:var(--gold)">Menoova</a></div>
 
 <script>
-  function toggle(el){
-    el.parentElement.classList.toggle("active");
+const T = {
+  it:{
+    hero:"Cucina siciliana, ingredienti selezionati e pizze gourmet.",
+    badge:"MENU • PIZZERIA & BISTROT",
+    footerNote:"Tutti i piatti possono essere serviti senza glutine con supplemento €3,00. In mancanza del prodotto fresco può essere sostituito con surgelato. Coperto €1,50. Pizzeria d'asporto e domicilio: 0932 242428.",
+    cats:[
+      {ico:"🍕",title:"Le Nostre Pizze",sub:"Classiche e gourmet",dishes:[
+        {n:"A Regina",d:"Pomodoro San Marzano, fior di latte, basilico e olio e.v.o.",p:"€6,00"},
+        {n:"A Marinara",d:"Pomodoro San Marzano, aglio, basilico, origano e olio e.v.o.",p:"€5,00"},
+        {n:"Pantelleria",d:"Pomodoro San Marzano, fior di latte, capperi, olive, cipolla rossa di Tropea e acciughe.",p:"€9,00"},
+        {n:"A Parmigiana",d:"Pomodoro San Marzano, fior di latte, melanzana fritta, parmigiano e muddica atturrata.",p:"€8,50"},
+        {n:"A Veggy",d:"Pomodoro San Marzano, fior di latte, melanzane, zucchine, spinaci e funghi.",p:"€9,50"},
+        {n:"L'Etna",d:"Pomodoro San Marzano, fior di latte, ventricina piccante, olive nere e peperoncino fresco.",p:"€9,50"},
+        {n:"A Sfiziosa",d:"Pomodoro San Marzano, fior di latte, uovo, prosciutto cotto, würstel e funghi.",p:"€9,50"},
+        {n:"Gira Vota e Furria",d:"Crema di zucca, ricotta fresca, salsiccia, datterino giallo confit, olio e basilico.",p:"€9,50"},
+        {n:"L'Unta",d:"Fior di latte, gorgonzola, svizzero, parmigiano, provola affumicata.",p:"€9,50"},
+        {n:"Mangia ca ti passa",d:"Fior di latte, patate al forno, salsiccia, ricotta salata e basilico.",p:"€9,50"},
+        {n:"A Trinacria",d:"Fior di latte, datterino di Pachino, speck di suino nero dei Nebrodi e funghi dell'Etna.",p:"€13,00"},
+        {n:"A Mazzariddara",d:"Pomodoro S. Marzano, fior di latte, seppia, calamari, cozze, vongole, gamberi rossi e scampi.",p:"€16,00"},
+        {n:"Marina d'Inverno",d:"Crema di zucchine, fior di latte, gambero bianco e muddica atturata.",p:"€13,00"},
+        {n:"La Valtellina",d:"Pomodoro San Marzano, fior di latte, bresaola, rucola e grana.",p:"€9,50"}
+      ]},
+      {ico:"🍟",title:"Frittura",sub:"Patatine e fritti misti",dishes:[
+        {n:"Patatine fritte",d:"",p:"€4,00"},
+        {n:"Patatine con la buccia",d:"",p:"€5,00"},
+        {n:"U Cuoppu",d:"Panelle, cazzilli e anelli di cipolla.",p:"€7,00"}
+      ]},
+      {ico:"🥗",title:"Componi la tua insalata",sub:"Base, supplementi e salse",dishes:[
+        {n:"Insalata base",d:"Lattuga e rucola. Accompagnata da faccia di vecchia.",p:"€3,50"},
+        {n:"Supplementi da €1,00",d:"Datterino, carote, funghi freschi, mais, olive, uovo sodo, patate bollite, uovo strapazzato.",p:"+€1"},
+        {n:"Supplementi da €2,00",d:"Grana, fior di latte, pancetta.",p:"+€2"},
+        {n:"Supplementi da €3,00",d:"Avocado, petto di pollo, bresaola, tonno in scatola, salmone affumicato, mazzancolle.",p:"+€3"},
+        {n:"Salse d'accompagnamento",d:"Yogurt o guacamole.",p:"€1,00"}
+      ]},
+      {ico:"🍽️",title:"Cucina",sub:"Primi, secondi e taglieri",dishes:[
+        {n:"Tagliere Gira Vota e Furria",d:"Caponata, cazzilli, panelle, ricottina, cacio, arancino di carne, salsiccia ragusana e olive.",p:"€13,00"},
+        {n:"Tagliere di salumi e formaggi locali",d:"Speck, pancetta e mortadella di suino nero dei Nebrodi, caciocavallo Ibleo, provola ragusana, ricotta infornata, confetture della casa e faccia di vecchia.",p:"€18,00"},
+        {n:"La Parmigiana",d:"",p:"€8,00"},
+        {n:"Busiate al pesto trapanese",d:"Con mandorle tostate.",p:"€10,00"},
+        {n:"Gnocchi di patate con zuppa di cozze",d:"San Marzano, aglio e peperoncino.",p:"€12,00"},
+        {n:"Cavati alla norma",d:"",p:"€9,00"},
+        {n:"Ravioli di ricotta / Cavati al sugo di maiale",d:"",p:"€10,00"},
+        {n:"Tagliata di manzo 300 gr.",d:"Con datterino, rucola e grana.",p:"€18,00"},
+        {n:"Cotoletta alla palermitana",d:"",p:"€10,00"},
+        {n:"Grigliata di carne mista",d:"",p:"€15,00"},
+        {n:"Branzino alla piastra",d:"Con capperi, olive e pomodorini.",p:"€16,00"}
+      ]},
+      {ico:"🥔",title:"Contorni",sub:"Dalla cucina",dishes:[
+        {n:"Caponata",d:"",p:"€5,00"},
+        {n:"Verdure di stagione",d:"",p:"€5,00"},
+        {n:"Patate al forno, capperi e cipolla",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍰",title:"Dessert",sub:"Dolci della casa",dishes:[
+        {n:"Cannolo siciliano di ricotta",d:"",p:"€4,00"},
+        {n:"Dessert del giorno",d:"",p:"€6,00"},
+        {n:"Tiramisù",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍷",title:"Bevande",sub:"Acqua, vino e birre",dishes:[
+        {n:"Acqua ½ l.",d:"",p:"€1,50"},
+        {n:"Acqua 1 l.",d:"",p:"€2,50"},
+        {n:"Coca 1 l.",d:"",p:"€5,00"},
+        {n:"Vino rosso / bianco della casa ½ l.",d:"",p:"€7,00"},
+        {n:"Vino rosso / bianco della casa 1 l.",d:"",p:"€12,00"},
+        {n:"Vino rosso / bianco al calice",d:"",p:"€4,00"},
+        {n:"Birra bionda alla spina 0,3 l.",d:"",p:"€4,50"},
+        {n:"Birra doppio malto",d:"",p:"€5,00"},
+        {n:"Birra da 66 cl.",d:"",p:"€6,00"}
+      ]},
+      {ico:"➕",title:"Aggiunte Pizza",sub:"Personalizza la tua pizza",dishes:[
+        {n:"Aggiunta da €1,00",d:"Pomodoro San Marzano, capperi, olive, cipolla, acciughe, melanzane, muddica atturata, zucchine, funghi, spinaci, uovo, würstel, crema di zucca, ricotta, svizzero, provola affumicata, datterino Pachino, cozze, patatine fritte.",p:"+€1"},
+        {n:"Aggiunta da €2,00",d:"Fior di latte, ventricina piccante, prosciutto cotto, salsiccia, datterino giallo, gorgonzola, parmigiano, bufala, ricotta salata, patate al forno, rucola.",p:"+€2"},
+        {n:"Aggiunta da €3,00",d:"Prosciutto crudo di suino nero dei Nebrodi, funghi dell'Etna, gambero rosso, scampi, vongole, calamari, mazzancolle, bresaola.",p:"+€3"}
+      ]}
+    ]
+  },
+  en:{
+    hero:"Sicilian cuisine, selected ingredients and gourmet pizzas.",
+    badge:"MENU • PIZZERIA & BISTROT",
+    footerNote:"All dishes can be served gluten-free with a €3.00 supplement. Fresh produce may be replaced by frozen if unavailable. Cover charge €1.50. Takeaway and delivery: 0932 242428.",
+    cats:[
+      {ico:"🍕",title:"Our Pizzas",sub:"Classic and gourmet",dishes:[
+        {n:"A Regina",d:"San Marzano tomato, fior di latte, basil and EVO oil.",p:"€6.00"},
+        {n:"A Marinara",d:"San Marzano tomato, garlic, basil, oregano and EVO oil.",p:"€5.00"},
+        {n:"Pantelleria",d:"San Marzano tomato, fior di latte, capers, olives, Tropea red onion and anchovies.",p:"€9.00"},
+        {n:"A Parmigiana",d:"San Marzano tomato, fior di latte, fried aubergine, parmesan and toasted breadcrumbs.",p:"€8.50"},
+        {n:"A Veggy",d:"San Marzano tomato, fior di latte, aubergines, courgettes, spinach and mushrooms.",p:"€9.50"},
+        {n:"L'Etna",d:"San Marzano tomato, fior di latte, spicy ventricina, black olives and fresh chilli.",p:"€9.50"},
+        {n:"A Sfiziosa",d:"San Marzano tomato, fior di latte, egg, cooked ham, frankfurter and mushrooms.",p:"€9.50"},
+        {n:"Gira Vota e Furria",d:"Pumpkin cream, fresh ricotta, sausage, confit yellow cherry tomato, oil and basil.",p:"€9.50"},
+        {n:"L'Unta",d:"Fior di latte, gorgonzola, Swiss cheese, parmesan, smoked provola.",p:"€9.50"},
+        {n:"Mangia ca ti passa",d:"Fior di latte, roasted potatoes, sausage, salted ricotta and basil.",p:"€9.50"},
+        {n:"A Trinacria",d:"Fior di latte, Pachino cherry tomato, Nebrodi black pork speck and Etna mushrooms.",p:"€13.00"},
+        {n:"A Mazzariddara",d:"San Marzano tomato, fior di latte, cuttlefish, calamari, mussels, clams, red prawns and langoustines.",p:"€16.00"},
+        {n:"Marina d'Inverno",d:"Courgette cream, fior di latte, white prawn and toasted breadcrumbs.",p:"€13.00"},
+        {n:"La Valtellina",d:"San Marzano tomato, fior di latte, bresaola, rocket and grana.",p:"€9.50"}
+      ]},
+      {ico:"🍟",title:"Fried Dishes",sub:"Fries and mixed fried",dishes:[
+        {n:"Patatine fritte",d:"French fries",p:"€4.00"},
+        {n:"Patatine con la buccia",d:"Skin-on fries",p:"€5.00"},
+        {n:"U Cuoppu",d:"Chickpea fritters, potato croquettes and onion rings.",p:"€7.00"}
+      ]},
+      {ico:"🥗",title:"Build Your Salad",sub:"Base, extras and sauces",dishes:[
+        {n:"Insalata base",d:"Lettuce and rocket. Served with traditional Sicilian cracker (faccia di vecchia).",p:"€3.50"},
+        {n:"Extras at €1.00",d:"Cherry tomatoes, carrots, fresh mushrooms, corn, olives, hard-boiled egg, boiled potatoes, scrambled egg.",p:"+€1"},
+        {n:"Extras at €2.00",d:"Grana, fior di latte, bacon.",p:"+€2"},
+        {n:"Extras at €3.00",d:"Avocado, chicken breast, bresaola, canned tuna, smoked salmon, prawns.",p:"+€3"},
+        {n:"Dressings",d:"Yogurt or guacamole.",p:"€1.00"}
+      ]},
+      {ico:"🍽️",title:"Kitchen",sub:"Starters, mains and sharing boards",dishes:[
+        {n:"Tagliere Gira Vota e Furria",d:"Caponata, potato croquettes, chickpea fritters, fresh ricotta, cheese, meat arancino, Ragusa sausage and olives.",p:"€13.00"},
+        {n:"Local charcuterie & cheese board",d:"Speck, pancetta and mortadella from Nebrodi black pork, Ibleo caciocavallo, Ragusa provola, baked ricotta, house jams and Sicilian crackers.",p:"€18.00"},
+        {n:"La Parmigiana",d:"",p:"€8.00"},
+        {n:"Busiate al pesto trapanese",d:"With toasted almonds.",p:"€10.00"},
+        {n:"Gnocchi di patate con zuppa di cozze",d:"San Marzano tomato, garlic and chilli.",p:"€12.00"},
+        {n:"Cavati alla norma",d:"",p:"€9.00"},
+        {n:"Ravioli di ricotta / Cavati al sugo di maiale",d:"",p:"€10.00"},
+        {n:"Beef tagliata 300 g.",d:"With cherry tomatoes, rocket and grana.",p:"€18.00"},
+        {n:"Cotoletta alla palermitana",d:"",p:"€10.00"},
+        {n:"Mixed grilled meats",d:"",p:"€15.00"},
+        {n:"Grilled sea bass",d:"With capers, olives and cherry tomatoes.",p:"€16.00"}
+      ]},
+      {ico:"🥔",title:"Sides",sub:"From the kitchen",dishes:[
+        {n:"Caponata",d:"",p:"€5.00"},
+        {n:"Seasonal vegetables",d:"",p:"€5.00"},
+        {n:"Patate al forno, capperi e cipolla",d:"Roasted potatoes with capers and onion",p:"€6.00"}
+      ]},
+      {ico:"🍰",title:"Desserts",sub:"Homemade sweets",dishes:[
+        {n:"Cannolo siciliano di ricotta",d:"",p:"€4.00"},
+        {n:"Dessert of the day",d:"",p:"€6.00"},
+        {n:"Tiramisù",d:"",p:"€6.00"}
+      ]},
+      {ico:"🍷",title:"Drinks",sub:"Water, wine and beers",dishes:[
+        {n:"Water ½ l.",d:"",p:"€1.50"},
+        {n:"Water 1 l.",d:"",p:"€2.50"},
+        {n:"Coke 1 l.",d:"",p:"€5.00"},
+        {n:"House red / white wine ½ l.",d:"",p:"€7.00"},
+        {n:"House red / white wine 1 l.",d:"",p:"€12.00"},
+        {n:"Red / white wine by the glass",d:"",p:"€4.00"},
+        {n:"Draught lager 0.3 l.",d:"",p:"€4.50"},
+        {n:"Double malt beer",d:"",p:"€5.00"},
+        {n:"Bottled beer 66 cl.",d:"",p:"€6.00"}
+      ]},
+      {ico:"➕",title:"Pizza Extras",sub:"Customise your pizza",dishes:[
+        {n:"Extra at €1.00",d:"San Marzano tomato, capers, olives, onion, anchovies, aubergines, toasted breadcrumbs, courgettes, mushrooms, spinach, egg, frankfurter, pumpkin cream, ricotta, Swiss cheese, smoked provola, Pachino cherry tomato, mussels, fries.",p:"+€1"},
+        {n:"Extra at €2.00",d:"Fior di latte, spicy ventricina, cooked ham, sausage, yellow cherry tomato, gorgonzola, parmesan, buffalo mozzarella, salted ricotta, roasted potatoes, rocket.",p:"+€2"},
+        {n:"Extra at €3.00",d:"Nebrodi black pork cured ham, Etna mushrooms, red prawn, langoustines, clams, calamari, prawns, bresaola.",p:"+€3"}
+      ]}
+    ]
+  },
+  de:{
+    hero:"Sizilianische Küche, ausgewählte Zutaten und Gourmet-Pizzen.",
+    badge:"MENÜ • PIZZERIA & BISTROT",
+    footerNote:"Alle Gerichte können glutenfrei serviert werden, Aufpreis €3,00. Frische Zutaten können durch Tiefkühlware ersetzt werden. Gedeck €1,50. Außer Haus und Lieferung: 0932 242428.",
+    cats:[
+      {ico:"🍕",title:"Unsere Pizzen",sub:"Klassisch und gourmet",dishes:[
+        {n:"A Regina",d:"San Marzano Tomaten, Fior di Latte, Basilikum und natives Olivenöl.",p:"€6,00"},
+        {n:"A Marinara",d:"San Marzano Tomaten, Knoblauch, Basilikum, Oregano und natives Olivenöl.",p:"€5,00"},
+        {n:"Pantelleria",d:"San Marzano Tomaten, Fior di Latte, Kapern, Oliven, rote Zwiebel aus Tropea und Sardellen.",p:"€9,00"},
+        {n:"A Parmigiana",d:"San Marzano Tomaten, Fior di Latte, frittierte Aubergine, Parmesan und geröstete Semmelbrösel.",p:"€8,50"},
+        {n:"A Veggy",d:"San Marzano Tomaten, Fior di Latte, Auberginen, Zucchini, Spinat und Pilze.",p:"€9,50"},
+        {n:"L'Etna",d:"San Marzano Tomaten, Fior di Latte, scharfe Ventricina, schwarze Oliven und frischer Chili.",p:"€9,50"},
+        {n:"A Sfiziosa",d:"San Marzano Tomaten, Fior di Latte, Ei, gekochter Schinken, Würstchen und Pilze.",p:"€9,50"},
+        {n:"Gira Vota e Furria",d:"Kürbiscreme, frische Ricotta, Wurst, konfierte gelbe Kirschtomaten, Öl und Basilikum.",p:"€9,50"},
+        {n:"L'Unta",d:"Fior di Latte, Gorgonzola, Emmentaler, Parmesan, geräucherte Provola.",p:"€9,50"},
+        {n:"Mangia ca ti passa",d:"Fior di Latte, Ofenkartoffeln, Wurst, gesalzene Ricotta und Basilikum.",p:"€9,50"},
+        {n:"A Trinacria",d:"Fior di Latte, Pachino-Kirschtomaten, Speck vom schwarzen Nebrodi-Schwein und Ätna-Pilze.",p:"€13,00"},
+        {n:"A Mazzariddara",d:"San Marzano Tomaten, Fior di Latte, Tintenfisch, Calamari, Muscheln, Venusmuscheln, rote Garnelen und Scampi.",p:"€16,00"},
+        {n:"Marina d'Inverno",d:"Zucchiniscreme, Fior di Latte, weiße Garnelen und geröstete Semmelbrösel.",p:"€13,00"},
+        {n:"La Valtellina",d:"San Marzano Tomaten, Fior di Latte, Bresaola, Rucola und Grana.",p:"€9,50"}
+      ]},
+      {ico:"🍟",title:"Frittiertes",sub:"Pommes und Frittiertes",dishes:[
+        {n:"Patatine fritte",d:"Pommes Frites",p:"€4,00"},
+        {n:"Patatine con la buccia",d:"Kartoffelchips mit Schale",p:"€5,00"},
+        {n:"U Cuoppu",d:"Kichererbsen-Fritter, Kartoffelkroketten und Zwiebelringe.",p:"€7,00"}
+      ]},
+      {ico:"🥗",title:"Salat zusammenstellen",sub:"Basis, Extras und Saucen",dishes:[
+        {n:"Insalata base",d:"Salat und Rucola. Serviert mit traditionellem sizilianischen Knäckebrot (faccia di vecchia).",p:"€3,50"},
+        {n:"Extras für €1,00",d:"Kirschtomaten, Karotten, frische Pilze, Mais, Oliven, hartgekochtes Ei, gekochte Kartoffeln, Rührei.",p:"+€1"},
+        {n:"Extras für €2,00",d:"Grana, Fior di Latte, Speck.",p:"+€2"},
+        {n:"Extras für €3,00",d:"Avocado, Hähnchenbrust, Bresaola, Thunfisch, geräucherter Lachs, Garnelen.",p:"+€3"},
+        {n:"Dressings",d:"Joghurt oder Guacamole.",p:"€1,00"}
+      ]},
+      {ico:"🍽️",title:"Küche",sub:"Vorspeisen, Hauptgerichte und Bretter",dishes:[
+        {n:"Tagliere Gira Vota e Furria",d:"Caponata, Kartoffelkroketten, Kichererbsen-Fritter, frische Ricotta, Käse, Fleisch-Arancino, Ragusa-Wurst und Oliven.",p:"€13,00"},
+        {n:"Lokales Wurst- und Käsebrett",d:"Speck, Pancetta und Mortadella vom schwarzen Nebrodi-Schwein, Ibleo Caciocavallo, Ragusa Provola, gebackene Ricotta, Hausmarmeladen und Knäckebrot.",p:"€18,00"},
+        {n:"La Parmigiana",d:"",p:"€8,00"},
+        {n:"Busiate al pesto trapanese",d:"Mit gerösteten Mandeln.",p:"€10,00"},
+        {n:"Gnocchi di patate con zuppa di cozze",d:"San Marzano Tomaten, Knoblauch und Chili.",p:"€12,00"},
+        {n:"Cavati alla norma",d:"",p:"€9,00"},
+        {n:"Ravioli di ricotta / Cavati al sugo di maiale",d:"",p:"€10,00"},
+        {n:"Rindfleisch-Tagliata 300 g.",d:"Mit Kirschtomaten, Rucola und Grana.",p:"€18,00"},
+        {n:"Cotoletta alla palermitana",d:"",p:"€10,00"},
+        {n:"Gemischter Fleischgrill",d:"",p:"€15,00"},
+        {n:"Gegrillter Wolfsbarsch",d:"Mit Kapern, Oliven und Kirschtomaten.",p:"€16,00"}
+      ]},
+      {ico:"🥔",title:"Beilagen",sub:"Aus der Küche",dishes:[
+        {n:"Caponata",d:"",p:"€5,00"},
+        {n:"Saisongemüse",d:"",p:"€5,00"},
+        {n:"Ofenkartoffeln mit Kapern und Zwiebeln",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍰",title:"Desserts",sub:"Hausgemachte Süßspeisen",dishes:[
+        {n:"Cannolo siciliano di ricotta",d:"",p:"€4,00"},
+        {n:"Dessert des Tages",d:"",p:"€6,00"},
+        {n:"Tiramisù",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍷",title:"Getränke",sub:"Wasser, Wein und Biere",dishes:[
+        {n:"Wasser ½ l.",d:"",p:"€1,50"},
+        {n:"Wasser 1 l.",d:"",p:"€2,50"},
+        {n:"Cola 1 l.",d:"",p:"€5,00"},
+        {n:"Hauswein rot / weiß ½ l.",d:"",p:"€7,00"},
+        {n:"Hauswein rot / weiß 1 l.",d:"",p:"€12,00"},
+        {n:"Rotwein / Weißwein nach Glas",d:"",p:"€4,00"},
+        {n:"Fassbier hell 0,3 l.",d:"",p:"€4,50"},
+        {n:"Doppelmalzbier",d:"",p:"€5,00"},
+        {n:"Flaschenbier 66 cl.",d:"",p:"€6,00"}
+      ]},
+      {ico:"➕",title:"Pizza-Extras",sub:"Deine Pizza anpassen",dishes:[
+        {n:"Extra für €1,00",d:"San Marzano Tomaten, Kapern, Oliven, Zwiebeln, Sardellen, Auberginen, geröstete Semmelbrösel, Zucchini, Pilze, Spinat, Ei, Würstchen, Kürbiscreme, Ricotta, Emmentaler, geräucherte Provola, Pachino-Kirschtomaten, Muscheln, Pommes.",p:"+€1"},
+        {n:"Extra für €2,00",d:"Fior di Latte, scharfe Ventricina, gekochter Schinken, Wurst, gelbe Kirschtomaten, Gorgonzola, Parmesan, Büffelmozzarella, gesalzene Ricotta, Ofenkartoffeln, Rucola.",p:"+€2"},
+        {n:"Extra für €3,00",d:"Rohschinken vom schwarzen Nebrodi-Schwein, Ätna-Pilze, rote Garnelen, Scampi, Venusmuscheln, Calamari, Garnelen, Bresaola.",p:"+€3"}
+      ]}
+    ]
+  },
+  fr:{
+    hero:"Cuisine sicilienne, ingrédients sélectionnés et pizzas gourmet.",
+    badge:"MENU • PIZZERIA & BISTROT",
+    footerNote:"Tous les plats peuvent être servis sans gluten avec un supplément de €3,00. Les produits frais peuvent être remplacés par des surgelés en cas d'indisponibilité. Couvert €1,50. À emporter et livraison : 0932 242428.",
+    cats:[
+      {ico:"🍕",title:"Nos Pizzas",sub:"Classiques et gourmet",dishes:[
+        {n:"A Regina",d:"Tomate San Marzano, fior di latte, basilic et huile d'olive.",p:"€6,00"},
+        {n:"A Marinara",d:"Tomate San Marzano, ail, basilic, origan et huile d'olive.",p:"€5,00"},
+        {n:"Pantelleria",d:"Tomate San Marzano, fior di latte, câpres, olives, oignon rouge de Tropea et anchois.",p:"€9,00"},
+        {n:"A Parmigiana",d:"Tomate San Marzano, fior di latte, aubergine frite, parmesan et chapelure grillée.",p:"€8,50"},
+        {n:"A Veggy",d:"Tomate San Marzano, fior di latte, aubergines, courgettes, épinards et champignons.",p:"€9,50"},
+        {n:"L'Etna",d:"Tomate San Marzano, fior di latte, ventricina épicée, olives noires et piment frais.",p:"€9,50"},
+        {n:"A Sfiziosa",d:"Tomate San Marzano, fior di latte, œuf, jambon cuit, frankfurter et champignons.",p:"€9,50"},
+        {n:"Gira Vota e Furria",d:"Crème de potiron, ricotta fraîche, saucisse, tomate cerise jaune confite, huile et basilic.",p:"€9,50"},
+        {n:"L'Unta",d:"Fior di latte, gorgonzola, fromage suisse, parmesan, provola fumée.",p:"€9,50"},
+        {n:"Mangia ca ti passa",d:"Fior di latte, pommes de terre rôties, saucisse, ricotta salée et basilic.",p:"€9,50"},
+        {n:"A Trinacria",d:"Fior di latte, tomate cerise de Pachino, speck de porc noir des Nebrodi et champignons de l'Etna.",p:"€13,00"},
+        {n:"A Mazzariddara",d:"Tomate San Marzano, fior di latte, seiche, calamars, moules, palourdes, crevettes rouges et langoustines.",p:"€16,00"},
+        {n:"Marina d'Inverno",d:"Crème de courgette, fior di latte, crevette blanche et chapelure grillée.",p:"€13,00"},
+        {n:"La Valtellina",d:"Tomate San Marzano, fior di latte, bresaola, roquette et grana.",p:"€9,50"}
+      ]},
+      {ico:"🍟",title:"Friture",sub:"Frites et friture mixte",dishes:[
+        {n:"Patatine fritte",d:"Frites",p:"€4,00"},
+        {n:"Patatine con la buccia",d:"Frites avec la peau",p:"€5,00"},
+        {n:"U Cuoppu",d:"Beignets de pois chiches, croquettes de pommes de terre et rondelles d'oignon.",p:"€7,00"}
+      ]},
+      {ico:"🥗",title:"Composez votre salade",sub:"Base, suppléments et sauces",dishes:[
+        {n:"Insalata base",d:"Laitue et roquette. Accompagnée de craquelin sicilien traditionnel (faccia di vecchia).",p:"€3,50"},
+        {n:"Suppléments à €1,00",d:"Tomates cerises, carottes, champignons frais, maïs, olives, œuf dur, pommes de terre bouillies, œufs brouillés.",p:"+€1"},
+        {n:"Suppléments à €2,00",d:"Grana, fior di latte, lardons.",p:"+€2"},
+        {n:"Suppléments à €3,00",d:"Avocat, blanc de poulet, bresaola, thon en boîte, saumon fumé, crevettes.",p:"+€3"},
+        {n:"Sauces",d:"Yaourt ou guacamole.",p:"€1,00"}
+      ]},
+      {ico:"🍽️",title:"Cuisine",sub:"Entrées, plats et planches",dishes:[
+        {n:"Tagliere Gira Vota e Furria",d:"Caponata, croquettes de pommes de terre, beignets de pois chiches, ricotta fraîche, fromage, arancino à la viande, saucisse de Raguse et olives.",p:"€13,00"},
+        {n:"Planche charcuterie & fromages locaux",d:"Speck, pancetta et mortadelle de porc noir des Nebrodi, caciocavallo des Iblei, provola de Raguse, ricotta au four, confitures maison et craquelin sicilien.",p:"€18,00"},
+        {n:"La Parmigiana",d:"",p:"€8,00"},
+        {n:"Busiate al pesto trapanese",d:"Avec des amandes grillées.",p:"€10,00"},
+        {n:"Gnocchi di patate con zuppa di cozze",d:"Tomate San Marzano, ail et piment.",p:"€12,00"},
+        {n:"Cavati alla norma",d:"",p:"€9,00"},
+        {n:"Ravioli di ricotta / Cavati al sugo di maiale",d:"",p:"€10,00"},
+        {n:"Tagliata de bœuf 300 g.",d:"Avec tomates cerises, roquette et grana.",p:"€18,00"},
+        {n:"Cotoletta alla palermitana",d:"",p:"€10,00"},
+        {n:"Grillade mixte de viandes",d:"",p:"€15,00"},
+        {n:"Bar grillé",d:"Avec câpres, olives et tomates cerises.",p:"€16,00"}
+      ]},
+      {ico:"🥔",title:"Accompagnements",sub:"De la cuisine",dishes:[
+        {n:"Caponata",d:"",p:"€5,00"},
+        {n:"Légumes de saison",d:"",p:"€5,00"},
+        {n:"Pommes de terre rôties, câpres et oignon",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍰",title:"Desserts",sub:"Douceurs maison",dishes:[
+        {n:"Cannolo siciliano di ricotta",d:"",p:"€4,00"},
+        {n:"Dessert du jour",d:"",p:"€6,00"},
+        {n:"Tiramisù",d:"",p:"€6,00"}
+      ]},
+      {ico:"🍷",title:"Boissons",sub:"Eau, vin et bières",dishes:[
+        {n:"Eau ½ l.",d:"",p:"€1,50"},
+        {n:"Eau 1 l.",d:"",p:"€2,50"},
+        {n:"Coca 1 l.",d:"",p:"€5,00"},
+        {n:"Vin rouge / blanc maison ½ l.",d:"",p:"€7,00"},
+        {n:"Vin rouge / blanc maison 1 l.",d:"",p:"€12,00"},
+        {n:"Vin rouge / blanc au verre",d:"",p:"€4,00"},
+        {n:"Bière blonde pression 0,3 l.",d:"",p:"€4,50"},
+        {n:"Bière double malt",d:"",p:"€5,00"},
+        {n:"Bière en bouteille 66 cl.",d:"",p:"€6,00"}
+      ]},
+      {ico:"➕",title:"Suppléments Pizza",sub:"Personnalisez votre pizza",dishes:[
+        {n:"Supplément à €1,00",d:"Tomate San Marzano, câpres, olives, oignon, anchois, aubergines, chapelure grillée, courgettes, champignons, épinards, œuf, frankfurter, crème de potiron, ricotta, fromage suisse, provola fumée, tomate de Pachino, moules, frites.",p:"+€1"},
+        {n:"Supplément à €2,00",d:"Fior di latte, ventricina épicée, jambon cuit, saucisse, tomate cerise jaune, gorgonzola, parmesan, bufala, ricotta salée, pommes de terre rôties, roquette.",p:"+€2"},
+        {n:"Supplément à €3,00",d:"Jambon cru de porc noir des Nebrodi, champignons de l'Etna, crevette rouge, langoustines, palourdes, calamars, crevettes, bresaola.",p:"+€3"}
+      ]}
+    ]
   }
+};
+
+let lang = "it";
+let openCats = new Set([0]); // Prima categoria aperta di default
+
+function buildLangBar(){
+  const bar = document.getElementById("lang-bar");
+  bar.innerHTML = "";
+  [["it","it"],["en","gb"],["de","de"],["fr","fr"]].forEach(([l,code])=>{
+    const btn = document.createElement("button");
+    btn.className = "lang-btn" + (l===lang?" on":"");
+    btn.innerHTML = "<img src='https://flagcdn.com/20x15/"+code+".png' style='width:22px;height:16px;border-radius:2px;vertical-align:middle'>";
+    btn.onclick = () => { lang = l; render(); };
+    bar.appendChild(btn);
+  });
+}
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.getElementById("badge-text").textContent = t.badge;
+  document.getElementById("hero-desc").textContent = t.hero;
+  document.getElementById("footer-note").textContent = t.footerNote;
+  buildLangBar();
+
+  const menu = document.getElementById("menu-section");
+  menu.innerHTML = "";
+  t.cats.forEach((cat, idx)=>{
+    const isOpen = openCats.has(idx);
+    const dishesHtml = cat.dishes.map(d=>`
+      <div class="piatto">
+        <div>
+          <div class="nome">${d.n}</div>
+          ${d.d ? `<div class="desc">${d.d}</div>` : ""}
+        </div>
+        <div class="prezzo">${d.p}</div>
+      </div>
+    `).join("");
+
+    const div = document.createElement("div");
+    div.className = "categoria" + (isOpen?" active":"");
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggleCat(this,${idx})">
+        <div class="cat-left">
+          <div class="emoji">${cat.ico}</div>
+          <div>
+            <div class="cat-title">${cat.title}</div>
+            <div class="cat-sub">${cat.sub}</div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="cat-body">${dishesHtml}</div>
+    `;
+    menu.appendChild(div);
+  });
+}
+
+function toggleCat(el, idx){
+  const cat = el.parentElement;
+  cat.classList.toggle("active");
+  if(cat.classList.contains("active")) openCats.add(idx);
+  else openCats.delete(idx);
+}
+
+render();
 </script>
 </body>
 </html>
