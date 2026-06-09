@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stasera Pago Io — Menu Digitale | Menoova</title>
+<meta name="description" content="Menu digitale di Stasera Pago Io, ristorante e pizzeria a Marina di Ragusa. Consulta piatti, pizze, allergeni, contatti e informazioni del locale.">
+<meta property="og:title" content="Stasera Pago Io — Menu Digitale">
+<meta property="og:description" content="Ristorante & Pizzeria a Marina di Ragusa. Menu, allergeni, contatti e indicazioni.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a4750">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a4750'/%3E%3Ctext x='50' y='63' font-size='54' text-anchor='middle' fill='white' font-family='serif'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2a2e;
+    --sea:#0f5f6b;
+    --sea-deep:#0a4750;
+    --sand:#f4ede1;
+    --paper:#fbf8f2;
+    --gold:#c08a3e;
+    --line:rgba(28,42,46,.12);
+    --shadow:0 12px 40px -12px rgba(10,71,80,.35);
+    --site-green:#5d6e66;
+    --site-green-soft:rgba(93,110,102,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;padding-bottom:80px;}
+
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg,rgba(10,71,80,.92),rgba(10,71,80,.98));
+    color:#fff;padding:46px 22px 30px;text-align:center;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:40px;
+    background:radial-gradient(60px 40px at 50% 0,transparent 70%,var(--paper) 71%);
+    background-size:90px 40px;background-repeat:repeat-x;
+  }
+  .crest{
+    width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.6);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px;font-family:'Fraunces';font-size:30px;font-weight:700;
+    backdrop-filter:blur(4px);background:rgba(255,255,255,.08);
+  }
+  .hero h1{font-family:'Fraunces';font-weight:700;font-size:34px;line-height:1.05;letter-spacing:-.5px;}
+  .hero .tag{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;margin-top:10px;font-weight:300;}
+  .hero .meta{font-size:13px;opacity:.8;margin-top:14px}
+  .lang{position:relative;z-index:3;display:flex;gap:6px;justify-content:center;margin-top:22px;}
+  .lang button{font-family:'Outfit';font-size:13px;font-weight:500;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 8px;border-radius:30px;cursor:pointer;transition:.2s;display:flex;align-items:center;}
+  .lang button.on{background:#fff;color:var(--sea-deep);border-color:#fff;font-weight:600}
+  .lang button img{width:22px;height:16px;border-radius:2px;display:block}
+
+  .filterbar{max-width:680px;margin:18px auto 0;padding:0 18px;}
+  .filterbar h3{font-family:'Fraunces';font-weight:600;font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .filterbar p{font-size:13px;color:#5a6b6e;margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:'Outfit';font-size:13px;font-weight:500;background:#fff;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:30px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:6px;}
+  .chip:hover{border-color:var(--sea)}
+  .chip.active{background:var(--sea);color:#fff;border-color:var(--sea)}
+  .chip .x{font-size:11px;opacity:.7}
+  .filter-note{font-size:12.5px;color:var(--gold);margin-top:12px;font-weight:500;min-height:18px;}
+
+  .menu{max-width:680px;margin:34px auto 0;padding:0 18px}
+  .section{margin-bottom:38px}
+  .section-title{font-family:'Fraunces';font-weight:600;font-size:24px;color:var(--sea-deep);display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .dish{display:flex;gap:14px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line);margin-bottom:12px;box-shadow:0 4px 18px -12px rgba(10,71,80,.2);transition:.25s;}
+  .dish.hidden{display:none}
+  .dish img{width:84px;height:84px;border-radius:12px;object-fit:cover;flex-shrink:0;background:var(--sand);}
+  .dish-body{flex:1;min-width:0}
+  .dish-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .dish-name{font-family:'Fraunces';font-weight:600;font-size:17px;line-height:1.2}
+  .dish-price{font-family:'Fraunces';font-weight:600;font-size:17px;color:var(--sea);white-space:nowrap}
+  .dish-desc{font-size:13.5px;color:#5a6b6e;margin-top:5px;line-height:1.45}
+  .dish-allergens{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .a-tag{font-size:11px;font-weight:500;letter-spacing:.3px;background:var(--sand);color:#8a6a3a;padding:3px 9px;border-radius:20px;}
+  /* taglie pizza */
+  .taglie{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .tg{background:var(--sand);border-radius:8px;padding:3px 9px;font-size:11px;display:flex;gap:4px;align-items:baseline}
+  .tg-l{color:#8a7060;font-weight:600;text-transform:uppercase;letter-spacing:.5px;font-size:10px}
+  .tg-p{color:var(--sea);font-weight:600;font-size:12px}
+
+  .foot{max-width:680px;margin:40px auto 0;padding:26px 18px;text-align:center;border-top:1px solid var(--line);}
+  .foot .fname{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--sea-deep)}
+  .foot p{font-size:13px;color:#5a6b6e;margin-top:6px;line-height:1.5}
+  .powered{margin-top:22px;font-size:12px;color:#9aa7a9;letter-spacing:.5px;}
+  .powered b{color:var(--sea);font-weight:600}
+
+  .navbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:7px 0 9px;box-shadow:0 -6px 24px -14px rgba(10,71,80,.3);}
+  .navbar a{font-size:10px;color:#7c8a8c;text-decoration:none;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:500;}
+  .navbar a span{font-size:16px}
+  .navbar a.act{color:var(--sea)}
+  .empty{text-align:center;color:#9aa7a9;font-size:14px;padding:30px 0;display:none}
+
+  .quick-actions{position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:430px;margin:20px auto 0;padding:0 4px}
+  .quick-actions a{color:var(--sea-deep);background:#fff;text-decoration:none;border-radius:14px;padding:10px 8px;font-size:12px;font-weight:700;box-shadow:0 12px 30px -18px rgba(0,0,0,.45)}
+  .top-note{max-width:680px;margin:22px auto 0;padding:0 18px}
+  .notice{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:14px;font-size:13px;line-height:1.45;color:#59696c}
+    .catnav{position:sticky;top:0;z-index:15;background:rgba(251,248,242,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-top:20px;padding:10px 0 12px}
+  .catnav-inner{max-width:680px;margin:0 auto;padding:0 18px;display:flex;flex-direction:column;gap:8px}
+  .catnav-row{display:flex;flex-wrap:wrap;gap:6px}
+  .catnav a{display:inline-flex;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+  .tools-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .small-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 12px;font-family:'Outfit';font-size:12px;font-weight:700;cursor:pointer}
+  .small-btn.primary,.add-btn{background:var(--sea);border-color:var(--sea);color:#fff}
+  .add-btn{margin-top:10px;border-radius:999px;padding:8px 12px;font-family:'Outfit';font-size:12px;font-weight:700;cursor:pointer;border:0}
+  .dish-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .order-panel{max-width:680px;margin:34px auto 0;padding:0 18px}
+  .order-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+  .order-card h2{font-family:'Fraunces';font-size:24px;color:var(--sea-deep);margin-bottom:8px}
+  .order-card p,.legal-note{font-size:13px;color:#5a6b6e;line-height:1.45}
+  .cart-list{margin:14px 0;display:grid;gap:8px}
+  .cart-item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;font-size:13px}
+  .cart-item button{border:0;background:var(--sand);border-radius:99px;padding:4px 8px;cursor:pointer}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .form-grid input,.form-grid textarea{width:100%;font-family:'Outfit';border:1px solid var(--line);border-radius:12px;padding:11px;background:var(--paper);font-size:13px}
+  .form-grid textarea{grid-column:1/-1;min-height:70px;resize:vertical}
+  .wa-btn{display:block;text-align:center;text-decoration:none;background:#1f8f5f;color:white;border-radius:14px;padding:13px 16px;font-weight:800;margin-top:12px}
+  .info-grid{max-width:680px;margin:28px auto 0;padding:0 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .info-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}
+  .info-box h3{font-family:'Fraunces';color:var(--sea-deep);font-size:18px;margin-bottom:6px}
+  .info-box p{font-size:13px;line-height:1.5;color:#5a6b6e}
+  @media(max-width:520px){.quick-actions{grid-template-columns:1fr 1fr}.quick-actions a:last-child{grid-column:1/-1}.form-grid,.info-grid{grid-template-columns:1fr}.hero h1{font-size:32px}.dish{padding:12px}.dish img{width:74px;height:74px}}
+
+  /* modifiche menu digitale: header pulito, allergeni compatti, niente foto */
+  .hero{padding-bottom:34px}
+  .quick-actions{display:none!important}
+  .filterbar details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;box-shadow:0 8px 24px -20px rgba(10,71,80,.35);overflow:hidden}
+  .filterbar summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 16px;font-family:'Fraunces';font-weight:600;font-size:17px;color:var(--sea-deep)}
+  .filterbar summary::-webkit-details-marker{display:none}
+  .filterbar summary::after{content:'+';font-family:'Outfit';font-weight:700;background:var(--sand);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:var(--sea-deep)}
+  .filterbar details[open] summary::after{content:'−'}
+  .filter-content{padding:0 16px 16px}
+  .filter-content p{font-size:13px;color:#5a6b6e;margin:0 0 12px}
+  .filter-summary{font-family:'Outfit';font-size:12px;font-weight:600;color:var(--gold);margin-left:auto}
+  .catnav{margin-top:14px;padding:8px 0}
+  .catnav-inner{gap:6px}
+  .catnav a{padding:7px 11px;font-size:11.5px}
+  .dish{display:block;padding:15px 16px}
+  .dish-media{display:none}
+  .dish-actions{display:flex;gap:6px;flex-wrap:wrap}
+  @media(max-width:520px){.dish{padding:14px}.catnav a{padding:7px 10px}.filterbar{margin-top:20px}}
+
+
+  /* Hero con immagine + onda originale del codice */
+  .hero{
+    position:relative!important;
+    min-height:clamp(440px,56vw,760px);
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.36)), url('assets/foto-01.png') center/cover no-repeat!important;
+    color:#fff;
+    padding:46px 22px 58px!important;
+    text-align:center;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:42px;
+    background:radial-gradient(60px 40px at 50% 0,transparent 70%,var(--paper) 71%);
+    background-size:90px 40px;
+    background-repeat:repeat-x;
+    z-index:2;
+    pointer-events:none;
+  }
+  .hero-inner{
+    padding-bottom:6px;
+    position:relative;
+    z-index:3;
+    max-width:760px;
+    margin:0 auto 22px;
+  }
+  .hero h1{
+    display:block!important;
+    font-family:'Outfit',sans-serif;
+    font-weight:800;
+    font-size:clamp(36px,6vw,72px);
+    line-height:.98;
+    letter-spacing:-2px;
+    color:#fff;
+    text-shadow:0 8px 28px rgba(0,0,0,.42);
+  }
+  .hero .tag{
+    display:block!important;
+    font-size:clamp(13px,1.5vw,18px);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:.95;
+    margin-top:10px;
+    font-weight:500;
+    text-shadow:0 5px 18px rgba(0,0,0,.4);
+  }
+  .hero .meta{
+    display:block!important;
+    font-family:'Fraunces',serif;
+    font-size:clamp(12px,1.2vw,16px);
+    letter-spacing:4px;
+    opacity:.95;
+    margin-top:14px;
+    text-shadow:0 5px 18px rgba(0,0,0,.4);
+  }
+  .crest{
+    display:none!important;
+  }
+  .lang{
+    position:relative;
+    z-index:4;
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    margin-top:22px;
+  }
+  .lang button{
+    background:rgba(0,0,0,.24);
+    border:1px solid rgba(255,255,255,.32);
+    backdrop-filter:blur(6px);
+  }
+  .lang button.on{
+    background:#fff;
+    color:var(--sea-deep);
+    border-color:#fff;
+  }
+  .hero-menu-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:18px;
+    min-width:140px;
+    padding:12px 22px;
+    border-radius:999px;
+    background:rgba(255,255,255,.94);
+    color:#1c2a2e;
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:.4px;
+    box-shadow:0 18px 38px -22px rgba(0,0,0,.65);
+    backdrop-filter:blur(8px);
+  }
+
+  /* Menu digitale: allergeni compatti, niente foto, categorie ridotte */
+  .quick-actions{display:none!important}
+  .dish{display:block;padding:15px 16px}
+  .dish img,.dish-media,.add-btn,.dish-actions{display:none!important}
+  .catnav{margin-top:14px;padding:8px 0}
+  .catnav-inner{gap:6px}
+  .catnav a{padding:7px 11px;font-size:11.5px}
+
+  @media(max-width:560px){
+    .hero{
+      min-height:68vh;
+      background-position:center top!important;
+      padding:34px 18px 52px!important;
+    }
+    .hero-inner{
+    padding-bottom:6px;margin-bottom:18px}
+    .hero .meta{letter-spacing:3px}
+    .hero::after{
+      height:34px;
+      background:radial-gradient(48px 32px at 50% 0,transparent 70%,var(--paper) 71%);
+      background-size:72px 34px;
+    }
+  }
+
+
+  /* categorie più compatte */
+  .catnav-inner{
+    gap:4px;
+  }
+  .catnav a{
+    padding:6px 8px;
+    font-size:10.5px;
+    letter-spacing:-.1px;
+  }
+  @media(max-width:420px){
+    .catnav-inner{
+      gap:3px;
+      padding:0 12px;
+    }
+    .catnav a{
+      padding:6px 7px;
+      font-size:10px;
+    }
+  }
+
+
+  /* categorie compatte con Dessert */
+  .catnav a{
+    padding:6px 7px;
+    font-size:10px;
+  }
+  .catnav-inner{
+    gap:3px;
+  }
+  @media(max-width:420px){
+    .catnav a{
+      padding:6px 6px;
+      font-size:9.6px;
+    }
+  }
+
+
+  /* categorie: poco più grandi, ma ancora compatte */
+  .catnav a{
+    font-size:10.8px!important;
+    padding:6px 7px!important;
+  }
+  @media(max-width:420px){
+    .catnav a{
+      font-size:10.2px!important;
+      padding:6px 6px!important;
+    }
+  }
+
+
+  /* modifica finale: categorie a due livelli + navbar bassa più sottile */
+  .catnav a{
+    font-size:11.2px !important;
+    padding:7px 10px !important;
+  }
+  .catnav-inner{
+    gap:8px !important;
+  }
+  .catnav-row{
+    gap:6px !important;
+  }
+  @media(max-width:420px){
+    .catnav a{
+      font-size:10.4px !important;
+      padding:6px 8px !important;
+    }
+    .catnav-inner{
+      padding:0 12px;
+      gap:7px !important;
+    }
+    .catnav-row{
+      gap:5px !important;
+    }
+  }
+}
+
+
+  /* categorie centrate e leggermente più grandi */
+  .catnav-inner{
+    align-items:center !important;
+  }
+  .catnav-row{
+    justify-content:center !important;
+    width:100%;
+  }
+  .catnav a{
+    font-size:11.8px !important;
+    padding:8px 12px !important;
+  }
+  @media(max-width:420px){
+    .catnav a{
+      font-size:10.8px !important;
+      padding:7px 10px !important;
+    }
+  }
+
+
+  /* titoli sezioni: variante premium/luxury */
+  .section-title{
+    margin:34px 0 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'Fraunces';
+  }
+  .section-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, rgba(192,138,62,.72), rgba(93,110,102,.22), transparent);
+  }
+  .section-title-badge{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    padding:9px 18px 10px;
+    border-radius:999px;
+    background:linear-gradient(135deg, rgba(93,110,102,.98), rgba(10,71,80,.96));
+    color:#fff;
+    border:1px solid rgba(192,138,62,.42);
+    box-shadow:
+      0 18px 34px -24px rgba(10,71,80,.75),
+      inset 0 1px 0 rgba(255,255,255,.18);
+    font-size:clamp(22px,4.6vw,29px);
+    font-weight:600;
+    letter-spacing:-.35px;
+  }
+  .section-title-badge::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 5px rgba(192,138,62,.14);
+    margin-right:10px;
+    flex:0 0 auto;
+  }
+  .section-title-badge::after{
+    content:"";
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:5px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+  }
+  @media(max-width:520px){
+    .section-title{
+      margin:30px 0 18px;
+      gap:10px;
+    }
+    .section-title-badge{
+      padding:8px 15px 9px;
+      font-size:23px;
+    }
+    .section-title-badge::before{
+      width:6px;
+      height:6px;
+      margin-right:9px;
+    }
+  }
+
+
+  /* ordine finale categorie: tre righe centrate */
+  .catnav{
+    padding:10px 0 12px !important;
+  }
+  .catnav-inner{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:7px !important;
+  }
+  .catnav-row{
+    width:100%;
+    display:flex !important;
+    justify-content:center !important;
+    flex-wrap:wrap !important;
+    gap:6px !important;
+  }
+  .catnav a{
+    font-size:11px !important;
+    padding:7px 10px !important;
+  }
+  @media(max-width:420px){
+    .catnav-inner{
+      padding:0 10px !important;
+      gap:6px !important;
+    }
+    .catnav-row{
+      gap:5px !important;
+    }
+    .catnav a{
+      font-size:10.2px !important;
+      padding:6px 8px !important;
+    }
+  }
+
+
+  /* categorie: soluzione compatta con menu a tendina elegante */
+  .catnav{
+    position:sticky;
+    top:0;
+    z-index:15;
+    background:rgba(251,248,242,.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    margin-top:18px;
+    padding:9px 0 !important;
+    overflow:visible !important;
+  }
+  .catnav-inner{
+    max-width:680px;
+    margin:0 auto;
+    padding:0 18px !important;
+    display:block !important;
+  }
+  .cat-dropdown{
+    position:relative;
+    max-width:340px;
+    margin:0 auto;
+  }
+  .cat-dropdown summary{
+    list-style:none;
+    cursor:pointer;
+    height:42px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:0 12px 30px -24px rgba(10,71,80,.45);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.2px;
+    color:var(--sea-deep);
+  }
+  .cat-dropdown summary::-webkit-details-marker{
+    display:none;
+  }
+  .cat-dropdown summary::before{
+    content:"☰";
+    font-size:15px;
+    color:var(--gold);
+    transform:translateY(-1px);
+  }
+  .cat-dropdown summary::after{
+    content:"⌄";
+    font-size:14px;
+    color:#7b898b;
+    transition:.2s;
+  }
+  .cat-dropdown[open] summary::after{
+    transform:rotate(180deg);
+  }
+  .cat-dropdown summary small{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:22px;
+    height:22px;
+    border-radius:999px;
+    background:var(--sand);
+    color:#8a6a3a;
+    font-size:11px;
+    font-weight:800;
+  }
+  .cat-grid{
+    position:absolute;
+    left:50%;
+    top:50px;
+    transform:translateX(-50%);
+    width:min(640px, calc(100vw - 28px));
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 24px 60px -28px rgba(10,71,80,.42);
+    padding:12px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .cat-grid a{
+    display:flex !important;
+    justify-content:center;
+    align-items:center;
+    min-height:40px;
+    border-radius:14px !important;
+    background:var(--paper) !important;
+    border:1px solid rgba(28,42,46,.08) !important;
+    color:var(--ink) !important;
+    text-decoration:none;
+    font-size:12px !important;
+    font-weight:700;
+    padding:8px 9px !important;
+    text-align:center;
+    white-space:normal !important;
+    line-height:1.15;
+  }
+  .cat-grid a:hover{
+    border-color:rgba(93,110,102,.38) !important;
+    background:#f4ede1 !important;
+  }
+  @media(max-width:520px){
+    .cat-dropdown{
+      max-width:280px;
+    }
+    .cat-grid{
+      grid-template-columns:repeat(2,1fr);
+      top:48px;
+      padding:10px;
+      gap:7px;
+    }
+    .cat-grid a{
+      min-height:38px;
+      font-size:11.4px !important;
+      padding:8px 7px !important;
+    }
+  }
+
+
+  /* hero: contenuto alzato verso il primo quarto */
+  .hero{
+    align-items:flex-start !important;
+    justify-content:center !important;
+    padding:42px 22px 58px !important;
+  }
+  .hero-inner{
+    margin:clamp(88px, 15vh, 150px) auto 0 !important;
+    padding-bottom:0 !important;
+  }
+  .hero h1{
+    margin-top:0 !important;
+  }
+  .lang{
+    margin-top:18px !important;
+  }
+  .hero-menu-btn{
+    margin-top:16px !important;
+  }
+  @media(max-width:560px){
+    .hero{
+      padding:28px 18px 52px !important;
+    }
+    .hero-inner{
+      margin:clamp(56px, 12vh, 110px) auto 0 !important;
+    }
+    .lang{
+      margin-top:16px !important;
+    }
+    .hero-menu-btn{
+      margin-top:14px !important;
+    }
+  }
+
+
+  /* foto banner sopra ogni categoria */
+  .section-photo{
+    position:relative;
+    height:clamp(112px, 25vw, 178px);
+    border-radius:26px;
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+    margin:28px 0 14px;
+    border:1px solid rgba(28,42,46,.10);
+    box-shadow:0 20px 46px -30px rgba(10,71,80,.46);
+  }
+  .section-photo-shade{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(10,71,80,.08), rgba(10,71,80,.30)),
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.22), transparent 42%);
+  }
+  .section:first-child .section-photo{
+    margin-top:14px;
+  }
+  .section-title{
+    margin-top:0 !important;
+  }
+  @media(max-width:520px){
+    .section-photo{
+      height:118px;
+      border-radius:22px;
+      margin:24px 0 13px;
+    }
+  }
+
+</style>
+</head>
+<body id="top">
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crest">S</div>
+    <h1 data-i18n="title">Stasera Pago Io</h1>
+    <div class="tag" data-i18n="sub">Ristorante &amp; Pizzeria · Marina di Ragusa</div>
+<div class="lang" id="lang-bar">
+      <button class="on" onclick="setLang('it',this)"><img src="https://flagcdn.com/20x15/it.png" alt="IT"></button>
+      <button onclick="setLang('en',this)"><img src="https://flagcdn.com/20x15/gb.png" alt="EN"></button>
+      <button onclick="setLang('de',this)"><img src="https://flagcdn.com/20x15/de.png" alt="DE"></button>
+      <button onclick="setLang('fr',this)"><img src="https://flagcdn.com/20x15/fr.png" alt="FR"></button>
+    </div>
+    <a class="hero-menu-btn" href="#menu" data-i18n="nMenu">Menu</a>
+  </div>
+</header>
+<div class="top-note">
+  <div class="notice" data-i18n="allergenNotice"><b>Nota allergeni:</b> le informazioni sono indicative e vanno sempre confermate con il personale. In caso di allergie o intolleranze, avvisa il ristorante prima della consumazione. Prodotto congelato in mancanza di fresco secondo disponibilità.</div>
+</div>
+
+<div class="filterbar">
+  <details id="allergenPanel">
+    <summary>🛡 <span data-i18n="filterTitle">Allergeni</span><span class="filter-summary" id="filterSummary">Nessun filtro</span></summary>
+    <div class="filter-content">
+      <p data-i18n="filterDesc">Apri gli allergeni e seleziona quelli da escludere dal menu.</p>
+      <div class="chips" id="chips"></div>
+      <div class="tools-row">
+        <button class="small-btn" onclick="resetFilters()" data-i18n="reset">Azzera filtri</button>
+      </div>
+      <div class="filter-note" id="note"></div>
+    </div>
+  </details>
+</div>
+
+<nav class="catnav" aria-label="Categorie menu"><div class="catnav-inner" id="catnav"></div></nav>
+<main class="menu" id="menu"></main>
+<div class="empty" id="empty" data-i18n="empty">Nessun piatto corrisponde ai filtri selezionati.</div>
+
+
+<section class="info-grid" id="info">
+  <div class="info-box"><h3>Contatti</h3><p>Contrada Gaddimeli<br>Marina di Ragusa · 97100 Ragusa RG<br>Tel. <a href="tel:+390932616547">0932 616547</a><br>Cell. <a href="tel:+393336583009">333 6583009</a></p></div>
+  <div class="info-box"><h3>Orari e servizi</h3><p>Lunedì chiuso.<br>Da martedì a domenica 19:45–23:00.<br>Domenica a pranzo 12:30–14:00.<br>Animali di piccola taglia benvenuti.</p></div>
+</section>
+
+<div class="foot">
+  <div class="fname">Stasera Pago Io</div>
+  <p data-i18n="footAddr">Contrada Gaddimeli · Marina di Ragusa (RG)</p>
+  <div class="powered">Menu digitale by <b>Menoova</b> · menoova.it</div>
+</div>
+
+<nav class="navbar">
+  <a class="act" href="#top"><span>🏠</span><span data-i18n="nHome">Home</span></a>
+  <a href="#menu"><span>📋</span><span data-i18n="nMenu">Menu</span></a>
+  <a href="#allergenPanel"><span>🛡️</span><span data-i18n="filterTitle">Allergeni</span></a>
+  <a href="#info"><span>ℹ️</span><span>Info</span></a>
+</nav>
+
+<script>
+const I18N={
+  it:{title:"Stasera Pago Io",sub:"Ristorante & Pizzeria · Marina di Ragusa",
+    menuKicker:"Consulta il menu digitale",menuTitle:"Menu",menuDesc:"Scegli una categoria oppure scorri per consultare tutte le proposte.",filterTitle:"Allergeni",filterDesc:"Seleziona gli allergeni da escludere dal menu.",
+    allergenNotice:"<b>Nota allergeni:</b> le informazioni sono indicative e vanno sempre confermate con il personale. In caso di allergie o intolleranze, avvisa il ristorante prima della consumazione. Prodotto congelato in mancanza di fresco secondo disponibilità.",
+    empty:"Nessun piatto corrisponde ai filtri selezionati.",
+    footAddr:"Contrada Gaddimeli · Marina di Ragusa (RG)",
+    nHome:"Home",nMenu:"Menu",nMap:"Mappa",nCall:"Chiama",reset:"Azzera filtri",noFilter:"Nessun filtro",active:n=>`${n} attivi`,
+    noteOn:n=>`${n} piatto/i nascosti in base ai filtri`,noteOff:"",
+    baby:"Baby",normale:"Normale",maxi:"Maxi",add:"Aggiungi"},
+  en:{title:"Stasera Pago Io",sub:"Restaurant & Pizzeria · Marina di Ragusa",
+    menuKicker:"Browse the digital menu",menuTitle:"Menu",menuDesc:"Choose a category or scroll to view all dishes.",filterTitle:"Allergens",filterDesc:"Select allergens to exclude them from the menu.",
+    allergenNotice:"<b>Allergen note:</b> information is indicative and should always be confirmed with the staff. In case of allergies or intolerances, please inform the restaurant before consumption. Frozen product may be used if fresh is unavailable.",
+    empty:"No dishes match the selected filters.",
+    footAddr:"Contrada Gaddimeli · Marina di Ragusa (RG)",
+    nHome:"Home",nMenu:"Menu",nMap:"Map",nCall:"Call",reset:"Reset filters",noFilter:"No filter",active:n=>`${n} active`,
+    noteOn:n=>`${n} dish(es) hidden by filters`,noteOff:"",
+    baby:"Baby",normale:"Normal",maxi:"Maxi",add:"Add"},
+  de:{title:"Stasera Pago Io",sub:"Restaurant & Pizzeria · Marina di Ragusa",
+    menuKicker:"Digitale Speisekarte",menuTitle:"Menü",menuDesc:"Wählen Sie eine Kategorie oder scrollen Sie durch alle Gerichte.",filterTitle:"Allergene",filterDesc:"Wählen Sie Allergene aus, um Gerichte auszublenden.",
+    allergenNotice:"<b>Allergenhinweis:</b> Die Informationen sind unverbindlich und sollten immer mit dem Personal bestätigt werden. Bei Allergien oder Unverträglichkeiten informieren Sie bitte das Restaurant vor dem Verzehr. Tiefgekühltes Produkt, falls frisch nicht verfügbar.",
+    empty:"Keine Gerichte entsprechen den Filtern.",
+    footAddr:"Contrada Gaddimeli · Marina di Ragusa (RG)",
+    nHome:"Start",nMenu:"Menü",nMap:"Karte",nCall:"Anruf",reset:"Filter zurücksetzen",noFilter:"Kein Filter",active:n=>`${n} aktiv`,
+    noteOn:n=>`${n} Gericht(e) ausgeblendet`,noteOff:"",
+    baby:"Baby",normale:"Normal",maxi:"Maxi",add:"Hinzufügen"},
+  fr:{title:"Stasera Pago Io",sub:"Restaurant & Pizzeria · Marina di Ragusa",
+    menuKicker:"Consultez le menu digital",menuTitle:"Menu",menuDesc:"Choisissez une catégorie ou faites défiler pour voir toutes les propositions.",filterTitle:"Allergènes",filterDesc:"Sélectionnez les allergènes à exclure du menu.",
+    allergenNotice:"<b>Note allergènes :</b> les informations sont indicatives et doivent toujours être confirmées avec le personnel. En cas d’allergies ou d’intolérances, veuillez prévenir le restaurant avant la consommation. Produit surgelé en l’absence de produit frais selon disponibilité.",
+    empty:"Aucun plat ne correspond aux filtres sélectionnés.",
+    footAddr:"Contrada Gaddimeli · Marina di Ragusa (RG)",
+    nHome:"Accueil",nMenu:"Menu",nMap:"Carte",nCall:"Appeler",reset:"Réinitialiser",noFilter:"Aucun filtre",active:n=>`${n} actifs`,
+    noteOn:n=>`${n} plat(s) masqué(s) par les filtres`,noteOff:"",
+    baby:"Baby",normale:"Normale",maxi:"Maxi",add:"Ajouter"}
+};
+
+const ALLERGENS={
+  glutine:{it:"Glutine",en:"Gluten",de:"Gluten",fr:"Gluten"},
+  crostacei:{it:"Crostacei",en:"Crustaceans",de:"Krebstiere",fr:"Crustacés"},
+  uova:{it:"Uova",en:"Eggs",de:"Eier",fr:"Œufs"},
+  pesce:{it:"Pesce",en:"Fish",de:"Fisch",fr:"Poisson"},
+  latte:{it:"Latte",en:"Milk",de:"Milch",fr:"Lait"},
+  frutta_guscio:{it:"Frutta a guscio",en:"Tree nuts",de:"Schalenfrüchte",fr:"Fruits à coque"},
+  molluschi:{it:"Molluschi",en:"Molluscs",de:"Weichtiere",fr:"Mollusques"}
+};
+
+const P="https://images.unsplash.com/";
+const SECTIONS=[
+  {id:"ant_pesce",t:{it:"Antipasti di Pesce",en:"Fish Starters",de:"Fischvorspeisen"},dishes:[
+    {img:P+"photo-1551504734-5ee1c4a1479b?w=400&q=80",n:{it:"Antipasto Stasera Pago Io",en:"Antipasto Stasera Pago Io",de:"Antipasto Stasera Pago Io"},d:{it:"12 assaggi di pesce marinato e cotto",en:"12 tastings of marinated and cooked fish",de:"12 marinierte und gekochte Fisch-Häppchen"},p:"24",a:["pesce","crostacei","molluschi"]},
+    {img:P+"photo-1506280754576-f6fa8a873550?w=400&q=80",n:{it:"Misto Mare",en:"Mixed Sea",de:"Gemischtes Meer"},d:{it:"5 assaggi di pesce marinato e cotto",en:"5 tastings of marinated and cooked fish",de:"5 Fisch-Häppchen mariniert und gekocht"},p:"17",a:["pesce","crostacei","molluschi"]},
+    {img:"",n:{it:"Tris di Mare",en:"Sea Trio",de:"Meeres-Trio"},d:{it:"Insalata di polpo, cocktail di gamberi, salmone affumicato",en:"Octopus salad, prawn cocktail, smoked salmon",de:"Oktopussalat, Garnelencocktail, geräucherter Lachs"},p:"14",a:["pesce","crostacei","molluschi"]},
+    {img:P+"photo-1599599810769-bcde5a160d32?w=400&q=80",n:{it:"Misto Marinato",en:"Mixed Marinated",de:"Gemischt Mariniert"},d:{it:"Assaggi di pesce crudo e marinato",en:"Tastings of raw and marinated fish",de:"Roher und marinierter Fisch"},p:"25",a:["pesce","crostacei"]},
+    {img:P+"photo-1604908176997-125f25cc6f3d?w=400&q=80",n:{it:"Insalata di Mare",en:"Seafood Salad",de:"Meeresfrüchtesalat"},d:{it:"Polpo, calamari, gamberetti, cozze",en:"Octopus, calamari, prawns, mussels",de:"Oktopus, Calamari, Garnelen, Muscheln"},p:"15",a:["pesce","crostacei","molluschi"]},
+    {img:P+"photo-1572695157366-5e585ab2b69f?w=400&q=80",n:{it:"Bruschette",en:"Bruschetta",de:"Bruschetta"},d:{it:"Stracciatella, tartare di gambero, salmone marinato e cipolla in agrodolce",en:"Stracciatella, prawn tartare, marinated salmon, sweet-sour onion",de:"Stracciatella, Garnelentatare, marinierter Lachs, süß-saure Zwiebel"},p:"14",a:["glutine","pesce","crostacei","latte"]},
+    {img:P+"photo-1537047902294-62a40c20a6ae?w=400&q=80",n:{it:"Arancini al Nero di Seppia",en:"Squid Ink Arancini",de:"Tintenfischtinte-Arancini"},d:{it:"5 pezzi",en:"5 pieces",de:"5 Stück"},p:"12",a:["glutine","molluschi","uova"]},
+    {img:P+"photo-1606731115338-aef0085f6e1a?w=400&q=80",n:{it:"Cocktail di Gamberi",en:"Prawn Cocktail",de:"Garnelencocktail"},d:{it:"",en:"",de:""},p:"11",a:["crostacei"]},
+    {img:"",n:{it:"Zuppa di Cozze",en:"Mussel Soup",de:"Muschelsuppe"},d:{it:"Con pomodoro",en:"With tomato",de:"Mit Tomaten"},p:"12",a:["molluschi"]},
+    {img:"",n:{it:"Pepata di Cozze",en:"Peppered Mussels",de:"Gepfefferte Muscheln"},d:{it:"Senza pomodoro",en:"Without tomato",de:"Ohne Tomaten"},p:"12",a:["molluschi"]}
+  ]},
+  {id:"ant_carne",t:{it:"Antipasti di Carne",en:"Meat Starters",de:"Fleischvorspeisen"},dishes:[
+    {img:P+"photo-1614777986387-7b6d9a9b3e0a?w=400&q=80",n:{it:"Antipasto Rustico",en:"Rustic Antipasto",de:"Rustikale Vorspeise"},d:{it:"",en:"",de:""},p:"20",a:["latte"]},
+    {img:"",n:{it:"Antipasto all'Italiana",en:"Italian Antipasto",de:"Italienische Vorspeise"},d:{it:"",en:"",de:""},p:"10",a:["latte"]},
+    {img:P+"photo-1572695157366-5e585ab2b69f?w=400&q=80",n:{it:"Caprese",en:"Caprese",de:"Caprese"},d:{it:"",en:"",de:""},p:"8",a:["latte"]},
+    {img:"",n:{it:"Crudo e Mozzarella di Bufala",en:"Cured Ham & Buffalo Mozzarella",de:"Rohschinken & Büffelmozzarella"},d:{it:"",en:"",de:""},p:"12",a:["latte"]},
+    {img:"",n:{it:"Crudo e Melone / Ananas",en:"Cured Ham & Melon / Pineapple",de:"Rohschinken & Melone / Ananas"},d:{it:"",en:"",de:""},p:"10",a:[]}
+  ]},
+  {id:"stuzzich",t:{it:"Stuzzicheria",en:"Nibbles",de:"Snacks"},dishes:[
+    {img:P+"photo-1542367592-8849eb950fd8?w=400&q=80",n:{it:"Patatine Fritte",en:"French Fries",de:"Pommes Frites"},d:{it:"",en:"",de:""},p:"5",a:[]},
+    {img:"",n:{it:"Patatine Speziate con Buccia",en:"Spiced Skin-on Fries",de:"Gewürzte Kartoffelchips"},d:{it:"",en:"",de:""},p:"6",a:[]},
+    {img:"",n:{it:"Crocchette di Patate",en:"Potato Croquettes",de:"Kartoffelkroketten"},d:{it:"",en:"",de:""},p:"4",a:["glutine","latte","uova"]},
+    {img:"",n:{it:"Arancine Mignon",en:"Mini Arancini",de:"Mini-Arancini"},d:{it:"",en:"",de:""},p:"5",a:["glutine","uova"]},
+    {img:"",n:{it:"Stuzzicheria Mista",en:"Mixed Nibbles",de:"Gemischte Snacks"},d:{it:"Patatine fritte, crocchette, olive ascolane, arancine mignon, anelli di cipolla",en:"Fries, croquettes, olives, mini arancini, onion rings",de:"Pommes, Kroketten, Oliven, Mini-Arancini, Zwiebelringe"},p:"8",a:["glutine","latte","uova"]}
+  ]},
+  {id:"primi_pesce",t:{it:"Primi di Pesce",en:"Fish First Courses",de:"Erste Gänge — Fisch"},dishes:[
+    {img:P+"photo-1473093295043-cdd812d0e601?w=400&q=80",n:{it:"Tagliolini allo Scoglio",en:"Tagliolini allo Scoglio",de:"Tagliolini allo Scoglio"},d:{it:"",en:"Seafood pasta",de:"Meeresfrüchtepasta"},p:"16",a:["glutine","crostacei","molluschi"]},
+    {img:"",n:{it:"Tagliolini al Gambero Rosso e Asparagi Selvatici",en:"Tagliolini with Red Prawn & Wild Asparagus",de:"Tagliolini mit roter Garnele & Wildspargel"},d:{it:"",en:"",de:""},p:"15",a:["glutine","crostacei"]},
+    {img:P+"photo-1607877742574-29e0f5c32c19?w=400&q=80",n:{it:"Ravioli di Cernia al Gambero Rosso",en:"Grouper Ravioli with Red Prawn",de:"Zackenbarsch-Ravioli mit roter Garnele"},d:{it:"",en:"",de:""},p:"16",a:["glutine","pesce","crostacei","uova"]},
+    {img:"",n:{it:"Ravioli di Cernia al Gambero Rosso e Pistacchio",en:"Grouper Ravioli, Red Prawn & Pistachio",de:"Zackenbarsch-Ravioli, rote Garnele & Pistazie"},d:{it:"",en:"",de:""},p:"18",a:["glutine","pesce","crostacei","uova","frutta_guscio"]},
+    {img:P+"photo-1633436375153-d7045cb93e38?w=400&q=80",n:{it:"Risotto allo Scoglio",en:"Seafood Risotto",de:"Meeresfrüchte-Risotto"},d:{it:"Minimo due porzioni",en:"Minimum two portions",de:"Mindestens zwei Portionen"},p:"17",a:["crostacei","molluschi","latte"]},
+    {img:"",n:{it:"Tagliolini all'Astice",en:"Tagliolini with Lobster",de:"Tagliolini mit Hummer"},d:{it:"",en:"",de:""},p:"19",a:["glutine","crostacei"]},
+    {img:"",n:{it:"Tagliolini agli Scampi",en:"Tagliolini with Langoustines",de:"Tagliolini mit Scampi"},d:{it:"",en:"",de:""},p:"16",a:["glutine","crostacei"]},
+    {img:P+"photo-1633964913295-ceb43826a07f?w=400&q=80",n:{it:"Spaghetti alle Vongole",en:"Spaghetti with Clams",de:"Spaghetti mit Venusmuscheln"},d:{it:"",en:"",de:""},p:"18",a:["glutine","molluschi"]},
+    {img:"",n:{it:"Spaghetti ai Ricci",en:"Spaghetti with Sea Urchins",de:"Spaghetti mit Seeigeln"},d:{it:"",en:"",de:""},p:"23",a:["glutine","molluschi"]}
+  ]},
+  {id:"primi_carne",t:{it:"Primi di Carne",en:"Meat First Courses",de:"Erste Gänge — Fleisch"},dishes:[
+    {img:P+"photo-1555949258-eb67b1ef0ceb?w=400&q=80",n:{it:"Tagliolini con Ciliegino e Basilico",en:"Tagliolini with Cherry Tomato & Basil",de:"Tagliolini mit Kirschtomaten & Basilikum"},d:{it:"",en:"",de:""},p:"8",a:["glutine"]},
+    {img:"",n:{it:"Tagliolini con Speck e Asparagi Selvatici",en:"Tagliolini with Speck & Wild Asparagus",de:"Tagliolini mit Speck & Wildspargel"},d:{it:"",en:"",de:""},p:"10",a:["glutine"]},
+    {img:P+"photo-1621996346565-e3dbc646d9a9?w=400&q=80",n:{it:"Raviolini di Carne al Pistacchio",en:"Meat Ravioli with Pistachio",de:"Fleisch-Ravioli mit Pistazie"},d:{it:"",en:"",de:""},p:"13",a:["glutine","uova","frutta_guscio"]},
+    {img:"",n:{it:"Gnocchi con Fonduta di Caciocavallo e Porcini",en:"Gnocchi with Caciocavallo Fondue & Porcini",de:"Gnocchi mit Caciocavallo-Fondue & Steinpilzen"},d:{it:"",en:"",de:""},p:"12",a:["glutine","latte"]}
+  ]},
+  {id:"sec_pesce",t:{it:"Secondi di Pesce",en:"Fish Main Courses",de:"Hauptgerichte — Fisch"},dishes:[
+    {img:P+"photo-1519708227418-c8fd9a32b7a2?w=400&q=80",n:{it:"Fresco di Giornata",en:"Daily Fresh Fish",de:"Tagesfang"},d:{it:"",en:"",de:""},p:"6/etto",a:["pesce"]},
+    {img:P+"photo-1606731115338-aef0085f6e1a?w=400&q=80",n:{it:"Gambero Rosso di Mazara",en:"Mazara Red Prawn",de:"Mazara-Rotgarnele"},d:{it:"",en:"",de:""},p:"13/etto",a:["crostacei"]},
+    {img:P+"photo-1534080565024-c1ab3f1c0cd8?w=400&q=80",n:{it:"Arrosto Misto di Pesce",en:"Mixed Grilled Fish",de:"Gemischter Fischgrill"},d:{it:"",en:"",de:""},p:"20",a:["pesce","crostacei"]},
+    {img:P+"photo-1580217593608-61931cefc821?w=400&q=80",n:{it:"Fritto Misto",en:"Mixed Fried Fish",de:"Gemischtes Frittiertes"},d:{it:"",en:"",de:""},p:"16",a:["glutine","pesce","crostacei","molluschi"]},
+    {img:"",n:{it:"Zuppa di Pesce",en:"Fish Soup",de:"Fischsuppe"},d:{it:"Piatto unico",en:"Single dish",de:"Einzelgericht"},p:"27",a:["pesce","crostacei","molluschi"]},
+    {img:"",n:{it:"Pesce Spada",en:"Swordfish",de:"Schwertfisch"},d:{it:"Arrosto o gratinato",en:"Grilled or au gratin",de:"Gegrillt oder überbacken"},p:"13",a:["pesce"]},
+    {img:"",n:{it:"Calamari / Totani",en:"Calamari / Squid",de:"Calamari / Tintenfisch"},d:{it:"Arrosto o fritti — secondo disponibilità",en:"Grilled or fried — subject to availability",de:"Gegrillt oder frittiert — je nach Verfügbarkeit"},p:"16",a:["molluschi"]},
+    {img:"",n:{it:"Spigola Deliscata",en:"Sea Bass",de:"Wolfsbarsch"},d:{it:"Arrosto o gratinata",en:"Grilled or au gratin",de:"Gegrillt oder überbacken"},p:"16",a:["pesce"]},
+    {img:P+"photo-1604908176997-125f25cc6f3d?w=400&q=80",n:{it:"Tagliata di Polpo Arrosto",en:"Grilled Octopus Tagliata",de:"Oktopus-Tagliata"},d:{it:"Con frutta",en:"With fruit",de:"Mit Früchten"},p:"20",a:["molluschi"]},
+    {img:P+"photo-1607301405390-d831c242f59b?w=400&q=80",n:{it:"Tonno",en:"Tuna",de:"Thunfisch"},d:{it:"Arrosto o alla veneta",en:"Grilled or Venetian style",de:"Gegrillt oder venezianisch"},p:"20",a:["pesce"]}
+  ]},
+  {id:"sec_carne",t:{it:"Secondi di Carne",en:"Meat Main Courses",de:"Hauptgerichte — Fleisch"},dishes:[
+    {img:P+"photo-1544025162-d76694265947?w=400&q=80",n:{it:"Arrosto Misto di Carne",en:"Mixed Roast Meats",de:"Gemischter Fleischgrill"},d:{it:"",en:"",de:""},p:"16",a:[]},
+    {img:P+"photo-1558030137-a56c1b194a2b?w=400&q=80",n:{it:"Filetto di Vitello",en:"Veal Fillet",de:"Kalbsfilet"},d:{it:"Ai ferri o al pepe verde",en:"Grilled or green pepper",de:"Gegrillt oder grüner Pfeffer"},p:"21",a:[]},
+    {img:"",n:{it:"Tagliata di Manzo",en:"Beef Tagliata",de:"Tagliata vom Rind"},d:{it:"Ai porcini o con pomodorino, rucola e grana",en:"With porcini or cherry tomato, rocket and grana",de:"Mit Steinpilzen oder Kirschtomaten, Rucola und Grana"},p:"18",a:["latte"]},
+    {img:"",n:{it:"Bistecca di Vitello",en:"Veal Steak",de:"Kalbssteak"},d:{it:"Ai ferri o alla palermitana",en:"Grilled or Palermo style",de:"Gegrillt oder Palermo-Art"},p:"10",a:["glutine"]},
+    {img:"",n:{it:"Cotoletta di Pollo alla Milanese",en:"Chicken Milanese",de:"Mailänder Hähnchenschnitzel"},d:{it:"",en:"",de:""},p:"8",a:["glutine","uova"]}
+  ]},
+  {id:"contorni",t:{it:"Contorni",en:"Sides",de:"Beilagen"},dishes:[
+    {img:P+"photo-1534483509719-3feaee7c30da?w=400&q=80",n:{it:"Grigliata Mista di Verdure",en:"Mixed Grilled Vegetables",de:"Gemischter Grillgemüse"},d:{it:"",en:"",de:""},p:"7",a:[]},
+    {img:"",n:{it:"Zucchine ai Ferri",en:"Grilled Courgettes",de:"Gegrillte Zucchini"},d:{it:"",en:"",de:""},p:"4",a:[]},
+    {img:"",n:{it:"Melanzana ai Ferri",en:"Grilled Aubergine",de:"Gegrillte Aubergine"},d:{it:"",en:"",de:""},p:"4",a:[]},
+    {img:"",n:{it:"Insalata Mista",en:"Mixed Salad",de:"Gemischter Salat"},d:{it:"",en:"",de:""},p:"4,50",a:[]},
+    {img:"",n:{it:"Patatine Fritte",en:"French Fries",de:"Pommes Frites"},d:{it:"",en:"",de:""},p:"5",a:[]},
+    {img:"",n:{it:"Patatine Speziate con Buccia",en:"Spiced Skin-on Fries",de:"Gewürzte Kartoffelchips"},d:{it:"",en:"",de:""},p:"6",a:[]},
+    {img:"",n:{it:"Crocchette di Patate",en:"Potato Croquettes",de:"Kartoffelkroketten"},d:{it:"",en:"",de:""},p:"4",a:["glutine","latte","uova"]}
+  ]},
+  /* PIZZE */
+  {id:"pizze_classiche",t:{it:"Pizze Classiche",en:"Classic Pizzas",de:"Klassische Pizzen"},pizza:true,dishes:[
+    {img:P+"photo-1574071318508-1cdbab80d002?w=400&q=80",n:{it:"Stasera Pago Io",en:"Stasera Pago Io",de:"Stasera Pago Io"},d:{it:"Mozzarella, pomodoro, prosciutto crudo, rucola, scaglie parmigiano",en:"Mozzarella, tomato, cured ham, rocket, parmesan shavings",de:"Mozzarella, Tomate, Rohschinken, Rucola, Parmesanspäne"},taglie:{b:"9,00",n:"10,00",m:"26,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Margherita",en:"Margherita",de:"Margherita"},d:{it:"Pomodoro, mozzarella, olio, origano",en:"Tomato, mozzarella, oil, oregano",de:"Tomatensoße, Mozzarella, Öl, Oregano"},taglie:{b:"5,00",n:"6,00",m:"16,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Biancaneve",en:"Biancaneve",de:"Biancaneve"},d:{it:"Mozzarella, olio, origano",en:"Mozzarella, oil, oregano",de:"Mozzarella, Öl, Oregano"},taglie:{b:"5,00",n:"6,00",m:"16,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Patapizza",en:"Patapizza",de:"Patapizza"},d:{it:"Pomodoro, mozzarella, patatine fritte, origano",en:"Tomato, mozzarella, french fries, oregano",de:"Tomatensoße, Mozzarella, Pommes Frites, Oregano"},taglie:{b:"7,00",n:"8,00",m:"21,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"4 Formaggi",en:"4 Cheeses",de:"4 Käse"},d:{it:"Mozzarella, gorgonzola, emmenthal, parmigiano, origano",en:"Mozzarella, gorgonzola, emmental, parmesan, oregano",de:"Mozzarella, Gorgonzola, Emmentaler, Parmesan, Oregano"},taglie:{b:"8,00",n:"9,00",m:"25,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Diavola",en:"Diavola",de:"Diavola"},d:{it:"Pomodoro, mozzarella, salsiccia piccante, origano",en:"Tomato, mozzarella, spicy sausage, oregano",de:"Tomatensoße, Mozzarella, scharfe Wurst, Oregano"},taglie:{b:"6,50",n:"7,50",m:"21,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Napoli",en:"Napoli",de:"Napoli"},d:{it:"Pomodoro, mozzarella, acciughe, olio",en:"Tomato, mozzarella, anchovies, oil",de:"Tomatensoße, Mozzarella, Sardellen, Öl"},taglie:{b:"6,50",n:"7,50",m:"21,00"},a:["glutine","latte","pesce"]},
+    {img:"",n:{it:"Calzone",en:"Calzone",de:"Calzone"},d:{it:"Pomodoro, mozzarella, prosciutto cotto, olio, origano",en:"Tomato, mozzarella, cooked ham, oil, oregano",de:"Tomatensoße, Mozzarella, gekochter Schinken, Öl, Oregano"},taglie:{b:"",n:"8,50",m:""},a:["glutine","latte"]},
+    {img:"",n:{it:"Faccia ri Veccia",en:"Faccia ri Veccia",de:"Faccia ri Veccia"},d:{it:"Olio, origano",en:"Oil, oregano",de:"Öl, Oregano"},taglie:{b:"3,00",n:"4,00",m:""},a:["glutine"]},
+    {img:"",n:{it:"007",en:"007",de:"007"},d:{it:"Pomodoro, mozzarella, prosciutto cotto, funghi freschi, uovo, wurstel, carciofi, olio, origano",en:"Tomato, mozzarella, ham, mushrooms, egg, frankfurter, artichokes, oil, oregano",de:"Tomatensoße, Mozzarella, Schinken, Pilze, Ei, Würstchen, Artischocken, Öl, Oregano"},taglie:{b:"8,50",n:"9,50",m:"26,50"},a:["glutine","latte","uova"]},
+    {img:"",n:{it:"Capricciosa",en:"Capricciosa",de:"Capricciosa"},d:{it:"Pomodoro, mozzarella, prosciutto cotto, funghi freschi, uovo, olio, origano",en:"Tomato, mozzarella, ham, mushrooms, egg, oil, oregano",de:"Tomatensoße, Mozzarella, Schinken, Pilze, Ei, Öl, Oregano"},taglie:{b:"7,50",n:"8,50",m:"22,50"},a:["glutine","latte","uova"]},
+    {img:"",n:{it:"Vegetariana",en:"Vegetarian",de:"Vegetariana"},d:{it:"Pomodoro, mozzarella, radicchio, melanzana e zucchine arroste, olio, origano",en:"Tomato, mozzarella, roasted radicchio, aubergine and courgettes, oil, oregano",de:"Tomatensoße, Mozzarella, gegrilltes Gemüse, Öl, Oregano"},taglie:{b:"7,50",n:"8,50",m:"22,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Norma",en:"Norma",de:"Norma"},d:{it:"Pomodoro, mozzarella, melanzana fritta, ricotta salata, origano",en:"Tomato, mozzarella, fried aubergine, salted ricotta, oregano",de:"Tomatensoße, Mozzarella, frittierte Aubergine, gesalzene Ricotta, Oregano"},taglie:{b:"7,00",n:"8,00",m:"23,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Parmigiana",en:"Parmigiana",de:"Parmigiana"},d:{it:"Pomodoro, mozzarella, melanzana fritta, uovo, parmigiano, origano",en:"Tomato, mozzarella, fried aubergine, egg, parmesan, oregano",de:"Tomatensoße, Mozzarella, frittierte Aubergine, Ei, Parmesan, Oregano"},taglie:{b:"8,00",n:"9,00",m:"24,00"},a:["glutine","latte","uova"]},
+    {img:"",n:{it:"Carcio Speck",en:"Carcio Speck",de:"Carcio Speck"},d:{it:"Patè di carciofi, mozzarella, speck, olio, origano",en:"Artichoke pâté, mozzarella, speck, oil, oregano",de:"Artischockenpaste, Mozzarella, Speck, Öl, Oregano"},taglie:{b:"8,00",n:"9,00",m:"24,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Boscaiola",en:"Boscaiola",de:"Boscaiola"},d:{it:"Mozzarella, funghi freschi, funghi di muschio, funghi porcini, origano",en:"Mozzarella, fresh mushrooms, wild mushrooms, porcini, oregano",de:"Mozzarella, frische Pilze, Waldpilze, Steinpilze, Oregano"},taglie:{b:"9,00",n:"10,00",m:"26,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Valtellina",en:"Valtellina",de:"Valtellina"},d:{it:"Pomodoro, mozzarella, bresaola, rucola, scaglie di parmigiano, olio, origano",en:"Tomato, mozzarella, bresaola, rocket, parmesan shavings, oil, oregano",de:"Tomatensoße, Mozzarella, Bresaola, Rucola, Parmesanspäne, Öl, Oregano"},taglie:{b:"9,00",n:"10,00",m:"26,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Bufala",en:"Bufala",de:"Bufala"},d:{it:"Pomodoro, mozzarella di bufala, olio, origano",en:"Tomato, buffalo mozzarella, oil, oregano",de:"Tomatensoße, Büffelmozzarella, Öl, Oregano"},taglie:{b:"7,50",n:"8,50",m:"22,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Radicchio e Funghi",en:"Radicchio & Mushrooms",de:"Radicchio & Pilze"},d:{it:"Pomodoro, mozzarella, funghi freschi, radicchio arrosto, olio, origano",en:"Tomato, mozzarella, mushrooms, roasted radicchio, oil, oregano",de:"Tomatensoße, Mozzarella, Pilze, gegrillter Radicchio, Öl, Oregano"},taglie:{b:"7,00",n:"8,00",m:"21,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Tirolese",en:"Tirolese",de:"Tirolese"},d:{it:"Pomodoro, funghi freschi, speck, emmenthal, olio, origano",en:"Tomato, fresh mushrooms, speck, emmental, oil, oregano",de:"Tomatensoße, Pilze, Speck, Emmentaler, Öl, Oregano"},taglie:{b:"8,00",n:"9,00",m:"24,00"},a:["glutine","latte"]}
+  ]},
+  {id:"pizze_sfiziose",t:{it:"Pizze Sfiziose",en:"Gourmet Pizzas",de:"Gourmet-Pizzen"},pizza:true,dishes:[
+    {img:P+"photo-1513104890138-7c749659a591?w=400&q=80",n:{it:"Don Nino",en:"Don Nino",de:"Don Nino"},d:{it:"Crema tartufata, mozzarella di bufala, pomodoro, pancetta, funghi freschi, olio, origano",en:"Truffle cream, buffalo mozzarella, tomato, bacon, mushrooms, oil, oregano",de:"Trüffelcreme, Büffelmozzarella, Tomate, Pancetta, Pilze, Öl, Oregano"},taglie:{b:"12,00",n:"13,00",m:"35,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Saporita",en:"Saporita",de:"Saporita"},d:{it:"Pomodoro, provola affumicata, pancetta, cipolla alla piastra, olio, origano",en:"Tomato, smoked provola, bacon, grilled onion, oil, oregano",de:"Tomatensoße, geräucherte Provola, Pancetta, gegrillte Zwiebel, Öl, Oregano"},taglie:{b:"8,00",n:"9,00",m:"24,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Ai Porcini",en:"Porcini",de:"Ai Porcini"},d:{it:"Mozzarella, funghi porcini, olio, origano",en:"Mozzarella, porcini mushrooms, oil, oregano",de:"Mozzarella, Steinpilze, Öl, Oregano"},taglie:{b:"7,50",n:"8,50",m:"23,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Zucca Mantovana",en:"Zucca Mantovana",de:"Zucca Mantovana"},d:{it:"Patè di zucca, mozzarella, funghi freschi, scaglie di parmigiano, olio, origano",en:"Pumpkin pâté, mozzarella, mushrooms, parmesan shavings, oil, oregano",de:"Kürbispaste, Mozzarella, Pilze, Parmesanspäne, Öl, Oregano"},taglie:{b:"8,00",n:"9,00",m:"24,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Palermitana",en:"Palermitana",de:"Palermitana"},d:{it:"Pomodoro, mozzarella, prosciutto cotto, melanzana arrosto, pangrattato, olio, origano",en:"Tomato, mozzarella, ham, roasted aubergine, breadcrumbs, oil, oregano",de:"Tomatensoße, Mozzarella, Schinken, gegrillte Aubergine, Semmelbrösel, Öl, Oregano"},taglie:{b:"7,50",n:"8,50",m:"22,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Vitellina",en:"Vitellina",de:"Vitellina"},d:{it:"Pomodoro, caciocavallo, straccetti di vitello, aglio, olio, origano",en:"Tomato, caciocavallo, veal strips, garlic, oil, oregano",de:"Tomatensoße, Caciocavallo, Kalbsstreifen, Knoblauch, Öl, Oregano"},taglie:{b:"9,50",n:"10,50",m:"27,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Schiaccione",en:"Schiaccione",de:"Schiaccione"},d:{it:"Mozzarella, salame piccante, parmigiano, olio, origano",en:"Mozzarella, spicy salami, parmesan, oil, oregano",de:"Mozzarella, scharfe Salami, Parmesan, Öl, Oregano"},taglie:{b:"",n:"8,50",m:"11,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Rustica",en:"Rustica",de:"Rustica"},d:{it:"Mozzarella, patate lesse, salsiccia piccante, parmigiano, olio, rosmarino",en:"Mozzarella, boiled potatoes, spicy sausage, parmesan, oil, rosemary",de:"Mozzarella, gekochte Kartoffeln, scharfe Wurst, Parmesan, Öl, Rosmarin"},taglie:{b:"8,00",n:"9,00",m:"24,00"},a:["glutine","latte"]},
+    {img:"",n:{it:"Suprema",en:"Suprema",de:"Suprema"},d:{it:"Mozzarella, pomodoro, salsiccia fresca, spinaci, parmigiano, olio, origano, pepe nero",en:"Mozzarella, tomato, fresh sausage, spinach, parmesan, oil, oregano, black pepper",de:"Mozzarella, Tomate, frische Wurst, Spinat, Parmesan, Öl, Oregano, Pfeffer"},taglie:{b:"8,50",n:"9,50",m:"25,50"},a:["glutine","latte"]},
+    {img:P+"photo-1574071318508-1cdbab80d002?w=400&q=80",n:{it:"Al Pistacchio",en:"Pistachio",de:"Al Pistacchio"},d:{it:"Patè di pistacchio, mozzarella, speck, origano",en:"Pistachio pâté, mozzarella, speck, oregano",de:"Pistazienpaste, Mozzarella, Speck, Oregano"},taglie:{b:"9,50",n:"10,50",m:"29,00"},a:["glutine","latte","frutta_guscio"]},
+    {img:"",n:{it:"Affumicata",en:"Affumicata",de:"Affumicata"},d:{it:"Provola affumicata, pancetta, pangrattato, parmigiano, glassa di aceto balsamico, origano",en:"Smoked provola, bacon, breadcrumbs, parmesan, balsamic glaze, oregano",de:"Geräucherte Provola, Pancetta, Semmelbrösel, Parmesan, Balsamico, Oregano"},taglie:{b:"8,50",n:"9,50",m:"25,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Asparagi e Pancetta",en:"Asparagus & Bacon",de:"Spargel & Pancetta"},d:{it:"Patè di asparagi, mozzarella di bufala, pancetta, olio, origano",en:"Asparagus pâté, buffalo mozzarella, bacon, oil, oregano",de:"Spargelpaste, Büffelmozzarella, Pancetta, Öl, Oregano"},taglie:{b:"8,50",n:"9,50",m:"25,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Ricotta e Salsiccia",en:"Ricotta & Sausage",de:"Ricotta & Wurst"},d:{it:"Pomodoro, mozzarella, ricotta fresca, salsiccia fresca, olio, origano",en:"Tomato, mozzarella, fresh ricotta, fresh sausage, oil, oregano",de:"Tomatensoße, Mozzarella, frische Ricotta, frische Wurst, Öl, Oregano"},taglie:{b:"8,00",n:"9,00",m:"23,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Casareccia",en:"Casareccia",de:"Casareccia"},d:{it:"Mozzarella, straccetti di vitello, gorgonzola, patate lesse, caciocavallo, origano",en:"Mozzarella, veal strips, gorgonzola, boiled potatoes, caciocavallo, oregano",de:"Mozzarella, Kalbsstreifen, Gorgonzola, gekochte Kartoffeln, Caciocavallo, Oregano"},taglie:{b:"10,00",n:"11,00",m:"28,50"},a:["glutine","latte"]},
+    {img:"",n:{it:"Mortadella",en:"Mortadella",de:"Mortadella"},d:{it:"Patè di pistacchio, mozzarella, burrata, mortadella, granella di pistacchio",en:"Pistachio pâté, mozzarella, burrata, mortadella, pistachio crumble",de:"Pistazienpaste, Mozzarella, Burrata, Mortadella, Pistaziengrieß"},taglie:{b:"11,50",n:"12,50",m:"33,50"},a:["glutine","latte","frutta_guscio"]}
+  ]},
+  {id:"pizze_pesce",t:{it:"Pizze di Pesce",en:"Fish Pizzas",de:"Fischpizzen"},pizza:true,dishes:[
+    {img:P+"photo-1565299624946-b28f40a0ae38?w=400&q=80",n:{it:"Mediterraneo",en:"Mediterraneo",de:"Mediterraneo"},d:{it:"Patè di pistacchio, mozzarella, gamberetti, pomodoro, pepe nero",en:"Pistachio pâté, mozzarella, prawns, tomato, black pepper",de:"Pistazienpaste, Mozzarella, Garnelen, Tomate, Pfeffer"},taglie:{b:"10,50",n:"11,50",m:"31,00"},a:["glutine","latte","crostacei","frutta_guscio"]},
+    {img:"",n:{it:"Al Gratin",en:"Al Gratin",de:"Al Gratin"},d:{it:"Pomodoro, mozzarella, gamberetti, zucchine arrosto, pangrattato, pepe nero",en:"Tomato, mozzarella, prawns, roasted courgettes, breadcrumbs, black pepper",de:"Tomatensoße, Mozzarella, Garnelen, gegrillte Zucchini, Semmelbrösel, Pfeffer"},taglie:{b:"8,50",n:"9,50",m:"25,50"},a:["glutine","latte","crostacei"]},
+    {img:"",n:{it:"Sapori di Mare",en:"Sea Flavours",de:"Sapori di Mare"},d:{it:"Pomodoro, gamberetti, pesce spada, salmone affumicato, prezzemolo, pepe nero",en:"Tomato, prawns, swordfish, smoked salmon, parsley, black pepper",de:"Tomatensoße, Garnelen, Schwertfisch, geräucherter Lachs, Petersilie, Pfeffer"},taglie:{b:"12,50",n:"13,50",m:"35,00"},a:["glutine","latte","crostacei","pesce"]},
+    {img:"",n:{it:"Ai Frutti di Mare",en:"Frutti di Mare",de:"Ai Frutti di Mare"},d:{it:"Pomodori, polpo, calamari, gamberetti, scampi, prezzemolo, pepe nero",en:"Tomato, octopus, calamari, prawns, crayfish, parsley, black pepper",de:"Tomatensoße, Oktopus, Calamari, Garnelen, Scampi, Petersilie, Pfeffer"},taglie:{b:"13,00",n:"14,00",m:"36,00"},a:["glutine","latte","crostacei","molluschi"]},
+    {img:"",n:{it:"Deliziosa",en:"Deliziosa",de:"Deliziosa"},d:{it:"Patè di carciofi, mozzarella, gamberetti, olio, pepe nero",en:"Artichoke pâté, mozzarella, prawns, oil, black pepper",de:"Artischockenpaste, Mozzarella, Garnelen, Öl, Pfeffer"},taglie:{b:"9,00",n:"10,00",m:"26,50"},a:["glutine","latte","crostacei"]},
+    {img:"",n:{it:"Al Salmone",en:"Salmon",de:"Al Salmone"},d:{it:"Mozzarella, salmone affumicato, rucola, olio",en:"Mozzarella, smoked salmon, rocket, oil",de:"Mozzarella, geräucherter Lachs, Rucola, Öl"},taglie:{b:"8,50",n:"9,50",m:"25,50"},a:["glutine","latte","pesce"]},
+    {img:"",n:{it:"Tonnata",en:"Tonnata",de:"Tonnata"},d:{it:"Pomodoro, mozzarella, tonno, cipolla alla piastra, olio",en:"Tomato, mozzarella, tuna, grilled onion, oil",de:"Tomatensoße, Mozzarella, Thunfisch, gegrillte Zwiebel, Öl"},taglie:{b:"7,50",n:"8,50",m:"22,50"},a:["glutine","latte","pesce"]},
+    {img:"",n:{it:"Mare e Monti",en:"Mare e Monti",de:"Mare e Monti"},d:{it:"Mozzarella, pomodoro, pesce spada, funghi di muschio, patè di pistacchio, olio, pepe nero",en:"Mozzarella, tomato, swordfish, wild mushrooms, pistachio pâté, oil, black pepper",de:"Mozzarella, Tomate, Schwertfisch, Waldpilze, Pistazienpaste, Öl, Pfeffer"},taglie:{b:"10,00",n:"11,00",m:"29,00"},a:["glutine","latte","pesce","frutta_guscio"]}
+  ]},
+  {id:"dessert",t:{it:"Dessert",en:"Desserts",de:"Desserts",fr:"Desserts"},dishes:[
+    {img:"",n:{it:"Dessert della casa",en:"House desserts",de:"Desserts des Hauses",fr:"Desserts maison"},d:{it:"Chiedi al personale le proposte disponibili",en:"Ask the staff for today's available desserts",de:"Fragen Sie das Personal nach den verfügbaren Desserts",fr:"Demandez au personnel les desserts disponibles"},p:"",a:["glutine","latte","uova","frutta_guscio"]}
+  ]},
+  {id:"pizze_dolci",t:{it:"Pizze Dolci",en:"Sweet Pizzas",de:"Süße Pizzen",fr:"Pizzas sucrées"},pizza:true,dishes:[
+    {img:P+"photo-1548365328-8c6db3220e4c?w=400&q=80",n:{it:"Nutella e Noccioline",en:"Nutella & Hazelnuts",de:"Nutella & Haselnüsse"},d:{it:"",en:"",de:""},taglie:{b:"7,00",n:"8,00",m:""},a:["glutine","latte","frutta_guscio"]},
+    {img:"",n:{it:"Crema al Latte, Nocciola, Nutella e Amaretti",en:"Milk Cream, Hazelnut, Nutella & Amaretti",de:"Milchcreme, Haselnuss, Nutella & Amaretti"},d:{it:"",en:"",de:""},taglie:{b:"8,00",n:"9,00",m:""},a:["glutine","latte","frutta_guscio"]},
+    {img:"",n:{it:"Nutella e Ricotta",en:"Nutella & Ricotta",de:"Nutella & Ricotta"},d:{it:"",en:"",de:""},taglie:{b:"9,00",n:"10,00",m:""},a:["glutine","latte"]}
+  ]}
+];
+
+let lang="it", activeFilters=new Set();
+
+function text(obj){
+  if(!obj) return "";
+  return obj[lang] || obj.it || obj.en || obj.de || obj.fr || "";
+}
+
+function buildChips(){
+  const wrap=document.getElementById("chips");
+  if(!wrap) return;
+  wrap.innerHTML="";
+  Object.keys(ALLERGENS).forEach(key=>{
+    const b=document.createElement("button");
+    b.className="chip"+(activeFilters.has(key)?" active":"");
+    b.innerHTML=text(ALLERGENS[key])+(activeFilters.has(key)?' <span class="x">✕</span>':'');
+    b.onclick=()=>{
+      activeFilters.has(key)?activeFilters.delete(key):activeFilters.add(key);
+      buildChips();
+      render();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function buildCatNav(){
+  const nav=document.getElementById("catnav");
+  if(!nav) return;
+
+  const cats=[
+    {label:{it:"Antipasti",en:"Starters",de:"Vorspeisen",fr:"Entrées"}, href:"#ant_pesce"},
+    {label:{it:"Primi",en:"First courses",de:"Erste Gänge",fr:"Premiers plats"}, href:"#primi_pesce"},
+    {label:{it:"Secondi",en:"Main courses",de:"Hauptgerichte",fr:"Plats"}, href:"#sec_pesce"},
+    {label:{it:"Contorni",en:"Sides",de:"Beilagen",fr:"Accompagnements"}, href:"#contorni"},
+    {label:{it:"Stuzzicheria",en:"Nibbles",de:"Snacks",fr:"Snacks"}, href:"#stuzzich"},
+    {label:{it:"Dessert",en:"Desserts",de:"Desserts",fr:"Desserts"}, href:"#dessert"},
+    {label:{it:"Pizze",en:"Pizzas",de:"Pizzen",fr:"Pizzas"}, href:"#pizze_classiche"},
+    {label:{it:"Pizze speciali",en:"Special pizzas",de:"Spezielle Pizzen",fr:"Pizzas spéciales"}, href:"#pizze_sfiziose"},
+    {label:{it:"Pizze dolci",en:"Sweet pizzas",de:"Süße Pizzen",fr:"Pizzas sucrées"}, href:"#pizze_dolci"}
+  ];
+
+  const labels={
+    it:"Categorie",
+    en:"Categories",
+    de:"Kategorien",
+    fr:"Catégories"
+  };
+
+  nav.innerHTML=`
+    <details class="cat-dropdown">
+      <summary>
+        <span>${labels[lang] || labels.it}</span>
+        <small>${cats.length}</small>
+      </summary>
+      <div class="cat-grid">
+        ${cats.map(g=>`<a href="${g.href}" onclick="this.closest('details').removeAttribute('open')">${text(g.label)}</a>`).join("")}
+      </div>
+    </details>
+  `;
+}
+
+function resetFilters(){
+  activeFilters.clear();
+  buildChips();
+  render();
+}
+
+
+function escAttr(v){
+  return (v || "").replace(/"/g, "&quot;");
+}
+
+function sectionImage(sec){
+  const photos={
+    ant_pesce:"assets/foto-02.png",
+    ant_carne:"assets/foto-03.png",
+    primi_pesce:"assets/foto-04.png",
+    primi_carne:"assets/foto-05.png",
+    sec_pesce:"assets/foto-06.png",
+    sec_carne:"assets/foto-07.png",
+    contorni:"assets/foto-08.png",
+    stuzzich:"assets/foto-09.png"
+  };
+  return photos[sec.id] || "";
+}
+
+function render(){
+  const menu=document.getElementById("menu");
+  if(!menu) return;
+  menu.innerHTML="";
+  buildCatNav();
+
+  let hidden=0, shown=0;
+  const t=I18N[lang] || I18N.it;
+
+  [...SECTIONS].sort((a,b)=>{
+    const order=[
+      "ant_pesce","ant_carne",
+      "primi_pesce","primi_carne",
+      "sec_pesce","sec_carne",
+      "contorni",
+      "stuzzich",
+      "dessert",
+      "pizze_classiche",
+      "pizze_sfiziose",
+      "pizze_pesce",
+      "pizze_dolci"
+    ];
+    const ia=order.indexOf(a.id);
+    const ib=order.indexOf(b.id);
+    return (ia===-1?99:ia)-(ib===-1?99:ib);
+  }).forEach(sec=>{
+    const section=document.createElement("section");
+    section.className="section";
+    section.id=sec.id;
+
+    let dishesHtml="";
+    let visibleInSection=0;
+
+    sec.dishes.forEach(d=>{
+      const allergens=d.a || [];
+      const blocked=allergens.some(a=>activeFilters.has(a));
+      if(blocked){
+        hidden++;
+        return;
+      }
+
+      visibleInSection++;
+      shown++;
+
+      const tags=allergens.map(a=>`<span class="a-tag">${text(ALLERGENS[a]) || a}</span>`).join("");
+
+      if(d.taglie){
+        const sizes=[];
+        if(d.taglie.b) sizes.push(`<div class="tg"><span class="tg-l">${t.baby}</span><span class="tg-p">€ ${d.taglie.b}</span></div>`);
+        if(d.taglie.n) sizes.push(`<div class="tg"><span class="tg-l">${t.normale}</span><span class="tg-p">€ ${d.taglie.n}</span></div>`);
+        if(d.taglie.m) sizes.push(`<div class="tg"><span class="tg-l">${t.maxi}</span><span class="tg-p">€ ${d.taglie.m}</span></div>`);
+
+        dishesHtml += `<div class="dish">
+          <div class="dish-body">
+            <div class="dish-name">${text(d.n)}</div>
+            ${text(d.d)?`<div class="dish-desc">${text(d.d)}</div>`:""}
+            <div class="taglie">${sizes.join("")}</div>
+            <div class="dish-allergens">${tags}</div>
+          </div>
+        </div>`;
+      } else {
+        dishesHtml += `<div class="dish">
+          <div class="dish-body">
+            <div class="dish-head">
+              <div class="dish-name">${text(d.n)}</div>
+              ${d.p?`<div class="dish-price">€ ${d.p}</div>`:""}
+            </div>
+            ${text(d.d)?`<div class="dish-desc">${text(d.d)}</div>`:""}
+            <div class="dish-allergens">${tags}</div>
+          </div>
+        </div>`;
+      }
+    });
+
+    if(visibleInSection>0){
+      const img=sectionImage(sec);
+      const photoHtml=img?`<div class="section-photo" style="background-image:url('${escAttr(img)}')"><div class="section-photo-shade"></div></div>`:"";
+      section.innerHTML=photoHtml+`<h2 class="section-title"><span class="section-title-badge">${text(sec.t)}</span></h2>`+dishesHtml;
+      menu.appendChild(section);
+    }
+  });
+
+  const empty=document.getElementById("empty");
+  if(empty) empty.style.display=shown===0?"block":"none";
+
+  const note=document.getElementById("note");
+  if(note) note.textContent=hidden>0?t.noteOn(hidden):"";
+
+  const fs=document.getElementById("filterSummary");
+  if(fs) fs.textContent=activeFilters.size?t.active(activeFilters.size):t.noFilter;
+}
+
+function setLang(l,btn){
+  lang=l;
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.remove("on"));
+  if(btn) btn.classList.add("on");
+  document.documentElement.lang=l;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n");
+    const value=I18N[l] && I18N[l][k];
+    if(value){
+      el.innerHTML=value;
+    }
+  });
+
+  const allergenNotice=document.querySelector('.notice[data-i18n="allergenNotice"]');
+  if(allergenNotice && I18N[l] && I18N[l].allergenNotice){
+    allergenNotice.innerHTML=I18N[l].allergenNotice;
+  }
+
+  buildChips();
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  buildChips();
+  render();
+});
+</script>
+</body>
+</html>
