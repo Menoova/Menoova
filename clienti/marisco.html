@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marisco — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0c2340;--gold:#c4861a;--gold-l:#e8a832;
+  --paper:#faf7f1;--surface:#fff;--ink:#1c2b3a;--muted:#64748b;
+  --line:rgba(12,35,64,.11);--r:14px;
+  --logo:url("data:image/png;base64,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");
+}
+/* WATERMARK DEMO */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:45;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'%3E%3Ctext x='100' y='60' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='26' font-weight='900' fill='%230c2340' opacity='0.07' transform='rotate(-35,100,60)'%3EDEMO%3C/text%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;padding-bottom:40px;overflow-x:hidden;max-width:100vw}
+
+/* ── WELCOME SCREEN ── */
+.welcome{
+  min-height:100vh;
+  background:
+    linear-gradient(180deg,rgba(7,24,41,.82) 0%,rgba(7,24,41,.92) 60%,rgba(7,24,41,.98) 100%),
+    url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1200&q=80') center/cover no-repeat;
+  color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:48px 28px 60px;position:relative;
+}
+.welcome-lang{
+  display:flex;gap:8px;justify-content:center;
+  margin-bottom:28px;
+}
+.welcome-lang button{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:20px;padding:6px 10px;cursor:pointer;transition:.2s;
+  display:flex;align-items:center;
+}
+.welcome-lang button.on{background:rgba(255,255,255,.95);border-color:#fff}
+.welcome-lang button img{width:24px;height:18px;border-radius:3px;display:block}
+
+.w-anchor{
+  width:112px;height:120px;
+  background:var(--logo) center/contain no-repeat;
+  margin-bottom:18px;
+}
+.w-title{
+  font-family:'Playfair Display';font-size:52px;font-weight:700;
+  letter-spacing:4px;line-height:1;margin-bottom:6px;
+}
+.w-tagline{
+  font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  opacity:.65;margin-bottom:28px;font-weight:300;
+}
+.w-rule{
+  display:flex;align-items:center;gap:12px;
+  width:100%;max-width:280px;margin:0 auto 28px;
+}
+.w-rule::before,.w-rule::after{content:"";flex:1;height:1px;background:rgba(196,134,26,.5)}
+.w-rule-dot{width:5px;height:5px;border-radius:50%;background:var(--gold-l);flex-shrink:0}
+.w-text{
+  font-family:'Playfair Display';font-style:italic;
+  font-size:16px;line-height:1.75;opacity:.9;
+  max-width:420px;margin:0 auto 36px;
+  color:rgba(255,255,255,.92);
+}
+.w-cta{
+  display:inline-flex;flex-direction:row;align-items:center;gap:9px;
+  background:#fff;color:var(--navy);font-size:14px;letter-spacing:1.5px;cursor:pointer;
+  text-transform:uppercase;font-weight:700;
+  padding:14px 30px;border-radius:30px;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);transition:.2s;
+}
+.w-cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.34)}
+.w-cta-arrow{font-size:18px;color:var(--gold);animation:bounce 2s infinite}
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(6px)}
+}
+
+/* ── HEADER ── */
+.header{
+  background:linear-gradient(135deg,var(--navy),#163a5f);
+  color:#fff;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  position:sticky;top:0;z-index:30;width:100%;
+}
+.hbrand{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.hlogo{width:36px;height:38px;background:var(--logo) center/contain no-repeat;flex-shrink:0}
+.hname{font-family:'Playfair Display';font-size:16px;font-weight:700;letter-spacing:1px}
+.hright{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.lang-sm{display:flex;gap:3px}
+.lang-sm button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:4px 6px;border-radius:20px;cursor:pointer;transition:.2s;display:flex;align-items:center}
+.lang-sm button.on{background:#fff;border-color:#fff}
+.lang-sm button img{width:22px;height:16px;border-radius:2px;display:block}
+.filter-bar{
+  background:var(--paper);border-bottom:1px solid var(--line);
+  padding:8px 16px;display:flex;justify-content:flex-end;
+  position:sticky;top:62px;z-index:25;
+}
+.filter-btn{background:rgba(12,35,64,.07);border:1px solid var(--line);color:var(--navy);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Outfit';display:flex;align-items:center;gap:5px;white-space:nowrap}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* ── MENU CONTENT ── */
+.menu-section{scroll-margin-top:60px;margin-bottom:6px}
+.sec-hdr{padding:22px 18px 14px;background:var(--paper)}
+.sec-hdr h2{font-family:'Playfair Display';font-size:22px;font-weight:700;color:var(--navy);margin-bottom:3px;display:flex;align-items:center;gap:10px}
+.sec-hdr h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-hdr p{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-top:4px}
+
+.dish-featured{margin:4px 14px 10px;background:linear-gradient(135deg,var(--navy),#163a5f);color:#fff;border-radius:var(--r);padding:18px 20px;position:relative;overflow:hidden}
+.dish-featured::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.df-badge{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px}
+.df-name{font-family:'Playfair Display';font-size:18px;font-weight:700;line-height:1.2;margin-bottom:6px}
+.df-desc{font-size:12.5px;opacity:.82;line-height:1.45;margin-bottom:12px}
+.df-bottom{display:flex;align-items:center;justify-content:space-between}
+.df-price{font-family:'Playfair Display';font-size:22px;font-weight:700;color:var(--gold-l)}
+.df-tags{display:flex;flex-wrap:wrap;gap:4px}
+
+.dish-list{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:6px}
+.dish-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid var(--line);transition:.15s}
+.dish-row:last-child{border-bottom:none}
+.dish-row.hidden{display:none}
+.dr-left{flex:1;min-width:0}
+.dr-name{font-family:'Playfair Display';font-weight:600;font-size:15px;color:var(--navy);line-height:1.2;margin-bottom:4px}
+.dr-desc{font-size:12px;color:var(--muted);line-height:1.4;margin-bottom:5px}
+.dr-tags{display:flex;flex-wrap:wrap;gap:3px}
+.a-tag{font-size:10px;font-weight:500;background:rgba(196,134,26,.10);color:#8a6a2e;padding:2px 7px;border-radius:20px;border:1px solid rgba(196,134,26,.18)}
+.dr-price{font-family:'Playfair Display';font-weight:700;font-size:16px;color:var(--navy);white-space:nowrap;flex-shrink:0;padding-top:2px}
+
+.bar-wrap{margin:4px 14px 10px}
+.bar-table{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.bar-hdr{background:var(--navy);color:#fff;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.bar-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.bar-row:last-child{border-bottom:none}
+.bar-row .bn{font-weight:500}
+.bar-row .bp{font-family:'Playfair Display';font-weight:700;color:var(--navy)}
+
+.cont-hdr{padding:18px 18px 10px;background:var(--paper)}
+.cont-hdr p{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.cont-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 14px;background:var(--paper)}
+.cont-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.cont-name{font-weight:600;font-size:13px;color:var(--ink)}
+.cont-desc{font-size:11px;color:var(--muted);margin-top:2px}
+.cont-price{font-family:'Playfair Display';font-weight:700;color:var(--navy);font-size:14px;margin-top:5px}
+.sec-divider{height:8px;background:var(--paper)}
+.sub-hdr{padding:20px 18px 10px;background:var(--paper);display:flex;align-items:center;gap:12px}
+.sub-hdr span{font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.sub-hdr::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* FILTER */
+.filter-panel{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(7,24,41,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.25s;width:100%;overflow:hidden}
+.filter-panel.open{opacity:1;pointer-events:all}
+.filter-sheet{background:#fff;border-radius:24px 24px 0 0;padding:24px 18px 36px;transform:translateY(100%);transition:.3s cubic-bezier(.4,0,.2,1);width:100%;overflow:hidden}
+.filter-panel.open .filter-sheet{transform:translateY(0)}
+.filter-sheet h3{font-family:'Playfair Display';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.filter-sheet p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{font-size:13px;font-weight:500;background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:30px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:5px}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-close{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:12px;font-weight:700;font-size:15px;font-family:'Outfit';cursor:pointer}
+
+
+/* FOTO FEATURED */
+.dish-featured.with-photo{padding:0;overflow:hidden}
+.feat-img{
+  height:190px;width:100%;
+  background-size:cover;background-position:center;
+  position:relative;flex-shrink:0;
+}
+.feat-img::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:90px;
+  background:linear-gradient(transparent,#0c2340);
+}
+.dish-featured.with-photo .df-content{padding:16px 20px 18px}
+
+/* FOTO DISH ROW */
+.dish-row.has-photo{align-items:center}
+.dr-photo-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.dr-photo{width:82px;height:82px;border-radius:12px;object-fit:cover;display:block;box-shadow:0 4px 14px rgba(12,35,64,.18)}
+.dr-photo-wrap .dr-price{font-family:'Playfair Display';font-weight:700;font-size:16px;color:var(--navy);white-space:nowrap;text-align:right}
+
+.foot{text-align:center;padding:24px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.foot b{color:var(--navy)}
+</style>
+</head>
+<body>
+
+<!-- WELCOME SCREEN -->
+<div class="welcome" id="welcome">
+  <div class="w-anchor"></div>
+  <div class="w-title">MARISCO</div>
+  <div class="w-tagline" id="w-tagline">Il ristorante che preferisco</div>
+  <div class="welcome-lang" id="welcome-lang"></div>
+  <div class="w-rule"><div class="w-rule-dot"></div></div>
+  <div class="w-text" id="w-text"></div>
+  <div class="w-cta" onclick="document.getElementById('menu-top').scrollIntoView({behavior:'smooth'})">
+    <span id="w-cta-label">Scopri il menu</span>
+    <span class="w-cta-arrow">↓</span>
+  </div>
+</div>
+
+<!-- HEADER (sticky, appare quando si scorre) -->
+<div id="menu-top"></div>
+<header class="header">
+  <div class="hbrand">
+    <div class="hlogo"></div>
+    <div class="hname">MARISCO</div>
+  </div>
+  <div class="hright">
+    <div class="lang-sm" id="header-lang"></div>
+  </div>
+</header>
+<div class="filter-bar">
+  <button class="filter-btn" id="filter-btn" onclick="toggleFilter()">🛡 <span data-i18n="filterLabel">Allergeni</span></button>
+</div>
+
+<main id="content"></main>
+
+<div class="filter-panel" id="filter-panel" onclick="if(event.target===this)toggleFilter()">
+  <div class="filter-sheet">
+    <h3><span data-i18n="filterTitle">Filtro allergeni</span> <span style="font-size:13px;color:var(--muted);font-weight:400;font-family:'Outfit';cursor:pointer" onclick="toggleFilter()">✕</span></h3>
+    <p data-i18n="filterDesc">Tocca un allergene per nascondere i piatti che lo contengono.</p>
+    <div class="chips" id="chips"></div>
+    <button class="btn-close" onclick="toggleFilter()" data-i18n="filterClose">Applica e chiudi</button>
+  </div>
+</div>
+
+<div class="foot">Menu digitale by <b>Menoova</b> · menoova.it</div>
+
+<script>
+const WELCOME={
+  it:{
+    tagline:"Il ristorante che preferisco",
+    text:"È con grande piacere che vi accogliamo a bordo di Marisco. Qui il mare non è solo ingrediente: è principio, cura e promessa. Selezioniamo materie prime d'eccellenza e le lavoriamo con rispetto, per esaltare sapori autentici e raccontare la nostra vocazione al mare. Prendete posto: il viaggio nel gusto comincia adesso. Buona degustazione.",
+    cta:"Scopri il menu"
+  },
+  en:{
+    tagline:"The restaurant I love",
+    text:"It is with great pleasure that we welcome you aboard Marisco. Here the sea is not just an ingredient: it is a principle, care and a promise. We select only the finest ingredients and work them with respect, to enhance authentic flavours and tell the story of our vocation to the sea. Take your seat: the journey of taste begins now. Enjoy your meal.",
+    cta:"Discover the menu"
+  },
+  de:{
+    tagline:"Das Restaurant, das ich liebe",
+    text:"Es ist uns eine große Freude, Sie an Bord von Marisco willkommen zu heißen. Hier ist das Meer nicht nur eine Zutat: Es ist ein Grundsatz, Fürsorge und ein Versprechen. Wir wählen erstklassige Zutaten aus und verarbeiten sie mit Respekt, um authentische Aromen zu entfalten und unsere Leidenschaft für das Meer zu erzählen. Nehmen Sie Platz: Die Reise des Geschmacks beginnt jetzt. Guten Appetit.",
+    cta:"Menü entdecken"
+  },
+  fr:{
+    tagline:"Le restaurant que j'aime",
+    text:"C'est avec grand plaisir que nous vous accueillons à bord de Marisco. Ici la mer n'est pas seulement un ingrédient : c'est un principe, un soin et une promesse. Nous sélectionnons des matières premières d'excellence et les travaillons avec respect, pour exalter les saveurs authentiques et raconter notre vocation à la mer. Prenez place : le voyage du goût commence maintenant. Bonne dégustation.",
+    cta:"Découvrir le menu"
+  }
+};
+
+const I18N={
+  it:{filterLabel:"Allergeni",filterTitle:"Filtro allergeni",filterDesc:"Tocca un allergene per nascondere i piatti.",filterClose:"Applica e chiudi",sigBadge:"★ Signature",
+    tabs:[{id:"crudi",ico:"🦪",name:"Crudi e Marinati",sub:"Gusto in purezza, tagli e freschezza"},
+          {id:"cotti",ico:"🔥",name:"Cotti",sub:"Gusto in cottura, cotti con cura"},
+          {id:"terra",ico:"🌿",name:"Note di Terra",sub:"Antipasti di terra"},
+          {id:"primi",ico:"🍝",name:"Primi",sub:"Onde di sapore, pasta e mare"},
+          {id:"secondi",ico:"🐟",name:"Secondi",sub:"Mare scelto, semplicità raffinata"},
+          {id:"pinse",ico:"🫓",name:"Pinse",sub:"Lievitazioni e Fraganze"},
+          {id:"dessert",ico:"🍰",name:"Dessert",sub:"Dolci coccole"}]},
+  en:{filterLabel:"Allergens",filterTitle:"Allergen filter",filterDesc:"Tap an allergen to hide dishes.",filterClose:"Apply and close",sigBadge:"★ Signature",
+    tabs:[{id:"crudi",ico:"🦪",name:"Raw & Marinated",sub:"Pure flavours, fresh cuts"},
+          {id:"cotti",ico:"🔥",name:"Hot Starters",sub:"Cooked with care"},
+          {id:"terra",ico:"🌿",name:"Land Notes",sub:"Land starters"},
+          {id:"primi",ico:"🍝",name:"First Courses",sub:"Waves of flavour"},
+          {id:"secondi",ico:"🐟",name:"Main Courses",sub:"Finest catch"},
+          {id:"pinse",ico:"🫓",name:"Pinse",sub:"Fermented & Fragrant"},
+          {id:"dessert",ico:"🍰",name:"Desserts",sub:"Sweet indulgences"}]},
+  de:{filterLabel:"Allergene",filterTitle:"Allergenfilter",filterDesc:"Tippen zum Ausblenden.",filterClose:"Anwenden",sigBadge:"★ Signature",
+    tabs:[{id:"crudi",ico:"🦪",name:"Roh & Mariniert",sub:"Reine Aromen"},
+          {id:"cotti",ico:"🔥",name:"Warme Vorspeisen",sub:"Mit Sorgfalt gegart"},
+          {id:"terra",ico:"🌿",name:"Noten der Erde",sub:"Vorspeisen vom Land"},
+          {id:"primi",ico:"🍝",name:"Erste Gänge",sub:"Pasta und Meer"},
+          {id:"secondi",ico:"🐟",name:"Hauptgerichte",sub:"Feinster Fang"},
+          {id:"pinse",ico:"🫓",name:"Pinse",sub:"Fermentation & Aromen"},
+          {id:"dessert",ico:"🍰",name:"Desserts",sub:"Süße Momente"}]},
+  fr:{filterLabel:"Allergènes",filterTitle:"Filtre allergènes",filterDesc:"Appuyez pour masquer les plats.",filterClose:"Appliquer et fermer",sigBadge:"★ Signature",
+    tabs:[{id:"crudi",ico:"🦪",name:"Crus & Marinés",sub:"Saveurs pures, découpes fraîches"},
+          {id:"cotti",ico:"🔥",name:"Chauds",sub:"Cuits avec soin"},
+          {id:"terra",ico:"🌿",name:"Notes de Terre",sub:"Entrées de terre"},
+          {id:"primi",ico:"🍝",name:"Premiers Plats",sub:"Vagues de saveurs"},
+          {id:"secondi",ico:"🐟",name:"Plats Principaux",sub:"Meilleure pêche"},
+          {id:"pinse",ico:"🫓",name:"Pinse",sub:"Fermentation et Fragrances"},
+          {id:"dessert",ico:"🍰",name:"Desserts",sub:"Douceurs"}]}
+};
+
+const ALLERGENS={
+  glutine:{it:"Glutine",en:"Gluten",de:"Gluten",fr:"Gluten"},
+  crostacei:{it:"Crostacei",en:"Shellfish",de:"Krebstiere",fr:"Crustacés"},
+  pesce:{it:"Pesce",en:"Fish",de:"Fisch",fr:"Poisson"},
+  latte:{it:"Latte",en:"Milk",de:"Milch",fr:"Lait"},
+  uova:{it:"Uova",en:"Eggs",de:"Eier",fr:"Œufs"},
+  molluschi:{it:"Molluschi",en:"Molluscs",de:"Weichtiere",fr:"Mollusques"},
+  frutta_guscio:{it:"Frutta a guscio",en:"Tree nuts",de:"Schalenfrüchte",fr:"Fruits à coque"},
+  sedano:{it:"Sedano",en:"Celery",de:"Sellerie",fr:"Céleri"}
+};
+
+const DATA={
+  crudi:{
+    featured:{img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=900&q=80",n:{it:"Degustazione Crudi e Marinati",en:"Raw & Marinated Tasting",de:"Rohkost-Verkostung",fr:"Dégustation Crus et Marinés"},d:{it:"Selezione di antipasti crudi e marinati — 9 portate",en:"Selection of raw and marinated starters — 9 courses",de:"9 Gänge roher und marinierter Antipasti",fr:"Sélection d'entrées crues et marinées — 9 services"},p:"36",a:["crostacei","molluschi","pesce"]},
+    dishes:[
+      {n:{it:"Triade di Tartara",en:"Tartare Triad",de:"Tartare-Trias",fr:"Trilogie de Tartare"},d:{it:"Gambero rosso di Mazara, tonno, salmone",en:"Mazara red prawn, tuna, salmon tartare",de:"Mazara-Garnele, Thunfisch, Lachs",fr:"Crevette rouge de Mazara, thon, saumon"},p:"22",a:["crostacei","pesce"]},
+      {n:{it:"Cheesecake di Tonno",en:"Tuna Cheesecake",de:"Thunfisch-Cheesecake",fr:"Cheesecake de Thon"},d:{it:"Crumble di pane al timo, mousse di ricotta di bufala, tartara di tonno, mayo all'aglio nero",en:"Thyme bread crumble, buffalo ricotta mousse, tuna tartare, black garlic mayo",de:"Thymian-Crumble, Büffelricotta-Mousse, Thunfisch-Tartare",fr:"Crumble de pain au thym, mousse de ricotta de bufflonne, tartare de thon, mayo à l'ail noir"},p:"19",a:["glutine","pesce","latte","uova"]},
+      {n:{it:"Cruditè alla Catalana",en:"Catalan Crudités",de:"Katalanische Rohkost",fr:"Crudités à la Catalane"},d:{it:"Gamberi rossi e bianchi, scampi, tris di pomodorini, cipollotto, sedano",en:"Red and white prawns, langoustines, cherry tomato trio, spring onion, celery",de:"Rote und weiße Garnelen, Scampi, Kirschtomaten, Sellerie",fr:"Crevettes rouges et blanches, langoustines, tomates cerises, oignon nouveau, céleri"},p:"24",a:["crostacei","sedano"]},
+      {n:{it:"Salmone alla Marisco",en:"Marisco Salmon",de:"Marisco-Lachs",fr:"Saumon à la Marisco"},d:{it:"Salmone marinato con sale, zucchero di canna, cannella, scorza di agrumi",en:"Salmon marinated with salt, cane sugar, cinnamon, citrus zest",de:"Mit Salz, Rohzucker, Zimt marinierter Lachs",fr:"Saumon mariné au sel, sucre de canne, cannelle, zeste d'agrumes"},p:"16",a:["pesce"]},
+      {n:{it:"Marinati e Affumicati",en:"Marinated & Smoked",de:"Mariniert & Geräuchert",fr:"Marinés et Fumés"},d:{it:"Salmone, spada, ombrina",en:"Salmon, swordfish, meagre",de:"Lachs, Schwertfisch, Umberfisch",fr:"Saumon, espadon, maigre"},p:"16",a:["pesce"]}
+    ],
+    bar:[
+      {n:{it:"Ostrica Cadoret — Bretagna",en:"Cadoret Oyster — Brittany",de:"Cadoret Auster — Bretagne",fr:"Huître Cadoret — Bretagne"},p:"€ 6 /pz",a:["molluschi"]},
+      {n:{it:"Ostrica Gillardeau — Normandia",en:"Gillardeau Oyster — Normandy",de:"Gillardeau Auster — Normandie",fr:"Huître Gillardeau — Normandie"},p:"€ 7 /pz",a:["molluschi"]},
+      {n:{it:"Gambero Rosso di Mazara — al pezzo",en:"Mazara Red Prawn — per piece",de:"Mazara-Garnele — pro Stück",fr:"Crevette Rouge de Mazara — à la pièce"},p:"€ 6 /pz",a:["crostacei"]},
+      {n:{it:"Gambero Rosso di Mazara — al kg",en:"Mazara Red Prawn — per kg",de:"Mazara-Garnele — pro kg",fr:"Crevette Rouge de Mazara — au kg"},p:"€ 110 /kg",a:["crostacei"]},
+      {n:{it:"Scampo — al pezzo",en:"Langoustine — per piece",de:"Scampo — pro Stück",fr:"Langoustine — à la pièce"},p:"€ 7 /pz",a:["crostacei"]},
+      {n:{it:"Scampo — al kg",en:"Langoustine — per kg",de:"Scampo — pro kg",fr:"Langoustine — au kg"},p:"€ 120 /kg",a:["crostacei"]},
+      {n:{it:"Riccio di mare",en:"Sea Urchin",de:"Seeigel",fr:"Oursin de mer"},p:"€ 5 /pz",a:["molluschi"]}
+    ]
+  },
+  cotti:{
+    featured:{img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900&q=80",n:{it:"Degustazione di Cotti",en:"Hot Starters Tasting",de:"Warme Vorspeisen-Verkostung",fr:"Dégustation de Chauds"},d:{it:"Selezione di antipasti cotti — 7 portate",en:"Selection of hot starters — 7 courses",de:"7 Gänge warme Antipasti",fr:"Sélection d'entrées chaudes — 7 services"},p:"27",a:["glutine","molluschi","crostacei","pesce"]},
+    dishes:[
+      {n:{it:"Tentacoli e Cuori di Carciofo",en:"Octopus & Artichoke Hearts",de:"Tintenfisch & Artischockenherzen",fr:"Tentacules et Cœurs d'Artichaut"},d:{it:"Polpo scottato, sfuma di carciofo, tagliatella di cuor di carciofo, olio al basilico",en:"Seared octopus, artichoke reduction, artichoke tagliatelle, basil oil",de:"Gebratener Oktopus, Artischocken-Reduktion, Basilikumöl",fr:"Poulpe grillé, réduction d'artichaut, tagliatelle de cœur d'artichaut, huile au basilic"},p:"19",a:["molluschi"]},
+      {n:{it:"Frittura di Calamari",en:"Fried Calamari",de:"Frittierte Calamari",fr:"Calamars Frits"},d:{it:"Calamari fritti con farina di grano duro, olio altoleico",en:"Calamari fried in durum wheat flour",de:"In Hartweizenmehl frittierte Calamari",fr:"Calamars frits à la farine de blé dur, huile oléique"},p:"19",a:["glutine","molluschi"]},
+      {n:{it:"Zuppa di Cozze",en:"Mussel Soup",de:"Muschelsuppe",fr:"Soupe de Moules"},d:{it:"Cozze, pomodoro ciliegino, aglio, olio evo, prezzemolo",en:"Mussels, cherry tomatoes, garlic, EVO oil, parsley",de:"Miesmuscheln, Kirschtomaten, Knoblauch, Olivenöl",fr:"Moules, tomates cerises, ail, huile d'olive, persil"},p:"14",a:["molluschi"]},
+      {n:{it:"Insalata di Polpo",en:"Octopus Salad",de:"Oktopussalat",fr:"Salade de Poulpe"},d:{it:"Polpo, sedano, carote, limone, prezzemolo, olio evo",en:"Octopus, celery, carrots, lemon, parsley, EVO oil",de:"Oktopus, Sellerie, Karotten, Zitrone, Petersilie",fr:"Poulpe, céleri, carottes, citron, persil, huile d'olive"},p:"19",a:["molluschi","sedano"]}
+    ]
+  },
+  pinse:{
+    dishes:[
+      {n:{it:"Il Mozzo",en:"Il Mozzo",de:"Il Mozzo",fr:"Il Mozzo"},d:{it:"Pomodoro selezione Marisco, bocconcino di fior di latte campano, basilico",en:"Marisco selection tomato, Campanian fior di latte, basil",de:"Marisco Auswahl Tomaten, kampanischer Fior di Latte, Basilikum",fr:"Tomate sélection Marisco, bocconcino de fior di latte de Campanie, basilic"},p:"10",a:["latte"]},
+      {n:{it:"Cala Felice",en:"Cala Felice",de:"Cala Felice",fr:"Cala Felice"},d:{it:"Bocconcino di fior di latte campano, patatine fritte, prosciutto cotto, basilico",en:"Campanian fior di latte, french fries, cooked ham, basil",de:"Kampanischer Fior di Latte, Pommes Frites, gekochter Schinken, Basilikum",fr:"Bocconcino de fior di latte de Campanie, frites, jambon cuit, basilic"},p:"12",a:["glutine","latte"]},
+      {n:{it:"Rotta Sud",en:"Rotta Sud",de:"Rotta Sud",fr:"Rotta Sud"},d:{it:"Pomodoro selezione Marisco, polpettine di manzo al ragù napoletano, ricotta di bufala, pepe cuveè, basilico",en:"Marisco selection tomato, Neapolitan ragù beef meatballs, buffalo ricotta, Cuvée pepper, basil",de:"Marisco Tomaten, neapolitanische Rindfleisch-Frikadellen, Büffelricotta, Cuvée-Pfeffer, Basilikum",fr:"Tomate sélection Marisco, boulettes de bœuf au ragù napolitain, ricotta de bufflonne, poivre Cuvée, basilic"},p:"18",a:["glutine","latte"]},
+      {n:{it:"Tira la Corda",en:"Tira la Corda",de:"Tira la Corda",fr:"Tira la Corda"},d:{it:"Mortadella d'asina, burrata, crema di pistacchio e granella",en:"Donkey mortadella, burrata, pistachio cream and crumble",de:"Eselsmortadella, Burrata, Pistaziencreme und -granulat",fr:"Mortadelle d'ânesse, burrata, crème de pistache et éclats de pistache"},p:"16",a:["latte","frutta_guscio"]},
+      {n:{it:"Virata Rossa",en:"Virata Rossa",de:"Virata Rossa",fr:"Virata Rossa"},d:{it:"Tartare di manzetta prussiana, mayo all'aglio nero, nocciole tostate, olio alla nocciola",en:"Prussian heifer tartare, black garlic mayo, toasted hazelnuts, hazelnut oil",de:"Preußisches Färsen-Tartare, Schwarzknoblauch-Mayo, geröstete Haselnüsse, Haselnussöl",fr:"Tartare de génisse prussienne, mayo à l'ail noir, noisettes torréfiées, huile de noisette"},p:"18",a:["uova","frutta_guscio"]},
+      {n:{it:"Corrente del Nord",en:"Corrente del Nord",de:"Corrente del Nord",fr:"Corrente del Nord"},d:{it:"Stracciatella di bufala, rucola selvatica, carpaccio di Black Angus e maionese alla nocciola",en:"Buffalo stracciatella, wild rocket, Black Angus carpaccio, hazelnut mayo",de:"Büffel-Stracciatella, wilder Rucola, Black-Angus-Carpaccio, Haselnuss-Mayo",fr:"Stracciatella de bufflonne, roquette sauvage, carpaccio de Black Angus, mayo à la noisette"},p:"20",a:["latte","uova","frutta_guscio"]},
+      {n:{it:"Approdo di Bordo",en:"Approdo di Bordo",de:"Approdo di Bordo",fr:"Approdo di Bordo"},d:{it:"Pulled pork, provola affumicata di Agerola, crema di patate bruciate e rosmarino fresco",en:"Pulled pork, Agerola smoked provola, charred potato cream and fresh rosemary",de:"Pulled Pork, geräucherte Provola aus Agerola, verbrannte Kartoffelcreme und frischer Rosmarin",fr:"Pulled pork, provola fumée d'Agerola, crème de pommes de terre brûlées et romarin frais"},p:"18",a:["latte"]},
+      {n:{it:"Bruma",en:"Bruma",de:"Bruma",fr:"Bruma"},d:{it:"Crema di ceci, polpo brasato, mousse di ricotta al timo, riduzione di acqua di polpo",en:"Chickpea cream, braised octopus, thyme ricotta mousse, octopus water reduction",de:"Kichererbsencreme, geschmorter Oktopus, Thymian-Ricotta-Mousse, Oktopuswasser-Reduktion",fr:"Crème de pois chiches, poulpe braisé, mousse de ricotta au thym, réduction d'eau de poulpe"},p:"24",a:["latte","molluschi"]},
+      {n:{it:"Salmastra",en:"Salmastra",de:"Salmastra",fr:"Salmastra"},d:{it:"Stracciata di bufala, pomodorino confit home made, acciughe del Mar Cantabrico, olio al basilico",en:"Buffalo stracciatella, homemade confit cherry tomatoes, Cantabrian anchovies, basil oil",de:"Büffel-Stracciatella, hausgemachte Confit-Kirschtomaten, kantabrische Sardellen, Basilikumöl",fr:"Stracciatella de bufflonne, tomates cerises confites maison, anchois de Mer Cantabrique, huile au basilic"},p:"19",a:["latte","pesce"]},
+      {n:{it:"Punto Nave",en:"Punto Nave",de:"Punto Nave",fr:"Punto Nave"},d:{it:"Tataki di tonno al sesamo, rucola selvatica, cipolla rossa di Tropea caramellata, mayo all'acqua di polpo",en:"Sesame tuna tataki, wild rocket, caramelised Tropea red onion, octopus water mayo",de:"Thunfisch-Tataki mit Sesam, wilder Rucola, karamellisierte Tropea-Zwiebel, Oktopuswasser-Mayo",fr:"Tataki de thon au sésame, roquette sauvage, oignon rouge de Tropea caramélisé, mayo à l'eau de poulpe"},p:"23",a:["pesce","molluschi","uova"]},
+      {n:{it:"Maestrale",en:"Maestrale",de:"Maestrale",fr:"Maestrale"},d:{it:"Pesce spada marinato, soncino, misticanza, pepe rosa, frutta di stagione e salsa al mango",en:"Marinated swordfish, lamb's lettuce, mixed greens, pink pepper, seasonal fruit and mango sauce",de:"Marinierter Schwertfisch, Feldsalat, Blattsalat-Mix, rosa Pfeffer, Saisonobst und Mangosauce",fr:"Espadon mariné, mâche, mesclun, poivre rose, fruits de saison et sauce mangue"},p:"19",a:["pesce"]},
+      {n:{it:"Marisco",en:"Marisco",de:"Marisco",fr:"Marisco"},d:{it:"Triade di tartare: tonno, gambero rosso di Mazara e salmone",en:"Tartare triad: tuna, Mazara red prawn and salmon",de:"Tartare-Trias: Thunfisch, Mazara-Rotgarnele und Lachs",fr:"Trilogie de tartare : thon, crevette rouge de Mazara et saumon"},p:"25",a:["pesce","crostacei"]},
+      {n:{it:"Coralie",en:"Coralie",de:"Coralie",fr:"Coralie"},d:{it:"Crema cacio e pepe, tartare di gambero rosso di Mazara, zeste di lime, mentuccia",en:"Cacio e pepe cream, Mazara red prawn tartare, lime zest, wild mint",de:"Cacio-e-Pepe-Creme, Mazara-Rotgarnelen-Tartare, Limettenzeste, wilde Minze",fr:"Crème cacio e pepe, tartare de crevette rouge de Mazara, zeste de citron vert, menthe sauvage"},p:"24",a:["latte","crostacei"]}
+    ]
+  },
+  terra:{
+    dishes:[
+      {n:{it:"Petalo di Angus",en:"Petalo di Angus",de:"Petalo di Angus",fr:"Petalo di Angus"},d:{it:"Carpaccio di Black Angus, mayo all'aglio nero, sale Maldon, gin riserva",en:"Black Angus carpaccio, black garlic mayo, Maldon salt, reserve gin",de:"Black-Angus-Carpaccio, Schwarzknoblauch-Mayo, Maldon-Salz, Reserve-Gin",fr:"Carpaccio de Black Angus, mayo à l'ail noir, sel de Maldon, gin réserve"},p:"20",a:["uova"]},
+      {n:{it:"Caprese Italian Style",en:"Caprese Italian Style",de:"Caprese Italian Style",fr:"Caprese Italian Style"},d:{it:"Mozzarella di bufala campana, pomodoro, basilico, olio evo",en:"Campania buffalo mozzarella, tomato, basil, EVO oil",de:"Büffelmozzarella, Tomate, Basilikum, Olivenöl",fr:"Mozzarella de bufflonne de Campanie, tomate, basilic, huile d'olive"},p:"14",a:["latte"]},
+      {n:{it:"Antica Salumeria",en:"Traditional Charcuterie",de:"Traditionelle Wurstplatte",fr:"Charcuterie Traditionnelle"},d:{it:"Selezione di salumi e formaggi nostrani",en:"Selection of local cured meats and cheeses",de:"Auswahl lokaler Wurstwaren und Käse",fr:"Sélection de charcuteries et fromages locaux"},p:"18",a:["latte"]},
+      {n:{it:"Boccone di Sicilia",en:"Taste of Sicily",de:"Sizilianischer Genuss",fr:"Bouchée de Sicile"},d:{it:"Selezione di antipasti di terra — 6 portate",en:"Selection of land starters, 6 courses",de:"Auswahl sizilianischer Vorspeisen, 6 Gänge",fr:"Sélection d'entrées de terre — 6 services"},p:"17",a:["latte"]}
+    ]
+  },
+  primi:{
+    dishes:[
+      {img:"https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80",n:{it:"Profumi d'Alta Quota",en:"Altitude Aromas",de:"Duft aus der Höhe",fr:"Parfums d'Altitude"},d:{it:"Fettucce, burro salato della Normandia, gambero rosso di Mazara, tartufo nero, lime",en:"Fettucce, Normandy salted butter, Mazara red prawn, black truffle, lime",de:"Fettucce, Normandie-Salzbutter, Mazara-Garnele, schwarzer Trüffel",fr:"Fettucce, beurre salé de Normandie, crevette rouge de Mazara, truffe noire, citron vert"},p:"28",a:["glutine","crostacei","latte"]},
+      {img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&q=80",n:{it:"Scoglio",en:"Rocky Reef Pasta",de:"Felsenriff-Pasta",fr:"Pâtes aux Fruits de Mer"},d:{it:"Paccheri, gamberi, polpo, calamari, cozze, vongole, pomodori pachino",en:"Paccheri, prawns, octopus, calamari, mussels, clams, Pachino tomatoes",de:"Paccheri, Garnelen, Oktopus, Calamari, Muscheln, Venusmuscheln",fr:"Paccheri, crevettes, poulpe, calamars, moules, palourdes, tomates de Pachino"},p:"20",a:["glutine","crostacei","molluschi"]},
+      {n:{it:"Vongole",en:"Spaghetti with Clams",de:"Spaghetti mit Venusmuscheln",fr:"Spaghetti aux Palourdes"},d:{it:"Spaghetti, vongole veraci, aglio, olio evo, prezzemolo",en:"Spaghetti, fresh clams, garlic, EVO oil, parsley",de:"Spaghetti, Venusmuscheln, Knoblauch, Olivenöl",fr:"Spaghetti, palourdes fraîches, ail, huile d'olive, persil"},p:"22",a:["glutine","molluschi"]},
+      {n:{it:"Fregola agli Scampi",en:"Fregola with Langoustines",de:"Fregola mit Scampi",fr:"Fregola aux Langoustines"},d:{it:"Fregola, crema di scampi, crudo di scampi, mousse di ricotta al timo, croccante di cavolo nero, lime",en:"Fregola, langoustine cream, raw langoustine, thyme ricotta mousse, crispy kale, lime",de:"Fregola, Scampi-Creme, Thymian-Ricotta-Mousse, Limette",fr:"Fregola, crème de langoustines, langoustines crues, mousse de ricotta au thym, chou frisé croustillant, citron vert"},p:"22",a:["glutine","crostacei","latte"]},
+      {n:{it:"Cacio Pepe e Gamberi",en:"Cacio Pepe & Red Prawns",de:"Cacio Pepe mit Garnelen",fr:"Cacio Pepe et Crevettes Rouges"},d:{it:"Spaghetti, pecorino romano DOP, pepe nero, crudo di gambero rosso di Mazara, menta",en:"Spaghetti, DOP Pecorino Romano, black pepper, raw Mazara red prawn, mint",de:"Spaghetti, Pecorino Romano, schwarzer Pfeffer, Mazara-Garnele, Minze",fr:"Spaghetti, Pecorino Romano DOP, poivre noir, crevette rouge de Mazara, menthe"},p:"22",a:["glutine","latte","crostacei"]},
+      {n:{it:"Tonno e Pistacchio",en:"Tuna & Pistachio",de:"Thunfisch & Pistazie",fr:"Thon et Pistache"},d:{it:"Paccheri, tonno, pesto di pistacchio, pomodoro ciliegino, granella di pistacchio",en:"Paccheri, tuna, pistachio pesto, cherry tomatoes, chopped pistachio",de:"Paccheri, Thunfisch, Pistazien-Pesto, Kirschtomaten",fr:"Paccheri, thon, pesto de pistache, tomates cerises, éclats de pistache"},p:"16",a:["glutine","pesce","frutta_guscio"]},
+      {divider:{it:"Note di Terra",en:"Land Notes",de:"Noten der Erde",fr:"Notes de Terre"}},
+      {n:{it:"Cacio e Pepe",en:"Cacio e Pepe",de:"Cacio e Pepe",fr:"Cacio e Pepe"},d:{it:"Spaghetti, pecorino romano DOP, pepe nero, menta",en:"Spaghetti, DOP Pecorino Romano, black pepper, mint",de:"Spaghetti, Pecorino Romano, schwarzer Pfeffer, Minze",fr:"Spaghetti, Pecorino Romano DOP, poivre noir, menthe"},p:"14",a:["glutine","latte"]},
+      {n:{it:"Paccheri al Pistacchio",en:"Pistachio Paccheri",de:"Pistazien-Paccheri",fr:"Paccheri à la Pistache"},d:{it:"Paccheri, pesto di pistacchio, pomodoro ciliegino, speck, granella di pistacchio",en:"Paccheri, pistachio pesto, cherry tomatoes, speck, chopped pistachio",de:"Paccheri, Pistazien-Pesto, Kirschtomaten, Speck",fr:"Paccheri, pesto de pistache, tomates cerises, speck, éclats de pistache"},p:"15",a:["glutine","frutta_guscio"]},
+      {n:{it:"Ravioli di Brasato",en:"Braised Beef Ravioli",de:"Schmorfleisch-Ravioli",fr:"Ravioli de Bœuf Braisé"},d:{it:"Ravioli ripieni di brasato, salsa di noci, crema di latte, noci croccanti",en:"Ravioli stuffed with braised beef, walnut sauce, cream, crispy walnuts",de:"Schmorfleisch-Ravioli, Walnusssauce, Sahne, knusprige Walnüsse",fr:"Ravioli farcis de bœuf braisé, sauce aux noix, crème, noix croustillantes"},p:"15",a:["glutine","latte","uova","frutta_guscio"]}
+    ]
+  },
+  secondi:{
+    dishes:[
+      {img:"https://images.unsplash.com/photo-1534080565024-c1ab3f1c0cd8?w=400&q=80",n:{it:"Grigliata del Pescatore",en:"Fisherman's Grill",de:"Fischer-Grill",fr:"Grillade du Pêcheur"},d:{it:"Pescato del giorno, spada, calamaro, gamberone",en:"Catch of the day, swordfish, calamari, king prawn",de:"Tagesfang, Schwertfisch, Calamaro, Riesengarnele",fr:"Pêche du jour, espadon, calmar, grosse crevette"},p:"20",a:["pesce","crostacei","molluschi"]},
+      {img:"https://images.unsplash.com/photo-1607301405390-d831c242f59b?w=400&q=80",n:{it:"Tonno Scottato",en:"Seared Tuna",de:"Gebratener Thunfisch",fr:"Thon Snacké"},d:{it:"Tonno pinna gialla o rosso, cipolla caramellata di Tropea",en:"Yellowfin or bluefin tuna, caramelised Tropea onion",de:"Thunfisch, karamellisierte Tropea-Zwiebel",fr:"Thon albacore ou rouge, oignon caramélisé de Tropea"},p:"20",a:["pesce"]},
+      {n:{it:"Baccalà agli Aromi di Campo",en:"Baccalà with Wild Herbs",de:"Stockfisch mit Wildkräutern",fr:"Morue aux Herbes Sauvages"},d:{it:"Baccalà CBT, aromi di campo, la sua crema",en:"Sous-vide baccalà, wild herbs, its own cream",de:"Sous-vide Stockfisch, Wildkräuter, seine eigene Creme",fr:"Morue sous vide, herbes sauvages, sa propre crème"},p:"19",a:["pesce"]},
+      {n:{it:"Frittura Mista di Paranza",en:"Mixed Fish Fry",de:"Gemischte Fischfritüre",fr:"Friture Mixte de Pêche"},d:{it:"Frittura di pesce secondo disponibilità",en:"Mixed fried fish, daily catch",de:"Gemischte Fischfritüre nach Tagesangebot",fr:"Friture de poisson selon disponibilité"},p:"20",a:["glutine","pesce","crostacei","molluschi"]},
+      {n:{it:"Pescato del Giorno",en:"Catch of the Day",de:"Tagesfang",fr:"Pêche du Jour"},d:{it:"Secondo disponibilità del pescato",en:"According to daily availability",de:"Je nach Tagesangebot",fr:"Selon disponibilité"},p:"6/etto",a:["pesce"]},
+      {divider:{it:"Note di Terra",en:"Land Notes",de:"Noten der Erde",fr:"Notes de Terre"}},
+      {n:{it:"Entrecote",en:"Entrecôte",de:"Entrecôte",fr:"Entrecôte"},d:{it:"Occhio di costata grigliata, sale Maldon, olio evo",en:"Grilled rib-eye, Maldon salt, EVO oil",de:"Gegrilltes Rib-Eye, Maldon-Salz, Olivenöl",fr:"Côte de bœuf grillée, sel de Maldon, huile d'olive"},p:"22",a:[]},
+      {n:{it:"Fiorentina di Scottona",en:"Scottona T-Bone",de:"Scottona T-Bone",fr:"Fiorentina de Génisse"},d:{it:"Occhio di costata grigliata, sale Maldon, olio evo",en:"Grilled T-bone steak, Maldon salt, EVO oil",de:"Gegrilltes T-Bone, Maldon-Salz, Olivenöl",fr:"T-bone de génisse grillé, sel de Maldon, huile d'olive"},p:"22",a:[]}
+    ],
+    contorni:[
+      {n:{it:"Verdure Grigliate",en:"Grilled Vegetables",de:"Gegrilltes Gemüse",fr:"Légumes Grillés"},d:{it:"Melanzana, zucchina, radicchio",en:"Aubergine, courgette, radicchio",de:"Aubergine, Zucchini, Radicchio",fr:"Aubergine, courgette, radicchio"},p:"6"},
+      {n:{it:"Insalata Mista",en:"Mixed Salad",de:"Gemischter Salat",fr:"Salade Mixte"},d:{it:"Iceberg, radicchio, rucola, pomodoro ciliegino",en:"Iceberg, radicchio, rocket, cherry tomato",de:"Eisbergsalat, Radicchio, Rucola",fr:"Iceberg, radicchio, roquette, tomate cerise"},p:"5"},
+      {n:{it:"Insalata Siciliana",en:"Sicilian Salad",de:"Sizilianischer Salat",fr:"Salade Sicilienne"},d:{it:"Arance, finocchi, capperi, olive",en:"Oranges, fennel, capers, olives",de:"Orangen, Fenchel, Kapern, Oliven",fr:"Oranges, fenouil, câpres, olives"},p:"5"},
+      {n:{it:"Patatine Fritte",en:"French Fries",de:"Pommes Frites",fr:"Frites"},d:{it:"Croccanti e dorate",en:"Crispy golden fries",de:"Knusprige Pommes",fr:"Croustillantes et dorées"},p:"4"}
+    ]
+  },
+  dessert:{
+    dishes:[
+      {n:{it:"Cannolo Scomposto",en:"Deconstructed Cannolo",de:"Dekonstruierter Cannolo",fr:"Cannolo Déstructuré"},d:{it:"Cialda di cannolo, ricotta vaccina, zucchero",en:"Cannolo wafer, cow's milk ricotta, sugar",de:"Cannolo-Waffel, Kuh-Ricotta, Zucker",fr:"Gaufrette de cannolo, ricotta de vache, sucre"},p:"6",a:["glutine","latte"]},
+      {n:{it:"Parfait di Pistacchio",en:"Pistachio Parfait",de:"Pistazien-Parfait",fr:"Parfait à la Pistache"},d:{it:"Pasta pura di pistacchio, granella, uova pastorizzate, panna",en:"Pure pistachio paste, chopped pistachio, pasteurised eggs, cream",de:"Pistazienmark, Granulat, pasteurisierte Eier, Sahne",fr:"Pâte pure de pistache, éclats de pistache, œufs pasteurisés, crème"},p:"6",a:["latte","uova","frutta_guscio"]},
+      {n:{it:"Parfait di Mandorle",en:"Almond Parfait",de:"Mandel-Parfait",fr:"Parfait aux Amandes"},d:{it:"Pasta pura di mandorle, mandorle, uova pastorizzate, panna",en:"Pure almond paste, almonds, pasteurised eggs, cream",de:"Mandelmark, Mandeln, pasteurisierte Eier, Sahne",fr:"Pâte pure d'amande, amandes, œufs pasteurisés, crème"},p:"6",a:["latte","uova","frutta_guscio"]},
+      {n:{it:"Tiramisù",en:"Tiramisù",de:"Tiramisù",fr:"Tiramisù"},d:{it:"Savoiardi, mascarpone, uova pastorizzate, caffè, cacao",en:"Ladyfingers, mascarpone, pasteurised eggs, coffee, cocoa",de:"Löffelbiskuits, Mascarpone, pasteurisierte Eier, Kaffee, Kakao",fr:"Biscuits à la cuillère, mascarpone, œufs pasteurisés, café, cacao"},p:"6",a:["glutine","latte","uova"]},
+      {n:{it:"Piatto Frutta",en:"Fruit Plate",de:"Obstplatte",fr:"Assiette de Fruits"},d:{it:"Remix di frutta fresca di stagione",en:"Medley of fresh seasonal fruit",de:"Frisches Saisonobst",fr:"Mélange de fruits frais de saison"},p:"7",a:[]},
+      {n:{it:"Sorbetto al Limone",en:"Lemon Sorbet",de:"Zitronensorbet",fr:"Sorbet au Citron"},d:{it:"Sorbetto di frutta fresca di stagione",en:"Fresh seasonal fruit sorbet",de:"Frisches Saisonobst-Sorbet",fr:"Sorbet de fruits frais de saison"},p:"3,5",a:[]}
+    ]
+  }
+};
+
+const FLAGS=[["it","it"],["en","gb"],["de","de"],["fr","fr"]];
+let lang="it", activeFilters=new Set();
+
+function flagBtn(l,code,targetId){
+  const btn=document.createElement("button");
+  btn.className=(l===lang?"on":"");
+  btn.innerHTML=`<img src="https://flagcdn.com/20x15/${code}.png" alt="${l.toUpperCase()}" style="width:22px;height:16px;border-radius:2px;display:block">`;
+  btn.onclick=()=>setLang(l);
+  return btn;
+}
+
+function buildLangBtns(){
+  ["welcome-lang","header-lang"].forEach(id=>{
+    const wrap=document.getElementById(id); wrap.innerHTML="";
+    FLAGS.forEach(([l,code])=>wrap.appendChild(flagBtn(l,code,id)));
+  });
+}
+
+function renderWelcome(){
+  const w=WELCOME[lang];
+  document.getElementById("w-tagline").textContent=w.tagline;
+  document.getElementById("w-text").textContent=w.text;
+  document.getElementById("w-cta-label").textContent=w.cta;
+}
+
+function tags(allergens){return allergens.map(a=>`<span class="a-tag">${ALLERGENS[a][lang]}</span>`).join("")}
+function blocked(a){return a.some(x=>activeFilters.has(x))}
+
+function render(){
+  const t=I18N[lang];
+  const content=document.getElementById("content"); content.innerHTML="";
+  t.tabs.forEach((tab,idx)=>{
+    const data=DATA[tab.id];
+    let html=`<section class="menu-section" id="sec-${tab.id}">`;
+    html+=`<div class="sec-hdr"><h2><span style="font-size:17px">${tab.ico}</span> ${tab.name}</h2><p>${tab.sub}</p></div>`;
+    if(data.featured){
+      const f=data.featured; const isBlocked=blocked(f.a);
+      html+=`<div class="dish-featured ${f.img?'with-photo':''}" ${isBlocked?'style="display:none"':''}>
+        ${f.img?`<div class="feat-img" style="background-image:url('${f.img}')"></div><div class="df-content">`:''}
+        <div class="df-badge">${t.sigBadge}</div>
+        <div class="df-name">${f.n[lang]}</div>
+        <div class="df-desc">${f.d[lang]}</div>
+        <div class="df-bottom"><div class="df-price">€ ${f.p}</div><div class="df-tags">${tags(f.a)}</div></div>
+        ${f.img?'</div>':''}
+      </div>`;
+    }
+    if(data.bar){
+      const vis=data.bar.filter(b=>!blocked(b.a));
+      if(vis.length){
+        html+=`<div class="bar-wrap"><div class="bar-table">
+          <div class="bar-hdr"><span>Crudi al Pezzo</span><span style="opacity:.7;font-weight:400">Nudi e crudi, pescati e mangiati</span></div>
+          ${vis.map(b=>`<div class="bar-row"><span class="bn">${b.n[lang]}</span><span class="bp">${b.p}</span></div>`).join("")}
+        </div></div>`;
+      }
+    }
+    if(data.dishes?.length){
+      html+=`<div class="dish-list">`;
+      data.dishes.forEach(d=>{
+        if(d.divider){
+          html+=`</div><div class="sub-hdr"><span>${d.divider[lang]}</span></div><div class="dish-list">`;
+          return;
+        }
+        const isBlocked=blocked(d.a);
+        html+=`<div class="dish-row${isBlocked?" hidden":""}${d.img?" has-photo":""}">
+          <div class="dr-left">
+            <div class="dr-name">${d.n[lang]}</div>
+            <div class="dr-desc">${d.d[lang]}</div>
+            ${d.a.length?`<div class="dr-tags">${tags(d.a)}</div>`:""}
+          </div>
+          ${d.img
+            ?`<div class="dr-photo-wrap"><img src="${d.img}" class="dr-photo" loading="lazy" alt="${d.n[lang]}"><div class="dr-price">€ ${d.p}</div></div>`
+            :`<div class="dr-price">€ ${d.p}</div>`
+          }
+        </div>`;
+      });
+      html+=`</div>`;
+    }
+    if(data.contorni){
+      html+=`<div class="cont-hdr"><p>Contorni</p></div>`;
+      html+=`<div class="cont-grid">${data.contorni.map(c=>`<div class="cont-card"><div class="cont-name">${c.n[lang]}</div><div class="cont-desc">${c.d[lang]}</div><div class="cont-price">€ ${c.p}</div></div>`).join("")}</div>`;
+    }
+    if(idx<t.tabs.length-1)html+=`<div class="sec-divider"></div>`;
+    html+=`</section>`;
+    content.innerHTML+=html;
+  });
+}
+
+function buildChips(){
+  const wrap=document.getElementById("chips"); wrap.innerHTML="";
+  Object.keys(ALLERGENS).forEach(k=>{
+    const b=document.createElement("button"); b.className="chip"+(activeFilters.has(k)?" active":"");
+    b.innerHTML=ALLERGENS[k][lang]+(activeFilters.has(k)?'<span style="font-size:10px;opacity:.7"> ✕</span>':"");
+    b.onclick=()=>{activeFilters.has(k)?activeFilters.delete(k):activeFilters.add(k);buildChips();render();updateFilterBtn()};
+    wrap.appendChild(b);
+  });
+}
+
+function updateFilterBtn(){
+  const btn=document.getElementById("filter-btn");
+  btn.classList.toggle("active",activeFilters.size>0);
+  btn.innerHTML=`🛡 ${activeFilters.size>0?activeFilters.size+" attivi":I18N[lang].filterLabel}`;
+}
+
+function toggleFilter(){document.getElementById("filter-panel").classList.toggle("open")}
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(I18N[l][k])el.innerHTML=I18N[l][k]});
+  buildLangBtns(); renderWelcome(); buildChips(); render(); updateFilterBtn();
+}
+
+buildLangBtns(); renderWelcome(); buildChips(); render();
+</script>
+</body>
+</html>
