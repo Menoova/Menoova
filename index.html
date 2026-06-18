@@ -16,15 +16,18 @@
     function emailClick() {
       gtag('event', 'email_click', {'event_category': 'contatto'});
     }
+    function storeClick(app) {
+      gtag('event', 'store_click', {'event_category': 'download', 'event_label': app});
+    }
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menoova — Menu digitale per ristoranti | 3 mesi gratis</title>
-  <meta name="description" content="Menu digitale professionale per ristoranti, bar e pizzerie. Prova gratis 3 mesi. Nessuna carta richiesta. QR code + 20 porta QR inclusi." />
+  <title>Menoova — Strumenti digitali per ristoranti e attività</title>
+  <meta name="description" content="Menoova: menu digitali con QR code e InvoiceIQ per la gestione delle fatture d'acquisto. Strumenti semplici per ristoranti, bar e piccole attività italiane." />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://menoova.it">
-  <meta property="og:title" content="Menoova — Menu digitali per ristoranti">
-  <meta property="og:description" content="Menu digitale con QR code. 3 mesi gratuiti, nessuna carta richiesta.">
+  <meta property="og:title" content="Menoova — Strumenti digitali per la tua attività">
+  <meta property="og:description" content="Menu digitali QR + gestione fatture con AI. Pensati per ristoranti, bar e piccole attività.">
   <meta property="og:image" content="https://menoova.it/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <style>
@@ -36,6 +39,10 @@
       --green: #d7ff9a;
       --line: rgba(245,239,228,0.12);
       --shadow: 0 30px 80px rgba(0,0,0,0.35);
+      /* InvoiceIQ accents */
+      --violet: #6754e8;
+      --violet-bright: #9b8cff;
+      --emerald: #3ee0a3;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -52,7 +59,7 @@
       min-height: 100vh;
       background:
         radial-gradient(circle at 20% 10%, rgba(166,160,122,0.18), transparent 32%),
-        radial-gradient(circle at 80% 30%, rgba(245,239,228,0.08), transparent 30%),
+        radial-gradient(circle at 80% 24%, rgba(103,84,232,0.16), transparent 32%),
         var(--bg);
     }
 
@@ -65,10 +72,7 @@
       background: rgba(15,17,16,0.88);
       border-bottom: 1px solid var(--line);
     }
-    .nav {
-      height: 72px;
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    }
+    .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0.08em; }
     .mark {
       width: 36px; height: 36px; border-radius: 10px;
@@ -97,15 +101,29 @@
       transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; font-family: inherit;
     }
     .cta-big:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(245,239,228,0.28); }
+    .cta-violet {
+      background: linear-gradient(135deg, #7a67ff, var(--violet));
+      color: #fff; box-shadow: 0 12px 40px rgba(103,84,232,0.4);
+    }
+    .cta-violet:hover { box-shadow: 0 20px 50px rgba(103,84,232,0.5); }
     .secondary {
       min-height: 44px; padding: 0 18px; border-radius: 999px;
       border: 1px solid rgba(140,210,75,0.38);
       display: inline-flex; align-items: center; justify-content: center;
       color: var(--green); font-weight: 800; font-size: 14px;
       background: linear-gradient(180deg, rgba(120,190,60,0.18), rgba(90,140,40,0.10));
-      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; font-family: inherit;
+      transition: transform 0.2s, background 0.2s; cursor: pointer; font-family: inherit;
     }
     .secondary:hover { transform: translateY(-2px); background: linear-gradient(180deg, rgba(140,220,70,0.24), rgba(90,140,40,0.16)); }
+    .ghost {
+      min-height: 44px; padding: 0 18px; border-radius: 999px;
+      border: 1px solid rgba(155,140,255,0.42);
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      color: var(--violet-bright); font-weight: 800; font-size: 14px;
+      background: linear-gradient(180deg, rgba(103,84,232,0.18), rgba(103,84,232,0.06));
+      transition: transform 0.2s, background 0.2s; cursor: pointer; font-family: inherit;
+    }
+    .ghost:hover { transform: translateY(-2px); background: linear-gradient(180deg, rgba(103,84,232,0.28), rgba(103,84,232,0.1)); }
     .btn-email {
       min-height: 44px; padding: 0 18px; border-radius: 999px;
       border: 1px solid var(--line);
@@ -116,56 +134,76 @@
     }
     .btn-email:hover { color: var(--cream); border-color: rgba(245,239,228,0.25); }
 
-    /* TRUST STRIP */
-    .trust-strip {
-      display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
-      padding: 10px 0; margin-top: 6px;
-    }
-    .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
-    .trust-item span { color: var(--green); font-weight: 700; }
-
     /* HERO */
-    .hero { padding: 72px 0 60px; }
-    .hero-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;
-    }
+    .hero { padding: 76px 0 56px; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; padding: 7px 12px;
       border: 1px solid var(--line); border-radius: 999px;
-      color: var(--muted); background: rgba(255,255,255,0.03); font-size: 12px; margin-bottom: 20px;
+      color: var(--muted); background: rgba(255,255,255,0.03); font-size: 12px; margin-bottom: 22px;
     }
-    .dot {
-      width: 7px; height: 7px; border-radius: 999px; background: var(--olive);
-      box-shadow: 0 0 14px rgba(166,160,122,.8);
-    }
+    .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--olive); box-shadow: 0 0 14px rgba(166,160,122,.8); }
     h1 {
-      font-size: clamp(42px, 6.5vw, 78px); line-height: 0.95;
-      letter-spacing: -0.07em; max-width: 720px; margin-bottom: 22px;
+      font-size: clamp(42px, 6.5vw, 80px); line-height: 0.95;
+      letter-spacing: -0.07em; max-width: 880px; margin-bottom: 22px;
     }
-    .hero-sub {
-      max-width: 540px; color: var(--muted); font-size: 18px; margin-bottom: 32px; line-height: 1.55;
-    }
-    .hero-badge-row {
-      display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px;
-    }
-    .badge-green {
-      display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
-      border-radius: 999px; background: rgba(140,220,70,0.16);
-      border: 1px solid rgba(140,220,70,0.28); color: var(--green);
-      font-size: 13px; font-weight: 800;
-    }
-    .badge-price { color: var(--muted); font-size: 14px; }
-    .badge-price strong { color: var(--cream); font-size: 16px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 24px; }
+    .hero-sub { max-width: 580px; color: var(--muted); font-size: 19px; margin-bottom: 30px; line-height: 1.55; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 26px; }
+    .trust-strip { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 6px 0; }
+    .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+    .trust-item span { color: var(--green); font-weight: 700; }
 
-    /* PHONE MOCK */
-    .phone-wrap {
-      position: relative; min-height: 580px; display: grid; place-items: center;
+    /* SECTIONS */
+    .section { padding: 80px 0; border-top: 1px solid var(--line); }
+    .section-head { max-width: 680px; margin-bottom: 40px; }
+    .section-head h2 { font-size: clamp(30px, 4.5vw, 52px); line-height: 1.02; letter-spacing: -0.055em; margin-bottom: 16px; }
+    .section-head p { color: var(--muted); font-size: 17px; }
+
+    /* PRODUCTS — the hub selector */
+    .products { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .product {
+      position: relative; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 30px; padding: 34px;
+      display: flex; flex-direction: column;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      transition: transform .25s, border-color .25s;
     }
-    .glow {
-      position: absolute; width: 340px; height: 340px;
-      background: rgba(166,160,122,.16); filter: blur(72px); border-radius: 50%;
+    .product:hover { transform: translateY(-4px); }
+    .product.menoova { border-color: rgba(166,160,122,.35); }
+    .product.menoova::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 80% -10%, rgba(166,160,122,.22), transparent 50%);
     }
+    .product.iiq { border-color: rgba(103,84,232,.4); }
+    .product.iiq::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 80% -10%, rgba(103,84,232,.28), transparent 50%);
+    }
+    .product-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; position: relative; }
+    .prod-logo { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; flex-shrink: 0; }
+    .prod-logo.menoova { background: linear-gradient(145deg, rgba(245,239,228,.18), rgba(166,160,122,.12)); border: 1px solid rgba(245,239,228,.2); }
+    .prod-logo.iiq { background: linear-gradient(145deg, #7a67ff, var(--violet)); }
+    .prod-logo svg { width: 30px; height: 30px; }
+    .prod-name { font-size: 26px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+    .prod-tag { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .badge-new {
+      margin-left: auto; align-self: flex-start; font-size: 11px; font-weight: 900; letter-spacing: .06em;
+      padding: 6px 11px; border-radius: 999px; color: #fff;
+      background: linear-gradient(135deg, #7a67ff, var(--violet)); position: relative;
+    }
+    .product h3 { font-size: 21px; letter-spacing: -0.03em; margin-bottom: 10px; position: relative; }
+    .product > p { color: var(--muted); font-size: 15px; margin-bottom: 18px; position: relative; }
+    .prod-list { list-style: none; display: grid; gap: 9px; margin-bottom: 26px; position: relative; }
+    .prod-list li { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 9px; }
+    .prod-list.menoova li::before { content: "✓"; color: var(--green); font-weight: 900; }
+    .prod-list.iiq li::before { content: "✓"; color: var(--emerald); font-weight: 900; }
+    .prod-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; position: relative; }
+    .prod-price { color: var(--muted); font-size: 13px; }
+    .prod-price strong { color: var(--cream); font-size: 15px; }
+
+    /* PHONE MOCK (Menoova) */
+    .phone-wrap { position: relative; min-height: 560px; display: grid; place-items: center; }
+    .glow { position: absolute; width: 340px; height: 340px; background: rgba(166,160,122,.16); filter: blur(72px); border-radius: 50%; }
+    .glow.violet { background: rgba(103,84,232,.22); }
     .phone {
       position: relative; width: min(320px, 84vw); min-height: 580px;
       border-radius: 40px; border: 1px solid rgba(245,239,228,.2);
@@ -173,116 +211,58 @@
     }
     .screen { border-radius: 30px; min-height: 554px; overflow: hidden; background: #f6efe5; color: #171411; }
     .menu-cover {
-      padding: 28px 20px; min-height: 190px; color: white;
+      padding: 28px 20px; min-height: 180px; color: white;
       background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.58)),
         url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover;
       display: flex; flex-direction: column; justify-content: end;
     }
-    .mini-logo {
-      width: 48px; height: 48px; border-radius: 15px; background: rgba(255,255,255,.92);
-      color: #161616; display: grid; place-items: center; font-weight: 900; margin-bottom: 14px;
-    }
+    .mini-logo { width: 48px; height: 48px; border-radius: 15px; background: rgba(255,255,255,.92); color: #161616; display: grid; place-items: center; font-weight: 900; margin-bottom: 14px; }
     .menu-cover h3 { font-size: 24px; letter-spacing: -0.04em; line-height: 1; }
     .menu-cover span { color: rgba(255,255,255,.7); font-size: 12px; margin-top: 6px; }
     .menu-body { padding: 16px; }
     .pill-row { display: flex; gap: 7px; margin-bottom: 15px; overflow: hidden; }
-    .pill {
-      white-space: nowrap; border-radius: 999px; padding: 7px 11px;
-      background: white; color: #605641; font-size: 11px; font-weight: 800;
-      box-shadow: 0 4px 14px rgba(0,0,0,.06);
-    }
-    .menu-card {
-      background: white; border-radius: 17px; padding: 14px; margin-bottom: 10px;
-      box-shadow: 0 6px 18px rgba(80,60,40,.07);
-    }
+    .pill { white-space: nowrap; border-radius: 999px; padding: 7px 11px; background: white; color: #605641; font-size: 11px; font-weight: 800; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    .menu-card { background: white; border-radius: 17px; padding: 14px; margin-bottom: 10px; box-shadow: 0 6px 18px rgba(80,60,40,.07); }
     .menu-card-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
     .menu-card h4 { font-size: 14px; margin-bottom: 4px; }
     .menu-card p { color: #766b5d; font-size: 11px; margin: 0; }
     .mock-price { color: #6e684b; font-weight: 900; white-space: nowrap; font-size: 14px; }
-    .bottom-demo {
-      margin-top: 16px; display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 7px; background: #171411; padding: 9px; border-radius: 20px;
-      color: white; font-size: 9px; text-align: center;
-    }
+    .bottom-demo { margin-top: 16px; display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; background: #171411; padding: 9px; border-radius: 20px; color: white; font-size: 9px; text-align: center; }
 
-    /* SECTIONS */
-    .section { padding: 80px 0; border-top: 1px solid var(--line); }
-    .section-head { max-width: 680px; margin-bottom: 36px; }
-    .section-head h2 {
-      font-size: clamp(30px, 4.5vw, 52px); line-height: 1.02;
-      letter-spacing: -0.055em; margin-bottom: 16px;
+    /* DEEP-DIVE band (Menoova) */
+    .deep { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+    .feature-band {
+      border: 1px solid var(--line); border-radius: 32px; padding: 36px;
+      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: center;
+      background: linear-gradient(135deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
     }
-    .section-head p { color: var(--muted); font-size: 17px; }
+    .steps { display: grid; gap: 12px; }
+    .step { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 20px; background: rgba(0,0,0,.16); }
+    .num { width: 40px; height: 40px; border-radius: 50%; background: var(--cream); color: #111; display: grid; place-items: center; font-weight: 900; }
+    .step h3 { margin-bottom: 3px; font-size: 17px; }
+    .step p { color: var(--muted); font-size: 13px; }
 
-    /* PRICING */
-    .pricing-hero {
-      padding: 70px 0; border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(166,160,122,0.06), transparent);
-    }
-    .pricing-head { text-align: center; margin-bottom: 48px; }
-    .pricing-head h2 {
-      font-size: clamp(34px, 5vw, 58px); line-height: 1;
-      letter-spacing: -0.055em; margin-bottom: 14px;
-    }
-    .pricing-head p { color: var(--muted); font-size: 18px; max-width: 560px; margin: 0 auto; }
-
-    /* ── MODIFICA: 3 colonne ── */
+    /* PRICING (Menoova) */
+    .pricing-head { text-align: center; margin-bottom: 44px; }
+    .pricing-head h2 { font-size: clamp(30px, 4.5vw, 48px); line-height: 1; letter-spacing: -0.055em; margin-bottom: 14px; }
+    .pricing-head p { color: var(--muted); font-size: 17px; max-width: 560px; margin: 0 auto; }
     .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-
-    .price-card {
-      border: 1px solid var(--line); border-radius: 28px; padding: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-    }
-    .price-card.featured {
-      border-color: rgba(166,160,122,.4);
-      background: linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
-      position: relative; overflow: hidden;
-    }
-    /* Piano Personalizzato — bordo caldo dorato */
-    .price-card.premium {
-      border-color: rgba(215,180,100,.35);
-      background: linear-gradient(180deg, rgba(215,180,100,.10), rgba(255,255,255,.025));
-    }
-    .pop-badge {
-      position: absolute; top: 18px; right: 18px;
-      background: var(--cream); color: #111; padding: 5px 10px;
-      border-radius: 999px; font-size: 10px; font-weight: 900;
-    }
-    .plan-icon {
-      width: 44px; height: 44px; border-radius: 14px;
-      background: rgba(166,160,122,.14); display: grid; place-items: center;
-      color: var(--olive); margin-bottom: 20px; font-size: 20px;
-    }
+    .price-card { border: 1px solid var(--line); border-radius: 28px; padding: 30px; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)); }
+    .price-card.featured { border-color: rgba(166,160,122,.4); background: linear-gradient(180deg, rgba(166,160,122,.14), rgba(255,255,255,.03)); position: relative; overflow: hidden; }
+    .price-card.premium { border-color: rgba(215,180,100,.35); background: linear-gradient(180deg, rgba(215,180,100,.10), rgba(255,255,255,.025)); }
+    .pop-badge { position: absolute; top: 18px; right: 18px; background: var(--cream); color: #111; padding: 5px 10px; border-radius: 999px; font-size: 10px; font-weight: 900; }
+    .plan-icon { width: 44px; height: 44px; border-radius: 14px; background: rgba(166,160,122,.14); display: grid; place-items: center; color: var(--olive); margin-bottom: 20px; font-size: 20px; }
     .plan-name { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
     .plan-desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-
-    .trial-box {
-      padding: 14px; border-radius: 16px;
-      background: rgba(140,220,70,0.08); border: 1px solid rgba(140,220,70,0.22);
-      margin-bottom: 20px;
-    }
+    .trial-box { padding: 14px; border-radius: 16px; background: rgba(140,220,70,0.08); border: 1px solid rgba(140,220,70,0.22); margin-bottom: 20px; }
     .trial-box .t-title { color: var(--green); font-size: 15px; font-weight: 800; margin-bottom: 3px; }
     .trial-box .t-sub { color: var(--muted); font-size: 13px; }
-
-    .reassure-row {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
-    }
-    .reassure-chip {
-      display: flex; align-items: center; gap: 5px; padding: 5px 10px;
-      border-radius: 999px; background: rgba(255,255,255,.05);
-      border: 1px solid var(--line); font-size: 12px; color: var(--muted);
-    }
+    .reassure-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .reassure-chip { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid var(--line); font-size: 12px; color: var(--muted); }
     .reassure-chip span { color: var(--green); }
-
-    .price-big {
-      font-size: 48px; font-weight: 900; letter-spacing: -0.06em; line-height: 1;
-    }
+    .price-big { font-size: 46px; font-weight: 900; letter-spacing: -0.06em; line-height: 1; }
     .price-period { color: var(--muted); font-size: 14px; margin-top: 3px; margin-bottom: 6px; }
-    .annual-note {
-      font-size: 13px; color: var(--muted); margin-bottom: 22px;
-      padding: 10px 14px; background: rgba(255,255,255,.04);
-      border: 1px solid var(--line); border-radius: 12px;
-    }
+    .annual-note { font-size: 13px; color: var(--muted); margin-bottom: 22px; padding: 10px 14px; background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 12px; }
     .annual-note strong { color: var(--cream); }
     .feature-list { list-style: none; display: grid; gap: 10px; margin-bottom: 24px; }
     .feature-list li { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
@@ -290,79 +270,82 @@
     .plan-actions { display: flex; flex-direction: column; gap: 10px; }
     .demo-links { display: flex; gap: 8px; flex-wrap: wrap; }
 
+    /* INVOICEIQ promo band */
+    .iiq-band {
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(103,84,232,.4); border-radius: 34px; padding: 48px;
+      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center;
+      background: linear-gradient(135deg, rgba(103,84,232,.20), rgba(255,255,255,.03));
+    }
+    .iiq-band::before { content: ""; position: absolute; width: 320px; height: 320px; right: -60px; top: -80px; background: rgba(103,84,232,.3); filter: blur(80px); border-radius: 50%; }
+    .iiq-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: rgba(103,84,232,.2); border: 1px solid rgba(155,140,255,.4); color: var(--violet-bright); font-size: 12px; font-weight: 800; margin-bottom: 18px; }
+    .iiq-band h2 { font-size: clamp(30px, 4vw, 46px); line-height: 1.02; letter-spacing: -0.05em; margin-bottom: 14px; position: relative; }
+    .iiq-band > div > p { color: var(--muted); font-size: 17px; margin-bottom: 22px; max-width: 460px; position: relative; }
+    .iiq-points { list-style: none; display: grid; gap: 11px; margin-bottom: 26px; position: relative; }
+    .iiq-points li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--cream); }
+    .iiq-points li b { width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center; font-size: 12px; flex-shrink: 0; }
+    .iiq-points .up b { background: rgba(255,101,122,.18); color: #ff8a9a; }
+    .iiq-points .down b { background: rgba(62,224,163,.16); color: var(--emerald); }
+    .iiq-points .ai b { background: rgba(155,140,255,.2); color: var(--violet-bright); }
+    .iiq-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; position: relative; }
+
+    /* InvoiceIQ app mock (mini dashboard) */
+    .iiq-phone { position: relative; display: grid; place-items: center; }
+    .iiq-screen {
+      width: min(320px, 84vw); border-radius: 34px; padding: 18px;
+      background: linear-gradient(180deg, #15151f, #101019);
+      border: 1px solid rgba(155,140,255,.25); box-shadow: 0 30px 70px rgba(40,30,90,.5);
+    }
+    .iiq-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .iiq-bar .t { font-weight: 900; font-size: 18px; letter-spacing: -.4px; }
+    .iiq-bar .t span { color: var(--violet-bright); }
+    .iiq-bar .sync { font-size: 11px; color: var(--emerald); display: flex; align-items: center; gap: 5px; }
+    .iiq-hero-card { background: linear-gradient(135deg, #7a67ff, var(--violet)); border-radius: 22px; padding: 16px; color: #fff; margin-bottom: 12px; }
+    .iiq-hero-card .lab { font-size: 10px; letter-spacing: .12em; opacity: .85; font-weight: 800; }
+    .iiq-hero-card .big { font-size: 30px; font-weight: 950; letter-spacing: -1px; margin: 4px 0 2px; }
+    .iiq-hero-card .sub { font-size: 11px; opacity: .85; }
+    .iiq-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .iiq-stat { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 15px; padding: 11px; }
+    .iiq-stat .l { font-size: 9px; color: #9aa0b6; font-weight: 800; letter-spacing: .04em; }
+    .iiq-stat .v { font-size: 16px; font-weight: 900; color: #fff; margin-top: 2px; }
+    .iiq-alert { display: flex; gap: 10px; align-items: flex-start; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 15px; padding: 11px; margin-bottom: 8px; }
+    .iiq-alert .ic { font-size: 16px; line-height: 1.2; }
+    .iiq-alert .nm { font-size: 12px; font-weight: 800; color: #fff; }
+    .iiq-alert .dt { font-size: 10px; color: #9aa0b6; }
+    .iiq-alert.up { border-left: 3px solid #ff657a; }
+    .iiq-alert.down { border-left: 3px solid var(--emerald); }
+    .iiq-alert .chg { margin-left: auto; font-weight: 900; font-size: 12px; }
+    .iiq-alert.up .chg { color: #ff8a9a; }
+    .iiq-alert.down .chg { color: var(--emerald); }
+
     /* CARDS grid */
     .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-    .card {
-      border: 1px solid var(--line); border-radius: 26px; padding: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-      min-height: 220px;
-    }
-    .icon {
-      width: 44px; height: 44px; border-radius: 14px;
-      background: rgba(166,160,122,.14); display: grid; place-items: center;
-      color: var(--olive); margin-bottom: 20px; font-size: 20px;
-    }
+    .card { border: 1px solid var(--line); border-radius: 26px; padding: 26px; background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)); min-height: 200px; }
+    .icon { width: 44px; height: 44px; border-radius: 14px; background: rgba(166,160,122,.14); display: grid; place-items: center; color: var(--olive); margin-bottom: 20px; font-size: 20px; }
     .card h3 { font-size: 20px; letter-spacing: -0.03em; margin-bottom: 10px; }
     .card p { color: var(--muted); font-size: 14px; }
 
-    /* HOW IT WORKS */
-    .feature-band {
-      border: 1px solid var(--line); border-radius: 32px; padding: 36px;
-      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: center;
-      background: linear-gradient(135deg, rgba(166,160,122,.14), rgba(255,255,255,.03));
-    }
-    .steps { display: grid; gap: 12px; }
-    .step {
-      display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px;
-      border: 1px solid var(--line); border-radius: 20px; background: rgba(0,0,0,.16);
-    }
-    .num {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--cream); color: #111; display: grid; place-items: center; font-weight: 900;
-    }
-    .step h3 { margin-bottom: 3px; font-size: 17px; }
-    .step p { color: var(--muted); font-size: 13px; }
-
     /* FAQ */
-    details {
-      border: 1px solid var(--line); border-radius: 18px; padding: 18px 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); cursor: pointer;
-    }
-    summary {
-      font-weight: 800; font-size: 15px; letter-spacing: -.02em;
-      list-style: none; display: flex; justify-content: space-between; align-items: center;
-    }
+    details { border: 1px solid var(--line); border-radius: 18px; padding: 18px 22px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); cursor: pointer; }
+    summary { font-weight: 800; font-size: 15px; letter-spacing: -.02em; list-style: none; display: flex; justify-content: space-between; align-items: center; }
     summary .plus { color: var(--olive); font-size: 18px; flex-shrink: 0; margin-left: 10px; }
     details p { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.6; }
 
     /* FINAL CTA */
-    .final-box {
-      border: 1px solid var(--line); border-radius: 34px; padding: 64px 30px; text-align: center;
-      background: radial-gradient(circle at 50% 0%, rgba(166,160,122,.2), transparent 44%), rgba(255,255,255,.03);
-    }
-    .final-box h2 {
-      font-size: clamp(34px, 5.5vw, 62px); line-height: 1;
-      letter-spacing: -0.06em; margin-bottom: 14px;
-    }
+    .final-box { border: 1px solid var(--line); border-radius: 34px; padding: 64px 30px; text-align: center; background: radial-gradient(circle at 50% 0%, rgba(166,160,122,.2), transparent 44%), rgba(255,255,255,.03); }
+    .final-box h2 { font-size: clamp(34px, 5.5vw, 60px); line-height: 1; letter-spacing: -0.06em; margin-bottom: 14px; }
     .final-box p { max-width: 560px; margin: 0 auto 30px; color: var(--muted); font-size: 17px; }
     .final-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
-    .final-reassure {
-      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
-      margin-top: 22px; font-size: 13px; color: var(--muted);
-    }
-    .final-reassure span { display: flex; align-items: center; gap: 5px; }
-    .final-reassure span b { color: var(--green); }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
     /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .pricing-grid { grid-template-columns: repeat(2,1fr); }
-    }
+    @media (max-width: 1024px) { .pricing-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 900px) {
-      .hero-grid, .feature-band { grid-template-columns: 1fr; }
+      .products, .feature-band, .deep, .iiq-band { grid-template-columns: 1fr; }
+      .iiq-band { padding: 32px; }
       .phone-wrap { min-height: auto; }
       .cards { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -372,8 +355,6 @@
     @media (max-width: 520px) {
       .container { width: calc(100% - 28px); }
       .nav { height: 64px; }
-      .phone { transform: scale(.9); transform-origin: top center; }
-      .phone-wrap { margin-bottom: -48px; }
     }
   </style>
 </head>
@@ -393,81 +374,141 @@
         <span>MENOOVA</span>
       </a>
       <nav class="nav-links">
+        <a href="#prodotti">Prodotti</a>
         <a href="#come-funziona">Come funziona</a>
         <a href="#pricing">Prezzi</a>
+        <a href="invoiceiq.html">InvoiceIQ</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">Scrivici su WhatsApp</button>
+      <button class="cta" onclick="waClick('Ciao vorrei maggiori informazioni sui servizi Menoova')">Scrivici su WhatsApp</button>
     </div>
   </header>
 
   <main>
 
-    <!-- HERO -->
+    <!-- HERO (hub) -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow"><span class="dot"></span> Menu digitale per ristoranti, bar e pizzerie</div>
-          <h1>Il menu sul telefono dei tuoi clienti.</h1>
-          <p class="hero-sub">Menoova crea il tuo menu digitale in 48 ore. I clienti lo aprono scansionando un QR code, senza app. Tu lo aggiorni quando vuoi.</p>
-
-          <div class="hero-badge-row">
-            <span class="badge-green">✓ 3 mesi completamente gratis</span>
-            <span class="badge-price">poi da <strong>€7,99/mese</strong></span>
-          </div>
-
-          <div class="hero-actions">
-            <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">
-              Prova gratis 3 mesi →
-            </button>
-            <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">
-              ✉️ Scrivi una email
-            </a>
-          </div>
-
-          <div class="trust-strip">
-            <div class="trust-item"><span>✓</span> Nessuna carta richiesta</div>
-            <div class="trust-item"><span>✓</span> Disdici quando vuoi</div>
-            <div class="trust-item"><span>✓</span> Menu pronto in 48 ore</div>
-            <div class="trust-item"><span>✓</span> 20 porta QR inclusi</div>
-          </div>
+      <div class="container">
+        <div class="eyebrow"><span class="dot"></span> Strumenti digitali per ristoranti, bar e piccole attività</div>
+        <h1>Due strumenti, una sola casa.<br>La tua attività, più semplice.</h1>
+        <p class="hero-sub">Menoova porta il tuo menu sul telefono dei clienti. InvoiceIQ tiene fatture, IVA e prezzi dei fornitori sotto controllo. Scegli quello che ti serve — o usali insieme.</p>
+        <div class="hero-actions">
+          <a href="#prodotti" class="cta-big">Scopri i prodotti →</a>
+          <button class="ghost" onclick="waClick('Ciao vorrei capire quale strumento Menoova fa per me')">Quale fa per me?</button>
         </div>
+        <div class="trust-strip">
+          <div class="trust-item"><span>✓</span> Pensati per chi lavora in sala e in cucina</div>
+          <div class="trust-item"><span>✓</span> Nessuna competenza tecnica richiesta</div>
+          <div class="trust-item"><span>✓</span> Supporto via WhatsApp</div>
+        </div>
+      </div>
+    </section>
 
-        <div class="phone-wrap">
-          <div class="glow"></div>
-          <div class="phone">
-            <div class="screen">
-              <div class="menu-cover">
-                <div class="mini-logo">M</div>
-                <h3>Il Piccolo Forno</h3>
-                <span>Menu digitale · Via Roma, Ragusa</span>
+    <!-- PRODOTTI (hub selector) -->
+    <section class="section" id="prodotti" style="border-top:none;padding-top:0;">
+      <div class="container">
+        <div class="section-head">
+          <h2>I nostri prodotti.</h2>
+          <p>Due app indipendenti, stessa filosofia: semplici, veloci, fatte per chi ha un'attività da mandare avanti.</p>
+        </div>
+        <div class="products">
+
+          <!-- MENOOVA -->
+          <article class="product menoova">
+            <div class="product-top">
+              <div class="prod-logo menoova">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 48V17C12 14.8 14.7 13.7 16.2 15.3L32 32L47.8 15.3C49.3 13.7 52 14.8 52 17V48" stroke="#F5EFE4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="32" cy="48" r="5" fill="#A6A07A"/>
+                </svg>
               </div>
-              <div class="menu-body">
-                <div class="pill-row">
-                  <div class="pill">🍕 Pizze</div>
-                  <div class="pill">🦪 Antipasti</div>
-                  <div class="pill">🍝 Primi</div>
+              <div>
+                <div class="prod-name">Menoova</div>
+                <div class="prod-tag">Menu digitale · QR code</div>
+              </div>
+            </div>
+            <h3>Il menu sul telefono dei tuoi clienti.</h3>
+            <p>Creiamo il tuo menu digitale in 48 ore. I clienti lo aprono scansionando un QR — senza app. Tu lo aggiorni quando vuoi.</p>
+            <ul class="prod-list menoova">
+              <li>Menu personalizzato con il tuo stile</li>
+              <li>20 porta QR in plexiglass inclusi</li>
+              <li>Aggiornamenti menu inclusi</li>
+              <li>3 mesi gratis, poi da €7,99/mese</li>
+            </ul>
+            <div class="prod-actions">
+              <button class="cta" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">Prova gratis →</button>
+              <a href="#come-funziona" class="secondary">Come funziona</a>
+            </div>
+          </article>
+
+          <!-- INVOICEIQ -->
+          <article class="product iiq">
+            <div class="product-top">
+              <div class="prod-logo iiq">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="16" y="10" width="32" height="44" rx="6" fill="#fff"/>
+                  <rect x="22" y="18" width="20" height="4" rx="2" fill="#6754E8"/>
+                  <rect x="22" y="27" width="14" height="3" rx="1.5" fill="#C8C1FF"/>
+                  <rect x="22" y="34" width="20" height="3" rx="1.5" fill="#C8C1FF"/>
+                  <circle cx="42" cy="44" r="9" fill="#1FB978"/>
+                  <path d="M38 44l3 3 5-6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="prod-name">InvoiceIQ</div>
+                <div class="prod-tag">Gestione fatture · AI</div>
+              </div>
+              <span class="badge-new">NUOVO</span>
+            </div>
+            <h3>Fotografa la fattura. Al resto pensa l'AI.</h3>
+            <p>Scatti una foto allo scontrino o carichi un PDF: InvoiceIQ legge tutto, calcola l'IVA e ti avvisa se un fornitore ha alzato i prezzi.</p>
+            <ul class="prod-list iiq">
+              <li>Lettura automatica con AI di fatture e scontrini</li>
+              <li>Alert prezzi 🔴 in salita / 🟢 in discesa</li>
+              <li>IVA, fornitori e storico sempre in ordine</li>
+              <li>Su Play Store · demo gratis, poi €4,69/mese</li>
+            </ul>
+            <div class="prod-actions">
+              <a href="invoiceiq.html" class="cta cta-violet">Scopri InvoiceIQ →</a>
+              <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="ghost" onclick="storeClick('invoiceiq')">▶ Play Store</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MENOOVA DEEP DIVE ===================== -->
+
+    <!-- COME FUNZIONA -->
+    <section class="section" id="come-funziona">
+      <div class="container">
+        <div class="section-head" style="margin-bottom:26px;">
+          <div class="eyebrow"><span class="dot"></span> Menoova · Menu digitale</div>
+          <h2>Menu pronto in 48 ore, senza pensieri.</h2>
+          <p>Ti basta mandarci il menu — al resto pensiamo noi. Logo, colori, categorie, prezzi: tutto su misura per il tuo locale.</p>
+        </div>
+        <div class="deep">
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div><h3>Ci mandi il menu</h3><p>Logo, prodotti, prezzi, indirizzo e contatti. Anche una foto va bene.</p></div></div>
+            <div class="step"><div class="num">2</div><div><h3>Creiamo la pagina</h3><p>In 48 ore costruiamo il menu digitale con il tuo stile e i tuoi colori.</p></div></div>
+            <div class="step"><div class="num">3</div><div><h3>Metti il QR sui tavoli</h3><p>I tuoi clienti scansionano e vedono subito il menu. Nessuna app.</p></div></div>
+          </div>
+          <div class="phone-wrap">
+            <div class="glow"></div>
+            <div class="phone">
+              <div class="screen">
+                <div class="menu-cover">
+                  <div class="mini-logo">M</div>
+                  <h3>Il Piccolo Forno</h3>
+                  <span>Menu digitale · Via Roma, Ragusa</span>
                 </div>
-                <div class="menu-card">
-                  <div class="menu-card-top">
-                    <div><h4>Margherita</h4><p>Pomodoro, fior di latte, basilico</p></div>
-                    <div class="mock-price">€ 7</div>
-                  </div>
-                </div>
-                <div class="menu-card">
-                  <div class="menu-card-top">
-                    <div><h4>Diavola</h4><p>Pomodoro, mozzarella, salame piccante</p></div>
-                    <div class="mock-price">€ 9</div>
-                  </div>
-                </div>
-                <div class="menu-card">
-                  <div class="menu-card-top">
-                    <div><h4>Cannolo siciliano</h4><p>Ricotta, pistacchio, cioccolato</p></div>
-                    <div class="mock-price">€ 4</div>
-                  </div>
-                </div>
-                <div class="bottom-demo">
-                  <span>🏠 Home</span><span>📋 Menu</span><span>📍 Mappa</span><span>📞 Chiama</span>
+                <div class="menu-body">
+                  <div class="pill-row"><div class="pill">🍕 Pizze</div><div class="pill">🦪 Antipasti</div><div class="pill">🍝 Primi</div></div>
+                  <div class="menu-card"><div class="menu-card-top"><div><h4>Margherita</h4><p>Pomodoro, fior di latte, basilico</p></div><div class="mock-price">€ 7</div></div></div>
+                  <div class="menu-card"><div class="menu-card-top"><div><h4>Diavola</h4><p>Pomodoro, mozzarella, salame piccante</p></div><div class="mock-price">€ 9</div></div></div>
+                  <div class="menu-card"><div class="menu-card-top"><div><h4>Cannolo siciliano</h4><p>Ricotta, pistacchio, cioccolato</p></div><div class="mock-price">€ 4</div></div></div>
+                  <div class="bottom-demo"><span>🏠 Home</span><span>📋 Menu</span><span>📍 Mappa</span><span>📞 Chiama</span></div>
                 </div>
               </div>
             </div>
@@ -476,233 +517,122 @@
       </div>
     </section>
 
-    <!-- PREZZI -->
-    <section class="pricing-hero" id="pricing">
+    <!-- PREZZI MENOOVA -->
+    <section class="section" id="pricing">
       <div class="container">
         <div class="pricing-head">
-          <h2>Prezzi chiari. Zero sorprese.</h2>
+          <h2>Prezzi Menoova. Zero sorprese.</h2>
           <p>3 mesi gratis per testarlo nel tuo locale. Poi scegli se continuare — nessun addebito automatico.</p>
         </div>
-
         <div class="pricing-grid">
 
-          <!-- STARTER -->
           <article class="price-card">
             <div class="plan-icon">◌</div>
             <div class="plan-name">Starter</div>
             <div class="plan-desc">Per bar, bakery e locali con un menu semplice.</div>
-
-            <div class="trial-box">
-              <div class="t-title">✓ 3 mesi completamente gratis</div>
-              <div class="t-sub">Nessuna carta di credito richiesta per iniziare.</div>
-            </div>
-
-            <div class="reassure-row">
-              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
-              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
-            </div>
-
+            <div class="trial-box"><div class="t-title">✓ 3 mesi completamente gratis</div><div class="t-sub">Nessuna carta di credito richiesta per iniziare.</div></div>
+            <div class="reassure-row"><span class="reassure-chip"><span>✓</span> Nessun vincolo</span><span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span></div>
             <div class="price-big">€7,99</div>
             <div class="price-period">/ mese dopo il periodo gratuito</div>
             <div class="annual-note">Oppure <strong>€79 / anno</strong> — risparmi oltre 2 mesi</div>
-
             <ul class="feature-list">
-              <li>Menu digitale personalizzato</li>
-              <li>QR code dedicato al tuo locale</li>
-              <li>20 porta QR in plexiglass inclusi</li>
-              <li>Aggiornamenti menu inclusi</li>
-              <li>Link condivisibile sui social</li>
-              <li>Supporto via WhatsApp</li>
+              <li>Menu digitale personalizzato</li><li>QR code dedicato al tuo locale</li><li>20 porta QR in plexiglass inclusi</li><li>Aggiornamenti menu inclusi</li><li>Link condivisibile sui social</li><li>Supporto via WhatsApp</li>
             </ul>
-
             <div class="plan-actions">
-              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Starter gratis per 3 mesi')">
-                Prova gratis →
-              </button>
-              <div class="demo-links">
-                <a class="secondary" href="./demo/starter.html" target="_blank">Demo classico</a>
-                <a class="secondary" href="./demo/demo-starter-b.html" target="_blank">Demo moderno</a>
-              </div>
+              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Starter gratis per 3 mesi')">Prova gratis →</button>
+              <div class="demo-links"><a class="secondary" href="./demo/starter.html" target="_blank">Demo classico</a><a class="secondary" href="./demo/demo-starter-b.html" target="_blank">Demo moderno</a></div>
             </div>
           </article>
 
-          <!-- BUSINESS -->
           <article class="price-card featured">
             <div class="pop-badge">CONSIGLIATO</div>
             <div class="plan-icon">✦</div>
             <div class="plan-name">Business</div>
             <div class="plan-desc">Per ristoranti e pizzerie con menu articolato e molte categorie.</div>
-
-            <div class="trial-box">
-              <div class="t-title">✓ 3 mesi completamente gratis</div>
-              <div class="t-sub">Testi il menu nel tuo locale senza rischiare niente.</div>
-            </div>
-
-            <div class="reassure-row">
-              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
-              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
-            </div>
-
+            <div class="trial-box"><div class="t-title">✓ 3 mesi completamente gratis</div><div class="t-sub">Testi il menu nel tuo locale senza rischiare niente.</div></div>
+            <div class="reassure-row"><span class="reassure-chip"><span>✓</span> Nessun vincolo</span><span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span></div>
             <div class="price-big">€12,99</div>
             <div class="price-period">/ mese dopo il periodo gratuito</div>
             <div class="annual-note">Oppure <strong>€129 / anno</strong> — tutto incluso</div>
-
             <ul class="feature-list">
-              <li>Design premium personalizzato</li>
-              <li>20 porta QR in plexiglass inclusi</li>
-              <li>Categorie e sezioni illimitate</li>
-              <li>Prezzi a taglie (baby / normale / maxi)</li>
-              <li>Aggiornamenti rapidi inclusi</li>
-              <li>Ottimizzazione mobile avanzata</li>
-              <li>Supporto prioritario</li>
+              <li>Design premium personalizzato</li><li>20 porta QR in plexiglass inclusi</li><li>Categorie e sezioni illimitate</li><li>Prezzi a taglie (baby / normale / maxi)</li><li>Aggiornamenti rapidi inclusi</li><li>Ottimizzazione mobile avanzata</li><li>Supporto prioritario</li>
             </ul>
-
             <div class="plan-actions">
-              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Business gratis per 3 mesi')">
-                Prova gratis →
-              </button>
-              <div class="demo-links">
-                <a class="secondary" href="./demo/business.html" target="_blank">Demo classico</a>
-                <a class="secondary" href="./demo/demo-business-b.html" target="_blank">Demo moderno</a>
-              </div>
+              <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova Business gratis per 3 mesi')">Prova gratis →</button>
+              <div class="demo-links"><a class="secondary" href="./demo/business.html" target="_blank">Demo classico</a><a class="secondary" href="./demo/demo-business-b.html" target="_blank">Demo moderno</a></div>
             </div>
           </article>
 
-          <!-- PERSONALIZZATO ← NUOVO -->
           <article class="price-card premium">
             <div class="plan-icon">◈</div>
             <div class="plan-name">Personalizzato</div>
             <div class="plan-desc">Menu su misura con design, lingua e funzioni pensate per il tuo locale.</div>
-
-            <div class="trial-box">
-              <div class="t-title">✓ 3 mesi completamente gratis</div>
-              <div class="t-sub">Il tuo menu unico, senza nessun impegno iniziale.</div>
-            </div>
-
-            <div class="reassure-row">
-              <span class="reassure-chip"><span>✓</span> Nessun vincolo</span>
-              <span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span>
-            </div>
-
+            <div class="trial-box"><div class="t-title">✓ 3 mesi completamente gratis</div><div class="t-sub">Il tuo menu unico, senza nessun impegno iniziale.</div></div>
+            <div class="reassure-row"><span class="reassure-chip"><span>✓</span> Nessun vincolo</span><span class="reassure-chip"><span>✓</span> Disdici quando vuoi</span></div>
             <div class="price-big">€17,90</div>
             <div class="price-period">/ mese dopo il periodo gratuito</div>
             <div class="annual-note">Oppure <strong>€179 / anno</strong> — risparmia 2 mesi</div>
-
             <ul class="feature-list">
-              <li>Design completamente su misura</li>
-              <li>20 porta QR in plexiglass inclusi</li>
-              <li>Menu multilingua (IT / EN / DE)</li>
-              <li>Filtro allergeni interattivo</li>
-              <li>Foto per ogni piatto</li>
-              <li>La tua identità visiva unica</li>
-              <li>Supporto dedicato prioritario</li>
+              <li>Design completamente su misura</li><li>20 porta QR in plexiglass inclusi</li><li>Menu multilingua (IT / EN / DE)</li><li>Filtro allergeni interattivo</li><li>Foto per ogni piatto</li><li>La tua identità visiva unica</li><li>Supporto dedicato prioritario</li>
             </ul>
-
             <div class="plan-actions">
-              <button class="cta-big" onclick="waClick('Ciao vorrei il piano Personalizzato Menoova gratis per 3 mesi')">
-                Prova gratis →
-              </button>
-              <div class="demo-links">
-                <a class="secondary" href="./demo/personalizzato.html" target="_blank">Vedi la demo</a>
+              <button class="cta-big" onclick="waClick('Ciao vorrei il piano Personalizzato Menoova gratis per 3 mesi')">Prova gratis →</button>
+              <div class="demo-links"><a class="secondary" href="./demo/personalizzato.html" target="_blank">Vedi la demo</a></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INVOICEIQ PROMO ===================== -->
+    <section class="section" id="invoiceiq">
+      <div class="container">
+        <div class="iiq-band">
+          <div>
+            <div class="iiq-eyebrow">◈ InvoiceIQ · Gestione fatture</div>
+            <h2>Smetti di inserire le fatture a mano.</h2>
+            <p>InvoiceIQ legge fatture e scontrini d'acquisto con l'AI, tiene l'IVA in ordine e ti avvisa quando un fornitore ti sta facendo pagare di più.</p>
+            <ul class="iiq-points">
+              <li class="ai"><b>AI</b> Fotografi la fattura, il form si compila da solo</li>
+              <li class="up"><b>↑</b> Alert rosso quando un prodotto rincara</li>
+              <li class="down"><b>↓</b> Alert verde quando trovi il prezzo migliore</li>
+            </ul>
+            <div class="iiq-actions">
+              <a href="invoiceiq.html" class="cta-big cta-violet">Scopri InvoiceIQ →</a>
+              <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="ghost" onclick="storeClick('invoiceiq')">▶ Scarica su Play Store</a>
+            </div>
+          </div>
+
+          <div class="iiq-phone">
+            <div class="iiq-screen">
+              <div class="iiq-bar">
+                <div class="t">Invoice<span>IQ</span></div>
+                <div class="sync">☁ Sincronizzato</div>
+              </div>
+              <div class="iiq-hero-card">
+                <div class="lab">ACQUISTI GIUGNO 2026</div>
+                <div class="big">€ 4.218,90</div>
+                <div class="sub">12 fatture acquisto registrate</div>
+              </div>
+              <div class="iiq-stats">
+                <div class="iiq-stat"><div class="l">NETTO</div><div class="v">€ 3.515</div></div>
+                <div class="iiq-stat"><div class="l">IVA</div><div class="v">€ 703</div></div>
+                <div class="iiq-stat"><div class="l">FORNITORI</div><div class="v">6</div></div>
+                <div class="iiq-stat"><div class="l">PRODOTTI</div><div class="v">48</div></div>
+              </div>
+              <div class="iiq-alert up">
+                <div class="ic">🔴</div>
+                <div><div class="nm">Caffè in grani 1kg</div><div class="dt">Booker · €12,40 (prima €11,20)</div></div>
+                <div class="chg">+10,7%</div>
+              </div>
+              <div class="iiq-alert down">
+                <div class="ic">🟢</div>
+                <div><div class="nm">Farina 25kg</div><div class="dt">Supplier B · €16,90 (prima €18,50)</div></div>
+                <div class="chg">−8,6%</div>
               </div>
             </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- VIDEO DEMO -->
-    <section class="section" id="video-demo">
-      <div class="container">
-        <div class="section-head" style="text-align:center;max-width:100%;margin-bottom:32px;">
-          <h2>Guarda come funziona.</h2>
-          <p style="color:var(--muted);font-size:17px;">Dal QR sul tavolo al menu sul telefono del cliente — in meno di 3 secondi.</p>
-        </div>
-        <div style="
-          border-radius:28px;overflow:hidden;
-          border:1px solid var(--line);
-          background:rgba(0,0,0,.3);
-          box-shadow:0 30px 80px rgba(0,0,0,.4);
-          max-width:880px;margin:0 auto;
-          position:relative;
-        ">
-          <!-- Barra stile browser -->
-          <div style="
-            background:rgba(255,255,255,.05);
-            border-bottom:1px solid var(--line);
-            padding:12px 18px;
-            display:flex;align-items:center;gap:10px;
-          ">
-            <div style="display:flex;gap:6px;">
-              <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,80,80,.5)"></div>
-              <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,180,0,.5)"></div>
-              <div style="width:12px;height:12px;border-radius:50%;background:rgba(80,200,80,.5)"></div>
-            </div>
-            <div style="
-              flex:1;background:rgba(255,255,255,.06);border:1px solid var(--line);
-              border-radius:6px;padding:5px 12px;font-size:12px;color:var(--muted);
-              max-width:320px;margin:0 auto;text-align:center;
-            ">menoova.it</div>
           </div>
-          <video
-            autoplay muted loop playsinline
-            style="width:100%;display:block;max-height:520px;object-fit:cover;"
-          >
-            <source src="menoova-hero.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- COME FUNZIONA -->
-    <section class="section" id="come-funziona">
-      <div class="container feature-band">
-        <div class="section-head" style="margin-bottom:0">
-          <h2>Pronto in 48 ore, senza pensieri.</h2>
-          <p>Ti basta mandarci il menu — al resto pensiamo noi. Logo, colori, categorie, prezzi: tutto su misura per il tuo locale.</p>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <div class="num">1</div>
-            <div><h3>Ci mandi il menu</h3><p>Logo, prodotti, prezzi, indirizzo e contatti. Anche una foto va bene.</p></div>
-          </div>
-          <div class="step">
-            <div class="num">2</div>
-            <div><h3>Creiamo la pagina</h3><p>In 48 ore costruiamo il menu digitale con il tuo stile e i tuoi colori.</p></div>
-          </div>
-          <div class="step">
-            <div class="num">3</div>
-            <div><h3>Metti il QR sui tavoli</h3><p>I tuoi clienti scansionano e vedono subito il menu. Nessuna app.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COSA INCLUDE -->
-    <section class="section" id="servizio">
-      <div class="container">
-        <div class="section-head">
-          <h2>Tutto quello che serve, incluso.</h2>
-          <p>Non un semplice link. Un menu curato, ottimizzato per smartphone e sempre aggiornabile.</p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <div class="icon">▣</div>
-            <h3>QR code e porta QR</h3>
-            <p>Ogni piano include 20 porta QR in plexiglass personalizzati con il nome del tuo locale. Pronti da mettere sui tavoli.</p>
-          </article>
-          <article class="card">
-            <div class="icon">⌁</div>
-            <h3>Pagina dedicata</h3>
-            <p>URL personalizzato con logo, copertina, indirizzo e menu organizzato per categorie. Funziona su qualsiasi smartphone.</p>
-          </article>
-          <article class="card">
-            <div class="icon">✦</div>
-            <h3>Aggiornamenti inclusi</h3>
-            <p>Cambi un prezzo o aggiungi un piatto? Scrivi su WhatsApp e aggiorniamo entro 24 ore. Sempre compreso nel piano.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -712,33 +642,15 @@
       <div class="container">
         <div class="section-head">
           <h2>Domande frequenti.</h2>
-          <p>Tutto quello che vuoi sapere prima di iniziare.</p>
+          <p>Tutto quello che vuoi sapere prima di iniziare con Menoova o InvoiceIQ.</p>
         </div>
         <div style="display:grid;gap:10px;max-width:740px;">
-          <details>
-            <summary>Devo inserire la carta di credito per iniziare? <span class="plus">+</span></summary>
-            <p>No. I 3 mesi gratuiti partono senza nessun dato di pagamento. Solo alla fine del periodo ti chiediamo se vuoi continuare.</p>
-          </details>
-          <details>
-            <summary>Quanto ci vuole per avere il menu pronto? <span class="plus">+</span></summary>
-            <p>Di solito 48 ore dalla ricezione di tutti i contenuti: logo, prodotti, prezzi e indirizzo.</p>
-          </details>
-          <details>
-            <summary>Posso aggiornare prezzi e prodotti dopo? <span class="plus">+</span></summary>
-            <p>Sì, le modifiche sono incluse. Basta scriverci su WhatsApp e aggiorniamo entro 24 ore.</p>
-          </details>
-          <details>
-            <summary>I clienti devono scaricare un'app? <span class="plus">+</span></summary>
-            <p>No. Il menu si apre direttamente dal browser scansionando il QR. Nessuna app, nessuna registrazione.</p>
-          </details>
-          <details>
-            <summary>Cosa succede se decido di non continuare? <span class="plus">+</span></summary>
-            <p>Nessun problema. Disdici liberamente prima della fine dei 3 mesi. Zero addebiti automatici, zero penali.</p>
-          </details>
-          <details>
-            <summary>I 20 porta QR sono già personalizzati? <span class="plus">+</span></summary>
-            <p>Sì, ogni porta QR viene stampato con il nome del tuo locale e il QR code dedicato alla tua pagina menu.</p>
-          </details>
+          <details><summary>Posso usare solo uno dei due prodotti? <span class="plus">+</span></summary><p>Certo. Menoova e InvoiceIQ sono indipendenti: prendi solo il menu digitale, solo la gestione fatture, oppure entrambi. Paghi solo ciò che usi.</p></details>
+          <details><summary>Devo inserire la carta di credito per provare Menoova? <span class="plus">+</span></summary><p>No. I 3 mesi gratuiti di Menoova partono senza nessun dato di pagamento. Solo alla fine del periodo ti chiediamo se vuoi continuare.</p></details>
+          <details><summary>Quanto costa InvoiceIQ? <span class="plus">+</span></summary><p>InvoiceIQ si scarica dal Play Store con una demo gratuita per provarlo. L'abbonamento completo costa €4,69 al mese.</p></details>
+          <details><summary>Quanto ci vuole per avere il menu Menoova pronto? <span class="plus">+</span></summary><p>Di solito 48 ore dalla ricezione di tutti i contenuti: logo, prodotti, prezzi e indirizzo.</p></details>
+          <details><summary>I clienti devono scaricare un'app per il menu? <span class="plus">+</span></summary><p>No. Il menu Menoova si apre dal browser scansionando il QR. InvoiceIQ invece è l'app che usi tu, dal tuo telefono.</p></details>
+          <details><summary>Come ricevo assistenza? <span class="plus">+</span></summary><p>Su WhatsApp, per entrambi i prodotti. Rispondiamo entro poche ore, anche il weekend.</p></details>
         </div>
       </div>
     </section>
@@ -747,21 +659,11 @@
     <section class="section">
       <div class="container">
         <div class="final-box">
-          <h2>Prova gratis per 3 mesi.</h2>
-          <p>Nessuna carta richiesta. Menu pronto in 48 ore. Se non ti convince, disdici — nessun problema.</p>
+          <h2>Iniziamo?</h2>
+          <p>Scrivici e ti aiutiamo a scegliere lo strumento giusto per la tua attività. Nessun impegno.</p>
           <div class="final-actions">
-            <button class="cta-big" onclick="waClick('Ciao vorrei provare Menoova gratis per 3 mesi per il mio locale')">
-              📲 Inizia su WhatsApp
-            </button>
-            <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">
-              ✉️ Scrivi una email
-            </a>
-          </div>
-          <div class="final-reassure">
-            <span><b>✓</b> Nessuna carta richiesta</span>
-            <span><b>✓</b> Disdici quando vuoi</span>
-            <span><b>✓</b> Menu pronto in 48 ore</span>
-            <span><b>✓</b> 20 porta QR inclusi</span>
+            <button class="cta-big" onclick="waClick('Ciao vorrei iniziare con Menoova / InvoiceIQ per la mia attività')">📲 Scrivici su WhatsApp</button>
+            <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">✉️ Scrivi una email</a>
           </div>
         </div>
       </div>
@@ -778,46 +680,28 @@
           <article class="card">
             <div class="icon">✦</div>
             <h3>Menoova</h3>
-            <p style="margin-bottom:16px;">Menu digitali per ristoranti, bar e pizzerie italiane.</p>
-            <div style="display:grid;gap:8px;color:var(--muted);font-size:14px;">
-              <span>📍 Marina di Ragusa, Italia</span>
-              <span>🌐 menoova.it</span>
-              <span>✉️ hello@menoova.it</span>
-            </div>
+            <p style="margin-bottom:16px;">Strumenti digitali per ristoranti, bar e piccole attività italiane.</p>
+            <div style="display:grid;gap:8px;color:var(--muted);font-size:14px;"><span>📍 Marina di Ragusa, Italia</span><span>🌐 menoova.it</span><span>✉️ hello@menoova.it</span></div>
           </article>
           <article class="card">
             <div class="icon">◌</div>
             <h3>Scrivici</h3>
             <p style="margin-bottom:18px;">Rispondiamo entro poche ore, anche il weekend.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;">
-              <button class="cta" onclick="waClick('Ciao vorrei una demo Menoova per il mio locale')">WhatsApp</button>
-              <a class="btn-email" href="mailto:hello@menoova.it">✉️ Email</a>
-            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;"><button class="cta" onclick="waClick('Ciao vorrei informazioni sui servizi Menoova')">WhatsApp</button><a class="btn-email" href="mailto:hello@menoova.it">✉️ Email</a></div>
           </article>
           <article class="card">
             <div class="icon">⌁</div>
             <h3>Navigazione</h3>
-            <div style="display:grid;gap:10px;margin-top:14px;font-size:14px;color:var(--muted);">
-              <a href="#come-funziona">Come funziona</a>
-              <a href="#servizio">Cosa include</a>
-              <a href="#pricing">Prezzi</a>
-              <a href="#faq">FAQ</a>
-            </div>
+            <div style="display:grid;gap:10px;margin-top:14px;font-size:14px;color:var(--muted);"><a href="#prodotti">Prodotti</a><a href="#come-funziona">Come funziona</a><a href="#pricing">Prezzi</a><a href="invoiceiq.html">InvoiceIQ</a><a href="#faq">FAQ</a></div>
           </article>
         </div>
         <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);text-align:center;">
           <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:10px 22px;font-size:14px;color:var(--muted);margin-bottom:16px;">
-            👁 <span id="visit-count" style="color:var(--cream);font-weight:800;font-size:16px;">—</span>
-            <span>ristoratori hanno già visitato Menoova</span>
+            👁 <span id="visit-count" style="color:var(--cream);font-weight:800;font-size:16px;">—</span> <span>visite alla pagina Menoova</span>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;font-size:13px;">
-            <a href="privacy.html" style="color:var(--muted)">Privacy Policy</a>
-            <a href="cookie.html" style="color:var(--muted)">Cookie Policy</a>
-            <a href="termini.html" style="color:var(--muted)">Termini di Servizio</a>
+            <a href="privacy.html" style="color:var(--muted)">Privacy Policy</a><a href="cookie.html" style="color:var(--muted)">Cookie Policy</a><a href="termini.html" style="color:var(--muted)">Termini di Servizio</a>
           </div>
-        </div>
-        <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;">
-          👁 <span id="visit-count" style="color:var(--cream);font-weight:700">—</span> ristoratori hanno già visitato Menoova
         </div>
       </div>
     </section>
@@ -826,7 +710,7 @@
 
   <footer>
     <div class="container footer-inner">
-      <div>© 2026 Menoova — Menu digitali per ristoranti.</div>
+      <div>© 2026 Menoova — Strumenti digitali per ristoranti e attività.</div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;">
         <a href="https://instagram.com/menoova" target="_blank">Instagram</a>
         <a href="https://tiktok.com/@menoova" target="_blank">TikTok</a>
@@ -840,6 +724,7 @@
   <script>
   (async()=>{
     const el = document.getElementById('visit-count');
+    if(!el) return;
     try {
       const r = await fetch('https://api.counterapi.dev/v1/menoova-index-2026/views/up');
       if(r.ok){ const d = await r.json(); el.textContent = Number(d.count||1).toLocaleString('it-IT'); return; }
