@@ -16,8 +16,10 @@
     function emailClick() {
       gtag('event', 'email_click', {'event_category': 'contatto'});
     }
-    function storeClick(app) {
-      gtag('event', 'store_click', {'event_category': 'download', 'event_label': app});
+    function notifyMe() {
+      gtag('event', 'waitlist_click', {'event_category': 'lead', 'event_label': 'invoiceiq_playstore'});
+      gtag('event', 'conversion', {'send_to': 'AW-18181764363/lKynCLviqLIcEIvq3t1D'});
+      window.open('https://wa.me/393793613179?text=' + encodeURIComponent('Ciao! Vorrei provare InvoiceIQ in anteprima ed essere avvisato appena esce su Play Store'), '_blank');
     }
   </script>
   <meta charset="UTF-8" />
@@ -458,7 +460,7 @@
                 <div class="prod-name">InvoiceIQ</div>
                 <div class="prod-tag">Gestione fatture · AI</div>
               </div>
-              <span class="badge-new">NUOVO</span>
+              <span class="badge-new">IN ARRIVO</span>
             </div>
             <h3>Fotografa la fattura. Al resto pensa l'AI.</h3>
             <p>Scatti una foto allo scontrino o carichi un PDF: InvoiceIQ legge tutto, calcola l'IVA e ti avvisa se un fornitore ha alzato i prezzi.</p>
@@ -466,11 +468,11 @@
               <li>Lettura automatica con AI di fatture e scontrini</li>
               <li>Alert prezzi 🔴 in salita / 🟢 in discesa</li>
               <li>IVA, fornitori e storico sempre in ordine</li>
-              <li>Su Play Store · demo gratis, poi €4,69/mese</li>
+              <li>In arrivo su Android · €4,69/mese al lancio</li>
             </ul>
             <div class="prod-actions">
               <a href="invoiceiq.html" class="cta cta-violet">Scopri InvoiceIQ →</a>
-              <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="ghost" onclick="storeClick('invoiceiq')">▶ Play Store</a>
+              <button class="ghost" onclick="notifyMe()">🔔 Avvisami all'uscita</button>
             </div>
           </article>
 
@@ -600,7 +602,7 @@
             </ul>
             <div class="iiq-actions">
               <a href="invoiceiq.html" class="cta-big cta-violet">Scopri InvoiceIQ →</a>
-              <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="ghost" onclick="storeClick('invoiceiq')">▶ Scarica su Play Store</a>
+              <button class="ghost" onclick="notifyMe()">🔔 Avvisami all'uscita</button>
             </div>
           </div>
 
@@ -647,7 +649,7 @@
         <div style="display:grid;gap:10px;max-width:740px;">
           <details><summary>Posso usare solo uno dei due prodotti? <span class="plus">+</span></summary><p>Certo. Menoova e InvoiceIQ sono indipendenti: prendi solo il menu digitale, solo la gestione fatture, oppure entrambi. Paghi solo ciò che usi.</p></details>
           <details><summary>Devo inserire la carta di credito per provare Menoova? <span class="plus">+</span></summary><p>No. I 3 mesi gratuiti di Menoova partono senza nessun dato di pagamento. Solo alla fine del periodo ti chiediamo se vuoi continuare.</p></details>
-          <details><summary>Quanto costa InvoiceIQ? <span class="plus">+</span></summary><p>InvoiceIQ si scarica dal Play Store con una demo gratuita per provarlo. L'abbonamento completo costa €4,69 al mese.</p></details>
+          <details><summary>Quanto costa InvoiceIQ? <span class="plus">+</span></summary><p>InvoiceIQ sta arrivando su Android: al lancio costerà €4,69 al mese. Scrivici su WhatsApp per essere avvisato all'uscita e provarla in anteprima.</p></details>
           <details><summary>Quanto ci vuole per avere il menu Menoova pronto? <span class="plus">+</span></summary><p>Di solito 48 ore dalla ricezione di tutti i contenuti: logo, prodotti, prezzi e indirizzo.</p></details>
           <details><summary>I clienti devono scaricare un'app per il menu? <span class="plus">+</span></summary><p>No. Il menu Menoova si apre dal browser scansionando il QR. InvoiceIQ invece è l'app che usi tu, dal tuo telefono.</p></details>
           <details><summary>Come ricevo assistenza? <span class="plus">+</span></summary><p>Su WhatsApp, per entrambi i prodotti. Rispondiamo entro poche ore, anche il weekend.</p></details>
