@@ -14,7 +14,11 @@
       window.open('https://wa.me/393793613179?text=' + encodeURIComponent(text), '_blank');
     }
     function emailClick() { gtag('event', 'email_click', {'event_category': 'contatto'}); }
-    function storeClick() { gtag('event', 'store_click', {'event_category': 'download', 'event_label': 'invoiceiq'}); }
+    function notifyMe() {
+      gtag('event', 'waitlist_click', {'event_category': 'lead', 'event_label': 'invoiceiq_playstore'});
+      gtag('event', 'conversion', {'send_to': 'AW-18181764363/lKynCLviqLIcEIvq3t1D'});
+      window.open('https://wa.me/393793613179?text=' + encodeURIComponent('Ciao! Vorrei provare InvoiceIQ in anteprima ed essere avvisato appena esce su Play Store'), '_blank');
+    }
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -273,7 +277,7 @@
         <a href="#faq">FAQ</a>
         <a href="index.html">← Menoova</a>
       </nav>
-      <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="cta" onclick="storeClick()">Scarica l'app</a>
+      <button class="cta" onclick="notifyMe()">Provala in anteprima</button>
     </div>
   </header>
 
@@ -283,21 +287,21 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span> Gestione fatture d'acquisto · con AI</div>
+          <div class="eyebrow"><span class="dot"></span> Gestione fatture con AI · in arrivo su Android</div>
           <h1>Fotografa la fattura.<br><span class="grad">Al resto pensa l'AI.</span></h1>
           <p class="hero-sub">InvoiceIQ legge fatture e scontrini dei fornitori, calcola netto e IVA, tiene lo storico prezzi e ti avvisa quando qualcuno ti sta facendo pagare di più. Tu controlli e salvi.</p>
 
           <div class="hero-actions">
-            <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="store" onclick="storeClick()">
+            <button class="store" onclick="notifyMe()">
               <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#16121f" d="M48 59v394c0 9 5 14 11 16l228-213L59 43c-6 2-11 7-11 16z" opacity=".9"/><path fill="#16121f" d="M404 230l-66-37-77 72 77 72 66-37c20-12 20-58 0-70z"/><path fill="#16121f" d="M80 43l210 122 49-45L98 22c-7-4-13-2-18 1z" opacity=".75"/><path fill="#16121f" d="M80 469l259-142-49-45L80 469z" opacity=".75"/></svg>
-              <span class="lab"><small>DISPONIBILE SU</small><b>Google Play</b></span>
-            </a>
-            <button class="ghost" onclick="waClick('Ciao vorrei sapere come funziona InvoiceIQ per la mia attività')">💬 Chiedi su WhatsApp</button>
+              <span class="lab"><small>PRESTO SU</small><b>Google Play</b></span>
+            </button>
+            <button class="ghost" onclick="notifyMe()">🔔 Avvisami all'uscita</button>
           </div>
 
           <div class="hero-badges">
-            <span class="chip free">✓ Demo gratuita per provarla</span>
-            <span class="chip price">poi solo <b>€4,69/mese</b></span>
+            <span class="chip free">✓ Provala in anteprima senza impegno</span>
+            <span class="chip price">al lancio <b>€4,69/mese</b></span>
           </div>
         </div>
 
@@ -447,14 +451,14 @@
       <div class="container">
         <div class="section-head center">
           <h2>Un prezzo, tutto incluso.</h2>
-          <p>Provala con la demo, senza impegno. Quando ti convince, attivi l'abbonamento direttamente dall'app.</p>
+          <p>Al lancio sarà su Google Play. Iscriviti ora per provarla in anteprima e bloccare il prezzo di partenza.</p>
         </div>
         <div class="price-wrap">
           <article class="price-card">
             <div class="plan-name">InvoiceIQ</div>
-            <div class="free-line">✓ Demo gratuita per provarla</div>
+            <div class="free-line">🔔 In arrivo · provala in anteprima</div>
             <div class="price-big">€4,69<small>/mese</small></div>
-            <div class="price-period">Abbonamento sul Google Play Store · disdici quando vuoi</div>
+            <div class="price-period">Prezzo al lancio sul Google Play Store · disdici quando vuoi</div>
             <ul class="feature-list">
               <li>Lettura fatture e scontrini con AI</li>
               <li>Alert prezzi in salita e in discesa</li>
@@ -466,11 +470,11 @@
               <li>Aggiornamenti e supporto inclusi</li>
             </ul>
             <div class="price-actions">
-              <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="store" onclick="storeClick()">
+              <button class="store" onclick="notifyMe()">
                 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#16121f" d="M48 59v394c0 9 5 14 11 16l228-213L59 43c-6 2-11 7-11 16z" opacity=".9"/><path fill="#16121f" d="M404 230l-66-37-77 72 77 72 66-37c20-12 20-58 0-70z"/><path fill="#16121f" d="M80 43l210 122 49-45L98 22c-7-4-13-2-18 1z" opacity=".75"/><path fill="#16121f" d="M80 469l259-142-49-45L80 469z" opacity=".75"/></svg>
-                <span class="lab"><small>SCARICA SU</small><b>Google Play</b></span>
-              </a>
-              <button class="ghost sm" onclick="waClick('Ciao ho qualche domanda su InvoiceIQ prima di scaricarla')">Ho una domanda</button>
+                <span class="lab"><small>PRESTO SU</small><b>Google Play</b></span>
+              </button>
+              <button class="ghost sm" onclick="notifyMe()">🔔 Avvisami all'uscita</button>
             </div>
           </article>
         </div>
@@ -485,9 +489,9 @@
           <p>Quello che chiedono di solito prima di iniziare.</p>
         </div>
         <div style="display:grid;gap:10px;max-width:740px;">
-          <details><summary>Posso provarla prima di pagare? <span class="plus">+</span></summary><p>Sì. InvoiceIQ ha una demo gratuita: la scarichi dal Play Store e provi le funzioni con dati di esempio, senza inserire nulla. L'abbonamento da €4,69/mese lo attivi solo quando decidi di usarla davvero.</p></details>
+          <details><summary>Quando esce e come la provo? <span class="plus">+</span></summary><p>InvoiceIQ sta arrivando su Android. Scrivici su WhatsApp con "Avvisami all'uscita": ti contattiamo appena è disponibile e ti facciamo provare l'app in anteprima, senza impegno.</p></details>
           <details><summary>Quanto è precisa la lettura automatica? <span class="plus">+</span></summary><p>L'AI riconosce molto bene fatture e scontrini stampati. Per i documenti più difficili compila comunque i campi principali e ti lascia correggere a mano prima di salvare — il controllo finale resta sempre tuo.</p></details>
-          <details><summary>Su quali telefoni funziona? <span class="plus">+</span></summary><p>InvoiceIQ è disponibile su Android tramite il Google Play Store e si comporta come una vera app installata sul telefono.</p></details>
+          <details><summary>Su quali telefoni funzionerà? <span class="plus">+</span></summary><p>Al lancio sarà disponibile su Android tramite il Google Play Store e si comporterà come una vera app installata sul telefono.</p></details>
           <details><summary>Come funzionano gli alert sui prezzi? <span class="plus">+</span></summary><p>Ogni volta che salvi una fattura, l'app confronta i prezzi con l'acquisto precedente dello stesso prodotto: alert rosso se è aumentato, verde se è sceso, con anche un segnale sonoro.</p></details>
           <details><summary>I miei dati sono al sicuro? <span class="plus">+</span></summary><p>I tuoi dati restano tuoi e puoi esportarli in CSV quando vuoi, per esempio da girare al commercialista.</p></details>
           <details><summary>Va bene anche se non ho un ristorante? <span class="plus">+</span></summary><p>Sì. È nata pensando a ristoranti, bar e pizzerie, ma gestisce gli acquisti di qualsiasi piccola attività: negozi, artigiani e altro.</p></details>
@@ -500,12 +504,12 @@
       <div class="container">
         <div class="final-box">
           <h2>Le fatture, finalmente in ordine.</h2>
-          <p>Scaricala, prova la demo e scopri quanto tempo ti fa risparmiare. Bastano una foto e qualche secondo.</p>
+          <p>InvoiceIQ sta arrivando. Iscriviti ora: ti avvisiamo appena è disponibile e ti facciamo provare l'app in anteprima.</p>
           <div class="final-actions">
-            <a href="https://play.google.com/store/apps/details?id=it.menoova.invoiceiq" target="_blank" rel="noopener" class="store" onclick="storeClick()">
+            <button class="store" onclick="notifyMe()">
               <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#16121f" d="M48 59v394c0 9 5 14 11 16l228-213L59 43c-6 2-11 7-11 16z" opacity=".9"/><path fill="#16121f" d="M404 230l-66-37-77 72 77 72 66-37c20-12 20-58 0-70z"/><path fill="#16121f" d="M80 43l210 122 49-45L98 22c-7-4-13-2-18 1z" opacity=".75"/><path fill="#16121f" d="M80 469l259-142-49-45L80 469z" opacity=".75"/></svg>
-              <span class="lab"><small>SCARICA SU</small><b>Google Play</b></span>
-            </a>
+              <span class="lab"><small>PRESTO SU</small><b>Google Play</b></span>
+            </button>
             <a class="btn-email" href="mailto:hello@menoova.it" onclick="emailClick()">✉️ Scrivi una email</a>
           </div>
         </div>
