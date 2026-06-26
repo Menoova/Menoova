@@ -1,146 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reimposta password — InvoiceIQ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reimposta password · MenuIQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0e0f17; --card:#1c1f2b; --ink:#f3f3f8; --muted:#a6a4c2; --accent:#6754e8; --line:rgba(255,255,255,.08); --bad:#ff6b6b; --ok:#37d39b; }
-  * { box-sizing:border-box; }
-  body {
-    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
-    background:var(--bg); color:var(--ink); padding:20px;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  }
-  .card {
-    width:100%; max-width:380px; background:var(--card); border:1px solid var(--line);
-    border-radius:20px; padding:28px 24px; box-shadow:0 20px 60px rgba(0,0,0,.45);
-  }
-  .logo { width:54px; height:54px; border-radius:14px; background:var(--accent); color:#fff;
-    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px; margin:0 auto 16px; }
-  h1 { font-size:1.3rem; text-align:center; margin:0 0 6px; }
-  p.sub { text-align:center; color:var(--muted); font-size:.92rem; margin:0 0 22px; }
-  label { display:block; font-size:.85rem; color:var(--muted); margin:14px 0 6px; }
-  input {
-    width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
-    background:#13151f; color:var(--ink); font-size:1rem; outline:none;
-  }
-  input:focus { border-color:var(--accent); }
-  button {
-    width:100%; margin-top:20px; padding:13px; border:none; border-radius:12px;
-    background:var(--accent); color:#fff; font-size:1rem; font-weight:600; cursor:pointer;
-  }
-  button:disabled { opacity:.5; cursor:default; }
-  .msg { margin-top:16px; font-size:.9rem; text-align:center; }
-  .msg.bad { color:var(--bad); }
-  .msg.ok { color:var(--ok); }
-  .hidden { display:none; }
-  .foot { text-align:center; color:var(--muted); font-size:.78rem; margin-top:20px; }
+  :root{--bg:#f1ece2;--panel:#fbf8f2;--ink:#20190f;--muted:#7c7264;--gold:#a8782c;--gold2:#7c5a20;--line:rgba(32,25,15,.12);--ok:#23774f;--err:#a83a3a}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+    font-family:Inter,system-ui,sans-serif;color:var(--ink);
+    background:linear-gradient(180deg,#f6f2e9 0%,var(--bg) 42%)}
+  .card{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--line);
+    border-radius:22px;padding:30px 26px;box-shadow:0 14px 44px rgba(46,33,12,.08)}
+  .logo{font-family:Fraunces,serif;font-weight:700;font-size:30px;letter-spacing:-.5px}
+  .logo span{color:var(--gold)}
+  h1{font-family:Fraunces,serif;font-weight:600;font-size:20px;margin:14px 0 4px}
+  p{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 18px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+  input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:13px;font-size:15px;
+    background:#fff;color:var(--ink);outline:none}
+  input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(168,120,44,.18)}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:13px;background:var(--gold);
+    color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+  button:hover{background:var(--gold2)}
+  button:disabled{opacity:.55;cursor:default}
+  .msg{margin-top:16px;font-size:14px;border-radius:12px;padding:11px 13px;display:none}
+  .msg.ok{display:block;background:rgba(35,119,79,.10);color:var(--ok)}
+  .msg.err{display:block;background:rgba(168,58,58,.10);color:var(--err)}
+  .hint{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+  .hidden{display:none}
 </style>
 </head>
 <body>
   <div class="card">
-    <div class="logo">IQ</div>
-    <h1>Reimposta la password</h1>
-    <p class="sub">Inserisci la tua nuova password per InvoiceIQ.</p>
+    <div class="logo">Menu<span>IQ</span></div>
 
-    <div id="loading" class="msg">Verifica del link in corso…</div>
+    <div id="loading">
+      <h1>Verifica del link…</h1>
+      <p>Un istante, sto controllando il link di recupero.</p>
+    </div>
 
-    <form id="form" class="hidden" onsubmit="return false">
-      <label for="pw">Nuova password</label>
-      <input id="pw" type="password" autocomplete="new-password" placeholder="Almeno 6 caratteri" />
-      <label for="pw2">Conferma password</label>
-      <input id="pw2" type="password" autocomplete="new-password" placeholder="Ripeti la password" />
-      <button id="submit" type="submit">Aggiorna password</button>
-    </form>
+    <div id="form" class="hidden">
+      <h1>Imposta una nuova password</h1>
+      <p>Scegli una nuova password per il tuo account MenuIQ.</p>
+      <label for="pwd">Nuova password</label>
+      <input id="pwd" type="password" autocomplete="new-password" placeholder="Minimo 6 caratteri">
+      <label for="pwd2">Conferma password</label>
+      <input id="pwd2" type="password" autocomplete="new-password" placeholder="Ripeti la password">
+      <button id="save">Salva password</button>
+      <div id="msg" class="msg"></div>
+    </div>
 
-    <div id="message" class="msg"></div>
+    <div id="invalid" class="hidden">
+      <h1>Link non valido o scaduto</h1>
+      <p>Il link di recupero non è più valido. Torna nell'app MenuIQ, apri “Password” e richiedi un nuovo link.</p>
+    </div>
 
-    <div class="foot">InvoiceIQ by menoova.it</div>
+    <div class="hint">menoova.it · MenuIQ</div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    // Valori pubblici del progetto Supabase (la chiave publishable è pensata per stare nel client).
-    const SUPABASE_URL = "https://ymaojnzqrlnvubfptbuw.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_pSHgthK8ivUNu1QTe19G9w_4_DtD0pg";
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  var SUPABASE_URL = "https://iakoyhixwscingenodut.supabase.co";
+  var SUPABASE_ANON = "sb_publishable_Z4DEyEArjGN2dAOoalzcIQ_mX2eHDee";
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-      auth: { detectSessionInUrl: true, flowType: "implicit", persistSession: false }
-    });
+  var $ = function(id){ return document.getElementById(id); };
+  function show(id){ ["loading","form","invalid"].forEach(function(x){ $(x).classList.toggle("hidden", x!==id); }); }
+  function setMsg(kind,text){ var m=$("msg"); m.className="msg "+kind; m.textContent=text; }
 
-    const $ = (id) => document.getElementById(id);
-    const loading = $("loading"), form = $("form"), message = $("message");
+  var ready = false;
+  function ok(){ if(ready) return; ready=true; show("form"); }
 
-    function showForm() {
-      loading.classList.add("hidden");
-      form.classList.remove("hidden");
+  sb.auth.onAuthStateChange(function(event, session){
+    if(event==="PASSWORD_RECOVERY" || session){ ok(); }
+  });
+
+  (async function(){
+    try{
+      var res = await sb.auth.getSession();
+      if(res && res.data && res.data.session){ ok(); }
+    }catch(e){}
+    setTimeout(function(){ if(!ready) show("invalid"); }, 3000);
+  })();
+
+  $("save").addEventListener("click", async function(){
+    var p1 = $("pwd").value, p2 = $("pwd2").value;
+    if(p1.length < 6){ setMsg("err","La password deve avere almeno 6 caratteri."); return; }
+    if(p1 !== p2){ setMsg("err","Le due password non coincidono."); return; }
+    $("save").disabled = true; setMsg("","");
+    try{
+      var r = await sb.auth.updateUser({ password: p1 });
+      if(r.error){ setMsg("err", "Non riuscito: " + r.error.message); $("save").disabled=false; return; }
+      setMsg("ok", "Password aggiornata. Torna nell'app MenuIQ e accedi con la nuova password.");
+      $("pwd").value=""; $("pwd2").value="";
+      $("save").textContent="Fatto";
+    }catch(e){
+      setMsg("err","Errore di rete. Riprova.");
+      $("save").disabled=false;
     }
-    function fail(text) {
-      loading.classList.add("hidden");
-      form.classList.add("hidden");
-      message.className = "msg bad";
-      message.textContent = text;
-    }
-
-    // Verifica se il link contiene un errore (es. scaduto)
-    function hashHasError() {
-      const h = window.location.hash || "";
-      return h.includes("error") || h.includes("otp_expired");
-    }
-
-    async function init() {
-      if (hashHasError()) {
-        fail("Il link di recupero non è valido o è scaduto. Richiedi un nuovo reset dall'app.");
-        return;
-      }
-
-      // Flusso PKCE moderno: ?code=...
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("code")) {
-        try { await sb.auth.exchangeCodeForSession(window.location.href); } catch (_) {}
-      }
-
-      // Attendi che la sessione di recupero sia disponibile
-      let tries = 0;
-      const check = async () => {
-        const { data } = await sb.auth.getSession();
-        if (data && data.session) { showForm(); return; }
-        if (++tries < 12) { setTimeout(check, 350); return; }
-        fail("Link non valido o scaduto. Apri di nuovo l'email di recupero o richiedi un nuovo reset dall'app.");
-      };
-      check();
-    }
-
-    sb.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") showForm();
-    });
-
-    $("submit").addEventListener("click", async () => {
-      const pw = $("pw").value, pw2 = $("pw2").value;
-      message.className = "msg";
-      message.textContent = "";
-
-      if (pw.length < 6) { message.className = "msg bad"; message.textContent = "La password deve avere almeno 6 caratteri."; return; }
-      if (pw !== pw2) { message.className = "msg bad"; message.textContent = "Le due password non coincidono."; return; }
-
-      $("submit").disabled = true;
-      $("submit").textContent = "Aggiorno…";
-      const { error } = await sb.auth.updateUser({ password: pw });
-      if (error) {
-        message.className = "msg bad";
-        message.textContent = "Errore: " + (error.message || "riprova.");
-        $("submit").disabled = false;
-        $("submit").textContent = "Aggiorna password";
-        return;
-      }
-      try { await sb.auth.signOut(); } catch (_) {}
-      form.classList.add("hidden");
-      message.className = "msg ok";
-      message.textContent = "✓ Password aggiornata. Ora torna nell'app InvoiceIQ e accedi con la nuova password.";
-    });
-
-    init();
-  </script>
+  });
+</script>
 </body>
 </html>
