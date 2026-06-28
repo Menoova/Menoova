@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benvenuto in InvoiceIQ</title>
+  <meta name="description" content="Benvenuto in InvoiceIQ: l'app per leggere fatture, controllare IVA e monitorare i prezzi dei fornitori." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f5ff;--ink:#151827;--muted:#74798e;--purple:#7457ff;--purple2:#5e35f0;--soft:#eee9ff;--border:rgba(116,87,255,.18);--card:#fff;--green:#17a66a;--red:#f15f7e;--shadow:0 24px 70px rgba(80,61,180,.16);--radius:32px;}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 16% 12%,rgba(116,87,255,.18),transparent 28%),radial-gradient(circle at 85% 20%,rgba(124,233,255,.18),transparent 26%),linear-gradient(180deg,#fff 0%,var(--bg) 58%,#fff 100%);min-height:100vh}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,calc(100% - 36px));margin:0 auto}header{padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px}.mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:grid;place-items:center;color:#fff;box-shadow:0 12px 24px rgba(116,87,255,.28);font-weight:900}.cta-small{font-size:14px;font-weight:900;color:#fff;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 12px 24px rgba(116,87,255,.20)}main{padding:36px 0 70px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--soft);color:var(--purple2);font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.08em}h1{font-size:clamp(44px,6vw,78px);line-height:.94;letter-spacing:-.07em;margin:22px 0 18px}.lead{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--muted);max-width:660px;font-weight:650;margin:0 0 28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:22px;padding:17px 22px;font-weight:950}.btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;box-shadow:0 16px 30px rgba(116,87,255,.24)}.btn.secondary{background:#fff;border:1px solid var(--border);color:var(--ink)}.panel{background:rgba(255,255,255,.84);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;backdrop-filter:blur(14px)}.phone{max-width:380px;margin:0 auto;border-radius:46px;background:#171827;padding:10px;box-shadow:0 30px 70px rgba(20,18,40,.22)}.screen{border-radius:38px;background:linear-gradient(180deg,#fff,#f4f0ff);min-height:640px;padding:30px 20px;overflow:hidden}.app-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.app-name{font-size:25px;font-weight:950;letter-spacing:-.05em}.app-name span{color:var(--purple2)}.sync{font-size:12px;font-weight:900;color:#0a8b55;background:#eafaf2;border-radius:999px;padding:9px 11px}.dash{background:#fff;border:1px solid rgba(116,87,255,.13);box-shadow:0 18px 40px rgba(70,58,160,.12);border-radius:28px;padding:22px;margin-bottom:16px}.label{font-size:12px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.08em}.amount{font-size:34px;font-weight:950;letter-spacing:-.05em;margin:8px 0}.sub{font-size:13px;color:var(--muted);font-weight:800}.scan{margin-top:14px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:white;border-radius:20px;padding:15px;text-align:center;font-weight:950}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{background:#fff;border-radius:22px;padding:16px;border:1px solid rgba(116,87,255,.12)}.metric strong{display:block;font-size:24px;margin-top:6px}.alert{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fff;border-radius:20px;padding:14px;border:1px solid rgba(116,87,255,.12);margin-top:12px}.badge{font-size:12px;font-weight:950;padding:8px 10px;border-radius:999px}.up{background:rgba(241,95,126,.11);color:#b62e4b}.down{background:rgba(24,166,106,.11);color:#087c4c}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}.step{background:#fff;border:1px solid var(--border);border-radius:26px;padding:22px;box-shadow:0 12px 34px rgba(80,61,180,.08)}.num{width:38px;height:38px;border-radius:14px;background:var(--soft);color:var(--purple2);display:grid;place-items:center;font-weight:950;margin-bottom:14px}.step h3{font-size:20px;margin:0 0 8px;letter-spacing:-.04em}.step p{margin:0;color:var(--muted);font-weight:650;line-height:1.45}footer{padding:28px 0;color:var(--muted);font-weight:700;text-align:center;font-size:14px}@media(max-width:850px){.hero{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.phone{max-width:330px}.cta-small{display:none}h1{font-size:48px}.panel{padding:22px}.screen{min-height:580px}}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="/invoiceiq.html" aria-label="InvoiceIQ"><span class="mark">IQ</span><span>InvoiceIQ</span></a>
+    <a class="cta-small" href="/invoiceiq.html">Scopri InvoiceIQ</a>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Account creato</span>
+        <h1>Benvenuto in InvoiceIQ.</h1>
+        <p class="lead">Da oggi puoi trasformare fatture e scontrini in dati chiari: fornitori, IVA, prodotti, storico prezzi e alert quando un costo cambia.</p>
+        <div class="actions">
+          <a class="btn primary" href="/invoiceiq.html">Vai alla pagina InvoiceIQ</a>
+          <a class="btn secondary" href="mailto:info@menoova.it?subject=InvoiceIQ%20-%20Assistenza">Serve aiuto?</a>
+        </div>
+      </div>
+
+      <div class="phone" aria-label="Anteprima InvoiceIQ">
+        <div class="screen">
+          <div class="app-head">
+            <div class="app-name">Invoice<span>IQ</span></div>
+            <div class="sync">☁ Sincronizzato</div>
+          </div>
+          <div class="dash">
+            <div class="label">Acquisti mese</div>
+            <div class="amount">€ 4.218,90</div>
+            <div class="sub">12 fatture acquisto registrate</div>
+            <div class="scan">✨ Scansiona fattura</div>
+          </div>
+          <div class="grid2">
+            <div class="metric"><div class="label">Netto</div><strong>€ 3.515</strong></div>
+            <div class="metric"><div class="label">IVA</div><strong>€ 703</strong></div>
+          </div>
+          <div class="alert"><div><strong>Caffè 1kg</strong><div class="sub">Ultimo €12,40 · prima €11,20</div></div><span class="badge up">+10,7%</span></div>
+          <div class="alert"><div><strong>Farina 25kg</strong><div class="sub">Ultimo €16,90 · prima €18,50</div></div><span class="badge down">−8,6%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" aria-label="Primi passi">
+      <div class="step"><div class="num">1</div><h3>Accedi all'app</h3><p>Usa la stessa email con cui hai creato l'account.</p></div>
+      <div class="step"><div class="num">2</div><h3>Scansiona una fattura</h3><p>Inquadra tutta la pagina, inclusi totale, IVA e righe prodotto.</p></div>
+      <div class="step"><div class="num">3</div><h3>Controlla e salva</h3><p>L'AI compila, tu verifichi i dati e InvoiceIQ aggiorna lo storico prezzi.</p></div>
+    </section>
+  </main>
+
+  <footer>© 2026 InvoiceIQ — un prodotto Menoova</footer>
+</body>
+</html>

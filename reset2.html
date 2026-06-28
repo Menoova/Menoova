@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reimposta password — InvoiceIQ</title>
+  <meta name="description" content="Reimposta la password del tuo account InvoiceIQ." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f5ff;
+      --bg2:#ffffff;
+      --ink:#151827;
+      --muted:#74798e;
+      --purple:#7457ff;
+      --purple2:#5e35f0;
+      --soft:#eee9ff;
+      --border:rgba(116,87,255,.18);
+      --card:#ffffff;
+      --danger:#f15f7e;
+      --ok:#18a66a;
+      --shadow:0 22px 60px rgba(80,61,180,.16);
+      --radius:30px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:
+      radial-gradient(circle at 18% 10%,rgba(116,87,255,.18),transparent 28%),
+      radial-gradient(circle at 88% 18%,rgba(124,233,255,.16),transparent 24%),
+      linear-gradient(180deg,#fff 0%,var(--bg) 55%,#fff 100%);min-height:100vh;}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,calc(100% - 36px));margin:0 auto;}
+    header{padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;}
+    .mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:grid;place-items:center;color:#fff;box-shadow:0 12px 24px rgba(116,87,255,.28);font-weight:900;}
+    .toplink{font-size:14px;font-weight:800;color:var(--muted);padding:12px 16px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px)}
+    main{padding:34px 0 70px;}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--soft);color:var(--purple2);font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.08em;}
+    h1{font-size:clamp(42px,6vw,76px);line-height:.94;letter-spacing:-.07em;margin:22px 0 18px;}
+    .lead{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--muted);max-width:660px;font-weight:650;margin:0 0 26px;}
+    .panel{background:rgba(255,255,255,.82);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;backdrop-filter:blur(14px)}
+    .form-card{max-width:520px;margin-left:auto;}
+    label{display:block;font-weight:900;margin:0 0 8px;font-size:14px;color:#272b3d;}
+    .field{position:relative;margin-bottom:16px;}
+    input{width:100%;border:1px solid rgba(21,24,39,.12);border-radius:20px;background:#fff;padding:18px 18px;font:inherit;font-weight:750;color:var(--ink);outline:none;transition:.2s;}
+    input:focus{border-color:rgba(116,87,255,.55);box-shadow:0 0 0 5px rgba(116,87,255,.10)}
+    .btn{appearance:none;border:0;border-radius:22px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;font:inherit;font-weight:900;width:100%;padding:18px 22px;cursor:pointer;box-shadow:0 16px 30px rgba(116,87,255,.24);transition:.18s;}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:disabled{opacity:.58;cursor:not-allowed;transform:none}
+    .hint{font-size:13px;line-height:1.45;color:var(--muted);font-weight:650;margin-top:12px;}
+    .status{display:none;margin-top:18px;border-radius:20px;padding:15px 16px;font-weight:800;line-height:1.4;}
+    .status.ok{display:block;background:rgba(24,166,106,.10);color:#087c4c;border:1px solid rgba(24,166,106,.20)}
+    .status.err{display:block;background:rgba(241,95,126,.10);color:#ad2948;border:1px solid rgba(241,95,126,.20)}
+    .mini{display:grid;gap:12px;margin-top:22px;}
+    .mini div{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);font-weight:750;line-height:1.4;}
+    .check{flex:0 0 24px;width:24px;height:24px;border-radius:9px;background:rgba(116,87,255,.12);color:var(--purple2);display:grid;place-items:center;font-weight:900;}
+    .phone{max-width:360px;margin:0 auto;aspect-ratio:9/18;border-radius:44px;background:linear-gradient(180deg,#fff,#f3efff);border:10px solid #171827;box-shadow:0 30px 70px rgba(20,18,40,.22);padding:24px 18px;position:relative;overflow:hidden;}
+    .phone:before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:88px;height:7px;border-radius:99px;background:#252637;}
+    .app-card{margin-top:28px;background:#fff;border-radius:28px;padding:22px;box-shadow:0 16px 36px rgba(70,58,160,.12);border:1px solid rgba(116,87,255,.13)}
+    .app-title{font-size:26px;font-weight:950;letter-spacing:-.05em;margin:0 0 8px}.app-title span{color:var(--purple2)}
+    .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#ecfdf4;color:#0b8553;font-weight:900;padding:9px 12px;font-size:12px;margin:10px 0 18px;}
+    .bar{height:12px;border-radius:999px;background:#eee9ff;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--purple),var(--purple2));border-radius:999px}
+    .row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid rgba(21,24,39,.08);font-weight:850}.row small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.price{color:var(--purple2);font-weight:950}
+    footer{padding:28px 0;color:var(--muted);font-weight:700;text-align:center;font-size:14px}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}.form-card{margin:0}.phone{max-width:310px}.toplink{display:none}.panel{padding:22px}header{padding-top:16px}main{padding-top:18px}h1{font-size:48px}}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="/invoiceiq.html" aria-label="InvoiceIQ"><span class="mark">IQ</span><span>InvoiceIQ</span></a>
+    <a class="toplink" href="/invoiceiq.html">← Torna a InvoiceIQ</a>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+      <div>
+        <span class="eyebrow">Password dimenticata</span>
+        <h1>Reimposta la password.</h1>
+        <p class="lead">Scegli una nuova password per rientrare nel tuo account InvoiceIQ e continuare a gestire fatture, IVA e storico prezzi.</p>
+        <div class="mini">
+          <div><span class="check">✓</span><span>La modifica è protetta dal link ricevuto via email.</span></div>
+          <div><span class="check">✓</span><span>Dopo il cambio password puoi tornare nell'app e accedere normalmente.</span></div>
+          <div><span class="check">✓</span><span>Se il link è scaduto, richiedi un nuovo reset dalla schermata login.</span></div>
+        </div>
+      </div>
+
+      <div class="panel form-card">
+        <form id="resetForm">
+          <div class="field">
+            <label for="password">Nuova password</label>
+            <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Almeno 8 caratteri" required />
+          </div>
+          <div class="field">
+            <label for="confirm">Conferma password</label>
+            <input id="confirm" name="confirm" type="password" autocomplete="new-password" minlength="8" placeholder="Ripeti la nuova password" required />
+          </div>
+          <button id="submitBtn" class="btn" type="submit">Aggiorna password</button>
+          <p class="hint">Usa una password diversa da quelle già usate. Per sicurezza non salvarla in chat o in note non protette.</p>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 InvoiceIQ — un prodotto Menoova</footer>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const SUPABASE_URL = 'https://ymaojnzqrlnvubfptbuw.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_pSHgthK8ivUNu1QTe19G9w_4_DtD0pg';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById('resetForm');
+    const statusBox = document.getElementById('status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showStatus(type, message) {
+      statusBox.className = 'status ' + type;
+      statusBox.textContent = message;
+    }
+
+    async function ensureSessionFromUrl() {
+      const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+      const accessToken = hash.get('access_token');
+      const refreshToken = hash.get('refresh_token');
+
+      if (accessToken && refreshToken) {
+        const { error } = await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+        if (error) throw error;
+        history.replaceState(null, document.title, window.location.pathname);
+        return true;
+      }
+
+      const { data } = await supabase.auth.getSession();
+      return Boolean(data?.session);
+    }
+
+    ensureSessionFromUrl().then((ok) => {
+      if (!ok) {
+        showStatus('err', 'Link non valido o scaduto. Richiedi un nuovo reset password dall’app InvoiceIQ.');
+        submitBtn.disabled = true;
+      }
+    }).catch(() => {
+      showStatus('err', 'Non sono riuscito a verificare il link. Richiedi un nuovo reset password dall’app InvoiceIQ.');
+      submitBtn.disabled = true;
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const password = document.getElementById('password').value.trim();
+      const confirm = document.getElementById('confirm').value.trim();
+
+      if (password.length < 8) return showStatus('err', 'La password deve avere almeno 8 caratteri.');
+      if (password !== confirm) return showStatus('err', 'Le password non coincidono.');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Aggiorno...';
+
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) {
+        showStatus('err', error.message || 'Errore durante l’aggiornamento password.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Aggiorna password';
+        return;
+      }
+
+      showStatus('ok', 'Password aggiornata. Ora puoi tornare nell’app InvoiceIQ e accedere con la nuova password.');
+      submitBtn.textContent = 'Password aggiornata';
+    });
+  </script>
+</body>
+</html>
