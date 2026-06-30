@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Privacy Policy — InvoiceIQ</title>
+  <meta name="description" content="Privacy Policy di InvoiceIQ: dati raccolti, finalità, servizi terzi utilizzati, conservazione, sicurezza e diritti dell’utente." />
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --panel: #ffffff;
+      --ink: #182033;
+      --muted: #667085;
+      --line: #e5e7ef;
+      --brand: #6d5dfc;
+      --brand-dark: #3f35b5;
+      --brand-soft: #eeeaff;
+      --accent: #14b8a6;
+      --shadow: 0 20px 60px rgba(24, 32, 51, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(109, 93, 252, 0.18), transparent 34rem),
+        radial-gradient(circle at top right, rgba(20, 184, 166, 0.12), transparent 28rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a { color: var(--brand-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px rgba(24, 32, 51, 0.06);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: 0 12px 28px rgba(109, 93, 252, 0.25);
+    }
+
+    .support {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .support:hover { text-decoration: none; background: #0f172a; }
+
+    .hero {
+      padding: 58px 0 34px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: var(--brand-dark);
+      background: var(--brand-soft);
+      border: 1px solid rgba(109, 93, 252, 0.14);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .updated {
+      display: inline-flex;
+      margin-top: 22px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(24, 32, 51, 0.06);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      padding: 22px 0 70px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 18px;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(229, 231, 239, 0.9);
+      box-shadow: 0 16px 45px rgba(24, 32, 51, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .toc strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 0;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid rgba(229, 231, 239, 0.7);
+    }
+
+    .toc a:first-of-type { border-top: 0; }
+    .toc a:hover { color: var(--brand-dark); text-decoration: none; }
+
+    .content {
+      padding: 10px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow);
+    }
+
+    section {
+      margin: 0 0 12px;
+      padding: clamp(22px, 4vw, 36px);
+      border-radius: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.14;
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin: 26px 0 8px;
+      font-size: 19px;
+      letter-spacing: -0.025em;
+    }
+
+    p { margin: 0 0 14px; }
+
+    ul {
+      margin: 10px 0 18px;
+      padding-left: 22px;
+    }
+
+    li { margin: 5px 0; }
+
+    .card {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: #fbfbff;
+      border: 1px solid var(--line);
+    }
+
+    .notice {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(109, 93, 252, 0.10), rgba(20, 184, 166, 0.08));
+      border: 1px solid rgba(109, 93, 252, 0.16);
+    }
+
+    .muted { color: var(--muted); }
+    .no-bottom { margin-bottom: 0; }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        border-radius: 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .support {
+        width: 100%;
+      }
+
+      main {
+        display: block;
+        padding-top: 8px;
+      }
+
+      .toc {
+        position: static;
+        margin-bottom: 18px;
+      }
+
+      .toc a {
+        display: inline-flex;
+        margin: 4px 6px 4px 0;
+        padding: 8px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      .hero { padding-top: 38px; }
+      .wrap { width: min(var(--max), calc(100% - 24px)); }
+      .content { padding: 6px; }
+      section { border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <nav class="topbar" aria-label="Navigazione principale">
+      <a class="brand" href="https://menoova.it" aria-label="Vai al sito Menoova">
+        <span class="logo">IQ</span>
+        <span>InvoiceIQ</span>
+      </a>
+      <a class="support" href="mailto:hello@menoova.it">Contatta assistenza privacy</a>
+    </nav>
+
+    <div class="hero">
+      <span class="eyebrow">Privacy Policy</span>
+      <h1>Privacy Policy — InvoiceIQ</h1>
+      <p>InvoiceIQ aiuta aziende, professionisti e attività commerciali a leggere, organizzare e consultare dati presenti in fatture, ricevute, scontrini e documenti di acquisto.</p>
+      <span class="updated">Ultimo aggiornamento: 30 giugno 2026</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <aside class="toc" aria-label="Indice della Privacy Policy">
+      <strong>Indice</strong>
+      <a href="#titolare">1. Titolare del trattamento</a>
+      <a href="#dati-raccolti">2. Dati raccolti dall’app</a>
+      <a href="#finalita">3. Finalità del trattamento</a>
+      <a href="#base-giuridica">4. Base giuridica</a>
+      <a href="#terze-parti">5. Servizi di terze parti</a>
+      <a href="#accuratezza">6. Analisi e accuratezza</a>
+      <a href="#conservazione">7. Conservazione dei dati</a>
+      <a href="#condivisione">8. Condivisione dei dati</a>
+      <a href="#trasferimento">9. Trasferimento fuori UE</a>
+      <a href="#sicurezza">10. Sicurezza</a>
+      <a href="#diritti">11. Diritti dell’utente</a>
+      <a href="#cancellazione">12. Cancellazione account e dati</a>
+      <a href="#minori">13. Minori</a>
+      <a href="#modifiche">14. Modifiche</a>
+    </aside>
+
+    <div class="content">
+      <section id="intro">
+        <p>La presente Privacy Policy descrive quali dati vengono raccolti, come vengono utilizzati, con quali servizi possono essere condivisi e quali diritti può esercitare l’utente.</p>
+      </section>
+
+      <section id="titolare">
+        <h2>1. Titolare del trattamento</h2>
+        <div class="card">
+          <p><strong>Il titolare del trattamento è:</strong></p>
+          <p>Marco Trombadore / InvoiceIQ<br />Email: <a href="mailto:hello@menoova.it">hello@menoova.it</a></p>
+        </div>
+        <p>Per qualsiasi richiesta relativa alla privacy, ai dati personali, alla cancellazione dell’account o alla cancellazione dei dati, l’utente può scrivere a: <a href="mailto:hello@menoova.it">hello@menoova.it</a>.</p>
+      </section>
+
+      <section id="dati-raccolti">
+        <h2>2. Dati raccolti dall’app</h2>
+        <p>InvoiceIQ può raccogliere e trattare le seguenti categorie di dati.</p>
+
+        <h3>Dati account</h3>
+        <ul>
+          <li>indirizzo email</li>
+          <li>identificativo utente</li>
+          <li>dati tecnici collegati alla sessione di accesso</li>
+          <li>informazioni necessarie al recupero password</li>
+        </ul>
+        <p>Questi dati servono per creare l’account, effettuare il login, proteggere l’accesso e collegare i dati salvati al corretto utente.</p>
+
+        <h3>Documenti caricati o fotografati dall’utente</h3>
+        <p>L’utente può caricare o fotografare volontariamente documenti come:</p>
+        <ul>
+          <li>fatture</li>
+          <li>ricevute</li>
+          <li>scontrini</li>
+          <li>documenti di acquisto</li>
+          <li>immagini o file contenenti dati commerciali, fiscali o contabili</li>
+        </ul>
+        <p>I documenti possono contenere dati personali, dati aziendali, dati fiscali, informazioni su fornitori, prodotti, importi, IVA e altri dettagli presenti nel documento.</p>
+
+        <h3>Dati estratti dai documenti</h3>
+        <p>InvoiceIQ può estrarre e salvare informazioni presenti nei documenti, ad esempio:</p>
+        <ul>
+          <li>nome fornitore</li>
+          <li>data documento</li>
+          <li>numero documento</li>
+          <li>prodotti o servizi</li>
+          <li>quantità</li>
+          <li>prezzi</li>
+          <li>sconti</li>
+          <li>aliquote IVA</li>
+          <li>imponibili</li>
+          <li>totali documento</li>
+          <li>stato del pagamento</li>
+        </ul>
+        <p>Questi dati vengono utilizzati per mostrare lo storico, organizzare le fatture e aiutare l’utente a consultare e confrontare le informazioni dei propri acquisti.</p>
+
+        <h3>Dati relativi all’abbonamento</h3>
+        <p>Per gestire l’accesso alla versione Pro, InvoiceIQ può trattare:</p>
+        <ul>
+          <li>stato dell’abbonamento</li>
+          <li>data di scadenza dell’abbonamento</li>
+          <li>identificativo utente collegato all’abbonamento</li>
+          <li>informazioni tecniche relative all’acquisto</li>
+        </ul>
+        <p>I pagamenti sono gestiti tramite Google Play e RevenueCat. InvoiceIQ non conserva direttamente i dati completi della carta di pagamento.</p>
+
+        <h3>Dati tecnici</h3>
+        <p>L’app può trattare dati tecnici necessari al funzionamento, come:</p>
+        <ul class="no-bottom">
+          <li>log tecnici</li>
+          <li>errori di elaborazione</li>
+          <li>informazioni minime sulla sessione</li>
+          <li>dati necessari alla sicurezza e alla prevenzione di abusi</li>
+        </ul>
+      </section>
+
+      <section id="finalita">
+        <h2>3. Finalità del trattamento</h2>
+        <p>I dati vengono utilizzati per:</p>
+        <ul>
+          <li>creare e gestire l’account utente</li>
+          <li>consentire l’accesso all’app</li>
+          <li>recuperare la password</li>
+          <li>caricare e analizzare documenti</li>
+          <li>estrarre dati da fatture, ricevute e scontrini</li>
+          <li>salvare lo storico dei documenti</li>
+          <li>mostrare dati, riepiloghi e confronti</li>
+          <li>gestire il limite di scansioni gratuite</li>
+          <li>gestire l’abbonamento Pro</li>
+          <li>verificare lo stato dell’abbonamento</li>
+          <li>prevenire abusi o utilizzi non autorizzati</li>
+          <li>migliorare stabilità, sicurezza e funzionamento dell’app</li>
+        </ul>
+        <div class="notice">
+          <p><strong>InvoiceIQ non vende i dati personali degli utenti.</strong></p>
+          <p class="no-bottom">InvoiceIQ non utilizza i documenti caricati per pubblicità personalizzata.</p>
+        </div>
+      </section>
+
+      <section id="base-giuridica">
+        <h2>4. Base giuridica del trattamento</h2>
+        <p>Il trattamento dei dati si basa, a seconda dei casi, su:</p>
+        <ul>
+          <li>esecuzione del servizio richiesto dall’utente</li>
+          <li>consenso dell’utente quando carica o fotografa un documento</li>
+          <li>adempimento di eventuali obblighi legali</li>
+          <li>legittimo interesse alla sicurezza e al corretto funzionamento dell’app</li>
+        </ul>
+        <p>Il GDPR prevede che l’utente riceva informazioni chiare su identità del titolare, finalità del trattamento, conservazione dei dati e diritti esercitabili.</p>
+      </section>
+
+      <section id="terze-parti">
+        <h2>5. Servizi di terze parti utilizzati</h2>
+        <p>InvoiceIQ utilizza servizi tecnici esterni necessari al funzionamento dell’app.</p>
+
+        <h3>Supabase</h3>
+        <p>Supabase viene utilizzato per:</p>
+        <ul>
+          <li>autenticazione utente</li>
+          <li>database</li>
+          <li>archiviazione dei dati</li>
+          <li>archiviazione dei documenti caricati</li>
+          <li>funzioni cloud</li>
+          <li>gestione sessioni e sicurezza</li>
+        </ul>
+
+        <h3>OpenAI API</h3>
+        <p>InvoiceIQ utilizza OpenAI API per l’analisi AI/OCR dei documenti caricati dall’utente.</p>
+        <p>Quando l’utente avvia una scansione, il documento può essere inviato a OpenAI API per leggere, trascrivere ed estrarre le informazioni presenti nel documento, come fornitore, data, prodotti, quantità, prezzi, sconti, IVA e totale documento.</p>
+        <p>L’elaborazione tramite OpenAI API viene utilizzata esclusivamente per fornire il servizio richiesto dall’utente all’interno di InvoiceIQ.</p>
+        <p>Secondo la documentazione OpenAI, i dati inviati tramite API non vengono usati per addestrare o migliorare i modelli salvo scelta esplicita di opt-in, e gli input/output API possono essere conservati fino a 30 giorni per fornire il servizio e identificare eventuali abusi.</p>
+
+        <h3>RevenueCat</h3>
+        <p>RevenueCat viene utilizzato per:</p>
+        <ul>
+          <li>gestione degli abbonamenti</li>
+          <li>verifica dello stato Pro</li>
+          <li>sincronizzazione degli acquisti Google Play</li>
+          <li>aggiornamento automatico dello stato abbonamento</li>
+        </ul>
+
+        <h3>Google Play</h3>
+        <p>Google Play viene utilizzato per:</p>
+        <ul>
+          <li>distribuzione dell’app</li>
+          <li>gestione degli acquisti in-app</li>
+          <li>gestione degli abbonamenti</li>
+          <li>pagamenti</li>
+          <li>verifica delle transazioni</li>
+        </ul>
+        <p>Google Play può trattare i dati necessari alla gestione dell’acquisto secondo le proprie informative e condizioni.</p>
+      </section>
+
+      <section id="accuratezza">
+        <h2>6. Analisi dei documenti e accuratezza dei dati</h2>
+        <p>InvoiceIQ utilizza sistemi automatici per leggere e trascrivere le informazioni presenti nei documenti caricati dall’utente.</p>
+        <p>L’app cerca di copiare i valori riportati nel documento, come prezzi, sconti, imponibili, IVA e totale documento. Tuttavia, la qualità dell’estrazione può dipendere da:</p>
+        <ul>
+          <li>qualità dell’immagine</li>
+          <li>dimensione del documento</li>
+          <li>nitidezza del testo</li>
+          <li>presenza di pieghe, ombre o tagli</li>
+          <li>complessità della fattura</li>
+          <li>leggibilità dei dati</li>
+        </ul>
+        <div class="notice">
+          <p>InvoiceIQ non deve essere considerato uno strumento fiscale ufficiale o sostitutivo della verifica umana.</p>
+          <p class="no-bottom">L’utente deve sempre controllare i dati estratti prima di utilizzarli per contabilità, dichiarazioni fiscali, decisioni economiche o altre attività professionali.</p>
+        </div>
+      </section>
+
+      <section id="conservazione">
+        <h2>7. Conservazione dei dati</h2>
+        <p>I dati vengono conservati per il tempo necessario a fornire il servizio.</p>
+        <p>In generale:</p>
+        <ul>
+          <li>i dati account sono conservati finché l’account resta attivo</li>
+          <li>i documenti caricati sono conservati finché l’utente li mantiene nell’app</li>
+          <li>i dati estratti dai documenti restano disponibili nello storico dell’utente</li>
+          <li>i dati abbonamento sono conservati per il tempo necessario alla gestione del servizio</li>
+          <li>i log tecnici sono conservati per il tempo necessario a sicurezza, manutenzione e prevenzione abusi</li>
+        </ul>
+        <p>L’utente può richiedere la cancellazione dei propri dati scrivendo a: <a href="mailto:hello@menoova.it">hello@menoova.it</a>.</p>
+      </section>
+
+      <section id="condivisione">
+        <h2>8. Condivisione dei dati</h2>
+        <p>I dati possono essere condivisi solo con fornitori tecnici necessari al funzionamento dell’app, tra cui servizi di autenticazione, database, archiviazione cloud, analisi AI/OCR, pagamenti e gestione abbonamenti.</p>
+        <div class="notice">
+          <p>InvoiceIQ non vende i dati degli utenti.</p>
+          <p>InvoiceIQ non condivide i documenti caricati per finalità pubblicitarie.</p>
+          <p class="no-bottom">InvoiceIQ non utilizza i documenti caricati per pubblicità personalizzata.</p>
+        </div>
+      </section>
+
+      <section id="trasferimento">
+        <h2>9. Trasferimento dei dati fuori dall’Unione Europea</h2>
+        <p>Alcuni fornitori tecnici utilizzati da InvoiceIQ potrebbero trattare dati anche fuori dall’Unione Europea.</p>
+        <p>In questi casi, il trattamento avviene secondo le garanzie previste dalla normativa applicabile, come accordi di trattamento dati, clausole contrattuali standard o altre misure previste dal GDPR.</p>
+      </section>
+
+      <section id="sicurezza">
+        <h2>10. Sicurezza</h2>
+        <p>InvoiceIQ adotta misure tecniche e organizzative ragionevoli per proteggere i dati, tra cui:</p>
+        <ul>
+          <li>accesso tramite account</li>
+          <li>protezione delle sessioni</li>
+          <li>database con regole di accesso</li>
+          <li>servizi cloud protetti</li>
+          <li>limitazione dell’accesso ai dati</li>
+          <li>gestione sicura degli abbonamenti</li>
+        </ul>
+        <p>Nessun sistema informatico può però garantire sicurezza assoluta.</p>
+      </section>
+
+      <section id="diritti">
+        <h2>11. Diritti dell’utente</h2>
+        <p>L’utente può richiedere:</p>
+        <ul>
+          <li>accesso ai propri dati</li>
+          <li>correzione dei dati inesatti</li>
+          <li>cancellazione dei dati</li>
+          <li>limitazione del trattamento</li>
+          <li>opposizione al trattamento</li>
+          <li>portabilità dei dati, ove applicabile</li>
+          <li>revoca del consenso, ove applicabile</li>
+          <li>cancellazione dell’account</li>
+        </ul>
+        <p>Le richieste possono essere inviate a: <a href="mailto:hello@menoova.it">hello@menoova.it</a>.</p>
+        <p>L’utente può inoltre proporre reclamo all’autorità garante competente.</p>
+      </section>
+
+      <section id="cancellazione">
+        <h2>12. Cancellazione account e dati</h2>
+        <p>L’utente può richiedere la cancellazione dell’account e dei dati associati inviando una richiesta a: <a href="mailto:hello@menoova.it">hello@menoova.it</a>.</p>
+        <p>La richiesta deve indicare l’indirizzo email usato per registrarsi a InvoiceIQ.</p>
+        <p>Dopo la richiesta, InvoiceIQ procederà alla cancellazione o anonimizzazione dei dati compatibilmente con gli obblighi tecnici, fiscali, legali o di sicurezza eventualmente applicabili.</p>
+      </section>
+
+      <section id="minori">
+        <h2>13. Minori</h2>
+        <p>InvoiceIQ è destinata a utenti professionali, aziende, attività commerciali e lavoratori autonomi.</p>
+        <p>L’app non è destinata a bambini o minori.</p>
+      </section>
+
+      <section id="modifiche">
+        <h2>14. Modifiche alla presente Privacy Policy</h2>
+        <p>La presente Privacy Policy può essere aggiornata nel tempo per modifiche tecniche, normative o funzionali dell’app.</p>
+        <p class="no-bottom">La versione aggiornata sarà pubblicata nella pagina privacy collegata all’app e alla scheda Google Play.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <p>© 2026 InvoiceIQ — Menoova. Per richieste privacy: <a href="mailto:hello@menoova.it">hello@menoova.it</a></p>
+  </footer>
+</body>
+</html>
