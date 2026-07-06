@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TurniIQ — Turni di lavoro semplici per il tuo team</title>
+<meta name="description" content="TurniIQ collega titolare e dipendenti: turni sempre aggiornati, cambi turno, ferie e comunicazioni con notifiche in tempo reale. Per bar, ristoranti, negozi e piccole attività.">
+<style>
+:root{--ink:#16292e;--muted:#5f7075;--bg:#f2f6f5;--surface:#fff;--line:#dde6e4;--primary:#0e6b63;--primary-dark:#0a4f49;--primary-soft:#e2f0ee;--accent:#f2a93b}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{padding:20px 0}
+.brand{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
+.brand em{font-style:normal;color:var(--primary)}
+.hero{text-align:center;padding:48px 0 56px}
+.hero h1{font-size:clamp(1.9rem,5vw,3rem);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
+.hero h1 span{color:var(--primary)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 28px}
+.cta{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;font-weight:800;font-size:1.05rem;padding:16px 32px;border-radius:12px;box-shadow:0 6px 18px rgba(14,107,99,.35)}
+.cta:active{background:var(--primary-dark)}
+.cta-note{display:block;margin-top:12px;font-size:.85rem;color:var(--muted)}
+.pill{display:inline-block;background:var(--primary-soft);color:var(--primary-dark);font-weight:700;font-size:.8rem;border-radius:999px;padding:6px 14px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding-bottom:48px}
+.card{background:var(--surface);border-radius:16px;padding:24px;box-shadow:0 1px 3px rgba(22,41,46,.08),0 4px 14px rgba(22,41,46,.06)}
+.card .icon{font-size:1.8rem;margin-bottom:10px}
+.card h3{letter-spacing:-.01em;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.95rem}
+.split{background:var(--surface);border-radius:20px;padding:32px;margin-bottom:48px;box-shadow:0 1px 3px rgba(22,41,46,.08),0 4px 14px rgba(22,41,46,.06)}
+.split h2{letter-spacing:-.02em;margin-bottom:16px}
+.split ul{list-style:none;display:grid;gap:10px}
+.split li{padding-left:28px;position:relative}
+.split li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:800}
+.who{text-align:center;color:var(--muted);padding-bottom:48px}
+.who strong{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:28px 0 48px;font-size:.85rem;color:var(--muted);text-align:center}
+footer a{color:var(--primary)}
+@media(max-width:640px){.split{padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="https://menoova.it/">Turni<em>IQ</em></a></header>
+
+<section class="hero">
+  <span class="pill">Per bar, ristoranti, negozi e piccole attività</span>
+  <h1>I turni del tuo team,<br><span>sempre aggiornati.</span></h1>
+  <p>Basta fogli stampati e messaggi persi in chat. Con TurniIQ il titolare pubblica i turni e ogni dipendente li riceve sul telefono, con notifica immediata.</p>
+  <a class="cta" href="https://play.google.com/store/apps/details?id=com.turniiq.app">Scarica su Google Play</a>
+  <span class="cta-note">Gratis per 30 giorni, senza carta di credito.</span>
+</section>
+
+<section class="grid">
+  <div class="card"><div class="icon">🗓</div><h3>Calendario condiviso</h3><p>Un solo calendario per tutta l'attività: ognuno vede i propri turni evidenziati e chi lavora ogni giorno.</p></div>
+  <div class="card"><div class="icon">🔔</div><h3>Notifiche immediate</h3><p>Nuovo turno, cambio, comunicazione o risposta alle ferie: la notifica arriva subito, anche ad app chiusa.</p></div>
+  <div class="card"><div class="icon">🔄</div><h3>Cambio turno tra colleghi</h3><p>Il dipendente propone lo scambio, il collega conferma, il calendario si aggiorna da solo.</p></div>
+  <div class="card"><div class="icon">🌴</div><h3>Ferie e permessi</h3><p>Richieste dall'app, approvazione con un tocco e risposta notificata. Tutto tracciato.</p></div>
+  <div class="card"><div class="icon">📌</div><h3>Bacheca di gruppo</h3><p>Le comunicazioni a tutto il team in un unico posto, più i messaggi privati quando serve riservatezza.</p></div>
+  <div class="card"><div class="icon">🔐</div><h3>Privato per il tuo team</h3><p>Si entra solo con il codice invito del titolare. I dati della tua attività restano nella tua attività.</p></div>
+</section>
+
+<section class="split">
+  <h2>Come funziona</h2>
+  <ul>
+    <li><strong>Il titolare</strong> scarica l'app, crea la propria attività e riceve un codice invito a 6 caratteri.</li>
+    <li><strong>I dipendenti</strong> scaricano l'app e inseriscono il codice: sono dentro in meno di un minuto.</li>
+    <li><strong>Da quel momento</strong> turni, ferie, cambi e comunicazioni viaggiano nell'app — con notifica sul telefono di chi deve saperlo.</li>
+  </ul>
+</section>
+
+<p class="who">Fatta da chi lavora nei turni, per chi lavora nei turni.<br><strong>TurniIQ fa parte della famiglia Menoova</strong> insieme a MenuIQ e InvoiceIQ.</p>
+
+<footer>
+  Menoova di Marco Trombadore · P.IVA 01689420881 · Marina di Ragusa (RG) · <a href="mailto:hello@menoova.it">hello@menoova.it</a><br><br>
+  <a href="https://menoova.it/turniiq/privacy.html">Privacy Policy</a> · <a href="https://menoova.it/turniiq/elimina-account.html">Eliminazione account</a>
+</footer>
+</div>
+</body>
+</html>
