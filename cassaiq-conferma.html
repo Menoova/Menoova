@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Conferma l'indirizzo email del tuo account CassaIQ.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src https://fmwoycukrablixqqatmo.supabase.co; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <title>Conferma registrazione — CassaIQ</title>
+  <style>
+    :root{--verde:#2f9a85;--verde-scuro:#1f6f66;--notte:#141334;--notte-2:#1e1c4a;--chiaro:#eef1f4;--testo:#e7eaf2;--muted:#a7abc9;--rosso:#ef7777;--bordo:#ffffff1c;color-scheme:dark}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{min-height:100dvh;background:radial-gradient(circle at 15% 10%,#2a2860 0,transparent 34%),linear-gradient(150deg,var(--notte),#0d0c25);color:var(--testo);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:grid;place-items:center;padding:24px}
+    .card{width:min(560px,100%);background:#1e1c4ae8;border:1px solid var(--bordo);border-radius:26px;padding:34px;box-shadow:0 24px 70px #0007;backdrop-filter:blur(14px)}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}.logo{width:48px;height:48px;border-radius:13px;background:#fff;display:grid;place-items:center;color:var(--notte);font-weight:900;box-shadow:0 10px 25px #0005}.logo b{color:var(--verde)}.brand-name{font-size:21px;font-weight:800}.rt{font-size:11px;background:var(--verde);color:#fff;border-radius:6px;padding:2px 6px;margin-left:4px;vertical-align:3px}
+    .icon{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;background:#2f9a8524;border:1px solid #57bea955;font-size:35px}
+    h1{text-align:center;font-size:clamp(25px,5vw,34px);line-height:1.15;margin-bottom:12px}.lead{text-align:center;color:var(--muted);margin:0 auto 24px;max-width:430px}
+    .status{border-radius:15px;padding:15px 16px;margin:18px 0;text-align:center;background:#ffffff0b;border:1px solid var(--bordo)}.status.loading{color:var(--muted)}.status.ok{background:#2f9a8518;border-color:#4bb59f55;color:#bff3e8}.status.error{background:#ef777712;border-color:#ef77774d;color:#ffc7c7}
+    .spinner{width:23px;height:23px;border:3px solid #ffffff20;border-top-color:var(--verde);border-radius:50%;animation:spin .8s linear infinite;display:inline-block;vertical-align:-6px;margin-right:8px}@keyframes spin{to{transform:rotate(360deg)}}
+    .actions{display:grid;gap:10px;margin-top:20px}.btn{display:inline-flex;justify-content:center;align-items:center;min-height:50px;padding:12px 18px;border-radius:13px;text-decoration:none;font-weight:750;border:1px solid transparent;cursor:pointer}.primary{background:var(--verde);color:#fff}.primary:hover{background:var(--verde-scuro)}.secondary{color:var(--testo);border-color:var(--bordo);background:#ffffff08}.secondary:hover{background:#ffffff10}
+    footer{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}footer a{color:#bff3e8}
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <div class="brand"><div class="logo"><span><b>C</b>IQ</span></div><div class="brand-name">CassaIQ <span class="rt">RT</span></div></div>
+    <div class="icon" id="icon">✉️</div>
+    <h1 id="title">Conferma registrazione</h1>
+    <p class="lead" id="lead">Stiamo verificando il tuo indirizzo email.</p>
+    <div class="status loading" id="status"><span class="spinner"></span>Verifica in corso…</div>
+    <div class="actions" id="actions" hidden>
+      <a class="btn primary" href="https://menoova.it/cassaiq.html">Torna a CassaIQ</a>
+      <a class="btn secondary" href="mailto:hello@menoova.it">Contatta l'assistenza</a>
+    </div>
+    <footer>© Menoova · <a href="https://menoova.it/cassaiq-privacy.html">Privacy</a></footer>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const SUPABASE_URL = 'https://fmwoycukrablixqqatmo.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_cgeNpt6V56Wc95lFZUDYSA_xFcmxTTZ';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const title = document.getElementById('title');
+    const lead = document.getElementById('lead');
+    const status = document.getElementById('status');
+    const icon = document.getElementById('icon');
+    const actions = document.getElementById('actions');
+
+    function finish(ok, message) {
+      icon.textContent = ok ? '✓' : '!';
+      title.textContent = ok ? 'Registrazione confermata' : 'Conferma non riuscita';
+      lead.textContent = ok
+        ? 'Il tuo account CassaIQ è pronto. Torna nell’app e accedi con email e password.'
+        : 'Il collegamento potrebbe essere scaduto, già utilizzato oppure non valido.';
+      status.className = `status ${ok ? 'ok' : 'error'}`;
+      status.textContent = message;
+      actions.hidden = false;
+    }
+
+    async function confirmEmail() {
+      const query = new URLSearchParams(location.search);
+      const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+      const remoteError = query.get('error_description') || hash.get('error_description');
+      if (remoteError) return finish(false, decodeURIComponent(remoteError.replace(/\+/g, ' ')));
+
+      const tokenHash = query.get('token_hash');
+      const type = query.get('type') || 'email';
+
+      try {
+        if (tokenHash) {
+          const { error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type });
+          if (error) throw error;
+          history.replaceState({}, document.title, location.pathname);
+          return finish(true, 'Email verificata correttamente.');
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 350));
+        const { data, error } = await supabase.auth.getSession();
+        if (error) throw error;
+        if (data.session) return finish(true, 'Email verificata correttamente.');
+
+        finish(false, 'Token di conferma assente o non più valido. Richiedi una nuova email dall’app.');
+      } catch (error) {
+        finish(false, error?.message || 'Si è verificato un errore durante la conferma.');
+      }
+    }
+
+    confirmEmail();
+  </script>
+</body>
+</html>
