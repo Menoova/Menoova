@@ -169,6 +169,40 @@
     .cta-box p{margin:0;color:rgba(255,255,255,.88);max-width:620px}
     .cta-box .btn{background:#fff;color:var(--teal2);padding:15px 22px;box-shadow:none}
 
+
+    .pricing{padding:12px 0 78px}
+    .pricing-card{
+      max-width:780px;margin:0 auto;background:#fff;border:1px solid #dce9e6;border-radius:30px;
+      padding:38px 42px;box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
+    .pricing-card:after{
+      content:"";position:absolute;right:-36px;top:-36px;width:170px;height:170px;border-radius:50%;
+      background:radial-gradient(circle,rgba(53,181,156,.16),rgba(53,181,156,0) 68%)
+    }
+    .price-badge{display:inline-flex;align-items:center;gap:7px;background:var(--mint);color:var(--teal2);padding:8px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .price-title{font-size:24px;font-weight:900;margin:18px 0 6px}
+    .price-line{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+    .price{font-size:58px;line-height:.9;font-weight:950;letter-spacing:-.05em;color:var(--teal2)}
+    .price small{font-size:22px;letter-spacing:-.02em}
+    .price-meta{color:#6d817c;font-weight:700;padding-bottom:4px}
+    .pricing-card p{color:#627570;margin:0 0 20px;max-width:650px}
+    .pricing-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+    .pricing-item{background:#f7fbfa;border:1px solid #e2ece9;border-radius:16px;padding:15px;font-size:13px;color:#526761}
+    .pricing-item strong{display:block;color:var(--ink);margin-bottom:3px}
+    .pricing-note{font-size:12px;color:#81928e;margin-top:14px}
+
+    .faq{padding:0 0 86px}
+    .faq-grid{max-width:940px;margin:0 auto;display:grid;gap:14px}
+    .faq details{background:#fff;border:1px solid #dfeae7;border-radius:18px;box-shadow:var(--shadow2);overflow:hidden}
+    .faq summary{cursor:pointer;list-style:none;padding:20px 22px;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary:after{content:"+";width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--mint);color:var(--teal2);font-size:19px;flex:none}
+    .faq details[open] summary:after{content:"–"}
+    .faq-answer{padding:0 22px 22px;color:#60746f;font-size:14px;line-height:1.7}
+    .faq-answer strong{color:var(--ink)}
+    .faq-answer a{color:var(--teal2);font-weight:850;text-decoration:underline;text-underline-offset:3px}
+    .faq-callout{margin-top:12px;padding:13px 15px;background:#f2faf7;border:1px solid #d9eee8;border-radius:13px;color:#46635c}
+
     footer{border-top:1px solid #e3eeeb;padding:34px 0 48px;background:#fbfdfd}
     .footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr 1fr;gap:20px;align-items:start}
     .footer-title{font-size:13px;color:#81938f;margin-bottom:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
@@ -191,6 +225,7 @@
       .nav-cta{display:none}
       .menu-toggle{display:block}
       .benefit-grid,.flow-grid,.features-grid{grid-template-columns:1fr}
+      .pricing-list{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
       .footer-grid>div:first-child,.footer-grid>div:last-child{grid-column:1/-1}
       .flow-card-media{min-height:300px}
@@ -205,6 +240,8 @@
       .flow-card-copy{grid-template-columns:1fr}
       .round-icon{width:46px;height:46px}
       .client-panel{padding:32px 22px}
+      .pricing-card{padding:30px 22px}
+      .price{font-size:50px}
       .audience-grid{grid-template-columns:1fr 1fr}
       .cta-box{grid-template-columns:1fr;padding:28px 24px}
       .cta-box .btn{justify-self:start}
@@ -226,9 +263,11 @@
       <a href="#flusso">Comande</a>
       <a href="#client">Client</a>
       <a href="#attivita">Per chi</a>
+      <a href="#prezzi">Prezzi</a>
+      <a href="#faq">FAQ</a>
       <a href="#contatti">Contatti</a>
     </nav>
-    <a class="nav-cta" href="mailto:hello@menoova.it?subject=Demo%20CassaIQ">Richiedi demo</a>
+    <a class="nav-cta" href="mailto:hello@menoova.it?subject=Demo%20CassaIQ">Prova 30 giorni</a>
     <button class="menu-toggle" type="button" aria-label="Apri menu">☰</button>
   </div>
 </header>
@@ -360,14 +399,86 @@
     </div>
   </section>
 
+
+  <section class="pricing" id="prezzi">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-kicker">Un solo piano, tutto incluso</div>
+        <h2>Prova CassaIQ gratis per 30 giorni</h2>
+        <p>Hai un mese intero per provare la cassa, configurare il tuo catalogo e capire se CassaIQ è adatta alla tua attività.</p>
+      </div>
+      <div class="pricing-card reveal">
+        <span class="price-badge">30 giorni gratuiti</span>
+        <div class="price-title">CassaIQ</div>
+        <div class="price-line">
+          <div class="price"><small>€</small>8,90</div>
+          <div class="price-meta">+ IVA / mese<br>dopo la prova gratuita</div>
+        </div>
+        <p>Un abbonamento semplice, senza dover scegliere tra funzioni essenziali. Cassa, tavoli, comande, statistiche e collegamento con CassaIQ Client restano nello stesso sistema.</p>
+        <div class="pricing-list">
+          <div class="pricing-item"><strong>30 giorni gratis</strong>Provi tutte le funzioni prima di iniziare a pagare.</div>
+          <div class="pricing-item"><strong>CassaIQ Client gratuito</strong>Installa il Client sui dispositivi del personale senza un abbonamento separato.</div>
+          <div class="pricing-item"><strong>iOS + Android</strong>Puoi usare dispositivi Apple e Android anche insieme.</div>
+        </div>
+        <a class="btn primary" href="mailto:hello@menoova.it?subject=Prova%2030%20giorni%20CassaIQ">Richiedi i 30 giorni gratuiti →</a>
+        <div class="pricing-note">Prezzo indicato al netto dell'IVA.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-kicker">Domande frequenti</div>
+        <h2>Tutto quello che vuoi sapere prima di iniziare</h2>
+        <p>Le risposte alle domande più comuni su fiscalità, dispositivi, collegamento all'Agenzia delle Entrate e sicurezza.</p>
+      </div>
+
+      <div class="faq-grid">
+        <details class="reveal">
+          <summary>È vero che con CassaIQ non ho bisogno di un registratore fiscale?</summary>
+          <div class="faq-answer">
+            <strong>Sì, se scegli la modalità DCO.</strong> CassaIQ utilizza la procedura web “Documento commerciale online” dell'Agenzia delle Entrate e trasferisce i dati della vendita al portale per l'emissione del documento commerciale. In questa modalità la trasmissione dei corrispettivi avviene tramite il servizio web dell'Agenzia, invece che attraverso un Registratore Telematico.
+            <div class="faq-callout">Questo significa che non devi eseguire la normale chiusura fiscale giornaliera di un RT per le vendite emesse tramite DCO. Se invece scegli la modalità Epson RT, CassaIQ lavora con il registratore telematico configurato.</div>
+          </div>
+        </details>
+
+        <details class="reveal">
+          <summary>Cosa mi serve per usare CassaIQ?</summary>
+          <div class="faq-answer">
+            Ti serve un <strong>tablet Apple o Android</strong> su cui installare CassaIQ. Poi puoi scegliere la modalità fiscale più adatta alla tua attività:
+            <div class="faq-callout"><strong>Modalità Epson RT:</strong> utilizzi un registratore telematico Epson compatibile.<br><strong>Modalità DCO:</strong> l'emissione fiscale passa dal portale dell'Agenzia delle Entrate; per stampare il documento al cliente puoi utilizzare una stampante di rete. Il modello consigliato è <strong>MUNBYN ITPP072</strong>.</div>
+            Se gestisci tavoli e comande puoi scaricare <strong>CassaIQ Client gratuitamente</strong> sui dispositivi del personale. Le piattaforme possono essere mischiate liberamente: per esempio CassaIQ su iPad e Client su un telefono Android, oppure CassaIQ su un tablet Android e Client su iPhone.
+          </div>
+        </details>
+
+        <details class="reveal">
+          <summary>Come mi collego all'Agenzia delle Entrate?</summary>
+          <div class="faq-answer">
+            Per utilizzare la modalità DCO devi avere le credenziali dei servizi telematici dell'Agenzia delle Entrate abilitate per la tua utenza. CassaIQ può utilizzare l'accesso <strong>Fisconline</strong> per aprire la sessione e raggiungere il servizio Documento commerciale online. Se devi ancora abilitarlo, puoi partire dalla <a href="https://telematici.agenziaentrate.gov.it/Abilitazione/Registrati.jsp" target="_blank" rel="noopener">pagina ufficiale di registrazione Fisconline</a>.
+            <div class="faq-callout"><strong>Video guida:</strong> stiamo preparando una procedura passo passo che mostra come richiedere/attivare Fisconline e configurarlo in CassaIQ. Il link verrà inserito qui appena il video sarà pubblicato.</div>
+          </div>
+        </details>
+
+        <details class="reveal">
+          <summary>I miei dati sono al sicuro?</summary>
+          <div class="faq-answer">
+            CassaIQ è progettata per ridurre al minimo l'esposizione dei dati sensibili. L'accesso all'app è legato al tuo account e i dati sincronizzati vengono gestiti tramite servizi cloud protetti con autenticazione e regole di accesso per utente.
+            <div class="faq-callout">Le <strong>credenziali Fisconline non vengono salvate nel database cloud di CassaIQ</strong>: restano sul dispositivo e vengono conservate nell'area sicura del sistema operativo, tramite Keychain su Apple e Keystore su Android. CassaIQ le usa solo quando serve ad avviare la sessione con l'Agenzia delle Entrate.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="cta" id="contatti">
     <div class="container">
       <div class="cta-box reveal">
         <div>
-          <h2>Porta la tua attività su una cassa più smart.</h2>
-          <p>CassaIQ collega vendita, tavoli e sala in un unico flusso di lavoro.</p>
+          <h2>30 giorni per provare una cassa più smart.</h2>
+          <p>Prova CassaIQ gratuitamente per 30 giorni. Poi € 8,90 + IVA al mese.</p>
         </div>
-        <a class="btn" href="mailto:hello@menoova.it?subject=Richiesta%20demo%20CassaIQ">Richiedi una demo gratuita →</a>
+        <a class="btn" href="mailto:hello@menoova.it?subject=Richiesta%20demo%20CassaIQ">Inizia la prova gratuita →</a>
       </div>
     </div>
   </section>
@@ -377,7 +488,7 @@
   <div class="container">
     <div class="footer-grid">
       <div><a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span><span><span class="wordmark">Cassa<span>IQ</span></span><span class="logo-sub">RT + CLIENT</span></span></a></div>
-      <div><div class="footer-title">Prodotto</div><div class="footer-links"><a href="#funzioni">Funzioni</a><a href="#flusso">Comande</a><a href="#client">CassaIQ Client</a></div></div>
+      <div><div class="footer-title">Prodotto</div><div class="footer-links"><a href="#funzioni">Funzioni</a><a href="#flusso">Comande</a><a href="#client">CassaIQ Client</a><a href="#prezzi">Prezzi</a><a href="#faq">FAQ</a></div></div>
       <div><div class="footer-title">Azienda</div><div class="footer-links"><a href="https://menoova.it">Menoova</a><a href="mailto:hello@menoova.it">Contatti</a><a href="mailto:hello@menoova.it?subject=Assistenza%20CassaIQ">Assistenza</a></div></div>
       <div><div class="footer-title">Contatti</div><div class="footer-links"><a href="mailto:hello@menoova.it">hello@menoova.it</a><span>Supporto e informazioni CassaIQ</span></div></div>
     </div>
