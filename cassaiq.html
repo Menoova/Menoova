@@ -250,13 +250,63 @@
       .footer-grid{grid-template-columns:1fr}
       .footer-grid>div{grid-column:auto!important}
     }
-  </style>
+  
+    .legal-links{display:flex;flex-direction:column;gap:8px}
+    .legal-links a,.legal-links button{color:var(--muted);text-decoration:none;font:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+    .legal-links a:hover,.legal-links button:hover{color:var(--teal)}
+    .cookie-modal-backdrop{position:fixed;inset:0;background:rgba(13,44,58,.34);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
+    .cookie-modal-backdrop.open{display:flex}
+    .cookie-modal{width:min(560px,100%);background:#fff;border:1px solid #D9E9EE;border-radius:22px;box-shadow:0 24px 70px rgba(23,82,103,.18);padding:24px}
+    .cookie-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px}
+    .cookie-modal h3{margin:0;font-size:22px;color:var(--ink)}
+    .cookie-modal p{margin:0 0 16px;color:var(--muted);line-height:1.65}
+    .cookie-close{border:0;background:#EDF6F9;color:#2C5663;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:20px}
+    .cookie-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0;border-top:1px solid #D9E9EE}
+    .cookie-row strong{display:block;color:var(--ink);margin-bottom:3px}
+    .cookie-row small{display:block;color:var(--muted);line-height:1.45}
+    .cookie-status{flex:0 0 auto;font-size:12px;font-weight:900;color:#0F6F97;background:#EAF6FA;padding:7px 10px;border-radius:999px}
+    .cookie-note{font-size:12px;color:#60747D;background:#F3F9FC;border:1px solid #D9E9EE;padding:12px 14px;border-radius:14px;margin-top:8px}
+    .cookie-actions{display:flex;justify-content:flex-end;margin-top:18px}
+    .cookie-actions button{border:0;border-radius:12px;padding:11px 17px;background:#2FA8D7;color:#fff;font-weight:800;cursor:pointer}
+
+
+    .logo-app-icon{
+      width:48px;height:48px;object-fit:cover;border-radius:12px;display:block;
+      box-shadow:0 7px 18px rgba(23,82,103,.14);flex:none
+    }
+    .download-section{padding:72px 0;background:linear-gradient(180deg,#F5FAFC 0%,#fff 100%);border-top:1px solid #D9E9EE;border-bottom:1px solid #D9E9EE}
+    .download-panel{display:grid;grid-template-columns:.78fr 1.22fr;gap:34px;align-items:center;background:#fff;border:1px solid #D9E9EE;border-radius:28px;padding:34px;box-shadow:0 22px 60px rgba(23,82,103,.08)}
+    .download-app{display:flex;align-items:center;gap:20px}
+    .download-app img{width:118px;height:118px;border-radius:27px;box-shadow:0 16px 34px rgba(23,82,103,.15);flex:none}
+    .download-app h3{margin:0 0 7px;font-size:30px;letter-spacing:-.04em}
+    .download-app p{margin:0;color:#60747D;font-size:14px;line-height:1.6}
+    .store-copy h2{margin:0 0 12px;font-size:clamp(32px,4vw,48px);letter-spacing:-.045em;line-height:1.02}
+    .store-copy>p{margin:0;color:#526A73;font-size:16px;line-height:1.7;max-width:630px}
+    .store-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .store-badge{min-width:205px;display:flex;align-items:center;gap:12px;background:#111;color:#fff;border-radius:14px;padding:11px 16px;text-decoration:none;border:1px solid #111;transition:.18s}
+    .store-badge:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(23,82,103,.14)}
+    .store-badge .store-icon{width:28px;text-align:center;font-size:27px;line-height:1}
+    .store-badge .store-small{display:block;font-size:10px;letter-spacing:.02em;opacity:.82;line-height:1.1}
+    .store-badge .store-name{display:block;font-size:18px;font-weight:800;line-height:1.15;margin-top:2px}
+    .store-badge.coming{background:#263942;border-color:#263942;cursor:default}
+    .store-note{font-size:12px;color:#78909B;margin-top:12px}
+    @media(max-width:900px){
+      .download-panel{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .download-panel{padding:24px}
+      .download-app{align-items:flex-start}
+      .download-app img{width:88px;height:88px;border-radius:22px}
+      .store-badge{width:100%;min-width:0}
+    }
+
+</style>
 </head>
 <body>
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="#top" aria-label="CassaIQ">
-      <span class="logo-mark" aria-hidden="true"></span>
+      <img class="logo-app-icon" src="cassaiq-app-icon.png" alt="" aria-hidden="true">
       <span><span class="wordmark">Cassa<span>IQ</span></span><span class="logo-sub">RT + CLIENT</span></span>
     </a>
     <nav class="menu" aria-label="Navigazione principale">
@@ -265,6 +315,7 @@
       <a href="#client">Client</a>
       <a href="#attivita">Per chi</a>
       <a href="#prezzi">Prezzi</a>
+      <a href="#scarica">Scarica</a>
       <a href="#faq">FAQ</a>
       <a href="#contatti">Contatti</a>
     </nav>
@@ -427,6 +478,37 @@
     </div>
   </section>
 
+
+  <section class="download-section" id="scarica">
+    <div class="container">
+      <div class="download-panel reveal">
+        <div class="download-app">
+          <img src="cassaiq-app-icon.png" alt="Icona ufficiale CassaIQ RT">
+          <div>
+            <h3>CassaIQ RT</h3>
+            <p>La stessa app, su iPhone, iPad e Android.<br>30 giorni di prova gratuita.</p>
+          </div>
+        </div>
+        <div class="store-copy">
+          <div class="section-kicker">Scarica CassaIQ</div>
+          <h2>Porta la tua cassa<br>su iOS e Android.</h2>
+          <p>CassaIQ sarà disponibile su App Store e Google Play. I pulsanti sono già predisposti: appena avremo i link pubblici degli store li collegheremo direttamente senza cambiare il layout.</p>
+          <div class="store-buttons">
+            <a class="store-badge coming" href="#" aria-disabled="true" onclick="return false">
+              <span class="store-icon"></span>
+              <span><span class="store-small">Disponibile a breve su</span><span class="store-name">App Store</span></span>
+            </a>
+            <a class="store-badge coming" href="#" aria-disabled="true" onclick="return false">
+              <span class="store-icon">▶</span>
+              <span><span class="store-small">Disponibile a breve su</span><span class="store-name">Google Play</span></span>
+            </a>
+          </div>
+          <div class="store-note">I collegamenti verranno attivati quando le pagine pubbliche delle app saranno disponibili.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section faq" id="faq">
     <div class="container">
       <div class="section-head reveal">
@@ -488,14 +570,49 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div><a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span><span><span class="wordmark">Cassa<span>IQ</span></span><span class="logo-sub">RT + CLIENT</span></span></a></div>
+      <div><a class="logo" href="#top"><img class="logo-app-icon" src="cassaiq-app-icon.png" alt="Logo CassaIQ RT"><span><span class="wordmark">Cassa<span>IQ</span></span><span class="logo-sub">RT + CLIENT</span></span></a></div>
       <div><div class="footer-title">Prodotto</div><div class="footer-links"><a href="#funzioni">Funzioni</a><a href="#flusso">Comande</a><a href="#client">CassaIQ Client</a><a href="#prezzi">Prezzi</a><a href="#faq">FAQ</a></div></div>
       <div><div class="footer-title">Azienda</div><div class="footer-links"><a href="https://menoova.it">Menoova</a><a href="mailto:hello@menoova.it">Contatti</a><a href="mailto:hello@menoova.it?subject=Assistenza%20CassaIQ">Assistenza</a></div></div>
       <div><div class="footer-title">Contatti</div><div class="footer-links"><a href="mailto:hello@menoova.it">hello@menoova.it</a><span>Supporto e informazioni CassaIQ</span></div></div>
+      <div>
+        <div class="footer-title">Informative</div>
+        <div class="legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="cookie-policy.html">Cookie Policy</a>
+          <button type="button" id="open-cookie-settings">Personalizza cookie</button>
+          <a href="termini-condizioni.html">Termini e Condizioni</a>
+        </div>
+      </div>
     </div>
-    <div class="copyright"><span>© 2026 Menoova · CassaIQ. Tutti i diritti riservati.</span><span>Privacy · Termini e condizioni</span></div>
+    <div class="copyright"><span>© 2026 Menoova · CassaIQ. Tutti i diritti riservati.</span><span><a href="privacy.html">Privacy</a> · <a href="termini-condizioni.html">Termini e condizioni</a></span></div>
   </div>
 </footer>
+
+<div class="cookie-modal-backdrop" id="cookie-settings" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+  <div class="cookie-modal">
+    <div class="cookie-modal-head">
+      <div>
+        <h3 id="cookie-title">Preferenze cookie</h3>
+      </div>
+      <button class="cookie-close" type="button" id="close-cookie-settings" aria-label="Chiudi">×</button>
+    </div>
+    <p>Al momento questo sito non utilizza cookie di profilazione o strumenti analytics di terze parti. Le funzionalità tecniche necessarie restano sempre attive.</p>
+    <div class="cookie-row">
+      <div><strong>Necessari</strong><small>Servono al corretto funzionamento del sito e non possono essere disattivati.</small></div>
+      <span class="cookie-status">Sempre attivi</span>
+    </div>
+    <div class="cookie-row">
+      <div><strong>Analitici</strong><small>Non attivi nella versione attuale del sito.</small></div>
+      <span class="cookie-status">Non utilizzati</span>
+    </div>
+    <div class="cookie-row">
+      <div><strong>Marketing / profilazione</strong><small>Non attivi nella versione attuale del sito.</small></div>
+      <span class="cookie-status">Non utilizzati</span>
+    </div>
+    <div class="cookie-note">Se in futuro verranno aggiunti strumenti non tecnici, verrà richiesto il consenso prima della loro attivazione e questa area permetterà di modificare la scelta.</div>
+    <div class="cookie-actions"><button type="button" id="cookie-ok">Chiudi</button></div>
+  </div>
+</div>
 
 <script>
   const observer = new IntersectionObserver(entries => {
@@ -520,6 +637,21 @@
       flexDirection:'column',alignItems:'stretch',gap:'9px'
     });
   });
+  const cookieModal = document.getElementById('cookie-settings');
+  const openCookieSettings = document.getElementById('open-cookie-settings');
+  const closeCookieSettings = document.getElementById('close-cookie-settings');
+  const cookieOk = document.getElementById('cookie-ok');
+  function setCookieModal(open){
+    if(!cookieModal) return;
+    cookieModal.classList.toggle('open', !!open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  openCookieSettings?.addEventListener('click', () => setCookieModal(true));
+  closeCookieSettings?.addEventListener('click', () => setCookieModal(false));
+  cookieOk?.addEventListener('click', () => setCookieModal(false));
+  cookieModal?.addEventListener('click', e => { if(e.target === cookieModal) setCookieModal(false); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setCookieModal(false); });
+
 </script>
 </body>
 </html>
