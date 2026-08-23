@@ -22,7 +22,7 @@
     .container{width:min(1180px,calc(100% - 40px));margin:auto}
     .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:24px;letter-spacing:-.7px}
-    .brand img{width:42px;height:42px;border-radius:11px;box-shadow:0 7px 18px rgba(47,168,215,.18)}
+    .brand img{width:42px;height:42px;border-radius:11px;box-shadow:0 7px 18px rgba(47,168,215,.18)}.brand-word{display:inline-flex;align-items:baseline;letter-spacing:-.7px}.brand-cassa{color:#123542}.brand-iq{color:#2fa8d7}
     .navlinks{display:flex;align-items:center;gap:25px;color:#4c6672;font-weight:700;font-size:14px}
     .nav-cta,.btn-primary,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;border-radius:13px;font-weight:800;transition:.2s ease}
     .nav-cta{background:var(--blue);color:#fff;padding:11px 16px}
@@ -31,7 +31,7 @@
     .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:68px;align-items:center}
     h1{margin:0 0 24px;color:#123542;line-height:.92;letter-spacing:-4.6px}
     .hero-question{display:block;font-size:clamp(54px,6.4vw,88px);font-weight:950;color:#123542}
-    .hero-brand{display:block;font-size:clamp(66px,7.8vw,108px);font-weight:950;color:var(--blue);margin-top:8px}
+    .hero-brand{display:block;font-size:clamp(66px,7.8vw,108px);font-weight:950;margin-top:8px;line-height:.95}.hero-brand-dark{color:var(--blue-dark)}.hero-brand-accent{color:var(--blue)}.hero-brand-dot{color:var(--blue-dark)}
     .hero p{font-size:22px;line-height:1.45;color:#526c78;max-width:660px;margin:0 0 30px;font-weight:600}
     .hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
     .btn-primary{background:linear-gradient(135deg,#36b3df,#238eb7);color:white;padding:16px 22px;min-width:180px}
@@ -213,7 +213,7 @@
 <body>
   <header class="site-header"><div class="container">
     <nav class="nav">
-      <a class="brand" href="#"><img src="assets/cassaiq-icon.png" alt="CassaIQ"><span>CassaIQ</span></a>
+      <a class="brand" href="#"><img src="assets/cassaiq-icon.png" alt="CassaIQ"><span class="brand-word"><span class="brand-cassa">Cassa</span><span class="brand-iq">IQ</span></span></a>
       <div class="navlinks">
         <a href="#come-funziona">Come funziona</a>
         <a href="#client">Client</a>
@@ -230,7 +230,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal from-left">
-          <h1><span class="hero-question">Registratore di cassa smart?</span><span class="hero-brand">CassaIQ.</span></h1>
+          <h1><span class="hero-question">Registratore di cassa smart?</span><span class="hero-brand"><span class="hero-brand-dark">Cassa</span><span class="hero-brand-accent">IQ</span><span class="hero-brand-dot">.</span></span></h1>
           <p>Scontrini fiscali e comande dai tuoi dispositivi, anche senza registratore di cassa. Gestisci vendite, prodotti, tavoli e sala da tablet o smartphone.</p>
           <div class="hero-actions">
             <a class="btn-primary" href="#come-funziona">Scopri come funziona</a>
