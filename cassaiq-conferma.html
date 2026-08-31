@@ -1,93 +1,302 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="Conferma l'indirizzo email del tuo account CassaIQ.">
+  <meta name="theme-color" content="#07172f">
+  <title>CassaIQ RT — Conferma registrazione</title>
   <meta name="robots" content="noindex,nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src https://fmwoycukrablixqqatmo.supabase.co; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
-  <title>Conferma registrazione — CassaIQ</title>
   <style>
-    :root{--verde:#2f9a85;--verde-scuro:#1f6f66;--notte:#141334;--notte-2:#1e1c4a;--chiaro:#eef1f4;--testo:#e7eaf2;--muted:#a7abc9;--rosso:#ef7777;--bordo:#ffffff1c;color-scheme:dark}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{min-height:100dvh;background:radial-gradient(circle at 15% 10%,#2a2860 0,transparent 34%),linear-gradient(150deg,var(--notte),#0d0c25);color:var(--testo);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:grid;place-items:center;padding:24px}
-    .card{width:min(560px,100%);background:#1e1c4ae8;border:1px solid var(--bordo);border-radius:26px;padding:34px;box-shadow:0 24px 70px #0007;backdrop-filter:blur(14px)}
-    .brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}.logo{width:48px;height:48px;border-radius:13px;background:#fff;display:grid;place-items:center;color:var(--notte);font-weight:900;box-shadow:0 10px 25px #0005}.logo b{color:var(--verde)}.brand-name{font-size:21px;font-weight:800}.rt{font-size:11px;background:var(--verde);color:#fff;border-radius:6px;padding:2px 6px;margin-left:4px;vertical-align:3px}
-    .icon{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;background:#2f9a8524;border:1px solid #57bea955;font-size:35px}
-    h1{text-align:center;font-size:clamp(25px,5vw,34px);line-height:1.15;margin-bottom:12px}.lead{text-align:center;color:var(--muted);margin:0 auto 24px;max-width:430px}
-    .status{border-radius:15px;padding:15px 16px;margin:18px 0;text-align:center;background:#ffffff0b;border:1px solid var(--bordo)}.status.loading{color:var(--muted)}.status.ok{background:#2f9a8518;border-color:#4bb59f55;color:#bff3e8}.status.error{background:#ef777712;border-color:#ef77774d;color:#ffc7c7}
-    .spinner{width:23px;height:23px;border:3px solid #ffffff20;border-top-color:var(--verde);border-radius:50%;animation:spin .8s linear infinite;display:inline-block;vertical-align:-6px;margin-right:8px}@keyframes spin{to{transform:rotate(360deg)}}
-    .actions{display:grid;gap:10px;margin-top:20px}.btn{display:inline-flex;justify-content:center;align-items:center;min-height:50px;padding:12px 18px;border-radius:13px;text-decoration:none;font-weight:750;border:1px solid transparent;cursor:pointer}.primary{background:var(--verde);color:#fff}.primary:hover{background:var(--verde-scuro)}.secondary{color:var(--testo);border-color:var(--bordo);background:#ffffff08}.secondary:hover{background:#ffffff10}
-    footer{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}footer a{color:#bff3e8}
+    :root{
+      --bg:#06142a;
+      --bg2:#081e3a;
+      --panel:rgba(12,34,64,.72);
+      --panel-border:rgba(118,188,255,.22);
+      --text:#f7fbff;
+      --muted:#a9bad1;
+      --cyan:#32d7e5;
+      --teal:#20bfa9;
+      --teal2:#35d9c4;
+      --danger:#ff7373;
+      --danger-soft:rgba(255,115,115,.12);
+      --shadow:0 28px 80px rgba(0,0,0,.38);
+    }
+    *{box-sizing:border-box}
+    html,body{min-height:100%}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% 18%,rgba(32,191,169,.12),transparent 27%),
+        radial-gradient(circle at 10% 2%,rgba(50,215,229,.11),transparent 24%),
+        linear-gradient(155deg,#07152e 0%,#061329 48%,#071a32 100%);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;
+      background:
+        linear-gradient(120deg,transparent 0 72%,rgba(50,215,229,.06) 72.1% 72.25%,transparent 72.4%),
+        radial-gradient(circle at 90% 80%,rgba(34,127,215,.08),transparent 22%);
+    }
+    .shell{
+      min-height:100vh;
+      width:min(760px,100%);
+      margin:0 auto;
+      padding:max(28px,env(safe-area-inset-top)) 22px max(34px,env(safe-area-inset-bottom));
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .card{
+      width:100%;
+      border:1px solid rgba(90,151,230,.22);
+      background:linear-gradient(180deg,rgba(6,22,46,.88),rgba(5,19,40,.92));
+      border-radius:34px;
+      padding:34px clamp(22px,5vw,48px) 38px;
+      box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.035);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute;width:420px;height:420px;border-radius:50%;
+      left:50%;top:-220px;transform:translateX(-50%);
+      background:radial-gradient(circle,rgba(50,215,229,.14),rgba(50,215,229,0) 68%);
+      pointer-events:none;
+    }
+    .brand{
+      position:relative;z-index:1;
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      margin-bottom:34px;
+    }
+    .brand-icon{
+      width:66px;height:66px;border-radius:19px;background:#fff;
+      display:grid;place-items:center;
+      box-shadow:0 12px 30px rgba(0,0,0,.24);
+      font-size:24px;font-weight:950;letter-spacing:-1.3px;color:#0b1832;
+    }
+    .brand-icon .c{color:#20bfa9}
+    .brand-name{font-size:36px;font-weight:900;letter-spacing:-1.5px}
+    .rt{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:7px 12px;border-radius:13px;
+      background:linear-gradient(135deg,#17ae9b,#19c8b2);
+      color:white;font-weight:900;font-size:16px;
+      box-shadow:0 7px 22px rgba(32,191,169,.25);
+    }
+    .hero-icon{
+      width:190px;height:190px;margin:0 auto 28px;
+      border-radius:50%;
+      position:relative;
+      display:grid;place-items:center;
+      background:radial-gradient(circle,rgba(19,68,112,.7),rgba(5,22,48,.25) 62%,transparent 64%);
+      border:1px solid rgba(50,215,229,.25);
+      box-shadow:0 0 55px rgba(50,215,229,.10),inset 0 0 45px rgba(50,215,229,.08);
+    }
+    .hero-icon:before{
+      content:"";position:absolute;inset:17px;border-radius:50%;
+      border:4px solid rgba(80,150,206,.22);
+      border-top-color:var(--cyan);border-right-color:var(--cyan);border-bottom-color:var(--teal);
+      box-shadow:0 0 20px rgba(50,215,229,.22);
+    }
+    .mail{
+      width:86px;height:62px;border:4px solid var(--teal2);border-radius:9px;
+      position:relative;background:#f7fbff;
+      box-shadow:0 9px 24px rgba(0,0,0,.18);
+    }
+    .mail:before,.mail:after{
+      content:"";position:absolute;top:12px;width:53px;height:4px;background:var(--teal);
+      transform-origin:center;
+    }
+    .mail:before{left:-1px;transform:rotate(36deg)}
+    .mail:after{right:-1px;transform:rotate(-36deg)}
+    .mail-check{
+      position:absolute;right:39px;bottom:42px;width:48px;height:48px;border-radius:50%;
+      display:grid;place-items:center;background:linear-gradient(135deg,#20bfa9,#22d0ba);
+      color:white;font-size:28px;font-weight:900;
+      box-shadow:0 10px 25px rgba(32,191,169,.3);
+      border:3px solid #0b2744;
+    }
+    h1{
+      margin:0;text-align:center;font-size:clamp(36px,7vw,60px);
+      line-height:.98;letter-spacing:-2.5px;font-weight:900;
+    }
+    .lead{
+      max-width:510px;margin:20px auto 30px;text-align:center;
+      color:var(--muted);font-size:clamp(18px,3vw,23px);line-height:1.5;
+    }
+    .status{
+      position:relative;
+      display:grid;grid-template-columns:92px 1fr;gap:20px;align-items:center;
+      width:min(620px,100%);margin:0 auto;
+      padding:22px 24px;border-radius:24px;
+      background:linear-gradient(135deg,rgba(14,39,73,.82),rgba(7,29,56,.78));
+      border:1px solid var(--panel-border);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 15px 40px rgba(0,0,0,.18);
+      transition:.25s ease;
+    }
+    .spinner{
+      width:72px;height:72px;border-radius:50%;
+      border:8px solid rgba(77,127,181,.26);
+      border-top-color:var(--teal2);
+      border-right-color:var(--cyan);
+      box-shadow:0 0 22px rgba(50,215,229,.18);
+      animation:spin 1.05s linear infinite;
+      justify-self:center;
+    }
+    .status-title{font-size:25px;font-weight:900;letter-spacing:-.5px}
+    .status-sub{margin-top:5px;color:var(--muted);font-size:16px;line-height:1.5}
+    .status.success .spinner{
+      animation:none;border:0;background:linear-gradient(135deg,#20bfa9,#30d5bd);
+      display:grid;place-items:center;color:white;font-size:38px;font-weight:900;
+    }
+    .status.success .spinner:after{content:"✓"}
+    .status.error{
+      border-color:rgba(255,115,115,.30);
+      background:linear-gradient(135deg,rgba(83,25,37,.55),rgba(52,19,33,.6));
+    }
+    .status.error .spinner{
+      animation:none;border:0;background:var(--danger-soft);
+      outline:1px solid rgba(255,115,115,.28);
+      display:grid;place-items:center;color:var(--danger);font-size:36px;font-weight:900;
+      box-shadow:none;
+    }
+    .status.error .spinner:after{content:"!"}
+    .button{
+      width:min(620px,100%);margin:24px auto 0;
+      display:flex;align-items:center;justify-content:center;gap:11px;
+      min-height:64px;border:0;border-radius:20px;
+      text-decoration:none;color:white;font-size:21px;font-weight:900;
+      background:linear-gradient(135deg,#31d6dd,#1ebaa3);
+      box-shadow:0 16px 38px rgba(32,191,169,.22),inset 0 1px 0 rgba(255,255,255,.25);
+      transition:.2s ease;
+    }
+    .button:hover{transform:translateY(-1px);box-shadow:0 20px 44px rgba(32,191,169,.28)}
+    .button svg{width:25px;height:25px}
+    .fineprint{
+      margin:18px auto 0;text-align:center;color:#7286a0;font-size:12.5px;max-width:560px;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:560px){
+      .shell{padding-left:12px;padding-right:12px}
+      .card{border-radius:28px;padding:26px 18px 28px}
+      .brand{margin-bottom:26px}
+      .brand-icon{width:54px;height:54px;border-radius:16px;font-size:20px}
+      .brand-name{font-size:30px}.rt{font-size:14px;padding:6px 10px}
+      .hero-icon{width:158px;height:158px;margin-bottom:24px}
+      .hero-icon:before{inset:14px}
+      .mail{width:72px;height:52px}
+      .mail:before,.mail:after{width:44px;top:10px}
+      .mail-check{right:28px;bottom:32px;width:42px;height:42px;font-size:24px}
+      .lead{margin-top:16px;margin-bottom:24px}
+      .status{grid-template-columns:68px 1fr;gap:14px;padding:18px 16px;border-radius:19px}
+      .spinner{width:56px;height:56px;border-width:7px}
+      .status-title{font-size:20px}.status-sub{font-size:14px}
+      .button{min-height:58px;font-size:18px;border-radius:17px}
+    }
+    @media(prefers-reduced-motion:reduce){.spinner{animation-duration:2s}}
   </style>
 </head>
 <body>
-  <main class="card" aria-live="polite">
-    <div class="brand"><div class="logo"><span><b>C</b>IQ</span></div><div class="brand-name">CassaIQ <span class="rt">RT</span></div></div>
-    <div class="icon" id="icon">✉️</div>
-    <h1 id="title">Conferma registrazione</h1>
-    <p class="lead" id="lead">Stiamo verificando il tuo indirizzo email.</p>
-    <div class="status loading" id="status"><span class="spinner"></span>Verifica in corso…</div>
-    <div class="actions" id="actions" hidden>
-      <a class="btn primary" href="https://menoova.it/cassaiq.html">Torna a CassaIQ</a>
-      <a class="btn secondary" href="mailto:hello@menoova.it">Contatta l'assistenza</a>
-    </div>
-    <footer>© Menoova · <a href="https://menoova.it/cassaiq-privacy.html">Privacy</a></footer>
+  <main class="shell">
+    <section class="card" aria-labelledby="pageTitle">
+      <div class="brand">
+        <div class="brand-icon"><span class="c">C</span>IQ</div>
+        <div class="brand-name">CassaIQ</div>
+        <span class="rt">RT</span>
+      </div>
+
+      <div class="hero-icon" aria-hidden="true">
+        <div class="mail"></div>
+        <div class="mail-check">✓</div>
+      </div>
+
+      <h1 id="pageTitle">Conferma<br>registrazione</h1>
+      <p class="lead" id="lead">Stiamo verificando il tuo indirizzo email.</p>
+
+      <div id="statusBox" class="status" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <div>
+          <div id="statusTitle" class="status-title">Verifica in corso...</div>
+          <div id="statusSub" class="status-sub">Attendi qualche secondo.<br>Non chiudere questa pagina.</div>
+        </div>
+      </div>
+
+      <a class="button" href="https://menoova.it/cassaiq.html">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10 7H6.8A2.8 2.8 0 0 0 4 9.8v7.4A2.8 2.8 0 0 0 6.8 20h7.4a2.8 2.8 0 0 0 2.8-2.8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Torna a CassaIQ
+      </a>
+
+      <div class="fineprint">La conferma dell’email viene gestita dal servizio di autenticazione prima del reindirizzamento a questa pagina.</div>
+    </section>
   </main>
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-    const SUPABASE_URL = 'https://fmwoycukrablixqqatmo.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_cgeNpt6V56Wc95lFZUDYSA_xFcmxTTZ';
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    const title = document.getElementById('title');
-    const lead = document.getElementById('lead');
-    const status = document.getElementById('status');
-    const icon = document.getElementById('icon');
-    const actions = document.getElementById('actions');
-
-    function finish(ok, message) {
-      icon.textContent = ok ? '✓' : '!';
-      title.textContent = ok ? 'Registrazione confermata' : 'Conferma non riuscita';
-      lead.textContent = ok
-        ? 'Il tuo account CassaIQ è pronto. Torna nell’app e accedi con email e password.'
-        : 'Il collegamento potrebbe essere scaduto, già utilizzato oppure non valido.';
-      status.className = `status ${ok ? 'ok' : 'error'}`;
-      status.textContent = message;
-      actions.hidden = false;
-    }
-
-    async function confirmEmail() {
-      const query = new URLSearchParams(location.search);
+  <script>
+    (function () {
       const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
-      const remoteError = query.get('error_description') || hash.get('error_description');
-      if (remoteError) return finish(false, decodeURIComponent(remoteError.replace(/\+/g, ' ')));
+      const query = new URLSearchParams(location.search);
 
-      const tokenHash = query.get('token_hash');
-      const type = query.get('type') || 'email';
+      const get = (name) => hash.get(name) || query.get(name);
+      const rawError = get('error_description') || get('error') || get('error_code');
 
-      try {
-        if (tokenHash) {
-          const { error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type });
-          if (error) throw error;
-          history.replaceState({}, document.title, location.pathname);
-          return finish(true, 'Email verificata correttamente.');
+      const box = document.getElementById('statusBox');
+      const title = document.getElementById('statusTitle');
+      const sub = document.getElementById('statusSub');
+      const lead = document.getElementById('lead');
+
+      function cleanAuthFragment() {
+        if (location.hash) {
+          history.replaceState(null, '', location.pathname + location.search);
         }
-
-        await new Promise(resolve => setTimeout(resolve, 350));
-        const { data, error } = await supabase.auth.getSession();
-        if (error) throw error;
-        if (data.session) return finish(true, 'Email verificata correttamente.');
-
-        finish(false, 'Token di conferma assente o non più valido. Richiedi una nuova email dall’app.');
-      } catch (error) {
-        finish(false, error?.message || 'Si è verificato un errore durante la conferma.');
       }
-    }
 
-    confirmEmail();
+      function showError(message) {
+        box.classList.remove('success');
+        box.classList.add('error');
+        title.textContent = 'Conferma non riuscita';
+        sub.textContent = message || 'Il link potrebbe essere scaduto o già utilizzato. Torna a CassaIQ e richiedi una nuova email di conferma.';
+        lead.textContent = 'Non siamo riusciti a confermare il tuo indirizzo email.';
+        cleanAuthFragment();
+      }
+
+      function showSuccess() {
+        box.classList.remove('error');
+        box.classList.add('success');
+        title.textContent = 'Email confermata';
+        sub.textContent = 'Registrazione completata. Ora puoi tornare a CassaIQ e accedere con email e password.';
+        lead.textContent = 'Il tuo indirizzo email è stato verificato correttamente.';
+        cleanAuthFragment();
+      }
+
+      // Supabase verifica il token nel proprio endpoint /auth/v1/verify e solo dopo
+      // reindirizza a questa pagina. Qui dobbiamo quindi:
+      // 1) mostrare eventuali errori ricevuti nel redirect;
+      // 2) in assenza di errori, chiudere sempre lo stato "Verifica in corso".
+      //
+      // Il breve ritardo rende percepibile il controllo senza lasciare uno spinner infinito.
+      window.setTimeout(function () {
+        if (rawError) {
+          let msg = String(rawError).replace(/\+/g, ' ');
+          try { msg = decodeURIComponent(msg); } catch (_) {}
+          showError(msg);
+        } else {
+          showSuccess();
+        }
+      }, 900);
+
+      // Rete di sicurezza: questa pagina non deve mai restare bloccata sul loader.
+      window.setTimeout(function () {
+        if (!box.classList.contains('success') && !box.classList.contains('error')) {
+          showSuccess();
+        }
+      }, 3000);
+    })();
   </script>
 </body>
 </html>
